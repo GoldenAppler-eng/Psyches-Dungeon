@@ -1,4 +1,5 @@
-extends StaticBody2D
+class_name Trap
+extends RigidBody2D
 
 const TRAP_DAMAGE : int = 10;
 

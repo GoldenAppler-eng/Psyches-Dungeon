@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://du3tmqtt127gu"]
+[gd_scene load_steps=8 format=3 uid="uid://du3tmqtt127gu"]
 
 [ext_resource type="Texture2D" uid="uid://clf6cmjveh5tc" path="res://sprites/red-64x64.png" id="1_gyx74"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_smd3p"]
@@ -12,6 +12,9 @@ size = Vector2(100, 100)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1cfmq"]
 radius = 17.0294
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tfr4d"]
+radius = 133.135
 
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 8
@@ -50,5 +53,16 @@ wait_time = 3.0
 [node name="InvincibilityTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
+[node name="ObjectDetectionArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 282
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectDetectionArea"]
+shape = SubResource("CircleShape2D_tfr4d")
+
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
+[connection signal="body_entered" from="ObjectDetectionArea" to="." method="_on_object_detection_area_body_entered"]
+[connection signal="body_exited" from="ObjectDetectionArea" to="." method="_on_object_detection_area_body_exited"]
