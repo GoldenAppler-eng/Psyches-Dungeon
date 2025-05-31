@@ -1,16 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://du3tmqtt127gu"]
+[gd_scene load_steps=7 format=3 uid="uid://du3tmqtt127gu"]
 
 [ext_resource type="Texture2D" uid="uid://clf6cmjveh5tc" path="res://sprites/red-64x64.png" id="1_gyx74"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_smd3p"]
+[ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/coin.tscn" id="2_s3tct"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kjina"]
 size = Vector2(64, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l30rr"]
+size = Vector2(100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1cfmq"]
+radius = 17.0294
+
 [node name="enemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_smd3p")
+dropped_item = ExtResource("2_s3tct")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gyx74")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kjina")
+
+[node name="EnemyHitbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
+shape = SubResource("RectangleShape2D_l30rr")
+
+[node name="DamagerHitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(50, 0)
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitbox"]
+shape = SubResource("CircleShape2D_1cfmq")
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

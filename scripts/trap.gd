@@ -17,23 +17,22 @@ func _process(delta : float) -> void:
 	for body in _damaged_bodies:
 		body.apply_damage(TRAP_DAMAGE)
 
-func _on_area_2d_player_entered(body : Node2D) -> void:
-	if body is DamagableBody2D:
-		reset_timer.stop()
-		
-		if not activated:
+func _on_area_2d_body_entered(body : Node2D) -> void:
+	reset_timer.stop()
+	
+	if not activated:
+		if body is Player:
 			GlobalSignalBus.trap_activated.emit(body)
-				
-			activated = true
-		
-		if activated: 
-			_damaged_bodies.append(body as DamagableBody2D)
+			
+		activated = true
+	
+	if activated: 
+		_damaged_bodies.append(body as DamagableBody2D)
 
 
-func _on_area_2d_player_exited(body : Node2D) -> void:
-	if body is DamagableBody2D:
-		if _damaged_bodies.has(body):
-			_damaged_bodies.remove_at(_damaged_bodies.find(body)) 
+func _on_area_2d_body_exited(body : Node2D) -> void:
+	if _damaged_bodies.has(body):
+		_damaged_bodies.remove_at(_damaged_bodies.find(body)) 
 		
 	if _damaged_bodies.is_empty():
 		reset_timer.start()

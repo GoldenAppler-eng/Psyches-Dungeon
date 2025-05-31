@@ -10,6 +10,8 @@ size = Vector2(64, 64)
 size = Vector2(80, 80)
 
 [node name="chest" type="StaticBody2D"]
+collision_layer = 256
+collision_mask = 0
 script = ExtResource("1_e66pm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -18,10 +20,13 @@ texture = ExtResource("2_gguck")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cc70g")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="OpenArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpenArea"]
 shape = SubResource("RectangleShape2D_fa4qy")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_player_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_player_exited"]
+[connection signal="body_entered" from="OpenArea" to="." method="_on_area_2d_player_entered"]
+[connection signal="body_exited" from="OpenArea" to="." method="_on_area_2d_player_exited"]

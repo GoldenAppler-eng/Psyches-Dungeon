@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://di8bojp8w0r88"]
+[gd_scene load_steps=6 format=3 uid="uid://di8bojp8w0r88"]
 
 [ext_resource type="Texture2D" uid="uid://5hjo4niw5dt" path="res://sprites/blue-64x64.png" id="1_5cpmm"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s62gp"]
@@ -6,7 +6,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_826fu"]
 size = Vector2(64, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5u5iw"]
+size = Vector2(80, 80)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v5vp4"]
+radius = 30.0666
+
 [node name="player" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 259
 script = ExtResource("1_s62gp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -18,4 +26,26 @@ shape = SubResource("RectangleShape2D_826fu")
 [node name="InvinciblityTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
+[node name="PlayerHitbox" type="Area2D" parent="."]
+collision_layer = 32
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+shape = SubResource("RectangleShape2D_5u5iw")
+
+[node name="DamagerHitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 0)
+collision_layer = 128
+collision_mask = 64
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitbox"]
+shape = SubResource("CircleShape2D_v5vp4")
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+
 [connection signal="timeout" from="InvinciblityTimer" to="." method="_on_invinciblity_timer_timeout"]
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]

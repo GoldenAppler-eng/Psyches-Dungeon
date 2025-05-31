@@ -3,7 +3,7 @@ extends StaticBody2D
 var _player_nearby := false
 var _opened := false
 
-func _process(delta) -> void:
+func _process(delta: float) -> void:
 	if not _player_nearby or _opened:
 		return
 		
@@ -23,10 +23,8 @@ func _open_chest() -> void:
 	else:
 		print("a new skeleton pal!")
 
-func _on_area_2d_player_entered(body) -> void:
-	if body is Player:
-		_player_nearby = true
+func _on_area_2d_player_entered(body: Node2D) -> void:
+	_player_nearby = true
 
-func _on_area_2d_player_exited(body):
-	if body is Player:
-		_player_nearby = false
+func _on_area_2d_player_exited(body: Node2D) -> void:
+	_player_nearby = false
