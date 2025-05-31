@@ -147,7 +147,6 @@ func _on_invincibility_timer_timeout() -> void:
 	_invincible = false
 
 func _on_object_detection_area_body_entered(body : Node2D) -> void:
-	print(body.name)
 	avoided_objects.append(body)
 
 func _on_object_detection_area_body_exited(body : Node2D) -> void:

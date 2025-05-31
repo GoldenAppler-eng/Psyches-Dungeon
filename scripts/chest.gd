@@ -1,5 +1,9 @@
 extends StaticBody2D
 
+@export var enemy_prefab : PackedScene
+@export var coin_prefab : PackedScene
+@export var jump_component_prefab : PackedScene
+
 var _player_nearby := false
 var _opened := false
 
@@ -19,9 +23,22 @@ func _open_chest() -> void:
 	print("Congrats you got a ")
 	
 	if rng < 0.8: 
+		_spawn(coin_prefab, randi_range(1, 3))
+		
 		print("coins!")
 	else:
+		_spawn(enemy_prefab, randi_range(1, 3))
 		print("a new skeleton pal!")
+
+func _spawn(prefab : PackedScene, num : int) -> void:
+	for i in num:
+		var spawned : Node2D = prefab.instantiate()
+		var jump_comp : Node2D = jump_component_prefab.instantiate()
+		
+		get_parent().add_child(spawned)
+		spawned.global_position = global_position
+		
+		spawned.add_child(jump_comp)
 
 func _on_area_2d_player_entered(body: Node2D) -> void:
 	_player_nearby = true

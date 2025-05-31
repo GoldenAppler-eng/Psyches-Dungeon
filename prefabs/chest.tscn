@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://blel4b2ar46uf"]
+[gd_scene load_steps=8 format=3 uid="uid://blel4b2ar46uf"]
 
 [ext_resource type="Script" path="res://scripts/chest.gd" id="1_e66pm"]
+[ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/enemy.tscn" id="2_fbo2m"]
 [ext_resource type="Texture2D" uid="uid://dc1g74xyibckq" path="res://sprites/brown-64x64.png" id="2_gguck"]
+[ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/coin.tscn" id="3_dg2ca"]
+[ext_resource type="PackedScene" uid="uid://c5ksnc33jrjk7" path="res://prefabs/jump_component.tscn" id="4_heo5f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cc70g"]
 size = Vector2(64, 64)
@@ -13,6 +16,9 @@ size = Vector2(80, 80)
 collision_layer = 256
 collision_mask = 0
 script = ExtResource("1_e66pm")
+enemy_prefab = ExtResource("2_fbo2m")
+coin_prefab = ExtResource("3_dg2ca")
+jump_component_prefab = ExtResource("4_heo5f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gguck")
