@@ -14,3 +14,8 @@ texture = ExtResource("1_5cpmm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_826fu")
+
+[node name="InvinciblityTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="InvinciblityTimer" to="." method="_on_invinciblity_timer_timeout"]
