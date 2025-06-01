@@ -1,16 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://di8bojp8w0r88"]
+[gd_scene load_steps=8 format=3 uid="uid://di8bojp8w0r88"]
 
 [ext_resource type="Texture2D" uid="uid://5hjo4niw5dt" path="res://sprites/blue-64x64.png" id="1_5cpmm"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s62gp"]
+[ext_resource type="Script" path="res://scripts/RoomDetector.gd" id="3_0ed2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_826fu"]
-size = Vector2(64, 64)
+size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5u5iw"]
-size = Vector2(80, 80)
+size = Vector2(40, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v5vp4"]
-radius = 30.0666
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iy7w6"]
+radius = 16.0
 
 [node name="player" type="CharacterBody2D"]
 collision_layer = 4
@@ -18,6 +22,7 @@ collision_mask = 259
 script = ExtResource("1_s62gp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_5cpmm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -35,7 +40,7 @@ shape = SubResource("RectangleShape2D_5u5iw")
 
 [node name="DamagerHitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(64, 0)
+position = Vector2(24, 0)
 collision_layer = 128
 collision_mask = 64
 monitorable = false
@@ -47,5 +52,14 @@ shape = SubResource("CircleShape2D_v5vp4")
 unique_name_in_owner = true
 wait_time = 0.5
 
+[node name="RoomDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2048
+script = ExtResource("3_0ed2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomDetector"]
+shape = SubResource("CircleShape2D_iy7w6")
+
 [connection signal="timeout" from="InvinciblityTimer" to="." method="_on_invinciblity_timer_timeout"]
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="area_entered" from="RoomDetector" to="RoomDetector" method="_on_new_room_entered"]

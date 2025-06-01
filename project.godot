@@ -80,6 +80,7 @@ attack={
 2d_physics/layer_9="obstacles"
 2d_physics/layer_10="coin"
 2d_physics/layer_11="room_connectors"
+2d_physics/layer_12="room"
 
 [rendering]
 

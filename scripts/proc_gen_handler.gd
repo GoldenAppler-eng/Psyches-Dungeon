@@ -9,24 +9,29 @@ const ROOM_HEIGHT := 320
 
 const ROOM_GEN_CHANCE := .5
 
-var player : Player
-
 var rooms_to_process : Array[Node2D]
+var rooms_to_generate_surrounding : Array[Node2D]
 
-func _ready() -> void:
-	player = Global.global_player
+func _ready() -> void:	
+	GlobalSignalBus.room_changed.connect(_on_room_changed)
 	
 	var init_room := _generate_room(0, 0)
-	_generate_surrounding_rooms(init_room)
-	rooms_to_process.append(init_room)
+
+	rooms_to_generate_surrounding.append(init_room)
 	
 func _process(delta : float) -> void:
 	if rooms_to_process:
 		for room in rooms_to_process:
-			_set_room_doors(room)
 			_send_off_room_connectors(room)
-			
+		
 		rooms_to_process = []
+		
+	if rooms_to_generate_surrounding:
+		for room in rooms_to_generate_surrounding:
+			_generate_surrounding_rooms(room)
+			rooms_to_process.append(room)
+			
+		rooms_to_generate_surrounding = []
 
 func _send_off_room_connectors(room : Node2D) -> void:
 	for i : int in DIRECTION.values():
@@ -85,6 +90,9 @@ func _generate_surrounding_rooms(origin_room : Node2D) -> void:
 	for i in has_rooms.size():
 		if not has_rooms[i]:
 			empty_space_indices.append(i)
+		else:
+			var direction : int = i + DIRECTION.NORTH
+			_set_door_in_direction(origin_room, direction, false)
 	
 	if (empty_space_indices.is_empty()):
 		return
@@ -93,15 +101,20 @@ func _generate_surrounding_rooms(origin_room : Node2D) -> void:
 	
 	guaranteed_direction = random_empty_space_index + DIRECTION.NORTH
 	_generate_room_in_direction(origin_room, guaranteed_direction)
+	_set_door_in_direction(origin_room, guaranteed_direction, false)
 	
 	empty_space_indices.remove_at(empty_space_indices.find(random_empty_space_index))
 	
 	for index in empty_space_indices:
 		var rng : float = randf()
 		
+		var direction : int = index + DIRECTION.NORTH
+		
 		if rng < ROOM_GEN_CHANCE:
-			var direction : int = index + DIRECTION.NORTH
 			_generate_room_in_direction(origin_room, direction)
+			_set_door_in_direction(origin_room, direction, false)
+		else:
+			_set_door_in_direction(origin_room, direction, true)
 
 func _check_surroundings(room : Node2D) -> Array[bool]:
 	var has_rooms : Array[bool] = [false, false, false, false]
@@ -142,14 +155,13 @@ func _set_door_in_direction(room : Node2D, direction : int, closed : bool) -> vo
 	
 	tilemap.set_layer_enabled(direction, closed)
 
-func _set_room_doors(room : Node2D) -> void:
-	var has_rooms := _check_surroundings(room)
+func _on_room_changed(direction : int, room_area : Node2D) -> void:
+	var room : Node2D = room_area.owner
 	
-	for i in has_rooms.size():
-		var direction : int = i + DIRECTION.NORTH 
-		
-		if has_rooms[i]:
-			_set_door_in_direction(room, direction, false)
-		else:
-			_set_door_in_direction(room, direction, true)
-
+	if rooms_to_process.has(room) or rooms_to_generate_surrounding.has(room):
+		return
+	
+	var sample_connector : Area2D = room.get_node_or_null("north_connector") as Area2D
+	
+	if sample_connector.monitoring:
+		rooms_to_generate_surrounding.append(room_area.owner)
