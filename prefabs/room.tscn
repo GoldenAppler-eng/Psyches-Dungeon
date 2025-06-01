@@ -86,7 +86,7 @@ layer_6/tile_data = PackedInt32Array(262144, 1, 1, 327680, 1, 1)
 [node name="north_connector" type="Area2D" parent="."]
 position = Vector2(257, 0)
 collision_layer = 1024
-collision_mask = 1024
+collision_mask = 5120
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="north_connector"]
 shape = SubResource("CircleShape2D_ltfna")
@@ -94,7 +94,7 @@ shape = SubResource("CircleShape2D_ltfna")
 [node name="south_connector" type="Area2D" parent="."]
 position = Vector2(257, 320)
 collision_layer = 1024
-collision_mask = 1024
+collision_mask = 5120
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="south_connector"]
 shape = SubResource("CircleShape2D_ltfna")
@@ -102,7 +102,7 @@ shape = SubResource("CircleShape2D_ltfna")
 [node name="east_connector" type="Area2D" parent="."]
 position = Vector2(512, 157)
 collision_layer = 1024
-collision_mask = 1024
+collision_mask = 5120
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="east_connector"]
 shape = SubResource("CircleShape2D_ltfna")
@@ -110,7 +110,7 @@ shape = SubResource("CircleShape2D_ltfna")
 [node name="west_connector" type="Area2D" parent="."]
 position = Vector2(0, 157)
 collision_layer = 1024
-collision_mask = 1024
+collision_mask = 5120
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="west_connector"]
 shape = SubResource("CircleShape2D_ltfna")

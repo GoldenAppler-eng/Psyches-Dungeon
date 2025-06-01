@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://k534e5jnpr67"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ltfna"]
+radius = 17.2627
+
+[node name="empty_room" type="Node2D"]
+
+[node name="north_connector" type="Area2D" parent="."]
+position = Vector2(257, 0)
+collision_layer = 4096
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="north_connector"]
+shape = SubResource("CircleShape2D_ltfna")
+
+[node name="south_connector" type="Area2D" parent="."]
+position = Vector2(257, 320)
+collision_layer = 4096
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="south_connector"]
+shape = SubResource("CircleShape2D_ltfna")
+
+[node name="east_connector" type="Area2D" parent="."]
+position = Vector2(512, 157)
+collision_layer = 4096
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="east_connector"]
+shape = SubResource("CircleShape2D_ltfna")
+
+[node name="west_connector" type="Area2D" parent="."]
+position = Vector2(0, 157)
+collision_layer = 4096
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="west_connector"]
+shape = SubResource("CircleShape2D_ltfna")

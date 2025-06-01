@@ -1,8 +1,13 @@
 extends Node2D
 
 @export var room_prefab : PackedScene
+@export var empty_room_prefab : PackedScene
 
 enum DIRECTION { NORTH = 3, SOUTH = 4, EAST = 5, WEST = 6 }
+enum ROOM_STATUS { NOT_PROCESSED = 0, PROCESSED_EMPTY, PROCESSED_FILLED }
+enum ROOM_TYPE { EMPTY = 0, FILLED }
+
+const ANTI_CONNECTOR_LAYER = 13
 
 const ROOM_WIDTH := 512
 const ROOM_HEIGHT := 320
@@ -15,7 +20,7 @@ var rooms_to_generate_surrounding : Array[Node2D]
 func _ready() -> void:	
 	GlobalSignalBus.room_changed.connect(_on_room_changed)
 	
-	var init_room := _generate_room(0, 0)
+	var init_room := _generate_room(0, 0, ROOM_TYPE.FILLED)
 
 	rooms_to_generate_surrounding.append(init_room)
 	
@@ -51,15 +56,22 @@ func _send_off_room_connectors(room : Node2D) -> void:
 		
 		connector.monitoring = false
 
-func _generate_room(world_coord_x : float, world_coord_y : float) -> Node2D :
-	var room : Node2D = room_prefab.instantiate() as Node2D
+func _generate_room(world_coord_x : float, world_coord_y : float, type : int) -> Node2D :
+	var room : Node2D
+	
+	match type:
+		ROOM_TYPE.EMPTY:
+			room = empty_room_prefab.instantiate() as Node2D
+		ROOM_TYPE.FILLED:
+			room = room_prefab.instantiate() as Node2D
+	
 	get_parent().add_child.call_deferred(room)
 	
 	room.global_position = Vector2(world_coord_x, world_coord_y)
 
 	return room
 
-func _generate_room_in_direction(origin_room : Node2D, direction : int) -> Node2D:
+func _generate_room_in_direction(origin_room : Node2D, direction : int, type : int) -> Node2D:
 	var delta_x : float = 0
 	var delta_y : float = 0
 	
@@ -76,7 +88,7 @@ func _generate_room_in_direction(origin_room : Node2D, direction : int) -> Node2
 	var world_coord_x : float = origin_room.global_position.x + delta_x
 	var world_coord_y : float = origin_room.global_position.y + delta_y
 	
-	var room := _generate_room(world_coord_x, world_coord_y)
+	var room := _generate_room(world_coord_x, world_coord_y, type)
 	
 	return room
 
@@ -88,11 +100,15 @@ func _generate_surrounding_rooms(origin_room : Node2D) -> void:
 	var empty_space_indices : Array[int]
 	
 	for i in has_rooms.size():
-		if not has_rooms[i]:
+		if has_rooms[i] == ROOM_STATUS.NOT_PROCESSED:
 			empty_space_indices.append(i)
 		else:
 			var direction : int = i + DIRECTION.NORTH
-			_set_door_in_direction(origin_room, direction, false)
+			
+			if has_rooms[i] == ROOM_STATUS.PROCESSED_FILLED:
+				_set_door_in_direction(origin_room, direction, false)
+			else:
+				_set_door_in_direction(origin_room, direction, true)
 	
 	if (empty_space_indices.is_empty()):
 		return
@@ -100,7 +116,7 @@ func _generate_surrounding_rooms(origin_room : Node2D) -> void:
 	var random_empty_space_index : int = empty_space_indices.pick_random()
 	
 	guaranteed_direction = random_empty_space_index + DIRECTION.NORTH
-	_generate_room_in_direction(origin_room, guaranteed_direction)
+	_generate_room_in_direction(origin_room, guaranteed_direction, ROOM_TYPE.FILLED)
 	_set_door_in_direction(origin_room, guaranteed_direction, false)
 	
 	empty_space_indices.remove_at(empty_space_indices.find(random_empty_space_index))
@@ -111,13 +127,14 @@ func _generate_surrounding_rooms(origin_room : Node2D) -> void:
 		var direction : int = index + DIRECTION.NORTH
 		
 		if rng < ROOM_GEN_CHANCE:
-			_generate_room_in_direction(origin_room, direction)
+			_generate_room_in_direction(origin_room, direction, ROOM_TYPE.FILLED)
 			_set_door_in_direction(origin_room, direction, false)
 		else:
+			_generate_room_in_direction(origin_room, direction, ROOM_TYPE.EMPTY)
 			_set_door_in_direction(origin_room, direction, true)
 
-func _check_surroundings(room : Node2D) -> Array[bool]:
-	var has_rooms : Array[bool] = [false, false, false, false]
+func _check_surroundings(room : Node2D) -> Array[int]:
+	var has_rooms : Array[int] = [ROOM_STATUS.NOT_PROCESSED, ROOM_STATUS.NOT_PROCESSED, ROOM_STATUS.NOT_PROCESSED, ROOM_STATUS.NOT_PROCESSED]
 	
 	for i : int in DIRECTION.values():
 		var direction_str : String 
@@ -136,7 +153,13 @@ func _check_surroundings(room : Node2D) -> Array[bool]:
 		var index : int = i - DIRECTION.NORTH
 		
 		if connector.has_overlapping_areas():
-			has_rooms[index] = true
+			for area in connector.get_overlapping_areas():
+				if area.get_collision_layer_value(ANTI_CONNECTOR_LAYER):
+					has_rooms[index] = 	ROOM_STATUS.PROCESSED_EMPTY
+					break
+				else:
+					has_rooms[index] = ROOM_STATUS.PROCESSED_FILLED
+					break
 	
 	return has_rooms
 	
