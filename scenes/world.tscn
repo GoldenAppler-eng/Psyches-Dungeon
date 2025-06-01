@@ -1,12 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dnwlwrgqvy87g"]
 
+[ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/proc_gen_handler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/player.tscn" id="1_kx658"]
-[ext_resource type="PackedScene" uid="uid://blel4b2ar46uf" path="res://prefabs/chest.tscn" id="2_aunri"]
 
 [node name="world" type="Node2D"]
 
-[node name="player" parent="." instance=ExtResource("1_kx658")]
-position = Vector2(66, 54)
+[node name="proc_gen_handler" parent="." instance=ExtResource("1_4gt5v")]
 
-[node name="chest" parent="." instance=ExtResource("2_aunri")]
-position = Vector2(506, 339)
+[node name="player" parent="." instance=ExtResource("1_kx658")]

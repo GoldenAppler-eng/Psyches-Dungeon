@@ -16,6 +16,8 @@ var _attack_ready := true
 var damager_hitbox_offset : float 
 
 func _ready() -> void:
+	Global.global_player = self
+	
 	damager_hitbox_offset = damager_hitbox.position.x
 
 func _physics_process(delta : float) -> void:
