@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WildEffect" load_steps=2 format=3 uid="uid://cw065otp2t7k6"]
+
+[ext_resource type="Script" path="res://scripts/WildEffect.gd" id="1_ebeya"]
+
+[resource]
+script = ExtResource("1_ebeya")
+effect_type = 0
+effect_name = "Change Mission"

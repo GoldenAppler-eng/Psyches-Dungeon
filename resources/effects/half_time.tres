@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WildEffect" load_steps=2 format=3 uid="uid://c7eh5sgplycxv"]
+
+[ext_resource type="Script" path="res://scripts/WildEffect.gd" id="1_88254"]
+
+[resource]
+script = ExtResource("1_88254")
+effect_type = 0
+effect_name = "Halve Time"

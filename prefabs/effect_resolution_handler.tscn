@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh85bemgdn78m"]
+
+[ext_resource type="Script" path="res://scripts/effect_resolution_handler.gd" id="1_hwya8"]
+[ext_resource type="Resource" uid="uid://drnk23f2sqo7i" path="res://resources/effects/invert_controls.tres" id="2_7l4vs"]
+
+[node name="effect_resolution_handler" type="Node2D"]
+script = ExtResource("1_hwya8")
+effects_to_resolve = Array[Resource("res://scripts/WildEffect.gd")]([ExtResource("2_7l4vs")])
