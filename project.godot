@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalSignalBus="*res://scripts/singletons/SignalBus.gd"
 Global="*res://scripts/singletons/Global.gd"
+GlobalCardTimer="*res://prefabs/singletons/global_card_timer.tscn"
 
 [debug]
 

@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://c465e8ql5u4ao"]
+
+[node name="GlobalCardTimer" type="Timer"]
+wait_time = 60.0

@@ -8,13 +8,12 @@ extends Node2D
 @export var goal_handler : GoalHandler
 @export var loss_handler : LossHandler
 
-@onready var new_card_timer : Timer = $NewCardTimer
-
 @onready var next : Card = $%next
 @onready var current : Card = $%current
 @onready var cover : Card = $%cover
 
 func _ready() -> void:
+	GlobalCardTimer.timeout.connect(_on_new_card_timer_timeout)
 	GlobalSignalBus.task_completed.connect(_on_task_completed)
 	
 	_generate_new_current_card()	
@@ -54,4 +53,4 @@ func _on_task_completed(task_type : int) -> void:
 	goal_handler.mark_completed_task(current.effect_type)
 	
 	_generate_new_current_card()
-	new_card_timer.start()
+	GlobalCardTimer.start()

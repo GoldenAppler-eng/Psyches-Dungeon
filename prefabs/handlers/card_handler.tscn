@@ -28,9 +28,3 @@ face_down = true
 
 [node name="deck" parent="." instance=ExtResource("1_xopyf")]
 face_down = true
-
-[node name="NewCardTimer" type="Timer" parent="."]
-wait_time = 30.0
-autostart = true
-
-[connection signal="timeout" from="NewCardTimer" to="." method="_on_new_card_timer_timeout"]
