@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="WildEffect" load_steps=2 format=3 uid="uid://tu7cgss2s5g8"]
+[gd_resource type="Resource" script_class="WildEffect" load_steps=3 format=3 uid="uid://tu7cgss2s5g8"]
 
-[ext_resource type="Script" path="res://scripts/WildEffect.gd" id="1_idufi"]
+[ext_resource type="Script" path="res://scripts/effects/decrease_goal.gd" id="1_1gjbf"]
+[ext_resource type="Script" path="res://scripts/effects/WildEffect.gd" id="2_o40ud"]
 
 [resource]
-script = ExtResource("1_idufi")
+script = ExtResource("2_o40ud")
 effect_type = 2
 effect_name = "Decrease Goal"
+action_script = ExtResource("1_1gjbf")

@@ -14,7 +14,10 @@ extends Node2D
 
 func _ready() -> void:
 	GlobalCardTimer.timeout.connect(_on_new_card_timer_timeout)
+	
 	GlobalSignalBus.task_completed.connect(_on_task_completed)
+	GlobalSignalBus.change_goal_count.connect(_on_goal_count_changed)
+	GlobalSignalBus.psyche_task_request.connect(_on_psyche_task_received)
 	
 	_generate_new_current_card()	
 
@@ -54,3 +57,12 @@ func _on_task_completed(task_type : int) -> void:
 	
 	_generate_new_current_card()
 	GlobalCardTimer.start()
+	
+func _on_goal_count_changed(inc_amt : int) -> void:
+	if inc_amt > 0:
+		goal_handler.add_marker()
+	elif inc_amt < 0:
+		goal_handler.remove_marker()
+	
+func _on_psyche_task_received() -> void:
+	pass

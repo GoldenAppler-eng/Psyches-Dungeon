@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://di8bojp8w0r88"]
 
 [ext_resource type="Texture2D" uid="uid://5hjo4niw5dt" path="res://sprites/blue-64x64.png" id="1_5cpmm"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_s62gp"]
-[ext_resource type="Script" path="res://scripts/RoomDetector.gd" id="3_0ed2m"]
+[ext_resource type="Script" path="res://scripts/placeable/player.gd" id="1_s62gp"]
+[ext_resource type="Script" path="res://scripts/placeable/RoomDetector.gd" id="3_0ed2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_826fu"]
 size = Vector2(32, 32)

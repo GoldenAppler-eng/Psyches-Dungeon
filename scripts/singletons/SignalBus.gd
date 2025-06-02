@@ -10,3 +10,6 @@ signal room_exited(room_area : Node2D)
 signal room_entered(room_area : Node2D)
 signal room_changed(direction : int, room_area : Node2D)
 signal task_completed(task_type : int)
+
+signal change_goal_count(inc_amt : int)
+signal psyche_task_request
