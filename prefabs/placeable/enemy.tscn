@@ -49,9 +49,11 @@ shape = SubResource("CircleShape2D_1cfmq")
 [node name="AttackCooldownTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0
+one_shot = true
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+one_shot = true
 
 [node name="ObjectDetectionArea" type="Area2D" parent="."]
 unique_name_in_owner = true

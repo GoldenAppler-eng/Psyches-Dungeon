@@ -30,6 +30,7 @@ shape = SubResource("RectangleShape2D_826fu")
 
 [node name="InvinciblityTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+one_shot = true
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
 collision_layer = 32
@@ -51,6 +52,7 @@ shape = SubResource("CircleShape2D_v5vp4")
 [node name="AttackCooldownTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.5
+one_shot = true
 
 [node name="RoomDetector" type="Area2D" parent="."]
 collision_layer = 0

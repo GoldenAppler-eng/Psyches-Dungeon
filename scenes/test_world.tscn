@@ -1,18 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://47pk3lvrw00k"]
+[gd_scene load_steps=6 format=3 uid="uid://47pk3lvrw00k"]
 
 [ext_resource type="PackedScene" uid="uid://bh85bemgdn78m" path="res://prefabs/handlers/effect_resolution_handler.tscn" id="1_o22w8"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="2_wgghm"]
 [ext_resource type="PackedScene" uid="uid://b745s8ogrbuvm" path="res://prefabs/handlers/task_handler.tscn" id="3_mohqd"]
 [ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/placeable/coin.tscn" id="4_siekt"]
+[ext_resource type="PackedScene" uid="uid://bnj71gqcb0bcx" path="res://prefabs/handlers/card_handler.tscn" id="5_sf3at"]
 
 [node name="test_world" type="Node2D"]
+
+[node name="card_handler" parent="." node_paths=PackedStringArray("task_handler", "effect_handler") instance=ExtResource("5_sf3at")]
+position = Vector2(344, 416)
+task_handler = NodePath("../task_handler")
+effect_handler = NodePath("../effect_resolution_handler")
+
+[node name="task_handler" parent="." instance=ExtResource("3_mohqd")]
 
 [node name="effect_resolution_handler" parent="." instance=ExtResource("1_o22w8")]
 
 [node name="player" parent="." instance=ExtResource("2_wgghm")]
 position = Vector2(333, 145)
-
-[node name="task_handler" parent="." instance=ExtResource("3_mohqd")]
 
 [node name="coin" parent="." instance=ExtResource("4_siekt")]
 position = Vector2(697, 121)

@@ -6,5 +6,5 @@ extends Resource
 @export var action_script : GDScript
 
 func run_action() -> void:
-	print(effect_name)
-	action_script.new()
+	if action_script:
+		action_script.new()

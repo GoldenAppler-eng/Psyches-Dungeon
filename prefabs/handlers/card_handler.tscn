@@ -1,0 +1,30 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnj71gqcb0bcx"]
+
+[ext_resource type="Script" path="res://scripts/handlers/card_handler.gd" id="1_hahlu"]
+[ext_resource type="PackedScene" uid="uid://bd48cv83wcg06" path="res://prefabs/cards/card.tscn" id="1_xopyf"]
+[ext_resource type="Resource" uid="uid://cw065otp2t7k6" path="res://resources/effects/change_mission.tres" id="2_ed2ct"]
+[ext_resource type="Resource" uid="uid://tu7cgss2s5g8" path="res://resources/effects/decrease_goal.tres" id="3_qxo1t"]
+[ext_resource type="Resource" uid="uid://c7eh5sgplycxv" path="res://resources/effects/half_time.tres" id="4_v2hfx"]
+[ext_resource type="Resource" uid="uid://cvup04gpap6e5" path="res://resources/effects/increase_goal.tres" id="5_683ri"]
+[ext_resource type="Resource" uid="uid://drnk23f2sqo7i" path="res://resources/effects/invert_controls.tres" id="6_3jmvb"]
+[ext_resource type="Resource" uid="uid://c1q7jgka7p1hs" path="res://resources/effects/shift_controls.tres" id="7_llhrb"]
+
+[node name="card_handler" type="Node2D"]
+script = ExtResource("1_hahlu")
+effect_pool = Array[Resource("res://scripts/WildEffect.gd")]([ExtResource("2_ed2ct"), ExtResource("3_qxo1t"), ExtResource("4_v2hfx"), ExtResource("5_683ri"), ExtResource("6_3jmvb"), ExtResource("7_llhrb")])
+
+[node name="next" parent="." instance=ExtResource("1_xopyf")]
+unique_name_in_owner = true
+
+[node name="current" parent="." instance=ExtResource("1_xopyf")]
+unique_name_in_owner = true
+position = Vector2(70, 0)
+
+[node name="cover" parent="." instance=ExtResource("1_xopyf")]
+unique_name_in_owner = true
+
+[node name="NewCardTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[connection signal="timeout" from="NewCardTimer" to="." method="_on_new_card_timer_timeout"]
