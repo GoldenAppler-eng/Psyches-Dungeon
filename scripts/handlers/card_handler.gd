@@ -12,7 +12,9 @@ extends Node2D
 @onready var current : Card = $%current
 @onready var cover : Card = $%cover
 
-func ready() -> void:
+func _ready() -> void:
+	GlobalSignalBus.task_completed.connect(_on_task_completed)
+	
 	_generate_new_current_card()	
 
 func _generate_new_current_card() -> void:
@@ -43,3 +45,8 @@ func _generate_new_task() -> Array[int]:
 
 func _on_new_card_timer_timeout() -> void:
 	_generate_new_current_card()	
+	
+func _on_task_completed(task_type : int) -> void:
+	print("YOOOOO" + str(task_type))
+	_generate_new_current_card()
+	new_card_timer.start()

@@ -14,8 +14,9 @@ const KNOCKBACK_MODIFIER := 20
 @onready var attack_cooldown_timer : Timer = $%AttackCooldownTimer
 @onready var invincibility_timer : Timer = $%InvincibilityTimer
 
-@export var target_player : Player
 @export var dropped_item : PackedScene
+
+var target_player : Player
 
 var damager_hitbox_offset : float
 var speed := MAX_SPEED
@@ -30,6 +31,8 @@ var avoided_objects : Array[Node2D] = []
 var _target_direction : Vector2
 
 func _ready() -> void:
+	target_player = Global.global_player
+	
 	health = max_health
 	damager_hitbox_offset = damager_hitbox.position.x
 	

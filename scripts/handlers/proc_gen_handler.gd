@@ -1,9 +1,9 @@
 extends Node2D
 
-@export var room_prefab : PackedScene
+@export var room_prefab_pool : Array[PackedScene]
+
 @export var empty_room_prefab : PackedScene
 
-enum DIRECTION { NORTH = 3, SOUTH = 4, EAST = 5, WEST = 6 }
 enum ROOM_STATUS { NOT_PROCESSED = 0, PROCESSED_EMPTY, PROCESSED_FILLED }
 enum ROOM_TYPE { EMPTY = 0, FILLED }
 
@@ -39,17 +39,17 @@ func _process(delta : float) -> void:
 		rooms_to_generate_surrounding = []
 
 func _send_off_room_connectors(room : Node2D) -> void:
-	for i : int in DIRECTION.values():
+	for i : int in Global.DIRECTION.values():
 		var direction_str : String 
 		
 		match i:
-			DIRECTION.NORTH:
+			Global.DIRECTION.NORTH:
 				direction_str = "north"
-			DIRECTION.SOUTH:
+			Global.DIRECTION.SOUTH:
 				direction_str = "south"
-			DIRECTION.EAST:
+			Global.DIRECTION.EAST:
 				direction_str = "east"
-			DIRECTION.WEST:
+			Global.DIRECTION.WEST:
 				direction_str = "west"
 					
 		var connector : Area2D = room.get_node_or_null(direction_str + "_connector") as Area2D
@@ -63,6 +63,7 @@ func _generate_room(world_coord_x : float, world_coord_y : float, type : int) ->
 		ROOM_TYPE.EMPTY:
 			room = empty_room_prefab.instantiate() as Node2D
 		ROOM_TYPE.FILLED:
+			var room_prefab : PackedScene = room_prefab_pool.pick_random()
 			room = room_prefab.instantiate() as Node2D
 	
 	get_parent().add_child.call_deferred(room)
@@ -76,13 +77,13 @@ func _generate_room_in_direction(origin_room : Node2D, direction : int, type : i
 	var delta_y : float = 0
 	
 	match direction:
-		DIRECTION.NORTH:
+		Global.DIRECTION.NORTH:
 			delta_y = -ROOM_HEIGHT
-		DIRECTION.SOUTH:
+		Global.DIRECTION.SOUTH:
 			delta_y = ROOM_HEIGHT
-		DIRECTION.EAST:
+		Global.DIRECTION.EAST:
 			delta_x = ROOM_WIDTH
-		DIRECTION.WEST:
+		Global.DIRECTION.WEST:
 			delta_x = -ROOM_WIDTH
 		
 	var world_coord_x : float = origin_room.global_position.x + delta_x
@@ -103,7 +104,7 @@ func _generate_surrounding_rooms(origin_room : Node2D) -> void:
 		if has_rooms[i] == ROOM_STATUS.NOT_PROCESSED:
 			empty_space_indices.append(i)
 		else:
-			var direction : int = i + DIRECTION.NORTH
+			var direction : int = i + Global.DIRECTION.NORTH
 			
 			if has_rooms[i] == ROOM_STATUS.PROCESSED_FILLED:
 				_set_door_in_direction(origin_room, direction, false)
@@ -115,7 +116,7 @@ func _generate_surrounding_rooms(origin_room : Node2D) -> void:
 		
 	var random_empty_space_index : int = empty_space_indices.pick_random()
 	
-	guaranteed_direction = random_empty_space_index + DIRECTION.NORTH
+	guaranteed_direction = random_empty_space_index + Global.DIRECTION.NORTH
 	_generate_room_in_direction(origin_room, guaranteed_direction, ROOM_TYPE.FILLED)
 	_set_door_in_direction(origin_room, guaranteed_direction, false)
 	
@@ -124,7 +125,7 @@ func _generate_surrounding_rooms(origin_room : Node2D) -> void:
 	for index in empty_space_indices:
 		var rng : float = randf()
 		
-		var direction : int = index + DIRECTION.NORTH
+		var direction : int = index + Global.DIRECTION.NORTH
 		
 		if rng < ROOM_GEN_CHANCE:
 			_generate_room_in_direction(origin_room, direction, ROOM_TYPE.FILLED)
@@ -136,21 +137,21 @@ func _generate_surrounding_rooms(origin_room : Node2D) -> void:
 func _check_surroundings(room : Node2D) -> Array[int]:
 	var has_rooms : Array[int] = [ROOM_STATUS.NOT_PROCESSED, ROOM_STATUS.NOT_PROCESSED, ROOM_STATUS.NOT_PROCESSED, ROOM_STATUS.NOT_PROCESSED]
 	
-	for i : int in DIRECTION.values():
+	for i : int in Global.DIRECTION.values():
 		var direction_str : String 
 		
 		match i:
-			DIRECTION.NORTH:
+			Global.DIRECTION.NORTH:
 				direction_str = "north"
-			DIRECTION.SOUTH:
+			Global.DIRECTION.SOUTH:
 				direction_str = "south"
-			DIRECTION.EAST:
+			Global.DIRECTION.EAST:
 				direction_str = "east"
-			DIRECTION.WEST:
+			Global.DIRECTION.WEST:
 				direction_str = "west"
 					
 		var connector : Area2D = room.get_node_or_null(direction_str + "_connector") as Area2D
-		var index : int = i - DIRECTION.NORTH
+		var index : int = i - Global.DIRECTION.NORTH
 		
 		if connector.has_overlapping_areas():
 			for area in connector.get_overlapping_areas():

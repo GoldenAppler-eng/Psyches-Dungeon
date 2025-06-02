@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://47pk3lvrw00k"]
+[gd_scene load_steps=7 format=3 uid="uid://47pk3lvrw00k"]
 
 [ext_resource type="PackedScene" uid="uid://bh85bemgdn78m" path="res://prefabs/handlers/effect_resolution_handler.tscn" id="1_o22w8"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="2_wgghm"]
 [ext_resource type="PackedScene" uid="uid://b745s8ogrbuvm" path="res://prefabs/handlers/task_handler.tscn" id="3_mohqd"]
 [ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/placeable/coin.tscn" id="4_siekt"]
 [ext_resource type="PackedScene" uid="uid://bnj71gqcb0bcx" path="res://prefabs/handlers/card_handler.tscn" id="5_sf3at"]
+[ext_resource type="PackedScene" uid="uid://blel4b2ar46uf" path="res://prefabs/placeable/chest.tscn" id="6_nv1jd"]
 
 [node name="test_world" type="Node2D"]
 
@@ -43,3 +44,15 @@ position = Vector2(738, 259)
 
 [node name="coin8" parent="." instance=ExtResource("4_siekt")]
 position = Vector2(593, 304)
+
+[node name="chest" parent="." instance=ExtResource("6_nv1jd")]
+position = Vector2(973, 110)
+
+[node name="chest2" parent="." instance=ExtResource("6_nv1jd")]
+position = Vector2(910, 381)
+
+[node name="chest3" parent="." instance=ExtResource("6_nv1jd")]
+position = Vector2(207, 506)
+
+[node name="chest4" parent="." instance=ExtResource("6_nv1jd")]
+position = Vector2(684, 511)

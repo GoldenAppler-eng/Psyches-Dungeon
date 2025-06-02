@@ -32,6 +32,11 @@ shape = SubResource("RectangleShape2D_826fu")
 unique_name_in_owner = true
 one_shot = true
 
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
 [node name="PlayerHitbox" type="Area2D" parent="."]
 collision_layer = 32
 monitoring = false
@@ -49,11 +54,6 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitbox"]
 shape = SubResource("CircleShape2D_v5vp4")
 
-[node name="AttackCooldownTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.5
-one_shot = true
-
 [node name="RoomDetector" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2048
@@ -65,3 +65,4 @@ shape = SubResource("CircleShape2D_iy7w6")
 [connection signal="timeout" from="InvinciblityTimer" to="." method="_on_invinciblity_timer_timeout"]
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="area_entered" from="RoomDetector" to="RoomDetector" method="_on_new_room_entered"]
+[connection signal="area_exited" from="RoomDetector" to="RoomDetector" method="_on_room_exited"]

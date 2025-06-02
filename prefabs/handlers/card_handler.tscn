@@ -15,6 +15,7 @@ effect_pool = Array[Resource("res://scripts/WildEffect.gd")]([ExtResource("2_ed2
 
 [node name="next" parent="." instance=ExtResource("1_xopyf")]
 unique_name_in_owner = true
+effect_type = 4
 
 [node name="current" parent="." instance=ExtResource("1_xopyf")]
 unique_name_in_owner = true
@@ -22,6 +23,11 @@ position = Vector2(70, 0)
 
 [node name="cover" parent="." instance=ExtResource("1_xopyf")]
 unique_name_in_owner = true
+effect_type = 4
+face_down = true
+
+[node name="deck" parent="." instance=ExtResource("1_xopyf")]
+face_down = true
 
 [node name="NewCardTimer" type="Timer" parent="."]
 wait_time = 30.0
