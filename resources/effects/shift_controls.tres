@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="WildEffect" load_steps=2 format=3 uid="uid://c1q7jgka7p1hs"]
+[gd_resource type="Resource" script_class="WildEffect" load_steps=3 format=3 uid="uid://c1q7jgka7p1hs"]
 
+[ext_resource type="Script" path="res://scripts/effects/shift_controls.gd" id="1_08eas"]
 [ext_resource type="Script" path="res://scripts/WildEffect.gd" id="1_aqnpk"]
 
 [resource]
 script = ExtResource("1_aqnpk")
 effect_type = 1
 effect_name = "Shift Controls"
+action_script = ExtResource("1_08eas")
