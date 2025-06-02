@@ -5,6 +5,8 @@ extends Node2D
 
 @export var task_handler : TaskHandler
 @export var effect_handler : EffectHandler
+@export var goal_handler : GoalHandler
+@export var loss_handler : LossHandler
 
 @onready var new_card_timer : Timer = $NewCardTimer
 
@@ -44,9 +46,12 @@ func _generate_new_task() -> Array[int]:
 	return [gen_task_type, gen_task_amt]
 
 func _on_new_card_timer_timeout() -> void:
+	loss_handler.mark_loss()
 	_generate_new_current_card()	
 	
 func _on_task_completed(task_type : int) -> void:
-	print("YOOOOO" + str(task_type))
+	print("Complete task type: " + str(task_type))
+	goal_handler.mark_completed_task(current.effect_type)
+	
 	_generate_new_current_card()
 	new_card_timer.start()

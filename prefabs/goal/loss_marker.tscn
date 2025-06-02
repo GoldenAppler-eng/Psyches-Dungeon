@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0jlkactf4p11"]
+
+[ext_resource type="Texture2D" uid="uid://onk3bjheq8by" path="res://sprites/tmp-loss-marker-16x16.png" id="1_88yuj"]
+[ext_resource type="Texture2D" uid="uid://wsttsnjs6ust" path="res://sprites/tmp-goal-hole-16x16.png" id="2_6f42t"]
+
+[node name="loss_marker" type="Node2D"]
+
+[node name="icon" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(8, 8)
+texture = ExtResource("1_88yuj")
+
+[node name="hole" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("2_6f42t")
