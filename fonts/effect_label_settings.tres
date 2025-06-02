@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c16ltvcfw0j2i"]
+
+[ext_resource type="FontFile" uid="uid://d2vpbv3wwvrt6" path="res://fonts/PIXY.ttf" id="1_ngfug"]
+
+[resource]
+font = ExtResource("1_ngfug")
+font_size = 6
+font_color = Color(0, 0, 0, 1)

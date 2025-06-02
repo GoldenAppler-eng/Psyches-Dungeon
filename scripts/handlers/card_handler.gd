@@ -25,7 +25,9 @@ func _generate_new_current_card() -> void:
 	var task_values : Array[int] = _generate_new_task()
 	var card_effect : WildEffect = _generate_new_effect()
 	
-	current.task_text = "bruh"
+	var task_text : String = task_handler.get_current_task_description()
+	
+	current.task_text = task_text
 	
 	current.effect_type = card_effect.effect_type
 	current.effect_text = card_effect.effect_name

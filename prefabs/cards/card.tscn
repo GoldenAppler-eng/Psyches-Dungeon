@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd48cv83wcg06"]
+[gd_scene load_steps=11 format=3 uid="uid://bd48cv83wcg06"]
 
 [ext_resource type="Script" path="res://scripts/placeable/card.gd" id="1_c2vn4"]
 [ext_resource type="Texture2D" uid="uid://jjsc0yolhkaj" path="res://sprites/tmp-card-64x96.png" id="1_q5kvt"]
 [ext_resource type="Texture2D" uid="uid://cu8hjskyai2mc" path="res://sprites/tmp-effect-icons.png" id="2_g5m25"]
+[ext_resource type="LabelSettings" uid="uid://b4bpldjpxvp3g" path="res://fonts/task_label_settings.tres" id="4_g14va"]
+[ext_resource type="LabelSettings" uid="uid://c16ltvcfw0j2i" path="res://fonts/effect_label_settings.tres" id="5_sdqcw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sikdj"]
 animations = [{
@@ -60,3 +62,20 @@ unique_name_in_owner = true
 position = Vector2(-20, -35)
 sprite_frames = SubResource("SpriteFrames_go5d2")
 frame = 3
+
+[node name="task_text_label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 26.0
+offset_bottom = 40.0
+label_settings = ExtResource("4_g14va")
+autowrap_mode = 2
+
+[node name="effect_text_label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -10.0
+offset_top = -40.0
+offset_right = 28.0
+offset_bottom = -24.0
+label_settings = ExtResource("5_sdqcw")

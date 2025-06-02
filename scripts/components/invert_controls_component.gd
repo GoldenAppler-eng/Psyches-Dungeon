@@ -16,9 +16,10 @@ var original_input_events : Dictionary
 
 func _ready() -> void:
 	GlobalCardTimer.timeout.connect(_on_destroy_timer_timeout)
-	_store_original_controls()
 	
+	_store_original_controls()
 	_invert_controls()
+
 
 func _store_original_controls() -> void:
 	for action in input_map_actions:

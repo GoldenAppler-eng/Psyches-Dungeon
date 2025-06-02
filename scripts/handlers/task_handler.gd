@@ -9,10 +9,10 @@ var task_completion_counter : int = 0
 var task_completion_amount : int = 5 
 
 var direction_dict : Dictionary = {
-	0 : "upwards",
-	1 : "downwards",
-	2 : "right",
-	4 : "left"
+	Global.DIRECTION.NORTH : "upwards",
+	Global.DIRECTION.SOUTH : "downwards",
+	Global.DIRECTION.EAST : "right",
+	Global.DIRECTION.WEST : "left"
 }
 
 var task_completion_direction : int = 0
@@ -56,6 +56,9 @@ func set_task_type(type : int, amt : int) -> void:
 	
 	current_task_type = type
 	task_completion_amount = amt
+	
+	if type == Global.TASK_TYPE.TRAVEL:
+		task_completion_direction = randi_range(0, 3) + Global.DIRECTION.NORTH
 
 func reset_counter() -> void :
 	task_completion_counter = 0
@@ -92,3 +95,24 @@ func _on_room_changed(direction : int, room_area : Node2D) -> void:
 func signal_task_completed() -> void:
 	reset_counter()
 	GlobalSignalBus.task_completed.emit(current_task_type)
+	
+func get_current_task_description() -> String:
+	var task_desc : String = ""
+	
+	match current_task_type:
+		Global.TASK_TYPE.DEFEAT:
+			task_desc = "Defeat " + str(task_completion_amount) + " enemies"
+		Global.TASK_TYPE.DEFEAT_GOLD:
+			task_desc = "Defeat " + str(task_completion_amount) + " golden enemies"
+		Global.TASK_TYPE.COLLECT:
+			task_desc = "Collect " + str(task_completion_amount) + " coins"
+		Global.TASK_TYPE.OPEN:
+			task_desc = "Open " + str(task_completion_amount) + " chests"
+		Global.TASK_TYPE.ACTIVATE:
+			task_desc = "Activate " + str(task_completion_amount) + " traps"
+		Global.TASK_TYPE.DIE:
+			task_desc = "Die"
+		Global.TASK_TYPE.TRAVEL:
+			task_desc = "Go " + direction_dict[task_completion_direction] + " into another room " + str(task_completion_amount) + " times in a row"	
+
+	return task_desc
