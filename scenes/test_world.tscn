@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://47pk3lvrw00k"]
+
+[ext_resource type="PackedScene" uid="uid://bh85bemgdn78m" path="res://prefabs/handlers/effect_resolution_handler.tscn" id="1_o22w8"]
+[ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="2_wgghm"]
+[ext_resource type="PackedScene" uid="uid://b745s8ogrbuvm" path="res://prefabs/handlers/task_handler.tscn" id="3_mohqd"]
+[ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/placeable/coin.tscn" id="4_siekt"]
+
+[node name="test_world" type="Node2D"]
+
+[node name="effect_resolution_handler" parent="." instance=ExtResource("1_o22w8")]
+
+[node name="player" parent="." instance=ExtResource("2_wgghm")]
+position = Vector2(333, 145)
+
+[node name="task_handler" parent="." instance=ExtResource("3_mohqd")]
+
+[node name="coin" parent="." instance=ExtResource("4_siekt")]
+position = Vector2(697, 121)
+
+[node name="coin2" parent="." instance=ExtResource("4_siekt")]
+position = Vector2(175, 171)
+
+[node name="coin3" parent="." instance=ExtResource("4_siekt")]
+position = Vector2(232, 39)
+
+[node name="coin4" parent="." instance=ExtResource("4_siekt")]
+position = Vector2(809, 194)
+
+[node name="coin5" parent="." instance=ExtResource("4_siekt")]
+position = Vector2(177, 318)
+
+[node name="coin6" parent="." instance=ExtResource("4_siekt")]
+position = Vector2(580, 53)
+
+[node name="coin7" parent="." instance=ExtResource("4_siekt")]
+position = Vector2(738, 259)
+
+[node name="coin8" parent="." instance=ExtResource("4_siekt")]
+position = Vector2(593, 304)
