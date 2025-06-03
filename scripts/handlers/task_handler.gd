@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var task_display_label : Label = $TaskDisplayLabel
 
-var current_task_type : int
+var current_task_type : int = -1
 
 var task_completion_counter : int = 0
 var task_completion_amount : int = 5 
@@ -25,13 +25,11 @@ func _ready() -> void:
 	GlobalSignalBus.player_death.connect(_on_player_death)
 	GlobalSignalBus.room_changed.connect(_on_room_changed)
 
-	current_task_type = Global.TASK_TYPE.COLLECT
-
 func _process(delta : float) -> void:
 	if task_completion_counter >= task_completion_amount:
 		signal_task_completed()
 	
-	var task_text : String
+	var task_text : String = ""
 	
 	match current_task_type:
 		Global.TASK_TYPE.DEFEAT:
@@ -50,6 +48,7 @@ func _process(delta : float) -> void:
 			task_text = "Go " + direction_dict[task_completion_direction] + " into another room (" + str(task_completion_counter) + "/" + str(task_completion_amount) + ") times in a row"	
 	
 	task_display_label.text = task_text
+	
 
 func set_task_type(type : int, amt : int) -> void:
 	reset_counter()

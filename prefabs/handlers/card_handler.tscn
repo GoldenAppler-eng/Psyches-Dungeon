@@ -15,16 +15,22 @@ effect_pool = Array[Resource("res://scripts/effects/WildEffect.gd")]([ExtResourc
 
 [node name="next" parent="." instance=ExtResource("1_xopyf")]
 unique_name_in_owner = true
+z_index = 23
 effect_type = 4
 
 [node name="current" parent="." instance=ExtResource("1_xopyf")]
 unique_name_in_owner = true
+z_index = 25
 position = Vector2(70, 0)
+effect_type = 4
 
 [node name="cover" parent="." instance=ExtResource("1_xopyf")]
 unique_name_in_owner = true
+z_index = 30
 effect_type = 4
 face_down = true
 
 [node name="deck" parent="." instance=ExtResource("1_xopyf")]
+z_index = 20
+effect_type = 4
 face_down = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wsttsnjs6ust"
-path="res://.godot/imported/tmp-goal-hole-16x16.png-bec80849333f1941cca611aa3e191121.ctex"
+uid="uid://bgfqaruhf5pan"
+path="res://.godot/imported/knight-final-60x36-Sheet.png-77944652b01ca0c6c445c25f7d2114b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tmp-goal-hole-16x16.png"
-dest_files=["res://.godot/imported/tmp-goal-hole-16x16.png-bec80849333f1941cca611aa3e191121.ctex"]
+source_file="res://sprites/knight-final-60x36-Sheet.png"
+dest_files=["res://.godot/imported/knight-final-60x36-Sheet.png-77944652b01ca0c6c445c25f7d2114b4.ctex"]
 
 [params]
 

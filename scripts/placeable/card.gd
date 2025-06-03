@@ -14,8 +14,14 @@ var effect_text : String = ""
 
 
 func _process(delta : float) -> void:
+	
+	
+	if face_down:
+		base.frame = 1
+		return
+	
+	base.frame = 0
 	effect_icon.frame = effect_type
 	
 	task_text_label.text = task_text
 	effect_text_label.text = effect_text
-	

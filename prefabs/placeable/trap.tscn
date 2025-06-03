@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ln8wdsnv7xo2"]
 
 [ext_resource type="Script" path="res://scripts/placeable/trap.gd" id="1_4d2cc"]
-[ext_resource type="Texture2D" uid="uid://ch02ac8chexym" path="res://sprites/grey-64x64.png" id="1_nqyvh"]
+[ext_resource type="Texture2D" uid="uid://ch02ac8chexym" path="res://sprites/tmp/grey-64x64.png" id="1_nqyvh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fr2w3"]
 size = Vector2(64, 64)

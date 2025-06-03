@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jjsc0yolhkaj"
-path="res://.godot/imported/tmp-card-64x96.png-346cfb9c28ad73ca5f99aa3ee681f72d.ctex"
+uid="uid://onk3bjheq8by"
+path="res://.godot/imported/tmp-loss-marker-16x16.png-174f7ca449c21740c6252eaca18a2e1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tmp-card-64x96.png"
-dest_files=["res://.godot/imported/tmp-card-64x96.png-346cfb9c28ad73ca5f99aa3ee681f72d.ctex"]
+source_file="res://sprites/tmp/tmp-loss-marker-16x16.png"
+dest_files=["res://.godot/imported/tmp-loss-marker-16x16.png-174f7ca449c21740c6252eaca18a2e1b.ctex"]
 
 [params]
 

@@ -12,6 +12,9 @@ extends Node2D
 @onready var current : Card = $%current
 @onready var cover : Card = $%cover
 
+var cover_animated_sprite : AnimatedSprite2D
+var is_animation_playing := false
+
 func _ready() -> void:
 	GlobalCardTimer.timeout.connect(_on_new_card_timer_timeout)
 	
@@ -19,7 +22,14 @@ func _ready() -> void:
 	GlobalSignalBus.change_goal_count.connect(_on_goal_count_changed)
 	GlobalSignalBus.psyche_task_request.connect(_on_psyche_task_received)
 	
+	cover_animated_sprite = cover.find_child("base") as AnimatedSprite2D
+	cover_animated_sprite.animation_finished.connect(_on_cover_animated_sprite_animation_finished)
+	
 	_generate_new_current_card()	
+
+func _process(delta : float) -> void:
+	if Input.is_action_just_pressed("attack"):
+		play_change_card_animation()
 
 func _generate_new_current_card() -> void:
 	var task_values : Array[int] = _generate_new_task()
@@ -31,8 +41,6 @@ func _generate_new_current_card() -> void:
 	
 	current.effect_type = card_effect.effect_type
 	current.effect_text = card_effect.effect_name
-	
-	print(card_effect.effect_name)
 
 func _generate_new_effect() -> WildEffect:
 	var chosen_effect : WildEffect = effect_pool.pick_random()
@@ -68,3 +76,17 @@ func _on_goal_count_changed(inc_amt : int) -> void:
 	
 func _on_psyche_task_received() -> void:
 	pass
+		
+func play_change_card_animation() -> void:
+	next.visible = false
+	
+	is_animation_playing = true
+	
+
+func _on_cover_animated_sprite_animation_finished() -> void:
+	if not is_animation_playing:
+		return
+	
+	is_animation_playing = false
+	next.visible = true
+	

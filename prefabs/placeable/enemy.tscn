@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://du3tmqtt127gu"]
 
-[ext_resource type="Texture2D" uid="uid://clf6cmjveh5tc" path="res://sprites/red-64x64.png" id="1_gyx74"]
+[ext_resource type="Texture2D" uid="uid://clf6cmjveh5tc" path="res://sprites/tmp/red-64x64.png" id="1_gyx74"]
 [ext_resource type="Script" path="res://scripts/placeable/enemy.gd" id="1_smd3p"]
 [ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/placeable/coin.tscn" id="2_s3tct"]
 
