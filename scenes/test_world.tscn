@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://47pk3lvrw00k"]
+[gd_scene load_steps=8 format=3 uid="uid://47pk3lvrw00k"]
 
 [ext_resource type="PackedScene" uid="uid://bh85bemgdn78m" path="res://prefabs/handlers/effect_resolution_handler.tscn" id="1_o22w8"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="2_wgghm"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dwqki74onshog" path="res://prefabs/handlers/goal_handler.tscn" id="4_cjn4e"]
 [ext_resource type="PackedScene" uid="uid://f0ftkbwhqhcs" path="res://prefabs/handlers/loss_handler.tscn" id="5_0rbt4"]
 [ext_resource type="PackedScene" uid="uid://bnj71gqcb0bcx" path="res://prefabs/handlers/card_handler.tscn" id="5_sf3at"]
+[ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/enemy.tscn" id="7_fgfsq"]
 
 [node name="test_world" type="Node2D"]
 
@@ -28,3 +29,6 @@ position = Vector2(1118, 614)
 
 [node name="player" parent="." instance=ExtResource("2_wgghm")]
 position = Vector2(333, 145)
+
+[node name="enemy" parent="." instance=ExtResource("7_fgfsq")]
+position = Vector2(201, 211)

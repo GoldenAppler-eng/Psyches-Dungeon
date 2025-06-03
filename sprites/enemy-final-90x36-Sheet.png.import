@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgfqaruhf5pan"
-path="res://.godot/imported/knight-final-60x36-Sheet.png-77944652b01ca0c6c445c25f7d2114b4.ctex"
+uid="uid://s6en6lbn8ili"
+path="res://.godot/imported/enemy-final-90x36-Sheet.png-29a60652038c3a18f49df51972fda08c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/knight-final-60x36-Sheet.png"
-dest_files=["res://.godot/imported/knight-final-60x36-Sheet.png-77944652b01ca0c6c445c25f7d2114b4.ctex"]
+source_file="res://sprites/enemy-final-90x36-Sheet.png"
+dest_files=["res://.godot/imported/enemy-final-90x36-Sheet.png-29a60652038c3a18f49df51972fda08c.ctex"]
 
 [params]
 

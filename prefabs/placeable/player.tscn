@@ -276,12 +276,11 @@ wait_time = 0.3
 one_shot = true
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
-position = Vector2(-7, -5)
+position = Vector2(-0.5, 3)
 collision_layer = 32
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
-position = Vector2(6.5, 8)
 shape = SubResource("RectangleShape2D_5u5iw")
 
 [node name="DamagerHitbox" type="Area2D" parent="."]
@@ -295,13 +294,12 @@ monitorable = false
 shape = SubResource("RectangleShape2D_tkdcx")
 
 [node name="RoomDetector" type="Area2D" parent="."]
-position = Vector2(-7, -5)
+position = Vector2(-1, 0)
 collision_layer = 0
 collision_mask = 2048
 script = ExtResource("3_0ed2m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomDetector"]
-position = Vector2(6, 5)
 shape = SubResource("CircleShape2D_iy7w6")
 
 [connection signal="animation_finished" from="TopHalf" to="." method="_on_top_half_animation_finished"]
