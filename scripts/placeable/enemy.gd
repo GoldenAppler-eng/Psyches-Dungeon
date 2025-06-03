@@ -4,7 +4,9 @@ extends DamagableBody2D
 const MAX_SPEED := 10000.0
 const GOLD_CHANCE := .4
 const DAMAGE := 10
-const KNOCKBACK_MODIFIER := 0
+const KNOCKBACK_SPEED := 100.0
+
+const GOLD_TINT := Color8(215, 190, 0, 255)
 
 @export var jump_component_prefab : PackedScene
 
@@ -37,6 +39,12 @@ var _is_dead := false
 var avoided_objects : Array[Node2D] = []
 
 var _target_direction : Vector2
+var _knockback_direction : Vector2
+
+func _init() -> void:
+	if randf() <= GOLD_CHANCE:
+		_is_golden = true
+		modulate = GOLD_TINT
 
 func _ready() -> void:
 	target_player = Global.global_player
@@ -44,11 +52,11 @@ func _ready() -> void:
 	health = max_health
 	damager_hitbox_offset = damager_hitbox.position.x	
 	attack_detection_offset = attack_detection_area.position.x
-	
-	if randf() <= GOLD_CHANCE:
-		_is_golden = true
 
 func _physics_process(delta : float) -> void:	
+	if _is_dead:
+		return
+		
 	_check_health()
 	
 	if _is_dead:
@@ -57,6 +65,11 @@ func _physics_process(delta : float) -> void:
 	var movement_direction := _enemy_movement(delta)
 	
 	_enemy_anim(movement_direction.x, movement_direction.y, delta)
+	
+	if _invincible:
+		_charging = false
+		return
+		
 	_enemy_attack(delta)
 
 func _check_health() -> void:
@@ -73,8 +86,14 @@ func _enemy_movement(delta : float) -> Vector2:
 		horizontal_direction = 0
 		vertical_direction = 0
 	
-	velocity.x = speed * horizontal_direction * abs(_target_direction.x) * delta
-	velocity.y = speed * vertical_direction * abs(_target_direction.y) * delta
+	if not _invincible:
+		velocity.x = MAX_SPEED * horizontal_direction * abs(_target_direction.x) * delta
+		velocity.y = MAX_SPEED * vertical_direction * abs(_target_direction.y) * delta
+	else:
+		print(velocity)
+		
+		velocity.x = move_toward(velocity.x, 0, KNOCKBACK_SPEED * delta)
+		velocity.y = move_toward(velocity.y ,0, KNOCKBACK_SPEED * delta)
 
 	if horizontal_direction > 0:
 		damager_hitbox.position.x = -damager_hitbox_offset		
@@ -119,7 +138,13 @@ func _get_target_direction() -> void:
 
 func _enemy_anim(horizontal_direction : float, vertical_direction : float, delta : float) -> void:
 	if _is_golden:
-		modulate = Color8(215, 190, 0, 255)
+		modulate = GOLD_TINT
+		
+	if _invincible:
+		animated_sprite_2d.pause()
+		return
+	else:
+		animated_sprite_2d.play()	
 		
 	if not _is_attacking:
 		if horizontal_direction or vertical_direction:
@@ -151,6 +176,8 @@ func _enemy_attack(delta: float) -> void:
 func _die() -> void:
 	_is_dead = true
 	
+	animated_sprite_2d.play("death")
+	
 	if _is_golden:
 		var item : Node = dropped_item.instantiate()
 		var jump_comp : Node = jump_component_prefab.instantiate()
@@ -161,20 +188,16 @@ func _die() -> void:
 		item.global_position = global_position
 		
 	GlobalSignalBus.enemy_death.emit(_is_golden)
-	
-	queue_free()
 
 func apply_damage(amt : int) -> void:
-	if _invincible:
+	if _invincible or _is_dead:
 		return
 	
 	_invincible = true
 	invincibility_timer.start()
 	
-	velocity.x = -velocity.x * KNOCKBACK_MODIFIER
-	velocity.y = -velocity.y * KNOCKBACK_MODIFIER
-	
-	move_and_slide()
+	_knockback_direction = -_target_direction
+	velocity = _knockback_direction * KNOCKBACK_SPEED
 	
 	health -= amt
 	print("Enemy has taken " + str(amt) + " damage!")

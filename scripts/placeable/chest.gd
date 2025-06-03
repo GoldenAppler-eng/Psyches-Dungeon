@@ -4,6 +4,8 @@ extends StaticBody2D
 @export var coin_prefab : PackedScene
 @export var jump_component_prefab : PackedScene
 
+@onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
+
 var _player_nearby := false
 var _opened := false
 
@@ -11,24 +13,23 @@ func _process(delta: float) -> void:
 	if not _player_nearby or _opened:
 		return
 		
+	animated_sprite_2d.frame = 0	
+		
 	if Input.is_action_just_pressed("open_chest"):
 		_open_chest()
 
 func _open_chest() -> void:
 	GlobalSignalBus.chest_opened.emit()
+	
 	_opened = true
+	animated_sprite_2d.frame = 1	
 	
 	var rng := randf()
 	
-	print("Congrats you got a ")
-	
 	if rng < 0.8: 
 		_spawn(coin_prefab, randi_range(1, 3))
-		
-		print("coins!")
 	else:
 		_spawn(enemy_prefab, randi_range(1, 3))
-		print("a new skeleton pal!")
 
 func _spawn(prefab : PackedScene, num : int) -> void:
 	for i in num:

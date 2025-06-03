@@ -1,16 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://blel4b2ar46uf"]
+[gd_scene load_steps=11 format=3 uid="uid://blel4b2ar46uf"]
 
 [ext_resource type="Script" path="res://scripts/placeable/chest.gd" id="1_e66pm"]
 [ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/enemy.tscn" id="2_fbo2m"]
-[ext_resource type="Texture2D" uid="uid://dc1g74xyibckq" path="res://sprites/tmp/brown-64x64.png" id="2_gguck"]
 [ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/placeable/coin.tscn" id="3_dg2ca"]
 [ext_resource type="PackedScene" uid="uid://c5ksnc33jrjk7" path="res://prefabs/components/jump_component.tscn" id="4_heo5f"]
+[ext_resource type="Texture2D" uid="uid://dwfy571fxosqu" path="res://sprites/chest-Sheet.png" id="5_awcew"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc8py"]
+atlas = ExtResource("5_awcew")
+region = Rect2(0, 0, 18, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vss0c"]
+atlas = ExtResource("5_awcew")
+region = Rect2(18, 0, 18, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2gih6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nc8py")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vss0c")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cc70g"]
-size = Vector2(64, 64)
+size = Vector2(18, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fa4qy"]
-size = Vector2(80, 80)
+size = Vector2(22, 20)
 
 [node name="chest" type="StaticBody2D"]
 collision_layer = 256
@@ -20,13 +42,16 @@ enemy_prefab = ExtResource("2_fbo2m")
 coin_prefab = ExtResource("3_dg2ca")
 jump_component_prefab = ExtResource("4_heo5f")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_gguck")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_2gih6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_cc70g")
 
 [node name="OpenArea" type="Area2D" parent="."]
+position = Vector2(0, 2)
 collision_layer = 0
 collision_mask = 4
 monitorable = false

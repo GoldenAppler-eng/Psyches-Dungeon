@@ -4,16 +4,17 @@ extends RigidBody2D
 const TRAP_DAMAGE : int = 10;
 
 @onready var reset_timer : Timer = $%ResetTimer
+@onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
 
 var activated := false
 var _damaged_bodies : Array[DamagableBody2D] = []
 
 func _process(delta : float) -> void:
 	if not activated:
-		modulate = Color.WHITE
+		animated_sprite_2d.frame = 0
 		return
 	
-	modulate = Color.RED
+	animated_sprite_2d.frame = 1
 	
 	for body in _damaged_bodies:
 		body.apply_damage(TRAP_DAMAGE)

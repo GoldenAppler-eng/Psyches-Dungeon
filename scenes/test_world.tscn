@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://47pk3lvrw00k"]
+[gd_scene load_steps=9 format=3 uid="uid://47pk3lvrw00k"]
 
 [ext_resource type="PackedScene" uid="uid://bh85bemgdn78m" path="res://prefabs/handlers/effect_resolution_handler.tscn" id="1_o22w8"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="2_wgghm"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dwqki74onshog" path="res://prefabs/handlers/goal_handler.tscn" id="4_cjn4e"]
 [ext_resource type="PackedScene" uid="uid://f0ftkbwhqhcs" path="res://prefabs/handlers/loss_handler.tscn" id="5_0rbt4"]
 [ext_resource type="PackedScene" uid="uid://bnj71gqcb0bcx" path="res://prefabs/handlers/card_handler.tscn" id="5_sf3at"]
-[ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/enemy.tscn" id="7_fgfsq"]
+[ext_resource type="PackedScene" uid="uid://blel4b2ar46uf" path="res://prefabs/placeable/chest.tscn" id="8_aceeg"]
+[ext_resource type="PackedScene" uid="uid://ln8wdsnv7xo2" path="res://prefabs/placeable/trap.tscn" id="8_uglay"]
 
 [node name="test_world" type="Node2D"]
 
@@ -30,5 +31,17 @@ position = Vector2(1118, 614)
 [node name="player" parent="." instance=ExtResource("2_wgghm")]
 position = Vector2(333, 145)
 
-[node name="enemy" parent="." instance=ExtResource("7_fgfsq")]
-position = Vector2(201, 211)
+[node name="trap" parent="." instance=ExtResource("8_uglay")]
+position = Vector2(520, 252)
+
+[node name="chest" parent="." instance=ExtResource("8_aceeg")]
+position = Vector2(156, 176)
+
+[node name="chest2" parent="." instance=ExtResource("8_aceeg")]
+position = Vector2(577, 95)
+
+[node name="chest3" parent="." instance=ExtResource("8_aceeg")]
+position = Vector2(469, 175)
+
+[node name="chest4" parent="." instance=ExtResource("8_aceeg")]
+position = Vector2(317, 234)

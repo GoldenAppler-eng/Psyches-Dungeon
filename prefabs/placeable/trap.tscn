@@ -1,13 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://ln8wdsnv7xo2"]
+[gd_scene load_steps=8 format=3 uid="uid://ln8wdsnv7xo2"]
 
 [ext_resource type="Script" path="res://scripts/placeable/trap.gd" id="1_4d2cc"]
-[ext_resource type="Texture2D" uid="uid://ch02ac8chexym" path="res://sprites/tmp/grey-64x64.png" id="1_nqyvh"]
+[ext_resource type="Texture2D" uid="uid://jsml6q6em3nw" path="res://sprites/trap-Sheet.png" id="2_kjsx1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_df40o"]
+atlas = ExtResource("2_kjsx1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvxav"]
+atlas = ExtResource("2_kjsx1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2n0r4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_df40o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvxav")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fr2w3"]
-size = Vector2(64, 64)
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p88kq"]
-size = Vector2(64, 64)
+size = Vector2(16, 16)
 
 [node name="trap" type="RigidBody2D"]
 collision_layer = 16
@@ -15,8 +37,9 @@ collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_4d2cc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_nqyvh")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_2n0r4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fr2w3")
