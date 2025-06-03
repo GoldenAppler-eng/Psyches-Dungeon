@@ -1,7 +1,7 @@
 class_name Player
 extends DamagableBody2D
 
-const MAX_SPEED := 30000.0
+const MAX_SPEED := 20000.0
 const DAMAGE := 10
 
 @onready var invinciblity_timer : Timer = $%InvinciblityTimer
@@ -31,6 +31,8 @@ func _physics_process(delta : float) -> void:
 	
 	if _is_attacking:
 		speed_modifier = 0.5
+	else:
+		speed_modifier = 1
 	
 	_player_movement(horizontal_direction, vertical_direction, delta)
 	_player_anim(horizontal_direction, vertical_direction, delta)
