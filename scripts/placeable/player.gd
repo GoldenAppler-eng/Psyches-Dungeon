@@ -20,9 +20,13 @@ var _attack_ready := true
 var _is_attacking := false
 var _is_dead := false
 
+var _processing_card := false
+
 var damager_hitbox_offset : float 
 
 func _ready() -> void:
+	GlobalCardTimer.timeout.connect(_on_global_card_timer_timeout)
+	
 	Global.global_player = self
 	
 	damager_hitbox_offset = damager_hitbox.position.x
@@ -124,3 +128,6 @@ func _play_animation(anim_name : String) -> void:
 	bottom_half_sprite.play(anim_name)
 	
 	top_half_sprite.frame = bottom_half_sprite.frame
+
+func _on_global_card_timer_timeout() -> void:
+	pass
