@@ -50,11 +50,12 @@ func _process(delta : float) -> void:
 	task_display_label.text = task_text
 	
 
-func set_task_type(type : int, amt : int) -> void:
+func set_task_type(type : int, amt : int, dir : int) -> void:
 	reset_counter()
 	
 	current_task_type = type
 	task_completion_amount = amt
+	task_completion_direction = dir
 	
 	if type == Global.TASK_TYPE.TRAVEL:
 		task_completion_direction = randi_range(0, 3) + Global.DIRECTION.NORTH
@@ -113,5 +114,26 @@ func get_current_task_description() -> String:
 			task_desc = "Die"
 		Global.TASK_TYPE.TRAVEL:
 			task_desc = "Go " + direction_dict[task_completion_direction] + " into another room " + str(task_completion_amount) + " times in a row"	
+
+	return task_desc
+
+func get_task_description(task_type : int, task_amt : int, task_dir : int) -> String:
+	var task_desc : String = ""
+	
+	match task_type:
+		Global.TASK_TYPE.DEFEAT:
+			task_desc = "Defeat " + str(task_amt) + " enemies"
+		Global.TASK_TYPE.DEFEAT_GOLD:
+			task_desc = "Defeat " + str(task_amt) + " golden enemies"
+		Global.TASK_TYPE.COLLECT:
+			task_desc = "Collect " + str(task_amt) + " coins"
+		Global.TASK_TYPE.OPEN:
+			task_desc = "Open " + str(task_amt) + " chests"
+		Global.TASK_TYPE.ACTIVATE:
+			task_desc = "Activate " + str(task_amt) + " traps"
+		Global.TASK_TYPE.DIE:
+			task_desc = "Die"
+		Global.TASK_TYPE.TRAVEL:
+			task_desc = "Go " + direction_dict[task_dir] + " into another room " + str(task_amt) + " times in a row"	
 
 	return task_desc

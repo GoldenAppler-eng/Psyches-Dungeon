@@ -17,6 +17,7 @@ effect_pool = Array[Resource("res://scripts/effects/WildEffect.gd")]([ExtResourc
 unique_name_in_owner = true
 z_index = 23
 effect_type = 4
+hide_effect = true
 
 [node name="current" parent="." instance=ExtResource("1_xopyf")]
 unique_name_in_owner = true
@@ -26,6 +27,7 @@ effect_type = 4
 
 [node name="cover" parent="." instance=ExtResource("1_xopyf")]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.392157)
 z_index = 30
 effect_type = 4
 face_down = true

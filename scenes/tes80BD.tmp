@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://47pk3lvrw00k"]
+
+[ext_resource type="PackedScene" uid="uid://bh85bemgdn78m" path="res://prefabs/handlers/effect_resolution_handler.tscn" id="1_o22w8"]
+[ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="2_wgghm"]
+[ext_resource type="PackedScene" uid="uid://b745s8ogrbuvm" path="res://prefabs/handlers/task_handler.tscn" id="3_mohqd"]
+[ext_resource type="PackedScene" uid="uid://dwqki74onshog" path="res://prefabs/handlers/goal_handler.tscn" id="4_cjn4e"]
+[ext_resource type="PackedScene" uid="uid://f0ftkbwhqhcs" path="res://prefabs/handlers/loss_handler.tscn" id="5_0rbt4"]
+[ext_resource type="PackedScene" uid="uid://bnj71gqcb0bcx" path="res://prefabs/handlers/card_handler.tscn" id="5_sf3at"]
+[ext_resource type="PackedScene" uid="uid://blel4b2ar46uf" path="res://prefabs/placeable/chest.tscn" id="8_aceeg"]
+[ext_resource type="PackedScene" uid="uid://ln8wdsnv7xo2" path="res://prefabs/placeable/trap.tscn" id="8_uglay"]
+
+[node name="test_world" type="Node2D"]
+
+[node name="card_handler" parent="." node_paths=PackedStringArray("task_handler", "effect_handler", "goal_handler", "loss_handler") instance=ExtResource("5_sf3at")]
+position = Vector2(344, 416)
+task_handler = NodePath("../task_handler")
+effect_handler = NodePath("../effect_resolution_handler")
+goal_handler = NodePath("../goal_handler")
+loss_handler = NodePath("../loss_handler")
+
+[node name="task_handler" parent="." instance=ExtResource("3_mohqd")]
+
+[node name="effect_resolution_handler" parent="." instance=ExtResource("1_o22w8")]
+
+[node name="goal_handler" parent="." instance=ExtResource("4_cjn4e")]
+position = Vector2(1119, 585)
+
+[node name="loss_handler" parent="." instance=ExtResource("5_0rbt4")]
+position = Vector2(1118, 614)
+
+[node name="player" parent="." instance=ExtResource("2_wgghm")]
+position = Vector2(333, 145)
+
+[node name="trap" parent="." instance=ExtResource("8_uglay")]
+position = Vector2(520, 252)
+
+[node name="chest" parent="." instance=ExtResource("8_aceeg")]
+position = Vector2(156, 176)
+
+[node name="chest2" parent="." instance=ExtResource("8_aceeg")]
+position = Vector2(577, 95)
+
+[node name="chest3" parent="." instance=ExtResource("8_aceeg")]
+position = Vector2(469, 175)
+
+[node name="chest4" parent="." instance=ExtResource("8_aceeg")]
+position = Vector2(317, 234)

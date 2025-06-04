@@ -16,6 +16,7 @@ var original_input_events : Dictionary
 
 func _ready() -> void:
 	GlobalCardTimer.timeout.connect(_on_destroy_timer_timeout)
+	GlobalSignalBus.task_completed.connect(_on_task_completed)
 	
 	_store_original_controls()
 	_invert_controls()
@@ -36,6 +37,10 @@ func _revert_original_controls() -> void:
 			InputMap.action_add_event(action, event)
 
 func _on_destroy_timer_timeout() -> void:
+	_revert_original_controls()
+	queue_free.call_deferred()
+
+func _on_task_completed(task_type : int) -> void:
 	_revert_original_controls()
 	queue_free.call_deferred()
 

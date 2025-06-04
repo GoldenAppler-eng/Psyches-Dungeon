@@ -24,7 +24,7 @@ func _process(delta : float) -> void:
 	pass
 
 func mark_completed_task(effect_type : int) -> void:
-	if goal_completion_counter > goal_marker_array.size():
+	if goal_completion_counter >= goal_marker_array.size():
 		return
 	
 	var marker : Node2D = goal_marker_array[goal_completion_counter]
