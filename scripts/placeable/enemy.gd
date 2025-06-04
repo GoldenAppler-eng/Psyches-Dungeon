@@ -1,16 +1,16 @@
 class_name Enemy
 extends DamagableBody2D
 
+const MAX_HEALTH := 100
 const MAX_SPEED := 10000.0
+
 const GOLD_CHANCE := .4
-const DAMAGE := 10
+const DAMAGE := 20
 const KNOCKBACK_SPEED := 100.0
 
 const GOLD_TINT := Color8(215, 190, 0, 255)
 
 @export var jump_component_prefab : PackedScene
-
-@export var max_health : int = 100
 
 @onready var damager_hitbox : Area2D = $%DamagerHitbox
 @onready var attack_detection_area : Area2D = $%AttackDetectionArea
@@ -20,6 +20,8 @@ const GOLD_TINT := Color8(215, 190, 0, 255)
 @onready var invincibility_timer : Timer = $%InvincibilityTimer
 
 @onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
+
+@onready var health_bar : TextureProgressBar = $%health_bar
 
 @export var dropped_item : PackedScene
 
@@ -49,7 +51,7 @@ func _init() -> void:
 func _ready() -> void:
 	target_player = Global.global_player
 	
-	health = max_health
+	health = MAX_HEALTH
 	damager_hitbox_offset = damager_hitbox.position.x	
 	attack_detection_offset = attack_detection_area.position.x
 
@@ -57,7 +59,7 @@ func _physics_process(delta : float) -> void:
 	if _is_dead:
 		return
 		
-	_check_health()
+	_update_health()
 	
 	if _is_dead:
 		return
@@ -72,7 +74,16 @@ func _physics_process(delta : float) -> void:
 		
 	_enemy_attack(delta)
 
-func _check_health() -> void:
+func _update_health() -> void:
+	health = clamp(health, 0, MAX_HEALTH)
+		
+	health_bar.value = health
+	
+	if health < MAX_HEALTH and health > 0:
+		health_bar.visible = true
+	else:
+		health_bar.visible = false
+	
 	if health <= 0:
 		_die()
 
@@ -90,8 +101,6 @@ func _enemy_movement(delta : float) -> Vector2:
 		velocity.x = MAX_SPEED * horizontal_direction * abs(_target_direction.x) * delta
 		velocity.y = MAX_SPEED * vertical_direction * abs(_target_direction.y) * delta
 	else:
-		print(velocity)
-		
 		velocity.x = move_toward(velocity.x, 0, KNOCKBACK_SPEED * delta)
 		velocity.y = move_toward(velocity.y ,0, KNOCKBACK_SPEED * delta)
 
@@ -200,7 +209,6 @@ func apply_damage(amt : int) -> void:
 	velocity = _knockback_direction * KNOCKBACK_SPEED
 	
 	health -= amt
-	print("Enemy has taken " + str(amt) + " damage!")
 
 func _on_attack_cooldown_timer_timeout() -> void:
 	_attack_ready = true;

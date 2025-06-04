@@ -1,10 +1,10 @@
 class_name GoalHandler
 extends Node2D
 
-const MARKER_WIDTH := 16
-const MARKER_HEIGHT := 16
+const MARKER_WIDTH := 32
+const MARKER_HEIGHT := 32
 
-const GAP_WIDTH := 8
+const GAP_WIDTH := 16
 
 @export var goal_marker_prefab : PackedScene
 

@@ -1,36 +1,46 @@
-[gd_scene load_steps=7 format=3 uid="uid://0e30thyp8jfa"]
+[gd_scene load_steps=8 format=3 uid="uid://0e30thyp8jfa"]
 
-[ext_resource type="Texture2D" uid="uid://cu8hjskyai2mc" path="res://sprites/tmp/tmp-effect-icons.png" id="1_smr5w"]
-[ext_resource type="Texture2D" uid="uid://wsttsnjs6ust" path="res://sprites/tmp/tmp-goal-hole-16x16.png" id="2_3wor7"]
+[ext_resource type="Texture2D" uid="uid://bmoy1o2dwvybf" path="res://sprites/effect_icons_markers-Sheet.png" id="1_76xg1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jfwyt"]
-atlas = ExtResource("1_smr5w")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc3ey"]
+atlas = ExtResource("1_76xg1")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6624d"]
-atlas = ExtResource("1_smr5w")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyecp"]
+atlas = ExtResource("1_76xg1")
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ghnvl"]
-atlas = ExtResource("1_smr5w")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8vld"]
+atlas = ExtResource("1_76xg1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq6l5"]
+atlas = ExtResource("1_76xg1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqtw0"]
+atlas = ExtResource("1_76xg1")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fhpyx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jfwyt")
+"texture": SubResource("AtlasTexture_nc3ey")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6624d")
+"texture": SubResource("AtlasTexture_yyecp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ghnvl")
+"texture": SubResource("AtlasTexture_s8vld")
 }, {
 "duration": 1.0,
-"texture": null
+"texture": SubResource("AtlasTexture_uq6l5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqtw0")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -39,10 +49,6 @@ animations = [{
 
 [node name="icon" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(8, 8)
+position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_fhpyx")
 frame = 3
-
-[node name="hole" type="Sprite2D" parent="."]
-position = Vector2(8, 8)
-texture = ExtResource("2_3wor7")

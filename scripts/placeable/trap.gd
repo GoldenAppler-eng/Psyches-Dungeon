@@ -1,7 +1,7 @@
 class_name Trap
 extends RigidBody2D
 
-const TRAP_DAMAGE : int = 10;
+const TRAP_DAMAGE : int = 20;
 
 @onready var reset_timer : Timer = $%ResetTimer
 @onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
@@ -30,7 +30,6 @@ func _on_area_2d_body_entered(body : Node2D) -> void:
 	
 	if activated: 
 		_damaged_bodies.append(body as DamagableBody2D)
-
 
 func _on_area_2d_body_exited(body : Node2D) -> void:
 	if _damaged_bodies.has(body):

@@ -1,9 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://du3tmqtt127gu"]
+[gd_scene load_steps=28 format=3 uid="uid://du3tmqtt127gu"]
 
 [ext_resource type="Script" path="res://scripts/placeable/enemy.gd" id="1_smd3p"]
 [ext_resource type="PackedScene" uid="uid://c5ksnc33jrjk7" path="res://prefabs/components/jump_component.tscn" id="2_6wgmk"]
 [ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/placeable/coin.tscn" id="2_s3tct"]
 [ext_resource type="Texture2D" uid="uid://s6en6lbn8ili" path="res://sprites/enemy-final-90x36-Sheet.png" id="3_a5rh0"]
+[ext_resource type="Texture2D" uid="uid://cmfu7x0fdldyf" path="res://sprites/progress_bar_textures/health_bar/health-bar-under-20x5.png" id="5_eeivd"]
+[ext_resource type="Texture2D" uid="uid://blaij2o6hcbrg" path="res://sprites/progress_bar_textures/health_bar/health-bar-progress-20x5.png" id="6_q5ix1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0byb6"]
 atlas = ExtResource("3_a5rh0")
@@ -157,12 +159,13 @@ dropped_item = ExtResource("2_s3tct")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(-1, -5)
 sprite_frames = SubResource("SpriteFrames_fpalx")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 9)
+position = Vector2(-1.5, 4)
 shape = SubResource("RectangleShape2D_kjina")
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]
@@ -175,7 +178,7 @@ unique_name_in_owner = true
 one_shot = true
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
-position = Vector2(-3, 2)
+position = Vector2(-4, -3)
 collision_layer = 64
 collision_mask = 0
 monitoring = false
@@ -185,7 +188,7 @@ shape = SubResource("RectangleShape2D_l30rr")
 
 [node name="DamagerHitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-12, 1)
+position = Vector2(-13, -4)
 collision_layer = 0
 collision_mask = 32
 monitorable = false
@@ -195,6 +198,7 @@ shape = SubResource("RectangleShape2D_s04jv")
 
 [node name="ObjectDetectionArea" type="Area2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(-1, -5)
 collision_layer = 0
 collision_mask = 282
 monitorable = false
@@ -204,12 +208,24 @@ shape = SubResource("CircleShape2D_tfr4d")
 
 [node name="AttackDetectionArea" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-19.5, 1)
+position = Vector2(-20.5, -4)
 collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionArea"]
 shape = SubResource("RectangleShape2D_lun2x")
+
+[node name="health_bar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -10.0
+offset_top = -28.0
+offset_right = 10.0
+offset_bottom = -23.0
+step = 10.0
+value = 100.0
+texture_under = ExtResource("5_eeivd")
+texture_progress = ExtResource("6_q5ix1")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]

@@ -13,3 +13,7 @@ signal task_completed(task_type : int)
 
 signal change_goal_count(inc_amt : int)
 signal psyche_task_request
+
+signal invert_controls
+signal shift_controls
+signal revert_controls

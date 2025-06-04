@@ -1,0 +1,128 @@
+[gd_scene load_steps=15 format=3 uid="uid://dojll77pj6uq7"]
+
+[ext_resource type="Texture2D" uid="uid://b25n4k2836ydo" path="res://sprites/psyche-Sheet.png" id="1_6uspd"]
+[ext_resource type="Script" path="res://scripts/UI/psyche.gd" id="1_i1pbe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tleo0"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(576, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta7jk"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(1296, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwj4v"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(1008, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li41c"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(1152, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clc56"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(288, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhycf"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(432, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5lg4"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(720, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ltva"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(864, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swmva"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp50b"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(0, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_babrw"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(144, 0, 144, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uq4wb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tleo0")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta7jk")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwj4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li41c")
+}],
+"loop": true,
+"name": &"game_over",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clc56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhycf")
+}],
+"loop": true,
+"name": &"laugh",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5lg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ltva")
+}],
+"loop": true,
+"name": &"really_angry",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swmva")
+}],
+"loop": true,
+"name": &"rest",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp50b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_babrw")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]
+
+[node name="psyche" type="Node2D"]
+script = ExtResource("1_i1pbe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uq4wb")
+animation = &"rest"
+autoplay = "rest"
+frame_progress = 0.135259

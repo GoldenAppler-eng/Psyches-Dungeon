@@ -9,4 +9,4 @@ goal_marker_prefab = ExtResource("1_a1610")
 
 [node name="initial_goal_marker" parent="." instance=ExtResource("1_a1610")]
 unique_name_in_owner = true
-position = Vector2(-16, 0)
+position = Vector2(-32, 0)

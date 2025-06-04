@@ -35,6 +35,8 @@ func _revert_original_controls() -> void:
 		
 		for event : InputEvent in original_input_events[action]:
 			InputMap.action_add_event(action, event)
+			
+	GlobalSignalBus.revert_controls.emit()
 
 func _on_destroy_timer_timeout() -> void:
 	_revert_original_controls()
@@ -57,3 +59,5 @@ func _invert_controls() -> void:
 		
 		for event in tmp_events:
 			InputMap.action_add_event(invert_dict[action], event)
+			
+	GlobalSignalBus.invert_controls.emit()
