@@ -167,6 +167,7 @@ shape = SubResource("RectangleShape2D_kjina")
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 0.5
 one_shot = true
 
 [node name="InvincibilityTimer" type="Timer" parent="."]

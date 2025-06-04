@@ -12,19 +12,13 @@ extends Node2D
 @onready var current : Card = $%current
 @onready var cover : Card = $%cover
 
-var cover_animated_sprite : AnimatedSprite2D
-var is_animation_playing := false
-
 func _ready() -> void:
 	GlobalCardTimer.timeout.connect(_on_new_card_timer_timeout)
 	
 	GlobalSignalBus.task_completed.connect(_on_task_completed)
 	GlobalSignalBus.change_goal_count.connect(_on_goal_count_changed)
 	GlobalSignalBus.psyche_task_request.connect(_on_psyche_task_received)
-	
-	cover_animated_sprite = cover.find_child("base") as AnimatedSprite2D
-	cover_animated_sprite.animation_finished.connect(_on_cover_animated_sprite_animation_finished)
-	
+
 	_generate_new_current_card()	
 
 func _process(delta : float) -> void:
@@ -80,13 +74,5 @@ func _on_psyche_task_received() -> void:
 func play_change_card_animation() -> void:
 	next.visible = false
 	
-	is_animation_playing = true
-	
-
-func _on_cover_animated_sprite_animation_finished() -> void:
-	if not is_animation_playing:
-		return
-	
-	is_animation_playing = false
-	next.visible = true
+	cover.play_flip_card_animation()
 	

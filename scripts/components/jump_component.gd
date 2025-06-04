@@ -27,8 +27,6 @@ func _ready() -> void:
 			
 	original_sprite_offset = sprite.position
 	y_velocity = JUMP_VELOCITY
-	
-	get_parent().set_process_mode(PROCESS_MODE_DISABLED)
 
 func _process(delta : float) -> void:
 	var parent : PhysicsBody2D = get_parent() as PhysicsBody2D
@@ -41,6 +39,5 @@ func _process(delta : float) -> void:
 	
 	if sprite.position.y > original_sprite_offset.y:
 		sprite.position = original_sprite_offset
-		parent.set_process_mode(PROCESS_MODE_INHERIT)
 		queue_free()
 	

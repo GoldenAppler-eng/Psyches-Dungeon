@@ -12,16 +12,29 @@ var effect_text : String = ""
 @onready var task_text_label : Label = $%task_text_label
 @onready var effect_text_label : Label = $%effect_text_label
 
+@onready var animation_player : AnimationPlayer = $%AnimationPlayer
+
+var _is_flipping := false
 
 func _process(delta : float) -> void:
-	
-	
-	if face_down:
-		base.frame = 1
+	if _is_flipping:
 		return
 	
-	base.frame = 0
+	if face_down:
+		animation_player.play("RESET")
+		return
+	
+	animation_player.play("RESET_FRONT")
+	
 	effect_icon.frame = effect_type
 	
 	task_text_label.text = task_text
 	effect_text_label.text = effect_text
+
+func play_flip_card_animation() -> void:
+	animation_player.play("flip_card")
+	_is_flipping = true
+
+func _on_animation_player_animation_finished(anim_name : String) -> void:
+	if anim_name == "flip_card":
+		_is_flipping = false

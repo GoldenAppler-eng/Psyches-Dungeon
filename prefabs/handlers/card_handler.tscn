@@ -21,7 +21,7 @@ effect_type = 4
 [node name="current" parent="." instance=ExtResource("1_xopyf")]
 unique_name_in_owner = true
 z_index = 25
-position = Vector2(70, 0)
+position = Vector2(128, 0)
 effect_type = 4
 
 [node name="cover" parent="." instance=ExtResource("1_xopyf")]

@@ -3,6 +3,6 @@
 [ext_resource type="FontFile" uid="uid://d2vpbv3wwvrt6" path="res://fonts/PIXY.ttf" id="1_ngfug"]
 
 [resource]
+line_spacing = 0.0
 font = ExtResource("1_ngfug")
-font_size = 6
 font_color = Color(0, 0, 0, 1)
