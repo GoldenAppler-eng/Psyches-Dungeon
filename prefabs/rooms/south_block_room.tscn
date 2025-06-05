@@ -355,52 +355,52 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_ld41c")
 
 [node name="trap" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(168, 200)
+position = Vector2(168, 192)
 
 [node name="trap2" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(184, 200)
+position = Vector2(184, 192)
 
 [node name="trap3" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(184, 216)
+position = Vector2(184, 208)
 
 [node name="trap4" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(168, 216)
+position = Vector2(168, 208)
 
 [node name="trap5" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(200, 200)
+position = Vector2(200, 192)
 
 [node name="trap6" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(216, 200)
+position = Vector2(216, 192)
 
 [node name="trap7" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(216, 216)
+position = Vector2(216, 208)
 
 [node name="trap8" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(200, 216)
+position = Vector2(200, 208)
 
 [node name="trap9" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(136, 200)
+position = Vector2(136, 192)
 
 [node name="trap10" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(152, 200)
+position = Vector2(152, 192)
 
 [node name="trap11" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(152, 216)
+position = Vector2(152, 208)
 
 [node name="trap12" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(136, 216)
+position = Vector2(136, 208)
 
 [node name="trap13" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(232, 200)
+position = Vector2(232, 192)
 
 [node name="trap14" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(248, 200)
+position = Vector2(248, 192)
 
 [node name="trap15" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(248, 216)
+position = Vector2(248, 208)
 
 [node name="trap16" parent="." instance=ExtResource("2_fxpge")]
-position = Vector2(232, 216)
+position = Vector2(232, 208)
 
 [node name="enemy" parent="." instance=ExtResource("3_wkybr")]
 position = Vector2(97, 149)

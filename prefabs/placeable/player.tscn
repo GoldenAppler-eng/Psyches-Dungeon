@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://di8bojp8w0r88"]
+[gd_scene load_steps=44 format=3 uid="uid://di8bojp8w0r88"]
 
 [ext_resource type="Script" path="res://scripts/placeable/player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -43,6 +43,22 @@ region = Rect2(0, 0, 90, 36)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyqqd"]
 atlas = ExtResource("2_8m05b")
 region = Rect2(90, 0, 90, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5oen"]
+atlas = ExtResource("2_ytfcl")
+region = Rect2(1260, 0, 90, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6ldo"]
+atlas = ExtResource("2_ytfcl")
+region = Rect2(1170, 0, 90, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ceel2"]
+atlas = ExtResource("2_ytfcl")
+region = Rect2(1080, 0, 90, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qaqq7"]
+atlas = ExtResource("2_ytfcl")
+region = Rect2(990, 0, 90, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ypa4"]
 atlas = ExtResource("2_8m05b")
@@ -110,6 +126,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5oen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6ldo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ceel2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qaqq7")
+}],
+"loop": false,
+"name": &"respawn",
 "speed": 5.0
 }, {
 "frames": [{
@@ -253,7 +286,7 @@ script = ExtResource("1_s62gp")
 unique_name_in_owner = true
 position = Vector2(1, -16)
 sprite_frames = SubResource("SpriteFrames_vcljs")
-animation = &"idle"
+animation = &"respawn"
 autoplay = "idle"
 
 [node name="BottomHalf" type="AnimatedSprite2D" parent="."]
@@ -289,6 +322,14 @@ wait_time = 5.0
 unique_name_in_owner = true
 wait_time = 3.0
 one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="GameOverTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
 position = Vector2(-0.5, -8)
@@ -337,5 +378,7 @@ texture_progress = ExtResource("7_fcfru")
 [connection signal="timeout" from="RegenStartTimer" to="." method="_on_regen_start_timer_timeout"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
 [connection signal="timeout" from="HealthBarVisibleTimer" to="." method="_on_health_bar_visible_timer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 [connection signal="area_entered" from="RoomDetector" to="RoomDetector" method="_on_new_room_entered"]
 [connection signal="area_exited" from="RoomDetector" to="RoomDetector" method="_on_room_exited"]

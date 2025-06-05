@@ -358,37 +358,37 @@ shape = SubResource("RectangleShape2D_ld41c")
 position = Vector2(192, 133)
 
 [node name="trap" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(168, 104)
+position = Vector2(168, 96)
 
 [node name="trap2" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(168, 120)
+position = Vector2(168, 112)
 
 [node name="trap3" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(168, 136)
+position = Vector2(168, 128)
 
 [node name="trap4" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(168, 152)
+position = Vector2(168, 144)
 
 [node name="trap5" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(184, 152)
+position = Vector2(184, 144)
 
 [node name="trap6" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(200, 152)
+position = Vector2(200, 144)
 
 [node name="trap7" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(216, 152)
+position = Vector2(216, 144)
 
 [node name="trap8" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(216, 136)
+position = Vector2(216, 128)
 
 [node name="trap9" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(216, 120)
+position = Vector2(216, 112)
 
 [node name="trap10" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(216, 104)
+position = Vector2(216, 96)
 
 [node name="trap11" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(200, 104)
+position = Vector2(200, 96)
 
 [node name="trap12" parent="." instance=ExtResource("3_1q74p")]
-position = Vector2(184, 104)
+position = Vector2(184, 96)

@@ -12,6 +12,8 @@ const REGEN_RATE := 20
 @onready var regen_start_timer : Timer = $%RegenStartTimer
 @onready var regen_timer : Timer = $%RegenTimer
 @onready var health_bar_visible_timer : Timer = $%HealthBarVisibleTimer
+@onready var game_over_timer : Timer = $%GameOverTimer
+@onready var respawn_timer : Timer = $%RespawnTimer
 
 @onready var damager_hitbox: Area2D = $%DamagerHitbox
 
@@ -27,6 +29,7 @@ var speed_modifier : float = 1
 var _invincible := false
 var _attack_ready := true
 var _is_attacking := false
+var _is_respawning := false
 var _is_dead := false
 var _regen_ready := false
 
@@ -35,6 +38,8 @@ var _processing_card := false
 var damager_hitbox_offset : float 
 
 func _ready() -> void:
+	GlobalSignalBus.player_respawn.connect(_on_received_player_respawn_signal)
+	
 	GlobalCardTimer.timeout.connect(_on_global_card_timer_timeout)
 	
 	Global.global_player = self
@@ -52,7 +57,7 @@ func _physics_process(delta : float) -> void:
 	var horizontal_direction := Input.get_axis("move_left", "move_right")
 	var vertical_direction := Input.get_axis("move_up", "move_down");
 		
-	if _is_dead:
+	if _is_dead or _is_respawning:
 		return
 		
 	_player_movement(horizontal_direction, vertical_direction, delta)
@@ -137,6 +142,18 @@ func _die() -> void:
 	top_half_sprite.play("death")
 	bottom_half_sprite.visible = false
 
+	game_over_timer.start()
+
+func _respawn() -> void:
+	_is_dead = false
+	_invincible = true
+	_is_respawning = true
+	
+	health = MAX_HEALTH
+	
+	top_half_sprite.play("respawn")
+	bottom_half_sprite.visible = false
+
 func _update_health() -> void:
 	health = clamp(health, 0, MAX_HEALTH)
 		
@@ -163,6 +180,12 @@ func _on_top_half_animation_finished() -> void:
 	if top_half_sprite.animation == "attack":
 		_is_attacking = false
 		
+	if top_half_sprite.animation == "respawn":
+		bottom_half_sprite.visible = true		
+		_is_respawning = false
+
+		invinciblity_timer.start()
+		
 func _play_animation(anim_name : String) -> void:
 	top_half_sprite.play(anim_name)
 	bottom_half_sprite.play(anim_name)
@@ -185,3 +208,14 @@ func _on_regen_timer_timeout() -> void:
 
 func _on_health_bar_visible_timer_timeout() -> void:
 	health_bar.visible = false
+
+func _on_received_player_respawn_signal() -> void:
+	respawn_timer.start()
+	game_over_timer.stop()
+
+func _on_game_over_timer_timeout() -> void:
+	GlobalSignalBus.game_over.emit()
+
+
+func _on_respawn_timer_timeout() -> void:
+	_respawn()

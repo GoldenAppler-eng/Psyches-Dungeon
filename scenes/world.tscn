@@ -64,20 +64,20 @@ position = Vector2(202, -121)
 
 [node name="pillarbox" type="Sprite2D" parent="camera_handler/boxing"]
 z_index = -1
-position = Vector2(-280.5, 80)
-scale = Vector2(5.53125, 13)
+position = Vector2(-296, 76)
+scale = Vector2(6.5, 14.3125)
 texture = ExtResource("12_105fm")
 
 [node name="pillarbox2" type="Sprite2D" parent="camera_handler/boxing"]
 z_index = -1
-position = Vector2(281, 80)
-scale = Vector2(5.53125, 13)
+position = Vector2(297.25, 76)
+scale = Vector2(6.54688, 14.1875)
 texture = ExtResource("12_105fm")
 
 [node name="letterbox" type="Sprite2D" parent="camera_handler/boxing"]
 z_index = -1
-position = Vector2(0.25, 208)
-scale = Vector2(23.0781, 5)
+position = Vector2(3.00003, 208)
+scale = Vector2(23.8125, 5)
 texture = ExtResource("13_5hjyj")
 
 [node name="bar" type="Sprite2D" parent="camera_handler/boxing"]

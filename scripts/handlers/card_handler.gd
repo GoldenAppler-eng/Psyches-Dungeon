@@ -91,7 +91,13 @@ func _on_goal_count_changed(inc_amt : int) -> void:
 		goal_handler.remove_marker()
 	
 func _on_psyche_task_received() -> void:
-	pass
+	var task_values : Array[int] = _generate_new_task()
+	
+	task_handler.set_task_type(task_values[0], task_values[1], task_values[2])
+	
+	var task_text : String = task_handler.get_current_task_description()
+	
+	current.task_text = task_text
 		
 func _change_cards() -> void:
 	next.visible = false

@@ -38,13 +38,15 @@ var _invincible := false
 var _is_attacking := false
 var _is_dead := false
 
+@export var _guaranteed_gold : bool
+
 var avoided_objects : Array[Node2D] = []
 
 var _target_direction : Vector2
 var _knockback_direction : Vector2
 
 func _init() -> void:
-	if randf() <= GOLD_CHANCE:
+	if randf() <= GOLD_CHANCE or _guaranteed_gold:
 		_is_golden = true
 		modulate = GOLD_TINT
 

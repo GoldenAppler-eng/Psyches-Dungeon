@@ -84,6 +84,7 @@ func _on_enemy_death(is_gold : bool) -> void:
 func _on_player_death() -> void:
 	if current_task_type == Global.TASK_TYPE.DIE:
 		signal_task_completed()
+		GlobalSignalBus.player_respawn.emit()
 		
 func _on_room_changed(direction : int, room_area : Node2D) -> void:
 	if current_task_type == Global.TASK_TYPE.TRAVEL:
