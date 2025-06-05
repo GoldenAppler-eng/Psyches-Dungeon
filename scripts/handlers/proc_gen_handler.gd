@@ -9,8 +9,8 @@ enum ROOM_TYPE { EMPTY = 0, FILLED }
 
 const ANTI_CONNECTOR_LAYER = 13
 
-const ROOM_WIDTH := 512
-const ROOM_HEIGHT := 320
+const ROOM_WIDTH := 384
+const ROOM_HEIGHT := 256
 
 const ROOM_GEN_CHANCE := .5
 

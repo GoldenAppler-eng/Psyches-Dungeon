@@ -1,4 +1,4 @@
-extends Camera2D
+extends Node2D
 
 var rooms_entered : Array[Node2D] = []
 
