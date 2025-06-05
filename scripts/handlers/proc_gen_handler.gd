@@ -20,7 +20,7 @@ var rooms_to_generate_surrounding : Array[Node2D]
 func _ready() -> void:	
 	GlobalSignalBus.room_changed.connect(_on_room_changed)
 	
-	var init_room := _generate_room(0, 0, ROOM_TYPE.FILLED)
+	var init_room := _generate_init_room(0, 0)
 
 	rooms_to_generate_surrounding.append(init_room)
 	
@@ -56,6 +56,21 @@ func _send_off_room_connectors(room : Node2D) -> void:
 		
 		connector.monitoring = false
 
+func _generate_init_room(world_coord_x : float, world_coord_y : float) -> Node2D :
+	var room : Node2D
+	
+	var room_prefab : PackedScene = room_prefab_pool[0]
+	
+	room = room_prefab.instantiate() as Node2D
+	
+	get_parent().add_child.call_deferred(room)
+	
+	room.global_position = Vector2(world_coord_x, world_coord_y)
+	
+	room.process_mode = PROCESS_MODE_DISABLED
+	
+	return room
+
 func _generate_room(world_coord_x : float, world_coord_y : float, type : int) -> Node2D :
 	var room : Node2D
 	
@@ -69,7 +84,9 @@ func _generate_room(world_coord_x : float, world_coord_y : float, type : int) ->
 	get_parent().add_child.call_deferred(room)
 	
 	room.global_position = Vector2(world_coord_x, world_coord_y)
-
+	
+	room.process_mode = PROCESS_MODE_DISABLED
+	
 	return room
 
 func _generate_room_in_direction(origin_room : Node2D, direction : int, type : int) -> Node2D:

@@ -1,0 +1,738 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5kmwpfnqqa12"]
+
+[ext_resource type="Texture2D" uid="uid://4hq7plyunetr" path="res://sprites/tilemap.png" id="1_w34eo"]
+[ext_resource type="PackedScene" uid="uid://ln8wdsnv7xo2" path="res://prefabs/placeable/trap.tscn" id="2_b63qx"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kywbj"]
+texture = ExtResource("1_w34eo")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/0 = 0
+3:0/0/y_sort_origin = -4
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0 = 0
+6:0/0/y_sort_origin = -4
+6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+7:0/0 = 0
+7:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_0/angular_velocity = 0.0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+8:0/0 = 0
+8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_0/angular_velocity = 0.0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+9:0/0 = 0
+9:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:0/0/physics_layer_0/angular_velocity = 0.0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+9:1/0 = 0
+9:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:1/0/physics_layer_0/angular_velocity = 0.0
+9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+9:2/0 = 0
+9:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:2/0/physics_layer_0/angular_velocity = 0.0
+9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+9:3/0 = 0
+9:3/0/y_sort_origin = -4
+9:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:3/0/physics_layer_0/angular_velocity = 0.0
+9:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+9:4/0 = 0
+9:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:4/0/physics_layer_0/angular_velocity = 0.0
+9:5/0 = 0
+9:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:5/0/physics_layer_0/angular_velocity = 0.0
+9:6/0 = 0
+9:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:6/0/physics_layer_0/angular_velocity = 0.0
+9:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+9:7/0 = 0
+9:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:7/0/physics_layer_0/angular_velocity = 0.0
+9:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+9:8/0 = 0
+9:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:8/0/physics_layer_0/angular_velocity = 0.0
+9:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+9:9/0 = 0
+9:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:9/0/physics_layer_0/angular_velocity = 0.0
+9:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+8:9/0 = 0
+8:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:9/0/physics_layer_0/angular_velocity = 0.0
+8:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -7.75, 16, -7.875, 16, 16, -16, 16)
+7:9/0 = 0
+7:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:9/0/physics_layer_0/angular_velocity = 0.0
+7:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -7.75, 16, -7.875, 16, 16, -16, 16)
+6:9/0 = 0
+6:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:9/0/physics_layer_0/angular_velocity = 0.0
+6:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -7.75, 16, -7.875, 16, 16, -16, 16)
+5:9/0 = 0
+5:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:9/0/physics_layer_0/angular_velocity = 0.0
+4:9/0 = 0
+4:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:9/0/physics_layer_0/angular_velocity = 0.0
+3:9/0 = 0
+3:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:9/0/physics_layer_0/angular_velocity = 0.0
+3:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -7.75, 16, -7.875, 16, 16, -16, 16)
+2:9/0 = 0
+2:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:9/0/physics_layer_0/angular_velocity = 0.0
+2:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -7.75, 16, -7.875, 16, 16, -16, 16)
+1:9/0 = 0
+1:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:9/0/physics_layer_0/angular_velocity = 0.0
+1:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -7.75, 16, -7.875, 16, 16, -16, 16)
+0:9/0 = 0
+0:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:9/0/physics_layer_0/angular_velocity = 0.0
+0:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:8/0 = 0
+0:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:8/0/physics_layer_0/angular_velocity = 0.0
+0:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:7/0 = 0
+0:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:7/0/physics_layer_0/angular_velocity = 0.0
+0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:6/0 = 0
+0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:6/0/physics_layer_0/angular_velocity = 0.0
+0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:5/0 = 0
+0:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:5/0/physics_layer_0/angular_velocity = 0.0
+0:4/0 = 0
+0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:4/0/physics_layer_0/angular_velocity = 0.0
+0:3/0 = 0
+0:3/0/y_sort_origin = -4
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/probability = 0.8
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_right_corner = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/bottom_left_corner = 0
+1:1/0/terrains_peering_bit/left_side = 0
+1:1/0/terrains_peering_bit/top_left_corner = 0
+1:1/0/terrains_peering_bit/top_side = 0
+1:1/0/terrains_peering_bit/top_right_corner = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/probability = 0.1
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/bottom_right_corner = 0
+1:2/0/terrains_peering_bit/bottom_side = 0
+1:2/0/terrains_peering_bit/bottom_left_corner = 0
+1:2/0/terrains_peering_bit/left_side = 0
+1:2/0/terrains_peering_bit/top_left_corner = 0
+1:2/0/terrains_peering_bit/top_side = 0
+1:2/0/terrains_peering_bit/top_right_corner = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/probability = 0.1
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/terrains_peering_bit/right_side = 0
+2:2/0/terrains_peering_bit/bottom_right_corner = 0
+2:2/0/terrains_peering_bit/bottom_side = 0
+2:2/0/terrains_peering_bit/bottom_left_corner = 0
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_left_corner = 0
+2:2/0/terrains_peering_bit/top_side = 0
+2:2/0/terrains_peering_bit/top_right_corner = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 0
+3:2/0/probability = 0.2
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/terrains_peering_bit/right_side = 0
+3:2/0/terrains_peering_bit/bottom_right_corner = 0
+3:2/0/terrains_peering_bit/bottom_side = 0
+3:2/0/terrains_peering_bit/bottom_left_corner = 0
+3:2/0/terrains_peering_bit/left_side = 0
+3:2/0/terrains_peering_bit/top_left_corner = 0
+3:2/0/terrains_peering_bit/top_side = 0
+3:2/0/terrains_peering_bit/top_right_corner = 0
+4:2/0 = 0
+4:2/0/terrain_set = 0
+4:2/0/terrain = 0
+4:2/0/probability = 0.1
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0/terrains_peering_bit/right_side = 0
+4:2/0/terrains_peering_bit/bottom_right_corner = 0
+4:2/0/terrains_peering_bit/bottom_side = 0
+4:2/0/terrains_peering_bit/bottom_left_corner = 0
+4:2/0/terrains_peering_bit/left_side = 0
+4:2/0/terrains_peering_bit/top_left_corner = 0
+4:2/0/terrains_peering_bit/top_side = 0
+4:2/0/terrains_peering_bit/top_right_corner = 0
+4:1/0 = 0
+4:1/0/terrain_set = 0
+4:1/0/terrain = 0
+4:1/0/probability = 0.05
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0/terrains_peering_bit/right_side = 0
+4:1/0/terrains_peering_bit/bottom_right_corner = 0
+4:1/0/terrains_peering_bit/bottom_side = 0
+4:1/0/terrains_peering_bit/bottom_left_corner = 0
+4:1/0/terrains_peering_bit/left_side = 0
+4:1/0/terrains_peering_bit/top_left_corner = 0
+4:1/0/terrains_peering_bit/top_side = 0
+4:1/0/terrains_peering_bit/top_right_corner = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/probability = 0.05
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/terrains_peering_bit/right_side = 0
+3:1/0/terrains_peering_bit/bottom_right_corner = 0
+3:1/0/terrains_peering_bit/bottom_side = 0
+3:1/0/terrains_peering_bit/bottom_left_corner = 0
+3:1/0/terrains_peering_bit/left_side = 0
+3:1/0/terrains_peering_bit/top_left_corner = 0
+3:1/0/terrains_peering_bit/top_side = 0
+3:1/0/terrains_peering_bit/top_right_corner = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/probability = 0.2
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/terrains_peering_bit/right_side = 0
+2:1/0/terrains_peering_bit/bottom_right_corner = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/bottom_left_corner = 0
+2:1/0/terrains_peering_bit/left_side = 0
+2:1/0/terrains_peering_bit/top_left_corner = 0
+2:1/0/terrains_peering_bit/top_side = 0
+2:1/0/terrains_peering_bit/top_right_corner = 0
+
+[sub_resource type="TileSet" id="TileSet_jvxnv"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_kywbj")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ltfna"]
+radius = 17.2627
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ld41c"]
+size = Vector2(384, 256)
+
+[node name="trap_room" type="Node2D"]
+y_sort_enabled = true
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_jvxnv")
+format = 2
+layer_0/name = "floor"
+layer_0/z_index = -10
+layer_0/tile_data = PackedInt32Array(458763, 65536, 1, 393227, 196608, 2, 327691, 131072, 1, 262155, 65536, 1, 196619, 65536, 1, 131083, 65536, 1, 65547, 65536, 1, 11, 65536, 1, 458762, 65536, 1, 393226, 131072, 2, 327690, 65536, 1, 262154, 196608, 2, 196618, 65536, 1, 131082, 65536, 1, 65546, 65536, 2, 10, 131072, 1, 458761, 131072, 1, 393225, 131072, 1, 327689, 131072, 1, 262153, 65536, 1, 196617, 65536, 1, 131081, 65536, 1, 65545, 196608, 2, 9, 196608, 2, 458760, 196608, 2, 393224, 65536, 1, 327688, 196608, 2, 262152, 65536, 1, 196616, 131072, 1, 131080, 131072, 1, 65544, 196608, 2, 8, 65536, 1, 458759, 65536, 1, 393223, 65536, 1, 327687, 262144, 1, 262151, 65536, 1, 196615, 65536, 1, 131079, 131072, 1, 65543, 196608, 1, 7, 65536, 1, 458758, 65536, 1, 393222, 65536, 1, 327686, 65536, 1, 262150, 196608, 2, 196614, 65536, 1, 131078, 196608, 2, 65542, 262144, 1, 6, 196608, 1, 458757, 196608, 2, 393221, 196608, 1, 327685, 131072, 1, 262149, 65536, 1, 196613, 65536, 2, 131077, 131072, 1, 65541, 65536, 1, 5, 65536, 1, 458756, 196608, 2, 393220, 65536, 1, 327684, 262144, 1, 262148, 65536, 1, 196612, 65536, 1, 131076, 65536, 1, 65540, 65536, 1, 4, 65536, 1, 458755, 262144, 1, 393219, 65536, 1, 327683, 131072, 2, 262147, 65536, 1, 196611, 65536, 1, 131075, 262144, 1, 65539, 65536, 1, 3, 65536, 2, 458754, 65536, 1, 393218, 65536, 1, 327682, 262144, 2, 262146, 196608, 1, 196610, 196608, 2, 131074, 131072, 1, 65538, 131072, 1, 2, 131072, 1, 458753, 196608, 2, 393217, 196608, 2, 327681, 65536, 1, 262145, 65536, 1, 196609, 65536, 1, 131073, 131072, 2, 65537, 65536, 1, 1, 131072, 1, 458752, 196608, 1, 393216, 65536, 1, 327680, 262144, 2, 262144, 196608, 1, 196608, 65536, 1, 131072, 65536, 1, 65536, 131072, 1, 0, 196608, 2)
+layer_1/name = "backwalls"
+layer_1/y_sort_enabled = true
+layer_1/tile_data = PackedInt32Array(4, 196608, 0, 7, 393216, 0, 8, 131072, 0, 9, 131072, 0, 10, 524288, 0, 1, 65536, 0, 2, 131072, 0, 3, 131072, 0, 131072, 0, 3, 131083, 589824, 3)
+layer_2/name = "frontwalls"
+layer_2/z_index = 10
+layer_2/tile_data = PackedInt32Array(327680, 0, 6, 327695, 589824, 5, 11, 589824, 0, 0, 0, 0, 65536, 0, 2, 65547, 589824, 2, 327691, 589824, 6, 393227, 589824, 8, 458763, 589824, 9, 458762, 524288, 9, 458759, 393216, 9, 458761, 458752, 9, 458760, 458752, 9, 458756, 196608, 9, 458755, 131072, 9, 458753, 65536, 9, 458754, 131072, 9, 458752, 0, 9, 393216, 0, 8)
+layer_3/name = "north_door"
+layer_3/enabled = false
+layer_3/y_sort_enabled = true
+layer_3/tile_data = PackedInt32Array(4, 131072, 0, 3, 131072, 0, 5, 131072, 0, 6, 131072, 0, 7, 131072, 0)
+layer_4/name = "south_door"
+layer_4/enabled = false
+layer_4/z_index = 11
+layer_4/tile_data = PackedInt32Array(458756, 131072, 9, 458757, 131072, 9, 458758, 131072, 9, 458759, 131072, 9, 458755, 131072, 9, 458760, 131072, 9)
+layer_5/name = "east_door"
+layer_5/enabled = false
+layer_5/z_index = 11
+layer_5/tile_data = PackedInt32Array(131083, 589824, 7, 196619, 589824, 7, 262155, 589824, 7, 327691, 589824, 7)
+layer_6/name = "west_door"
+layer_6/enabled = false
+layer_6/z_index = 11
+layer_6/tile_data = PackedInt32Array(131072, 0, 7, 196608, 0, 7, 262144, 0, 7, 327680, 0, 7)
+
+[node name="north_connector" type="Area2D" parent="."]
+process_mode = 3
+position = Vector2(192, 0)
+collision_layer = 1024
+collision_mask = 5120
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="north_connector"]
+shape = SubResource("CircleShape2D_ltfna")
+
+[node name="south_connector" type="Area2D" parent="."]
+process_mode = 3
+position = Vector2(192, 256)
+collision_layer = 1024
+collision_mask = 5120
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="south_connector"]
+shape = SubResource("CircleShape2D_ltfna")
+
+[node name="east_connector" type="Area2D" parent="."]
+process_mode = 3
+position = Vector2(384, 129)
+collision_layer = 1024
+collision_mask = 5120
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="east_connector"]
+shape = SubResource("CircleShape2D_ltfna")
+
+[node name="west_connector" type="Area2D" parent="."]
+process_mode = 3
+position = Vector2(0, 128)
+collision_layer = 1024
+collision_mask = 5120
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="west_connector"]
+shape = SubResource("CircleShape2D_ltfna")
+
+[node name="enter_area" type="Area2D" parent="."]
+process_mode = 3
+z_index = 50
+position = Vector2(192, 128)
+collision_layer = 2048
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enter_area"]
+shape = SubResource("RectangleShape2D_ld41c")
+
+[node name="trap" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(72, 72)
+
+[node name="trap2" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(88, 72)
+
+[node name="trap3" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(104, 72)
+
+[node name="trap4" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(120, 72)
+
+[node name="trap5" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(72, 88)
+
+[node name="trap6" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(88, 88)
+
+[node name="trap7" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(104, 88)
+
+[node name="trap8" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(120, 88)
+
+[node name="trap9" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(72, 104)
+
+[node name="trap10" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(88, 104)
+
+[node name="trap11" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(104, 104)
+
+[node name="trap12" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(120, 104)
+
+[node name="trap13" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(72, 120)
+
+[node name="trap14" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(88, 120)
+
+[node name="trap15" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(104, 120)
+
+[node name="trap16" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(120, 120)
+
+[node name="trap17" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(72, 136)
+
+[node name="trap18" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(88, 136)
+
+[node name="trap19" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(104, 136)
+
+[node name="trap20" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(120, 136)
+
+[node name="trap21" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(72, 152)
+
+[node name="trap22" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(88, 152)
+
+[node name="trap23" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(104, 152)
+
+[node name="trap24" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(120, 152)
+
+[node name="trap25" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(72, 168)
+
+[node name="trap26" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(88, 168)
+
+[node name="trap27" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(104, 168)
+
+[node name="trap28" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(120, 168)
+
+[node name="trap29" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(72, 184)
+
+[node name="trap30" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(88, 184)
+
+[node name="trap31" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(104, 184)
+
+[node name="trap32" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(120, 184)
+
+[node name="trap33" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(136, 168)
+
+[node name="trap34" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(152, 168)
+
+[node name="trap35" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(168, 168)
+
+[node name="trap36" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(184, 168)
+
+[node name="trap37" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(136, 184)
+
+[node name="trap38" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(152, 184)
+
+[node name="trap39" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(168, 184)
+
+[node name="trap40" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(184, 184)
+
+[node name="trap41" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(136, 136)
+
+[node name="trap42" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(152, 136)
+
+[node name="trap43" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(168, 136)
+
+[node name="trap44" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(184, 136)
+
+[node name="trap45" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(136, 152)
+
+[node name="trap46" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(152, 152)
+
+[node name="trap47" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(168, 152)
+
+[node name="trap48" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(184, 152)
+
+[node name="trap49" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(136, 104)
+
+[node name="trap50" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(152, 104)
+
+[node name="trap51" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(168, 104)
+
+[node name="trap52" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(184, 104)
+
+[node name="trap53" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(136, 120)
+
+[node name="trap54" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(152, 120)
+
+[node name="trap55" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(168, 120)
+
+[node name="trap56" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(184, 120)
+
+[node name="trap57" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(136, 72)
+
+[node name="trap58" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(152, 72)
+
+[node name="trap59" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(168, 72)
+
+[node name="trap60" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(184, 72)
+
+[node name="trap61" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(136, 88)
+
+[node name="trap62" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(152, 88)
+
+[node name="trap63" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(168, 88)
+
+[node name="trap64" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(184, 88)
+
+[node name="trap65" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(200, 72)
+
+[node name="trap66" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(216, 72)
+
+[node name="trap67" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(232, 72)
+
+[node name="trap68" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(248, 72)
+
+[node name="trap69" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(200, 88)
+
+[node name="trap70" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(216, 88)
+
+[node name="trap71" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(232, 88)
+
+[node name="trap72" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(248, 88)
+
+[node name="trap73" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(200, 104)
+
+[node name="trap74" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(216, 104)
+
+[node name="trap75" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(232, 104)
+
+[node name="trap76" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(248, 104)
+
+[node name="trap77" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(200, 120)
+
+[node name="trap78" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(216, 120)
+
+[node name="trap79" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(232, 120)
+
+[node name="trap80" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(248, 120)
+
+[node name="trap81" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(200, 136)
+
+[node name="trap82" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(216, 136)
+
+[node name="trap83" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(232, 136)
+
+[node name="trap84" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(248, 136)
+
+[node name="trap85" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(200, 152)
+
+[node name="trap86" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(216, 152)
+
+[node name="trap87" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(232, 152)
+
+[node name="trap88" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(248, 152)
+
+[node name="trap89" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(200, 168)
+
+[node name="trap90" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(216, 168)
+
+[node name="trap91" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(232, 168)
+
+[node name="trap92" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(248, 168)
+
+[node name="trap93" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(200, 184)
+
+[node name="trap94" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(216, 184)
+
+[node name="trap95" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(232, 184)
+
+[node name="trap96" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(248, 184)
+
+[node name="trap97" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(264, 168)
+
+[node name="trap98" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(280, 168)
+
+[node name="trap99" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(296, 168)
+
+[node name="trap100" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(312, 168)
+
+[node name="trap101" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(264, 184)
+
+[node name="trap102" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(280, 184)
+
+[node name="trap103" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(296, 184)
+
+[node name="trap104" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(312, 184)
+
+[node name="trap105" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(264, 136)
+
+[node name="trap106" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(280, 136)
+
+[node name="trap107" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(296, 136)
+
+[node name="trap108" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(312, 136)
+
+[node name="trap109" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(264, 152)
+
+[node name="trap110" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(280, 152)
+
+[node name="trap111" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(296, 152)
+
+[node name="trap112" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(312, 152)
+
+[node name="trap113" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(264, 104)
+
+[node name="trap114" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(280, 104)
+
+[node name="trap115" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(296, 104)
+
+[node name="trap116" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(312, 104)
+
+[node name="trap117" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(264, 120)
+
+[node name="trap118" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(280, 120)
+
+[node name="trap119" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(296, 120)
+
+[node name="trap120" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(312, 120)
+
+[node name="trap121" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(264, 72)
+
+[node name="trap122" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(280, 72)
+
+[node name="trap123" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(296, 72)
+
+[node name="trap124" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(312, 72)
+
+[node name="trap125" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(264, 88)
+
+[node name="trap126" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(280, 88)
+
+[node name="trap127" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(296, 88)
+
+[node name="trap128" parent="." instance=ExtResource("2_b63qx")]
+position = Vector2(312, 88)

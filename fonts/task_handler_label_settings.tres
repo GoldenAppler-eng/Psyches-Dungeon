@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bwtvtucat5qpe"]
+
+[ext_resource type="FontFile" uid="uid://d2vpbv3wwvrt6" path="res://fonts/PIXY.ttf" id="1_lhr4x"]
+
+[resource]
+line_spacing = 0.01
+font = ExtResource("1_lhr4x")
+font_size = 20

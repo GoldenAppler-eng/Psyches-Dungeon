@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Major Jam 7"
-run/main_scene="res://scenes/test_world.tscn"
+run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GlobalSignalBus="*res://scripts/singletons/SignalBus.gd"
 Global="*res://scripts/singletons/Global.gd"
 GlobalCardTimer="*res://prefabs/singletons/global_card_timer.tscn"
+GlobalSfxPlayer="*res://prefabs/singletons/global_sfx_player.tscn"
 
 [debug]
 

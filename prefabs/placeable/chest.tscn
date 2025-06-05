@@ -29,12 +29,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cc70g"]
-size = Vector2(18, 16)
+size = Vector2(18, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fa4qy"]
 size = Vector2(22, 20)
 
 [node name="chest" type="StaticBody2D"]
+y_sort_enabled = true
 collision_layer = 256
 collision_mask = 0
 script = ExtResource("1_e66pm")
@@ -44,14 +45,15 @@ jump_component_prefab = ExtResource("4_heo5f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_2gih6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_cc70g")
 
 [node name="OpenArea" type="Area2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, -7)
 collision_layer = 0
 collision_mask = 4
 monitorable = false

@@ -5,12 +5,12 @@ var prev_room_area : Area2D
 func _on_room_exited(area : Area2D) -> void:
 	GlobalSignalBus.room_exited.emit(area)
 	
-	area.owner.set_process(PROCESS_MODE_DISABLED)
+	area.owner.process_mode = PROCESS_MODE_DISABLED
 
 func _on_new_room_entered(area : Area2D) -> void:
 	GlobalSignalBus.room_entered.emit(area)
 	
-	area.owner.set_process(PROCESS_MODE_INHERIT)
+	area.owner.process_mode = PROCESS_MODE_INHERIT
 	
 	if not prev_room_area:
 		prev_room_area = area

@@ -151,6 +151,7 @@ radius = 50.1597
 size = Vector2(27, 26)
 
 [node name="enemy" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 8
 collision_mask = 258
 script = ExtResource("1_smd3p")
@@ -159,13 +160,13 @@ dropped_item = ExtResource("2_s3tct")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-1, -5)
+position = Vector2(-1, -18)
 sprite_frames = SubResource("SpriteFrames_fpalx")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 4)
+position = Vector2(-1.5, -9)
 shape = SubResource("RectangleShape2D_kjina")
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]
@@ -178,7 +179,7 @@ unique_name_in_owner = true
 one_shot = true
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
-position = Vector2(-4, -3)
+position = Vector2(-4, -16)
 collision_layer = 64
 collision_mask = 0
 monitoring = false
@@ -188,7 +189,7 @@ shape = SubResource("RectangleShape2D_l30rr")
 
 [node name="DamagerHitbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-13, -4)
+position = Vector2(-13, -17)
 collision_layer = 0
 collision_mask = 32
 monitorable = false
@@ -198,7 +199,7 @@ shape = SubResource("RectangleShape2D_s04jv")
 
 [node name="ObjectDetectionArea" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-1, -5)
+position = Vector2(-1, -18)
 collision_layer = 0
 collision_mask = 282
 monitorable = false
@@ -208,7 +209,7 @@ shape = SubResource("CircleShape2D_tfr4d")
 
 [node name="AttackDetectionArea" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-20.5, -4)
+position = Vector2(-20.5, -17)
 collision_layer = 0
 collision_mask = 32
 
@@ -217,11 +218,12 @@ shape = SubResource("RectangleShape2D_lun2x")
 
 [node name="health_bar" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
-visible = false
+z_index = 50
+z_as_relative = false
 offset_left = -10.0
-offset_top = -28.0
+offset_top = -39.0
 offset_right = 10.0
-offset_bottom = -23.0
+offset_bottom = -34.0
 step = 10.0
 value = 100.0
 texture_under = ExtResource("5_eeivd")

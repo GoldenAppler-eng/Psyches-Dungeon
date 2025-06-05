@@ -17,3 +17,5 @@ signal psyche_task_request
 signal invert_controls
 signal shift_controls
 signal revert_controls
+
+signal sfx_finished(sfx_name : String)

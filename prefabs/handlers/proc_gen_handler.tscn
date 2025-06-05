@@ -1,10 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://cga2kalyw3nfc"]
+[gd_scene load_steps=15 format=3 uid="uid://cga2kalyw3nfc"]
 
 [ext_resource type="Script" path="res://scripts/handlers/proc_gen_handler.gd" id="1_1lcue"]
-[ext_resource type="PackedScene" uid="uid://dsjdgntcmuavr" path="res://prefabs/rooms/room.tscn" id="2_ebkvp"]
+[ext_resource type="PackedScene" uid="uid://c6osc74ny0l4u" path="res://prefabs/rooms/corridor_room.tscn" id="2_0u3a8"]
+[ext_resource type="PackedScene" uid="uid://73jg3fl55mrp" path="res://prefabs/rooms/enemy_room.tscn" id="3_jrra6"]
+[ext_resource type="PackedScene" uid="uid://bj5tupnflo5bx" path="res://prefabs/rooms/four_chest_room.tscn" id="3_nhxqc"]
 [ext_resource type="PackedScene" uid="uid://k534e5jnpr67" path="res://prefabs/rooms/empty_room.tscn" id="3_t3mba"]
+[ext_resource type="PackedScene" uid="uid://bpau1pesm8l20" path="res://prefabs/rooms/guarded_chest_room.tscn" id="5_2vxou"]
+[ext_resource type="PackedScene" uid="uid://bk6r0c8btgdpy" path="res://prefabs/rooms/north_block_room.tscn" id="6_3g7uu"]
+[ext_resource type="PackedScene" uid="uid://cdi5k8suj7wwl" path="res://prefabs/rooms/river_room.tscn" id="7_qdavs"]
+[ext_resource type="PackedScene" uid="uid://cuhq5fr8fr8wj" path="res://prefabs/rooms/row_room.tscn" id="8_m3d24"]
+[ext_resource type="PackedScene" uid="uid://dsycprocbout4" path="res://prefabs/rooms/south_block_room.tscn" id="9_elb0h"]
+[ext_resource type="PackedScene" uid="uid://dmt0li10tsaci" path="res://prefabs/rooms/surprise_room.tscn" id="10_e3cef"]
+[ext_resource type="PackedScene" uid="uid://cnb0p6gvjhh2p" path="res://prefabs/rooms/temptation_room.tscn" id="11_1e6y3"]
+[ext_resource type="PackedScene" uid="uid://clwytjpnpuw2r" path="res://prefabs/rooms/tic_tac_toe_room.tscn" id="12_14wt5"]
+[ext_resource type="PackedScene" uid="uid://b5kmwpfnqqa12" path="res://prefabs/rooms/trap_room.tscn" id="13_cu3uu"]
 
 [node name="proc_gen_handler" type="Node2D"]
 script = ExtResource("1_1lcue")
-room_prefab_pool = Array[PackedScene]([ExtResource("2_ebkvp")])
+room_prefab_pool = Array[PackedScene]([ExtResource("2_0u3a8"), ExtResource("3_jrra6"), ExtResource("3_nhxqc"), ExtResource("5_2vxou"), ExtResource("6_3g7uu"), ExtResource("7_qdavs"), ExtResource("8_m3d24"), ExtResource("9_elb0h"), ExtResource("10_e3cef"), ExtResource("11_1e6y3"), ExtResource("12_14wt5"), ExtResource("13_cu3uu")])
 empty_room_prefab = ExtResource("3_t3mba")

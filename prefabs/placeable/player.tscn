@@ -320,10 +320,12 @@ shape = SubResource("CircleShape2D_iy7w6")
 [node name="health_bar" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 50
+z_as_relative = false
 offset_left = -10.0
-offset_top = -28.0
+offset_top = -40.0
 offset_right = 10.0
-offset_bottom = -23.0
+offset_bottom = -35.0
 step = 10.0
 value = 100.0
 texture_under = ExtResource("6_516xt")
