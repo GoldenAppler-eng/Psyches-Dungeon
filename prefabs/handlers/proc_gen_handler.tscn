@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cga2kalyw3nfc"]
 
-[ext_resource type="Script" path="res://scripts/handlers/proc_gen_handler.gd" id="1_1lcue"]
+[ext_resource type="Script" uid="uid://bmv6phd5wt6j7" path="res://scripts/handlers/proc_gen_handler.gd" id="1_1lcue"]
 [ext_resource type="PackedScene" uid="uid://c6osc74ny0l4u" path="res://prefabs/rooms/corridor_room.tscn" id="2_0u3a8"]
 [ext_resource type="PackedScene" uid="uid://73jg3fl55mrp" path="res://prefabs/rooms/enemy_room.tscn" id="3_jrra6"]
 [ext_resource type="PackedScene" uid="uid://bj5tupnflo5bx" path="res://prefabs/rooms/four_chest_room.tscn" id="3_nhxqc"]

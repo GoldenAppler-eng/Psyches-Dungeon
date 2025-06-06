@@ -1,16 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0jlkactf4p11"]
+[gd_scene load_steps=5 format=3 uid="uid://d0jlkactf4p11"]
 
-[ext_resource type="Texture2D" uid="uid://onk3bjheq8by" path="res://sprites/tmp/tmp-loss-marker-16x16.png" id="1_88yuj"]
-[ext_resource type="Texture2D" uid="uid://wsttsnjs6ust" path="res://sprites/tmp/tmp-goal-hole-16x16.png" id="2_6f42t"]
+[ext_resource type="Texture2D" uid="uid://bmoy1o2dwvybf" path="res://sprites/effect_icons_markers-Sheet.png" id="1_uv5wq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgj6v"]
+atlas = ExtResource("1_uv5wq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uflmr"]
+atlas = ExtResource("1_uv5wq")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wotv0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgj6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uflmr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="loss_marker" type="Node2D"]
 
-[node name="icon" type="Sprite2D" parent="."]
-visible = false
-z_index = 2
-position = Vector2(8, 8)
-texture = ExtResource("1_88yuj")
-
-[node name="hole" type="Sprite2D" parent="."]
-position = Vector2(8, 8)
-texture = ExtResource("2_6f42t")
+[node name="icon" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_wotv0")

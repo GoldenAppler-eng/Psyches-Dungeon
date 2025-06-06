@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b328jm4xb4p6i"]
 
-[ext_resource type="Script" path="res://scripts/UI/controls_display.gd" id="1_2w27h"]
+[ext_resource type="Script" uid="uid://5b81qbduw688" path="res://scripts/UI/controls_display.gd" id="1_2w27h"]
 [ext_resource type="Texture2D" uid="uid://cieq7e4gr7v0n" path="res://sprites/arrow-button-sheets-32x32.png" id="2_hqpr4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xlpnc"]

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://derkgmqh45esb"]
+
+[ext_resource type="Shader" uid="uid://gl18i30nlptb" path="res://resources/shaders/hit_effect_enemy.gdshader" id="1_yuybw"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_yuybw")
+shader_parameter/effect_on = false
+shader_parameter/is_golden = false

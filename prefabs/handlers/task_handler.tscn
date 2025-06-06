@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b745s8ogrbuvm"]
 
-[ext_resource type="Script" path="res://scripts/handlers/task_handler.gd" id="1_ix626"]
+[ext_resource type="Script" uid="uid://cnww4j5i3fvr0" path="res://scripts/handlers/task_handler.gd" id="1_ix626"]
 [ext_resource type="LabelSettings" uid="uid://bwtvtucat5qpe" path="res://fonts/task_handler_label_settings.tres" id="2_b7y0e"]
 
 [node name="task_handler" type="Node2D"]
@@ -9,7 +9,5 @@ script = ExtResource("1_ix626")
 [node name="TaskDisplayLabel" type="Label" parent="."]
 offset_right = 158.0
 offset_bottom = 191.0
-text = "Insert task text here
-"
 label_settings = ExtResource("2_b7y0e")
 autowrap_mode = 2

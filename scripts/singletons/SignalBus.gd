@@ -12,7 +12,11 @@ signal room_changed(direction : int, room_area : Node2D)
 signal task_completed(task_type : int)
 
 signal player_respawn
+
+signal retry
 signal game_over
+signal game_win
+signal game_start
 
 signal change_goal_count(inc_amt : int)
 signal psyche_task_request
@@ -20,5 +24,3 @@ signal psyche_task_request
 signal invert_controls
 signal shift_controls
 signal revert_controls
-
-signal sfx_finished(sfx_name : String)

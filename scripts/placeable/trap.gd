@@ -6,6 +6,8 @@ const TRAP_DAMAGE : int = 20;
 @onready var reset_timer : Timer = $%ResetTimer
 @onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
 
+@onready var activated_sfx : AudioStreamPlayer = $ActivatedSfx
+
 var activated := false
 var _damaged_bodies : Array[DamagableBody2D] = []
 
@@ -23,6 +25,8 @@ func _on_area_2d_body_entered(body : Node2D) -> void:
 	reset_timer.stop()
 	
 	if not activated:
+		activated_sfx.play()
+		
 		if body is Player:
 			GlobalSignalBus.trap_activated.emit(body)
 			

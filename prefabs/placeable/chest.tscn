@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://blel4b2ar46uf"]
+[gd_scene load_steps=12 format=3 uid="uid://blel4b2ar46uf"]
 
-[ext_resource type="Script" path="res://scripts/placeable/chest.gd" id="1_e66pm"]
+[ext_resource type="Script" uid="uid://6ua0gd6pdnqn" path="res://scripts/placeable/chest.gd" id="1_e66pm"]
 [ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/enemy.tscn" id="2_fbo2m"]
 [ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/placeable/coin.tscn" id="3_dg2ca"]
 [ext_resource type="PackedScene" uid="uid://c5ksnc33jrjk7" path="res://prefabs/components/jump_component.tscn" id="4_heo5f"]
 [ext_resource type="Texture2D" uid="uid://dwfy571fxosqu" path="res://sprites/chest-Sheet.png" id="5_awcew"]
+[ext_resource type="AudioStream" uid="uid://bl3gfsl81twao" path="res://audio/sfx/chest_open.wav" id="6_b5q2c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nc8py"]
 atlas = ExtResource("5_awcew")
@@ -60,6 +61,10 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OpenArea"]
 shape = SubResource("RectangleShape2D_fa4qy")
+
+[node name="OpenSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_b5q2c")
+bus = &"Sfx"
 
 [connection signal="body_entered" from="OpenArea" to="." method="_on_area_2d_player_entered"]
 [connection signal="body_exited" from="OpenArea" to="." method="_on_area_2d_player_exited"]

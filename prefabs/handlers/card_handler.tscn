@@ -1,17 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnj71gqcb0bcx"]
+[gd_scene load_steps=13 format=3 uid="uid://bnj71gqcb0bcx"]
 
-[ext_resource type="Script" path="res://scripts/handlers/card_handler.gd" id="1_hahlu"]
+[ext_resource type="Script" uid="uid://dl5ud1ql633mm" path="res://scripts/handlers/card_handler.gd" id="1_hahlu"]
 [ext_resource type="PackedScene" uid="uid://bd48cv83wcg06" path="res://prefabs/cards/card.tscn" id="1_xopyf"]
 [ext_resource type="Resource" uid="uid://cw065otp2t7k6" path="res://resources/effects/change_mission.tres" id="2_ed2ct"]
+[ext_resource type="Script" uid="uid://cu4by2s0jrl0g" path="res://scripts/effects/WildEffect.gd" id="2_otrrv"]
 [ext_resource type="Resource" uid="uid://tu7cgss2s5g8" path="res://resources/effects/decrease_goal.tres" id="3_qxo1t"]
 [ext_resource type="Resource" uid="uid://c7eh5sgplycxv" path="res://resources/effects/half_time.tres" id="4_v2hfx"]
 [ext_resource type="Resource" uid="uid://cvup04gpap6e5" path="res://resources/effects/increase_goal.tres" id="5_683ri"]
 [ext_resource type="Resource" uid="uid://drnk23f2sqo7i" path="res://resources/effects/invert_controls.tres" id="6_3jmvb"]
 [ext_resource type="Resource" uid="uid://c1q7jgka7p1hs" path="res://resources/effects/shift_controls.tres" id="7_llhrb"]
+[ext_resource type="AudioStream" uid="uid://k6g6tr4pqxmh" path="res://audio/sfx/fail_mission.wav" id="9_yac0f"]
+[ext_resource type="AudioStream" uid="uid://cma8j7ln5ywk5" path="res://audio/sfx/complete_mission.wav" id="10_t86pl"]
+[ext_resource type="AudioStream" uid="uid://c6c7yjpt6vgac" path="res://audio/sfx/card_draw.wav" id="11_jupdq"]
 
 [node name="card_handler" type="Node2D"]
 script = ExtResource("1_hahlu")
-effect_pool = Array[Resource("res://scripts/effects/WildEffect.gd")]([ExtResource("2_ed2ct"), ExtResource("3_qxo1t"), ExtResource("4_v2hfx"), ExtResource("5_683ri"), ExtResource("6_3jmvb"), ExtResource("7_llhrb")])
+effect_pool = Array[ExtResource("2_otrrv")]([ExtResource("2_ed2ct"), ExtResource("3_qxo1t"), ExtResource("4_v2hfx"), ExtResource("5_683ri"), ExtResource("6_3jmvb"), ExtResource("7_llhrb"), ExtResource("2_ed2ct"), ExtResource("5_683ri"), ExtResource("2_ed2ct"), ExtResource("4_v2hfx")])
 
 [node name="next" parent="." instance=ExtResource("1_xopyf")]
 unique_name_in_owner = true
@@ -36,3 +40,15 @@ face_down = true
 z_index = 20
 effect_type = 4
 face_down = true
+
+[node name="TaskFailedSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_yac0f")
+bus = &"Sfx"
+
+[node name="TaskCompletedSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_t86pl")
+bus = &"Sfx"
+
+[node name="CardDrawSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_jupdq")
+bus = &"Sfx"

@@ -17,12 +17,17 @@ const ROOM_GEN_CHANCE := .5
 var rooms_to_process : Array[Node2D]
 var rooms_to_generate_surrounding : Array[Node2D]
 
+var init_position : Vector2
+
 func _ready() -> void:	
 	GlobalSignalBus.room_changed.connect(_on_room_changed)
+	GlobalSignalBus.retry.connect(_on_game_retry)
 	
 	var init_room := _generate_init_room(0, 0)
 
 	rooms_to_generate_surrounding.append(init_room)
+	
+	init_position = global_position
 	
 func _process(delta : float) -> void:
 	if rooms_to_process:
@@ -206,3 +211,17 @@ func _on_room_changed(direction : int, room_area : Node2D) -> void:
 	
 	if sample_connector.monitoring:
 		rooms_to_generate_surrounding.append(room_area.owner)
+
+func _on_game_retry() -> void:
+	for child in get_parent().get_children():
+		if child != self:
+			get_parent().remove_child(child)
+	
+	global_position = init_position
+		
+	rooms_to_process = []
+	rooms_to_generate_surrounding = []
+		
+	var init_room := _generate_init_room(0, 0)
+
+	rooms_to_generate_surrounding.append(init_room)

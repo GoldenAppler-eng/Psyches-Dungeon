@@ -1,7 +1,7 @@
 class_name JumpComponent
 extends Node2D
 
-const MOVEMENT_VELOCITY := 100
+const MOVEMENT_VELOCITY := 10
 const JUMP_VELOCITY := -150 
 const FALL_GRAVITY := 200
 
@@ -10,6 +10,7 @@ var jump_direction : Vector2
 var sprite : Node2D
 
 var original_sprite_offset : Vector2
+var original_sprite_z_index : int
 
 var y_velocity : float = 0
 
@@ -26,7 +27,12 @@ func _ready() -> void:
 			break 
 			
 	original_sprite_offset = sprite.position
+	original_sprite_z_index = sprite.z_index
+	
+	sprite.z_index = 5
 	y_velocity = JUMP_VELOCITY
+	
+	get_parent().process_mode = PROCESS_MODE_DISABLED
 
 func _process(delta : float) -> void:
 	var parent : PhysicsBody2D = get_parent() as PhysicsBody2D
@@ -39,5 +45,8 @@ func _process(delta : float) -> void:
 	
 	if sprite.position.y > original_sprite_offset.y:
 		sprite.position = original_sprite_offset
+		sprite.z_index = original_sprite_z_index
+		
+		parent.process_mode = PROCESS_MODE_INHERIT
 		queue_free()
 	

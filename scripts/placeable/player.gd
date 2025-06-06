@@ -2,7 +2,7 @@ class_name Player
 extends DamagableBody2D
 
 const MAX_HEALTH := 100
-const MAX_SPEED := 20000.0
+const MAX_SPEED := 15000.0
 const DAMAGE := 20
 
 const REGEN_RATE := 20
@@ -20,6 +20,11 @@ const REGEN_RATE := 20
 @onready var top_half_sprite : AnimatedSprite2D = $%TopHalf
 @onready var bottom_half_sprite : AnimatedSprite2D = $%BottomHalf
 
+@onready var attack_sfx : AudioStreamPlayer = $AttackSfx
+@onready var hit_sfx : AudioStreamPlayer = $HitSfx
+
+@onready var hit_animation_player : AnimationPlayer = %HitAnimationPlayer
+
 @onready var health_bar : TextureProgressBar = $%health_bar
 
 var speed := MAX_SPEED
@@ -33,19 +38,24 @@ var _is_respawning := false
 var _is_dead := false
 var _regen_ready := false
 
-var _processing_card := false
-
 var damager_hitbox_offset : float 
+
+var init_position : Vector2 
 
 func _ready() -> void:
 	GlobalSignalBus.player_respawn.connect(_on_received_player_respawn_signal)
+	GlobalSignalBus.revert_controls.connect(_on_revert_controls)
+	GlobalSignalBus.shift_controls.connect(_on_revert_controls)
+	GlobalSignalBus.invert_controls.connect(_on_revert_controls)
+	GlobalSignalBus.retry.connect(_on_game_retry)
 	
 	GlobalCardTimer.timeout.connect(_on_global_card_timer_timeout)
 	
 	Global.global_player = self
 	
 	damager_hitbox_offset = damager_hitbox.position.x
-
+	init_position = global_position
+	
 	health = MAX_HEALTH
 
 func _physics_process(delta : float) -> void:
@@ -56,7 +66,7 @@ func _physics_process(delta : float) -> void:
 	
 	var horizontal_direction := Input.get_axis("move_left", "move_right")
 	var vertical_direction := Input.get_axis("move_up", "move_down");
-		
+	
 	if _is_dead or _is_respawning:
 		return
 		
@@ -89,9 +99,8 @@ func _player_movement(horizontal_direction : float, vertical_direction : float, 
 	move_and_slide()
 	
 func _player_anim(horizontal_direction : float, vertical_direction : float, delta : float) -> void:
-	var r := modulate.r
-	var g := modulate.g
-	var b := modulate.b
+	if _invincible:
+		hit_animation_player.play("hit")
 	
 	if not _is_attacking:
 		if horizontal_direction or vertical_direction:
@@ -115,6 +124,7 @@ func _player_attack(delta : float) -> void:
 		attack_cooldown_timer.start()
 		
 		_play_animation("attack")
+		attack_sfx.play()
 		
 		for area in damager_hitbox.get_overlapping_areas():
 			if area.owner is Enemy:
@@ -125,9 +135,12 @@ func apply_damage(amt : int) -> void:
 	if _invincible or _is_dead:
 		return
 	
+	hit_sfx.play()
+	
 	health -= amt
 		
 	_invincible = true
+	hit_animation_player.play("hit")
 	
 	invinciblity_timer.start()
 	
@@ -135,6 +148,9 @@ func apply_damage(amt : int) -> void:
 	regen_timer.stop()
 
 func _die() -> void:
+	if _is_respawning:
+		return
+	
 	_is_dead = true
 	
 	GlobalSignalBus.player_death.emit()
@@ -168,10 +184,36 @@ func _update_health() -> void:
 func _regen_health() -> void:
 	health += REGEN_RATE
 
+func _on_game_retry() -> void:
+	global_position = init_position
+	
+	health = MAX_HEALTH
+	
+	_invincible = false
+	_attack_ready = true
+	_is_attacking = false
+	_is_respawning = false
+	_is_dead = false
+	_regen_ready = false
+	
+	bottom_half_sprite.visible = true
+	top_half_sprite.visible = true
+	
+	_play_animation("idle")
+	
+	invinciblity_timer.stop()
+	attack_cooldown_timer.stop()
+	regen_start_timer.stop()
+	health_bar_visible_timer.stop()
+	regen_timer.stop()
+	game_over_timer.stop()
+
 func _on_invinciblity_timer_timeout() -> void:
 	_invincible = false
 	
 	regen_start_timer.start()
+	
+	hit_animation_player.play("RESET")
 
 func _on_attack_cooldown_timer_timeout() -> void:
 	_attack_ready = true
@@ -216,6 +258,13 @@ func _on_received_player_respawn_signal() -> void:
 func _on_game_over_timer_timeout() -> void:
 	GlobalSignalBus.game_over.emit()
 
-
 func _on_respawn_timer_timeout() -> void:
 	_respawn()
+	game_over_timer.stop()
+
+func _on_revert_controls() -> void:
+	Input.action_release("move_down")
+	Input.action_release("move_up")
+	Input.action_release("move_right")
+	Input.action_release("move_left")
+	

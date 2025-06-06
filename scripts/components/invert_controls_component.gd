@@ -21,7 +21,6 @@ func _ready() -> void:
 	_store_original_controls()
 	_invert_controls()
 
-
 func _store_original_controls() -> void:
 	for action in input_map_actions:
 		original_input_events[action] = []
@@ -37,7 +36,7 @@ func _revert_original_controls() -> void:
 			InputMap.action_add_event(action, event)
 			
 	GlobalSignalBus.revert_controls.emit()
-
+	
 func _on_destroy_timer_timeout() -> void:
 	_revert_original_controls()
 	queue_free.call_deferred()
@@ -61,3 +60,4 @@ func _invert_controls() -> void:
 			InputMap.action_add_event(invert_dict[action], event)
 			
 	GlobalSignalBus.invert_controls.emit()
+	

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ln8wdsnv7xo2"]
+[gd_scene load_steps=9 format=3 uid="uid://ln8wdsnv7xo2"]
 
-[ext_resource type="Script" path="res://scripts/placeable/trap.gd" id="1_4d2cc"]
+[ext_resource type="Script" uid="uid://bnwuxtmtccv8k" path="res://scripts/placeable/trap.gd" id="1_4d2cc"]
 [ext_resource type="Texture2D" uid="uid://jsml6q6em3nw" path="res://sprites/trap-Sheet.png" id="2_kjsx1"]
+[ext_resource type="AudioStream" uid="uid://bydyrkfhjurh3" path="res://audio/sfx/trap_activate.wav" id="3_cycn3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_df40o"]
 atlas = ExtResource("2_kjsx1")
@@ -59,6 +60,10 @@ shape = SubResource("RectangleShape2D_p88kq")
 [node name="ResetTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 5.0
+
+[node name="ActivatedSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cycn3")
+bus = &"Sfx"
 
 [connection signal="body_entered" from="ActivatedArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="ActivatedArea" to="." method="_on_area_2d_body_exited"]

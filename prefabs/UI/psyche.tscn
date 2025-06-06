@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dojll77pj6uq7"]
+[gd_scene load_steps=16 format=3 uid="uid://dojll77pj6uq7"]
 
 [ext_resource type="Texture2D" uid="uid://b25n4k2836ydo" path="res://sprites/psyche-Sheet.png" id="1_6uspd"]
-[ext_resource type="Script" path="res://scripts/UI/psyche.gd" id="1_i1pbe"]
+[ext_resource type="Script" uid="uid://dcc5p3vywvepy" path="res://scripts/UI/psyche.gd" id="1_i1pbe"]
+[ext_resource type="AudioStream" uid="uid://cum3jxnngcutj" path="res://audio/sfx/psyche_voice_lines/psyche_1.wav" id="3_0uisg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tleo0"]
 atlas = ExtResource("1_6uspd")
@@ -122,7 +123,13 @@ animations = [{
 script = ExtResource("1_i1pbe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_uq4wb")
-animation = &"rest"
+animation = &"talk"
 autoplay = "rest"
-frame_progress = 0.135259
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_0uisg")
+
+[connection signal="finished" from="AudioPlayer" to="." method="_on_audio_player_finished"]

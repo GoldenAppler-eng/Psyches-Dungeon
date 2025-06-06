@@ -8,6 +8,8 @@ var current_task_type : int = -1
 var task_completion_counter : int = 0
 var task_completion_amount : int = 5 
 
+var task_completed := false
+
 var direction_dict : Dictionary = {
 	Global.DIRECTION.NORTH : "upwards",
 	Global.DIRECTION.SOUTH : "downwards",
@@ -52,6 +54,7 @@ func _process(delta : float) -> void:
 
 func set_task_type(type : int, amt : int, dir : int) -> void:
 	reset_counter()
+	task_completed = false
 	
 	current_task_type = type
 	task_completion_amount = amt
@@ -94,7 +97,12 @@ func _on_room_changed(direction : int, room_area : Node2D) -> void:
 			reset_counter()
 			
 func signal_task_completed() -> void:
+	if task_completed:
+		return
+		
 	reset_counter()
+	
+	task_completed = true
 	GlobalSignalBus.task_completed.emit(current_task_type)
 	
 func get_current_task_description() -> String:

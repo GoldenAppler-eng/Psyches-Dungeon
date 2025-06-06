@@ -3,6 +3,7 @@ extends Node2D
 
 const MARKER_WIDTH := 32
 const MARKER_HEIGHT := 32
+const MAX_MARKERS := 7
 
 const GAP_WIDTH := 16
 
@@ -15,6 +16,8 @@ var goal_marker_array : Array[Node2D]
 var goal_completion_counter : int = 0
 
 func _ready() -> void:
+	GlobalSignalBus.retry.connect(_on_game_retry)
+	
 	goal_marker_array.append(initial_goal_marker)
 	
 	while goal_marker_array.size() < Global.INIT_NUM_GOAL:
@@ -22,6 +25,16 @@ func _ready() -> void:
 
 func _process(delta : float) -> void:
 	pass
+
+func _on_game_retry() -> void:
+	for child in get_children():
+		remove_child(child)
+	
+	goal_completion_counter = 0
+	goal_marker_array.clear()
+	
+	while goal_marker_array.size() < Global.INIT_NUM_GOAL:
+		add_marker()
 
 func mark_completed_task(effect_type : int) -> void:
 	if goal_completion_counter >= goal_marker_array.size():
@@ -33,8 +46,14 @@ func mark_completed_task(effect_type : int) -> void:
 	marker_icon.frame = effect_type
 	
 	goal_completion_counter += 1
+	
+	if goal_completion_counter >= goal_marker_array.size():
+		GlobalSignalBus.game_win.emit()
 
 func add_marker() -> void:
+	if not (goal_marker_array.size() < MAX_MARKERS):
+		return
+	
 	var new_marker : Node2D = goal_marker_prefab.instantiate() as Node2D
 	
 	add_child(new_marker)
@@ -44,6 +63,10 @@ func add_marker() -> void:
 	new_marker.global_position = global_position
 	new_marker.position.x = - (goal_marker_array.size() * (GAP_WIDTH + MARKER_WIDTH) - GAP_WIDTH)
 
+	if goal_marker_array.size() > 5:
+		new_marker.position.y = GAP_WIDTH + MARKER_WIDTH
+		new_marker.position.x = - (goal_marker_array.size() % 5 * (GAP_WIDTH + MARKER_WIDTH) - GAP_WIDTH)
+
 func remove_marker() -> void:
 	if goal_marker_array.size() <= Global.MIN_NUM_GOAL:
 		return
@@ -51,3 +74,6 @@ func remove_marker() -> void:
 	var last_marker : Node2D = goal_marker_array.pop_back()
 	
 	remove_child(last_marker)
+	
+	if goal_completion_counter >= goal_marker_array.size():
+		GlobalSignalBus.game_win.emit()

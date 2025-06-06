@@ -5,6 +5,7 @@ extends StaticBody2D
 @export var jump_component_prefab : PackedScene
 
 @onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
+@onready var open_sfx : AudioStreamPlayer = $OpenSfx
 
 var _player_nearby := false
 var _opened := false
@@ -23,6 +24,8 @@ func _open_chest() -> void:
 	
 	_opened = true
 	animated_sprite_2d.frame = 1	
+	
+	open_sfx.play()
 	
 	var rng := randf()
 	

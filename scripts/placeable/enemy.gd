@@ -8,8 +8,6 @@ const GOLD_CHANCE := .4
 const DAMAGE := 20
 const KNOCKBACK_SPEED := 100.0
 
-const GOLD_TINT := Color8(215, 190, 0, 255)
-
 @export var jump_component_prefab : PackedScene
 
 @onready var damager_hitbox : Area2D = $%DamagerHitbox
@@ -22,6 +20,11 @@ const GOLD_TINT := Color8(215, 190, 0, 255)
 @onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
 
 @onready var health_bar : TextureProgressBar = $%health_bar
+
+@onready var attack_sfx : AudioStreamPlayer = $AttackSfx
+@onready var hit_sfx : AudioStreamPlayer = $HitSfx
+
+@onready var hit_animation_player : AnimationPlayer = %HitAnimationPlayer
 
 @export var dropped_item : PackedScene
 
@@ -44,13 +47,12 @@ var avoided_objects : Array[Node2D] = []
 
 var _target_direction : Vector2
 var _knockback_direction : Vector2
-
-func _init() -> void:
-	if randf() <= GOLD_CHANCE or _guaranteed_gold:
-		_is_golden = true
-		modulate = GOLD_TINT
-
+	
 func _ready() -> void:
+	if _guaranteed_gold:
+		_is_golden = true
+		(animated_sprite_2d.material as ShaderMaterial).set_shader_parameter("is_golden", true)
+	
 	target_player = Global.global_player
 	
 	health = MAX_HEALTH
@@ -91,6 +93,9 @@ func _update_health() -> void:
 
 func _enemy_movement(delta : float) -> Vector2:
 	_get_target_direction()
+	
+	if target_player._is_dead:
+		return Vector2(0, 0)
 	
 	var horizontal_direction : float = sign(_target_direction.x)
 	var vertical_direction : float = sign(_target_direction.y)
@@ -134,25 +139,18 @@ func _get_target_direction() -> void:
 			
 		if object is Enemy:
 			object_direction_weight = 1 - abs(object_direction_weight)
-		elif object is Trap:
-			var trap : Trap = object as Trap
-			
-			if not trap.activated:
-				object_direction_weight = 0 
-		else:
-			#change later
-			object_direction_weight = abs(object_direction_weight) 
-			
-		_target_direction -= object_direction_weight * normalized_vector2_to_object
 	
-	_target_direction = _target_direction.normalized()
-
-func _enemy_anim(horizontal_direction : float, vertical_direction : float, delta : float) -> void:
-	if _is_golden:
-		modulate = GOLD_TINT
+		_target_direction -= object_direction_weight * normalized_vector2_to_object
 		
+	if _target_direction.dot(normalized_vector2_to_player) >= 0:
+		_target_direction = _target_direction.normalized()
+	else:
+		_target_direction = normalized_vector2_to_player
+
+func _enemy_anim(horizontal_direction : float, vertical_direction : float, delta : float) -> void:		
 	if _invincible:
 		animated_sprite_2d.pause()
+		hit_animation_player.play("hit")
 		return
 	else:
 		animated_sprite_2d.play()	
@@ -174,6 +172,7 @@ func _enemy_attack(delta: float) -> void:
 			_is_attacking = true
 			
 			animated_sprite_2d.play("attack")
+			attack_sfx.play()
 			
 			for area in damager_hitbox.get_overlapping_areas():
 				if area.owner is Player:
@@ -207,6 +206,9 @@ func apply_damage(amt : int) -> void:
 	_invincible = true
 	invincibility_timer.start()
 	
+	hit_sfx.play()
+	hit_animation_player.play("hit")
+	
 	_knockback_direction = -_target_direction
 	velocity = _knockback_direction * KNOCKBACK_SPEED
 	
@@ -218,6 +220,8 @@ func _on_attack_cooldown_timer_timeout() -> void:
 
 func _on_invincibility_timer_timeout() -> void:
 	_invincible = false
+	
+	hit_animation_player.play("RESET")
 
 func _on_object_detection_area_body_entered(body : Node2D) -> void:
 	avoided_objects.append(body)

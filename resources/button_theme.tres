@@ -1,0 +1,22 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cu6yoqe0up8hr"]
+
+[ext_resource type="FontFile" uid="uid://d2vpbv3wwvrt6" path="res://fonts/PIXY.ttf" id="1_mhv1k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_777mj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2518f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x6ruu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mxw42"]
+
+[resource]
+Button/colors/font_focus_color = Color(1, 1, 0, 1)
+Button/colors/font_hover_color = Color(1, 1, 0, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 0)
+Button/font_sizes/font_size = 12
+Button/fonts/font = ExtResource("1_mhv1k")
+Button/styles/focus = SubResource("StyleBoxEmpty_777mj")
+Button/styles/hover = SubResource("StyleBoxEmpty_2518f")
+Button/styles/normal = SubResource("StyleBoxEmpty_x6ruu")
+Button/styles/pressed = SubResource("StyleBoxEmpty_mxw42")

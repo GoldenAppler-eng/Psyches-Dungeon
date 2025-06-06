@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bnib6gsssdca5"]
 
-[ext_resource type="Script" path="res://scripts/components/shift_controls_component.gd" id="1_guqmx"]
+[ext_resource type="Script" uid="uid://ch4ty77q7idiu" path="res://scripts/components/shift_controls_component.gd" id="1_guqmx"]
 
 [node name="shift_controls_component" type="Node2D"]
 script = ExtResource("1_guqmx")

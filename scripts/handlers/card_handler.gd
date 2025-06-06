@@ -6,11 +6,14 @@ extends Node2D
 @export var task_handler : TaskHandler
 @export var effect_handler : EffectHandler
 @export var goal_handler : GoalHandler
-@export var loss_handler : LossHandler
 
 @onready var next : Card = $%next
 @onready var current : Card = $%current
 @onready var cover : Card = $%cover
+
+@onready var task_failed_sfx : AudioStreamPlayer = $TaskFailedSfx
+@onready var task_completed_sfx : AudioStreamPlayer= $TaskCompletedSfx
+@onready var card_draw_sfx : AudioStreamPlayer = $CardDrawSfx
 
 var next_task_values : Array[int] 
 var next_card_effect : WildEffect
@@ -21,16 +24,14 @@ func _ready() -> void:
 	
 	GlobalCardTimer.timeout.connect(_on_new_card_timer_timeout)
 	
+	GlobalSignalBus.retry.connect(_on_game_retry)
+	
 	GlobalSignalBus.task_completed.connect(_on_task_completed)
 	GlobalSignalBus.change_goal_count.connect(_on_goal_count_changed)
 	GlobalSignalBus.psyche_task_request.connect(_on_psyche_task_received)
 	
 	_generate_new_next_card()	
 	_change_cards()
-
-func _process(delta : float) -> void:
-	if Input.is_action_just_pressed("attack"):
-		GlobalSignalBus.task_completed.emit(Global.TASK_TYPE.ACTIVATE)
 
 func _generate_new_next_card() -> void:
 	var task_values : Array[int] = _generate_new_task()
@@ -71,13 +72,15 @@ func _generate_new_task() -> Array[int]:
 
 	return [gen_task_type, gen_task_amt, gen_task_dir]
 
-func _on_new_card_timer_timeout() -> void:
-	loss_handler.mark_loss()
-	
+func _on_game_retry() -> void:
+	_generate_new_next_card()	
+	_change_cards()
+
+func _on_new_card_timer_timeout() -> void:	
 	_change_cards()	
 	
 func _on_task_completed(task_type : int) -> void:
-	print("Complete task type: " + str(task_type))
+	task_completed_sfx.play()
 	goal_handler.mark_completed_task(current.effect_type)
 	
 	_change_cards()	
@@ -104,6 +107,7 @@ func _change_cards() -> void:
 	cover.modulate = Color8(255, 255, 255, 255)
 	
 	cover.play_flip_card_animation()
+	card_draw_sfx.play()
 	
 func _on_flipping_animation_finished(anim_name : String) -> void:
 	if anim_name == "flip_card":

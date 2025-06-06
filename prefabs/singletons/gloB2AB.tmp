@@ -1,0 +1,169 @@
+[gd_scene load_steps=30 format=3 uid="uid://dwfehqcv58dqc"]
+
+[ext_resource type="Script" path="res://scripts/singletons/GlobalAudioPlayer.gd" id="1_gmhuv"]
+[ext_resource type="AudioStream" uid="uid://c6c7yjpt6vgac" path="res://audio/sfx/card_draw.wav" id="2_16nkk"]
+[ext_resource type="Script" path="res://scripts/singletons/SignalSfxPlayer.gd" id="3_guqmu"]
+[ext_resource type="AudioStream" uid="uid://bl3gfsl81twao" path="res://audio/sfx/chest_open.wav" id="3_h2imo"]
+[ext_resource type="AudioStream" uid="uid://ciprnxy30cs1r" path="res://audio/sfx/coin_pickup.wav" id="4_4r2gr"]
+[ext_resource type="AudioStream" uid="uid://cma8j7ln5ywk5" path="res://audio/sfx/complete_mission.wav" id="5_0xvol"]
+[ext_resource type="AudioStream" uid="uid://7px5delra3nk" path="res://audio/sfx/enemy_attack.wav" id="6_f4aqy"]
+[ext_resource type="AudioStream" uid="uid://t7dwgqsynuvu" path="res://audio/sfx/enemy_hit.wav" id="7_tcvlg"]
+[ext_resource type="AudioStream" uid="uid://k6g6tr4pqxmh" path="res://audio/sfx/fail_mission.wav" id="8_6jey2"]
+[ext_resource type="AudioStream" uid="uid://bmmafhge2io63" path="res://audio/sfx/player_attack.wav" id="9_scqk8"]
+[ext_resource type="AudioStream" uid="uid://dh7b3tdymr3ol" path="res://audio/sfx/player_hit.wav" id="10_7f666"]
+[ext_resource type="AudioStream" uid="uid://7mvxaexi8mkp" path="res://audio/sfx/run.wav" id="11_7d5wj"]
+[ext_resource type="AudioStream" uid="uid://dhoym8a4aa727" path="res://audio/sfx/timer.wav" id="12_vtqus"]
+[ext_resource type="AudioStream" uid="uid://bydyrkfhjurh3" path="res://audio/sfx/trap_activate.wav" id="13_rym5u"]
+[ext_resource type="AudioStream" uid="uid://bn6g0ufgqo5wn" path="res://audio/sfx/psyche_voice_lines/death_1.wav" id="14_gjp7g"]
+[ext_resource type="AudioStream" uid="uid://bgd7uqxebolyf" path="res://audio/sfx/psyche_voice_lines/death_2.wav" id="15_t6qdp"]
+[ext_resource type="AudioStream" uid="uid://upamjdm7gp4s" path="res://audio/sfx/psyche_voice_lines/death_3.wav" id="16_j6ppq"]
+[ext_resource type="AudioStream" uid="uid://boed7ps7yqyb8" path="res://audio/sfx/psyche_voice_lines/game_over_1.wav" id="17_5umsk"]
+[ext_resource type="AudioStream" uid="uid://i2fuvgebtl8k" path="res://audio/sfx/psyche_voice_lines/game_over_2.wav" id="18_rd07a"]
+[ext_resource type="AudioStream" uid="uid://bl7v346otm3fj" path="res://audio/sfx/psyche_voice_lines/game_over_3.wav" id="19_618dq"]
+[ext_resource type="AudioStream" uid="uid://bxak2igxl1glr" path="res://audio/sfx/psyche_voice_lines/game_over_4.wav" id="20_vdrkj"]
+[ext_resource type="AudioStream" uid="uid://defpsbkiuvmmi" path="res://audio/sfx/psyche_voice_lines/laugh_1.wav" id="21_b858k"]
+[ext_resource type="AudioStream" uid="uid://cm1o31fw3eqv8" path="res://audio/sfx/psyche_voice_lines/laugh_2.wav" id="22_bd6fr"]
+[ext_resource type="AudioStream" uid="uid://bkpj024vvi60p" path="res://audio/sfx/psyche_voice_lines/laugh_3.wav" id="23_pi6te"]
+[ext_resource type="AudioStream" uid="uid://c60aupkoq6h6b" path="res://audio/sfx/psyche_voice_lines/laugh_4.wav" id="24_vkhau"]
+[ext_resource type="AudioStream" uid="uid://cum3jxnngcutj" path="res://audio/sfx/psyche_voice_lines/psyche_1.wav" id="25_fkqll"]
+[ext_resource type="AudioStream" uid="uid://lxsitp88ngd7" path="res://audio/sfx/psyche_voice_lines/psyche_2.wav" id="26_k4fx6"]
+[ext_resource type="AudioStream" uid="uid://cmlmyq66hxqk" path="res://audio/sfx/psyche_voice_lines/salvation_1.wav" id="27_3h6bd"]
+[ext_resource type="AudioStream" uid="uid://dmog7b4mpe8jw" path="res://audio/sfx/psyche_voice_lines/salvation_2.wav" id="28_sknjx"]
+
+[node name="GlobalSfxPlayer" type="Node"]
+script = ExtResource("1_gmhuv")
+
+[node name="CardDrawSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_16nkk")
+script = ExtResource("3_guqmu")
+
+[node name="ChestOpenSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_h2imo")
+script = ExtResource("3_guqmu")
+
+[node name="CoinPickupSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_4r2gr")
+script = ExtResource("3_guqmu")
+
+[node name="CompleteMissionSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_0xvol")
+script = ExtResource("3_guqmu")
+
+[node name="EnemyAttackSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_f4aqy")
+script = ExtResource("3_guqmu")
+
+[node name="EnemyHitSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_tcvlg")
+script = ExtResource("3_guqmu")
+
+[node name="FailMissionSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_6jey2")
+script = ExtResource("3_guqmu")
+
+[node name="PlayerAttackSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_scqk8")
+script = ExtResource("3_guqmu")
+
+[node name="PlayerHitSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("10_7f666")
+script = ExtResource("3_guqmu")
+
+[node name="RunSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("11_7d5wj")
+script = ExtResource("3_guqmu")
+
+[node name="TimerSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("12_vtqus")
+script = ExtResource("3_guqmu")
+
+[node name="TrapActivateSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("13_rym5u")
+script = ExtResource("3_guqmu")
+
+[node name="Death1SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("14_gjp7g")
+script = ExtResource("3_guqmu")
+
+[node name="Death2SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("15_t6qdp")
+script = ExtResource("3_guqmu")
+
+[node name="Death3SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("16_j6ppq")
+script = ExtResource("3_guqmu")
+
+[node name="GameOver1SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("17_5umsk")
+script = ExtResource("3_guqmu")
+
+[node name="GameOver2SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("18_rd07a")
+script = ExtResource("3_guqmu")
+
+[node name="GameOver3SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("19_618dq")
+script = ExtResource("3_guqmu")
+
+[node name="GameOver4SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("20_vdrkj")
+script = ExtResource("3_guqmu")
+
+[node name="Laugh1SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("21_b858k")
+script = ExtResource("3_guqmu")
+
+[node name="Laugh2SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("22_bd6fr")
+script = ExtResource("3_guqmu")
+
+[node name="Laugh3SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("23_pi6te")
+script = ExtResource("3_guqmu")
+
+[node name="Laugh4SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("24_vkhau")
+script = ExtResource("3_guqmu")
+
+[node name="Psyche1SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("25_fkqll")
+script = ExtResource("3_guqmu")
+
+[node name="Psyche2SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("26_k4fx6")
+script = ExtResource("3_guqmu")
+
+[node name="Salvation1SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("27_3h6bd")
+script = ExtResource("3_guqmu")
+
+[node name="Salvation2SfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("28_sknjx")
+script = ExtResource("3_guqmu")
