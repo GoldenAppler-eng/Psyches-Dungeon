@@ -47,12 +47,11 @@ zoom = Vector2(2.6, 2.6)
 script = ExtResource("3_mdjvo")
 
 [node name="GUI" type="CanvasLayer" parent="."]
-offset = Vector2(441.96, 0)
 scale = Vector2(2.6, 2.6)
-transform = Transform2D(2.6, 0, 0, 2.6, 441.96, 0)
+transform = Transform2D(2.6, 0, 0, 2.6, 0, 0)
 
 [node name="HUD" type="Node2D" parent="GUI"]
-metadata/_edit_lock_ = true
+position = Vector2(178, 0)
 
 [node name="card_handler" parent="GUI/HUD" node_paths=PackedStringArray("task_handler", "effect_handler", "goal_handler") instance=ExtResource("5_g57ya")]
 position = Vector2(-79, 341)
@@ -74,59 +73,56 @@ process_mode = 3
 position = Vector2(192, 338)
 
 [node name="controls_display" parent="GUI/HUD" instance=ExtResource("11_d1e4f")]
+z_index = 1
 position = Vector2(346, 348)
 
 [node name="timer_sprite" parent="GUI/HUD" instance=ExtResource("8_nmwfv")]
 position = Vector2(394, 7)
 
+[node name="arrow_display_bg" type="Sprite2D" parent="GUI/HUD"]
+position = Vector2(346.5, 362)
+scale = Vector2(3.46875, 2.5625)
+texture = ExtResource("15_3xvu6")
+
 [node name="boxing" type="Node2D" parent="GUI"]
-position = Vector2(192, 128)
-metadata/_edit_lock_ = true
+position = Vector2(178, 0)
 
 [node name="pillarbox" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
-position = Vector2(-296, 76)
+position = Vector2(-104.923, 203.308)
 scale = Vector2(6.5, 14.3125)
 texture = ExtResource("12_105fm")
 
 [node name="pillarbox2" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
-position = Vector2(297.25, 76)
+position = Vector2(488.327, 203.308)
 scale = Vector2(6.54688, 14.1875)
 texture = ExtResource("12_105fm")
 
 [node name="letterbox" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
-position = Vector2(3.00003, 208)
+position = Vector2(194.077, 335.308)
 scale = Vector2(23.8125, 5)
 texture = ExtResource("13_5hjyj")
 
 [node name="bar" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
-position = Vector2(1, 128)
+position = Vector2(192.077, 255.308)
 texture = ExtResource("14_xe0ec")
-
-[node name="arrow_display_bg" type="Sprite2D" parent="GUI/boxing"]
-z_index = -1
-position = Vector2(154.5, 234)
-scale = Vector2(3.46875, 2.5625)
-texture = ExtResource("15_3xvu6")
 
 [node name="UI" type="Control" parent="GUI" node_paths=PackedStringArray("main_node")]
 process_mode = 3
 layout_mode = 3
-anchors_preset = 0
-offset_left = 192.0
-offset_top = 128.0
-offset_right = 232.0
-offset_bottom = 168.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("16_qx2d6")
 main_node = NodePath("../..")
-metadata/_edit_lock_ = true
 
 [node name="pause_menu" type="Control" parent="GUI/UI"]
 unique_name_in_owner = true
-visible = false
 z_index = 5
 layout_mode = 1
 anchor_left = 4.4
