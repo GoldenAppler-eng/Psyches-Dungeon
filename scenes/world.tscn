@@ -40,80 +40,84 @@ y_sort_enabled = true
 [node name="player" parent="." instance=ExtResource("1_kx658")]
 position = Vector2(192, 124)
 
-[node name="camera_handler" type="Node2D" parent="."]
-z_index = 100
-position = Vector2(192, 128)
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(192, 208)
+zoom = Vector2(2.6, 2.6)
 script = ExtResource("3_mdjvo")
 
-[node name="Camera2D" type="Camera2D" parent="camera_handler"]
-position = Vector2(0, 80)
-zoom = Vector2(2.6, 2.6)
+[node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="card_handler" parent="camera_handler" node_paths=PackedStringArray("task_handler", "effect_handler", "goal_handler") instance=ExtResource("5_g57ya")]
-position = Vector2(-271, 213)
+[node name="HUD" type="Node" parent="GUI"]
+
+[node name="card_handler" parent="GUI/HUD" node_paths=PackedStringArray("task_handler", "effect_handler", "goal_handler") instance=ExtResource("5_g57ya")]
+position = Vector2(-79, 341)
 task_handler = NodePath("../task_handler")
 effect_handler = NodePath("../effect_resolution_handler")
 goal_handler = NodePath("../goal_handler")
 
-[node name="goal_handler" parent="camera_handler" instance=ExtResource("6_we2tv")]
-position = Vector2(343, 154)
+[node name="goal_handler" parent="GUI/HUD" instance=ExtResource("6_we2tv")]
+position = Vector2(535, 282)
 
-[node name="effect_resolution_handler" parent="camera_handler" instance=ExtResource("6_yxh6h")]
+[node name="effect_resolution_handler" parent="GUI/HUD" instance=ExtResource("6_yxh6h")]
+position = Vector2(192, 128)
 
-[node name="task_handler" parent="camera_handler" instance=ExtResource("7_ke0n8")]
-position = Vector2(204, -87)
+[node name="task_handler" parent="GUI/HUD" instance=ExtResource("7_ke0n8")]
+position = Vector2(396, 41)
 
-[node name="psyche" parent="camera_handler" instance=ExtResource("10_7p5jc")]
+[node name="psyche" parent="GUI/HUD" instance=ExtResource("10_7p5jc")]
 process_mode = 3
-position = Vector2(0, 210)
+position = Vector2(192, 338)
 
-[node name="controls_display" parent="camera_handler" instance=ExtResource("11_d1e4f")]
-position = Vector2(154, 220)
+[node name="controls_display" parent="GUI/HUD" instance=ExtResource("11_d1e4f")]
+position = Vector2(346, 348)
 
-[node name="timer_sprite" parent="camera_handler" instance=ExtResource("8_nmwfv")]
-position = Vector2(202, -121)
+[node name="timer_sprite" parent="GUI/HUD" instance=ExtResource("8_nmwfv")]
+position = Vector2(394, 7)
 
-[node name="boxing" type="Node2D" parent="camera_handler"]
+[node name="boxing" type="Node2D" parent="GUI"]
+position = Vector2(192, 128)
 
-[node name="pillarbox" type="Sprite2D" parent="camera_handler/boxing"]
+[node name="pillarbox" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
 position = Vector2(-296, 76)
 scale = Vector2(6.5, 14.3125)
 texture = ExtResource("12_105fm")
 
-[node name="pillarbox2" type="Sprite2D" parent="camera_handler/boxing"]
+[node name="pillarbox2" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
 position = Vector2(297.25, 76)
 scale = Vector2(6.54688, 14.1875)
 texture = ExtResource("12_105fm")
 
-[node name="letterbox" type="Sprite2D" parent="camera_handler/boxing"]
+[node name="letterbox" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
 position = Vector2(3.00003, 208)
 scale = Vector2(23.8125, 5)
 texture = ExtResource("13_5hjyj")
 
-[node name="bar" type="Sprite2D" parent="camera_handler/boxing"]
+[node name="bar" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
 position = Vector2(1, 128)
 texture = ExtResource("14_xe0ec")
 
-[node name="arrow_display_bg" type="Sprite2D" parent="camera_handler/boxing"]
+[node name="arrow_display_bg" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
 position = Vector2(154.5, 234)
 scale = Vector2(3.46875, 2.5625)
 texture = ExtResource("15_3xvu6")
 
-[node name="UI" type="Control" parent="camera_handler" node_paths=PackedStringArray("main_node")]
+[node name="UI" type="Control" parent="GUI" node_paths=PackedStringArray("main_node")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 232.0
+offset_bottom = 168.0
 script = ExtResource("16_qx2d6")
 main_node = NodePath("../..")
 
-[node name="pause_menu" type="Control" parent="camera_handler/UI"]
+[node name="pause_menu" type="Control" parent="GUI/UI"]
 unique_name_in_owner = true
 visible = false
 z_index = 5
@@ -129,7 +133,7 @@ offset_bottom = -127.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="overlay" type="TextureRect" parent="camera_handler/UI/pause_menu"]
+[node name="overlay" type="TextureRect" parent="GUI/UI/pause_menu"]
 modulate = Color(1, 1, 1, 0.196078)
 layout_mode = 1
 anchors_preset = 15
@@ -139,7 +143,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_105fm")
 
-[node name="pause_label" type="Label" parent="camera_handler/UI/pause_menu"]
+[node name="pause_label" type="Label" parent="GUI/UI/pause_menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,7 +155,7 @@ label_settings = SubResource("LabelSettings_2crl2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="game_over_menu" type="Control" parent="camera_handler/UI"]
+[node name="game_over_menu" type="Control" parent="GUI/UI"]
 unique_name_in_owner = true
 visible = false
 z_index = 5
@@ -167,7 +171,7 @@ offset_bottom = -127.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="overlay" type="TextureRect" parent="camera_handler/UI/game_over_menu"]
+[node name="overlay" type="TextureRect" parent="GUI/UI/game_over_menu"]
 modulate = Color(1, 1, 1, 0.196078)
 layout_mode = 1
 anchors_preset = 15
@@ -177,7 +181,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_105fm")
 
-[node name="game_over_label" type="Label" parent="camera_handler/UI/game_over_menu"]
+[node name="game_over_label" type="Label" parent="GUI/UI/game_over_menu"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -190,7 +194,7 @@ label_settings = SubResource("LabelSettings_2crl2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="retry_button" type="Button" parent="camera_handler/UI/game_over_menu"]
+[node name="retry_button" type="Button" parent="GUI/UI/game_over_menu"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -209,7 +213,7 @@ theme_override_font_sizes/font_size = 25
 button_mask = 0
 text = "retry"
 
-[node name="start_menu" type="Control" parent="camera_handler/UI"]
+[node name="start_menu" type="Control" parent="GUI/UI"]
 unique_name_in_owner = true
 z_index = 5
 layout_mode = 1
@@ -225,7 +229,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("19_wdwqs")
 
-[node name="overlay" type="TextureRect" parent="camera_handler/UI/start_menu"]
+[node name="overlay" type="TextureRect" parent="GUI/UI/start_menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -234,7 +238,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_105fm")
 
-[node name="start_label" type="Label" parent="camera_handler/UI/start_menu"]
+[node name="start_label" type="Label" parent="GUI/UI/start_menu"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -248,12 +252,12 @@ label_settings = SubResource("LabelSettings_2crl2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartBlinkTimer" type="Timer" parent="camera_handler/UI/start_menu"]
+[node name="StartBlinkTimer" type="Timer" parent="GUI/UI/start_menu"]
 unique_name_in_owner = true
 wait_time = 0.5
 autostart = true
 
-[node name="settings_ui" type="Control" parent="camera_handler/UI" node_paths=PackedStringArray("main_scene")]
+[node name="settings_ui" type="Control" parent="GUI/UI" node_paths=PackedStringArray("main_scene")]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -264,7 +268,7 @@ offset_bottom = -87.0
 script = ExtResource("16_d8deg")
 main_scene = NodePath("../../..")
 
-[node name="container" type="VBoxContainer" parent="camera_handler/UI/settings_ui"]
+[node name="container" type="VBoxContainer" parent="GUI/UI/settings_ui"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 0
@@ -272,12 +276,12 @@ offset_left = 5.0
 offset_right = 137.0
 offset_bottom = 51.0
 
-[node name="setting_label" type="Label" parent="camera_handler/UI/settings_ui/container"]
+[node name="setting_label" type="Label" parent="GUI/UI/settings_ui/container"]
 layout_mode = 2
 text = "Settings"
 label_settings = SubResource("LabelSettings_op4s2")
 
-[node name="resolution_button" type="Button" parent="camera_handler/UI/settings_ui/container"]
+[node name="resolution_button" type="Button" parent="GUI/UI/settings_ui/container"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../sfx_volume_button")
@@ -287,7 +291,7 @@ button_mask = 0
 text = "Resolution"
 alignment = 0
 
-[node name="resolution_selector" type="Button" parent="camera_handler/UI/settings_ui/container"]
+[node name="resolution_selector" type="Button" parent="GUI/UI/settings_ui/container"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../resolution_button")
@@ -295,7 +299,7 @@ theme = ExtResource("17_whvfw")
 button_mask = 0
 text = "< 1920 x 1080  >"
 
-[node name="window_mode_button" type="Button" parent="camera_handler/UI/settings_ui/container"]
+[node name="window_mode_button" type="Button" parent="GUI/UI/settings_ui/container"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../resolution_button")
@@ -305,7 +309,7 @@ button_mask = 0
 text = "Window MODE"
 alignment = 0
 
-[node name="window_mode_selector" type="Button" parent="camera_handler/UI/settings_ui/container"]
+[node name="window_mode_selector" type="Button" parent="GUI/UI/settings_ui/container"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../window_mode_button")
@@ -313,7 +317,7 @@ theme = ExtResource("17_whvfw")
 button_mask = 0
 text = "< WINDOWED  >"
 
-[node name="master_volume_button" type="Button" parent="camera_handler/UI/settings_ui/container"]
+[node name="master_volume_button" type="Button" parent="GUI/UI/settings_ui/container"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../window_mode_button")
@@ -323,7 +327,7 @@ button_mask = 0
 text = "Master Volume"
 alignment = 0
 
-[node name="master_volume_selector" type="Button" parent="camera_handler/UI/settings_ui/container"]
+[node name="master_volume_selector" type="Button" parent="GUI/UI/settings_ui/container"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../master_volume_button")
@@ -331,7 +335,7 @@ theme = ExtResource("17_whvfw")
 button_mask = 0
 text = "< 100  >"
 
-[node name="music_volume_button" type="Button" parent="camera_handler/UI/settings_ui/container"]
+[node name="music_volume_button" type="Button" parent="GUI/UI/settings_ui/container"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../master_volume_button")
@@ -341,7 +345,7 @@ button_mask = 0
 text = "MUSIC Volume"
 alignment = 0
 
-[node name="music_volume_selector" type="Button" parent="camera_handler/UI/settings_ui/container"]
+[node name="music_volume_selector" type="Button" parent="GUI/UI/settings_ui/container"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../music_volume_button")
@@ -349,7 +353,7 @@ theme = ExtResource("17_whvfw")
 button_mask = 0
 text = "< 100  >"
 
-[node name="sfx_volume_button" type="Button" parent="camera_handler/UI/settings_ui/container"]
+[node name="sfx_volume_button" type="Button" parent="GUI/UI/settings_ui/container"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../music_volume_button")
@@ -359,7 +363,7 @@ button_mask = 0
 text = "Sfx Volume"
 alignment = 0
 
-[node name="sfx_volume_selector" type="Button" parent="camera_handler/UI/settings_ui/container"]
+[node name="sfx_volume_selector" type="Button" parent="GUI/UI/settings_ui/container"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../sfx_volume_button")
@@ -367,18 +371,18 @@ theme = ExtResource("17_whvfw")
 button_mask = 0
 text = "< 100  >"
 
-[connection signal="pressed" from="camera_handler/UI/game_over_menu/retry_button" to="camera_handler/UI" method="_on_retry_button_pressed"]
-[connection signal="timeout" from="camera_handler/UI/start_menu/StartBlinkTimer" to="camera_handler/UI/start_menu" method="_on_start_blink_timer_timeout"]
-[connection signal="pressed" from="camera_handler/UI/settings_ui/container/resolution_button" to="camera_handler/UI/settings_ui" method="_on_resolution_button_pressed"]
-[connection signal="pressed" from="camera_handler/UI/settings_ui/container/resolution_selector" to="camera_handler/UI/settings_ui" method="_on_resolution_selector_pressed"]
-[connection signal="pressed" from="camera_handler/UI/settings_ui/container/window_mode_button" to="camera_handler/UI/settings_ui" method="_on_window_mode_button_pressed"]
-[connection signal="pressed" from="camera_handler/UI/settings_ui/container/window_mode_selector" to="camera_handler/UI/settings_ui" method="_on_window_mode_selector_pressed"]
-[connection signal="pressed" from="camera_handler/UI/settings_ui/container/master_volume_button" to="camera_handler/UI/settings_ui" method="_on_master_volume_button_pressed"]
-[connection signal="focus_exited" from="camera_handler/UI/settings_ui/container/master_volume_selector" to="camera_handler/UI/settings_ui" method="_on_master_volume_selector_focus_exited"]
-[connection signal="pressed" from="camera_handler/UI/settings_ui/container/master_volume_selector" to="camera_handler/UI/settings_ui" method="_on_master_volume_selector_pressed"]
-[connection signal="pressed" from="camera_handler/UI/settings_ui/container/music_volume_button" to="camera_handler/UI/settings_ui" method="_on_music_volume_button_pressed"]
-[connection signal="focus_exited" from="camera_handler/UI/settings_ui/container/music_volume_selector" to="camera_handler/UI/settings_ui" method="_on_music_volume_selector_focus_exited"]
-[connection signal="pressed" from="camera_handler/UI/settings_ui/container/music_volume_selector" to="camera_handler/UI/settings_ui" method="_on_music_volume_selector_pressed"]
-[connection signal="pressed" from="camera_handler/UI/settings_ui/container/sfx_volume_button" to="camera_handler/UI/settings_ui" method="_on_sfx_volume_button_pressed"]
-[connection signal="focus_exited" from="camera_handler/UI/settings_ui/container/sfx_volume_selector" to="camera_handler/UI/settings_ui" method="_on_sfx_volume_selector_focus_exited"]
-[connection signal="pressed" from="camera_handler/UI/settings_ui/container/sfx_volume_selector" to="camera_handler/UI/settings_ui" method="_on_sfx_volume_selector_pressed"]
+[connection signal="pressed" from="GUI/UI/game_over_menu/retry_button" to="GUI/UI" method="_on_retry_button_pressed"]
+[connection signal="timeout" from="GUI/UI/start_menu/StartBlinkTimer" to="GUI/UI/start_menu" method="_on_start_blink_timer_timeout"]
+[connection signal="pressed" from="GUI/UI/settings_ui/container/resolution_button" to="GUI/UI/settings_ui" method="_on_resolution_button_pressed"]
+[connection signal="pressed" from="GUI/UI/settings_ui/container/resolution_selector" to="GUI/UI/settings_ui" method="_on_resolution_selector_pressed"]
+[connection signal="pressed" from="GUI/UI/settings_ui/container/window_mode_button" to="GUI/UI/settings_ui" method="_on_window_mode_button_pressed"]
+[connection signal="pressed" from="GUI/UI/settings_ui/container/window_mode_selector" to="GUI/UI/settings_ui" method="_on_window_mode_selector_pressed"]
+[connection signal="pressed" from="GUI/UI/settings_ui/container/master_volume_button" to="GUI/UI/settings_ui" method="_on_master_volume_button_pressed"]
+[connection signal="focus_exited" from="GUI/UI/settings_ui/container/master_volume_selector" to="GUI/UI/settings_ui" method="_on_master_volume_selector_focus_exited"]
+[connection signal="pressed" from="GUI/UI/settings_ui/container/master_volume_selector" to="GUI/UI/settings_ui" method="_on_master_volume_selector_pressed"]
+[connection signal="pressed" from="GUI/UI/settings_ui/container/music_volume_button" to="GUI/UI/settings_ui" method="_on_music_volume_button_pressed"]
+[connection signal="focus_exited" from="GUI/UI/settings_ui/container/music_volume_selector" to="GUI/UI/settings_ui" method="_on_music_volume_selector_focus_exited"]
+[connection signal="pressed" from="GUI/UI/settings_ui/container/music_volume_selector" to="GUI/UI/settings_ui" method="_on_music_volume_selector_pressed"]
+[connection signal="pressed" from="GUI/UI/settings_ui/container/sfx_volume_button" to="GUI/UI/settings_ui" method="_on_sfx_volume_button_pressed"]
+[connection signal="focus_exited" from="GUI/UI/settings_ui/container/sfx_volume_selector" to="GUI/UI/settings_ui" method="_on_sfx_volume_selector_focus_exited"]
+[connection signal="pressed" from="GUI/UI/settings_ui/container/sfx_volume_selector" to="GUI/UI/settings_ui" method="_on_sfx_volume_selector_pressed"]
