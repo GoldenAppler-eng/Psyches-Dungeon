@@ -41,13 +41,18 @@ y_sort_enabled = true
 position = Vector2(192, 124)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(192, 208)
+position = Vector2(192, 128)
+offset = Vector2(0, 79.68)
 zoom = Vector2(2.6, 2.6)
 script = ExtResource("3_mdjvo")
 
 [node name="GUI" type="CanvasLayer" parent="."]
+offset = Vector2(441.96, 0)
+scale = Vector2(2.6, 2.6)
+transform = Transform2D(2.6, 0, 0, 2.6, 441.96, 0)
 
-[node name="HUD" type="Node" parent="GUI"]
+[node name="HUD" type="Node2D" parent="GUI"]
+metadata/_edit_lock_ = true
 
 [node name="card_handler" parent="GUI/HUD" node_paths=PackedStringArray("task_handler", "effect_handler", "goal_handler") instance=ExtResource("5_g57ya")]
 position = Vector2(-79, 341)
@@ -76,6 +81,7 @@ position = Vector2(394, 7)
 
 [node name="boxing" type="Node2D" parent="GUI"]
 position = Vector2(192, 128)
+metadata/_edit_lock_ = true
 
 [node name="pillarbox" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
@@ -116,6 +122,7 @@ offset_right = 232.0
 offset_bottom = 168.0
 script = ExtResource("16_qx2d6")
 main_node = NodePath("../..")
+metadata/_edit_lock_ = true
 
 [node name="pause_menu" type="Control" parent="GUI/UI"]
 unique_name_in_owner = true
