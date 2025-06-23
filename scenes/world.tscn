@@ -22,7 +22,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_2crl2"]
 font = ExtResource("16_mlxgv")
-font_size = 30
+font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_op4s2"]
 font = ExtResource("16_mlxgv")
@@ -47,11 +47,11 @@ zoom = Vector2(2.6, 2.6)
 script = ExtResource("3_mdjvo")
 
 [node name="GUI" type="CanvasLayer" parent="."]
-scale = Vector2(2.6, 2.6)
-transform = Transform2D(2.6, 0, 0, 2.6, 0, 0)
 
 [node name="HUD" type="Node2D" parent="GUI"]
-position = Vector2(178, 0)
+z_index = 20
+position = Vector2(462, 0)
+scale = Vector2(2.6, 2.6)
 
 [node name="card_handler" parent="GUI/HUD" node_paths=PackedStringArray("task_handler", "effect_handler", "goal_handler") instance=ExtResource("5_g57ya")]
 position = Vector2(-79, 341)
@@ -85,7 +85,9 @@ scale = Vector2(3.46875, 2.5625)
 texture = ExtResource("15_3xvu6")
 
 [node name="boxing" type="Node2D" parent="GUI"]
-position = Vector2(178, 0)
+z_index = 20
+position = Vector2(462, 0)
+scale = Vector2(2.6, 2.6)
 
 [node name="pillarbox" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
@@ -125,34 +127,31 @@ main_node = NodePath("../..")
 unique_name_in_owner = true
 z_index = 5
 layout_mode = 1
-anchor_left = 4.4
-anchor_top = -0.025
-anchor_right = 14.05
-anchor_bottom = 6.125
-offset_left = -369.0
-offset_top = -127.0
-offset_right = -369.0
-offset_bottom = -127.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="overlay" type="TextureRect" parent="GUI/UI/pause_menu"]
-modulate = Color(1, 1, 1, 0.196078)
+[node name="MarginContainer" type="MarginContainer" parent="GUI/UI/pause_menu"]
+custom_minimum_size = Vector2(3.63, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 455
+theme_override_constants/margin_right = 455
+theme_override_constants/margin_bottom = 430
+
+[node name="overlay" type="TextureRect" parent="GUI/UI/pause_menu/MarginContainer"]
+modulate = Color(1, 1, 1, 0.196078)
+layout_mode = 2
 texture = ExtResource("12_105fm")
 
-[node name="pause_label" type="Label" parent="GUI/UI/pause_menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="pause_label" type="Label" parent="GUI/UI/pause_menu/MarginContainer"]
+layout_mode = 2
 text = "Paused"
 label_settings = SubResource("LabelSettings_2crl2")
 horizontal_alignment = 1
@@ -218,44 +217,42 @@ text = "retry"
 
 [node name="start_menu" type="Control" parent="GUI/UI"]
 unique_name_in_owner = true
+visible = false
 z_index = 5
 layout_mode = 1
-anchor_left = 4.4
-anchor_top = -0.025
-anchor_right = 14.05
-anchor_bottom = 6.125
-offset_left = -369.0
-offset_top = -127.0
-offset_right = -369.0
-offset_bottom = -127.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("19_wdwqs")
 
-[node name="overlay" type="TextureRect" parent="GUI/UI/start_menu"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/UI/start_menu"]
+custom_minimum_size = Vector2(3.63, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 455
+theme_override_constants/margin_right = 455
+theme_override_constants/margin_bottom = 430
+
+[node name="overlay" type="TextureRect" parent="GUI/UI/start_menu/MarginContainer"]
+layout_mode = 2
 texture = ExtResource("12_105fm")
 
-[node name="start_label" type="Label" parent="GUI/UI/start_menu"]
+[node name="start_label" type="Label" parent="GUI/UI/start_menu/MarginContainer"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 text = "Press Enter
 To Start"
 label_settings = SubResource("LabelSettings_2crl2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartBlinkTimer" type="Timer" parent="GUI/UI/start_menu"]
+[node name="StartBlinkTimer" type="Timer" parent="GUI/UI/start_menu/MarginContainer"]
 unique_name_in_owner = true
 wait_time = 0.5
 autostart = true
@@ -375,7 +372,7 @@ button_mask = 0
 text = "< 100  >"
 
 [connection signal="pressed" from="GUI/UI/game_over_menu/retry_button" to="GUI/UI" method="_on_retry_button_pressed"]
-[connection signal="timeout" from="GUI/UI/start_menu/StartBlinkTimer" to="GUI/UI/start_menu" method="_on_start_blink_timer_timeout"]
+[connection signal="timeout" from="GUI/UI/start_menu/MarginContainer/StartBlinkTimer" to="GUI/UI/start_menu" method="_on_start_blink_timer_timeout"]
 [connection signal="pressed" from="GUI/UI/settings_ui/container/resolution_button" to="GUI/UI/settings_ui" method="_on_resolution_button_pressed"]
 [connection signal="pressed" from="GUI/UI/settings_ui/container/resolution_selector" to="GUI/UI/settings_ui" method="_on_resolution_selector_pressed"]
 [connection signal="pressed" from="GUI/UI/settings_ui/container/window_mode_button" to="GUI/UI/settings_ui" method="_on_window_mode_button_pressed"]
