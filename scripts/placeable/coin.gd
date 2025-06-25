@@ -8,7 +8,7 @@ func _on_area_2d_player_entered(body : Node2D) -> void:
 	
 	pickup_sfx.play()
 	visible = false
-	pickup_area.monitoring = false
+	set_deferred("monitoring", false)
 
 func _on_pickup_sfx_finished() -> void:
 	queue_free()
