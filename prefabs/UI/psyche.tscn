@@ -125,8 +125,9 @@ script = ExtResource("1_i1pbe")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_uq4wb")
-animation = &"talk"
+animation = &"rest"
 autoplay = "rest"
+frame_progress = 0.266189
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
