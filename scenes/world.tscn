@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dnwlwrgqvy87g"]
+[gd_scene load_steps=24 format=3 uid="uid://dnwlwrgqvy87g"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/proc_gen_handler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="1_kx658"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://mj5oakp8hbqa" path="res://scripts/menu/ui.gd" id="16_qx2d6"]
 [ext_resource type="Theme" uid="uid://cu6yoqe0up8hr" path="res://resources/button_theme.tres" id="17_whvfw"]
 [ext_resource type="Script" uid="uid://6hk3s82gadwb" path="res://scripts/menu/start_menu.gd" id="19_wdwqs"]
+[ext_resource type="Script" uid="uid://br8y0r61tc0p3" path="res://scripts/menu/idle_menu.gd" id="21_7iits"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2crl2"]
 font = ExtResource("16_mlxgv")
@@ -113,7 +114,7 @@ z_index = -1
 position = Vector2(192.077, 255.308)
 texture = ExtResource("14_xe0ec")
 
-[node name="UI" type="Control" parent="GUI" node_paths=PackedStringArray("main_node", "initial_menu")]
+[node name="UI" type="Control" parent="GUI" node_paths=PackedStringArray("initial_menu")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -122,7 +123,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("16_qx2d6")
-main_node = NodePath("../..")
 initial_menu = NodePath("start_menu")
 
 [node name="pause_menu" type="Control" parent="GUI/UI"]
@@ -210,7 +210,7 @@ theme_override_font_sizes/font_size = 50
 button_mask = 0
 text = "retry"
 
-[node name="start_menu" type="Control" parent="GUI/UI"]
+[node name="start_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu")]
 z_index = 5
 layout_mode = 1
 anchors_preset = 15
@@ -219,6 +219,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("19_wdwqs")
+idle_menu = NodePath("../idle_menu")
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/UI/start_menu"]
 custom_minimum_size = Vector2(3.63, 0)
@@ -250,7 +251,7 @@ unique_name_in_owner = true
 wait_time = 0.5
 autostart = true
 
-[node name="settings_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("main_scene")]
+[node name="settings_menu" type="Control" parent="GUI/UI"]
 visible = false
 z_index = 30
 layout_mode = 1
@@ -260,7 +261,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("16_d8deg")
-main_scene = NodePath("../../..")
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/UI/settings_menu"]
 layout_mode = 1
@@ -372,6 +372,13 @@ focus_neighbor_top = NodePath("../sfx_volume_button")
 theme = ExtResource("17_whvfw")
 button_mask = 0
 text = "< 100  >"
+
+[node name="idle_menu" type="Control" parent="GUI/UI"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("21_7iits")
 
 [connection signal="pressed" from="GUI/UI/game_over_menu/MarginContainer/VBoxContainer/retry_button" to="GUI/UI" method="_on_retry_button_pressed"]
 [connection signal="timeout" from="GUI/UI/start_menu/MarginContainer/StartBlinkTimer" to="GUI/UI/start_menu" method="_on_start_blink_timer_timeout"]

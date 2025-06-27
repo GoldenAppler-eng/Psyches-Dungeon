@@ -1,16 +1,10 @@
-class_name Menu
-extends Control
-
-var game_node : Node
-
-func init(node : Node) -> void:
-	game_node = node
+extends Menu
 
 func enter() -> void:
-	visible = true
+	pass
 	
 func exit() -> void:
-	visible = false
+	pass
 
 func process_frame(delta : float) -> Menu:
 	return null

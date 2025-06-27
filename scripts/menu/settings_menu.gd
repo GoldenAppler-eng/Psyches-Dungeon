@@ -1,8 +1,6 @@
 class_name SettingsMenu
 extends Menu
 
-@export var main_scene : Node2D
-
 @onready var container : VBoxContainer = %container
 
 @onready var resolution_button : Button = %resolution_button

@@ -1,6 +1,6 @@
 extends Control
 
-@export var main_node : Node
+@export var game_node : Node
 
 @onready var settings_menu : SettingsMenu = $settings_menu
 
@@ -28,9 +28,9 @@ var sfx_player_dict : Dictionary = {
 func _ready() -> void:
 	change_menu(initial_menu)
 	
-	main_node.process_mode = PROCESS_MODE_DISABLED
-	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
-
+	for menu : Menu in get_children():
+		menu.init(game_node)
+	
 	GlobalSignalBus.game_over.connect(_on_game_over)
 	GlobalSignalBus.game_win.connect(_on_game_win)
 	
@@ -70,14 +70,14 @@ func _process(delta : float) -> void:
 
 		settings_menu.visible = true
 		settings_menu.process_mode = PROCESS_MODE_INHERIT
-		main_node.process_mode = PROCESS_MODE_DISABLED
+		game_node.process_mode = PROCESS_MODE_DISABLED
 		GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
 	else:
 		pause_menu.visible = false
 		
 		settings_menu.visible = false
 		settings_menu.process_mode = PROCESS_MODE_DISABLED
-		main_node.process_mode = PROCESS_MODE_INHERIT
+		game_node.process_mode = PROCESS_MODE_INHERIT
 		GlobalCardTimer.process_mode = PROCESS_MODE_INHERIT		
 
 func _physics_process(delta: float) -> void:
@@ -115,7 +115,7 @@ func _on_game_over() -> void:
 	
 	settings_menu.visible = false
 	settings_menu.process_mode = PROCESS_MODE_DISABLED
-	main_node.process_mode = PROCESS_MODE_DISABLED
+	game_node.process_mode = PROCESS_MODE_DISABLED
 	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
 	
 	game_over_menu.visible = true
@@ -132,7 +132,7 @@ func _on_game_win() -> void:
 	
 	settings_menu.visible = false
 	settings_menu.process_mode = PROCESS_MODE_DISABLED
-	main_node.process_mode = PROCESS_MODE_DISABLED
+	game_node.process_mode = PROCESS_MODE_DISABLED
 	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
 	
 	game_over_menu.visible = true
