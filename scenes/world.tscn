@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dnwlwrgqvy87g"]
+[gd_scene load_steps=27 format=3 uid="uid://dnwlwrgqvy87g"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/proc_gen_handler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="1_kx658"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://mj5oakp8hbqa" path="res://scripts/menu/ui.gd" id="16_qx2d6"]
 [ext_resource type="Theme" uid="uid://cu6yoqe0up8hr" path="res://resources/themes/button_theme.tres" id="17_whvfw"]
 [ext_resource type="Script" uid="uid://rwgfl7qpmu0k" path="res://scripts/menu/game_over_menu.gd" id="18_kpybi"]
+[ext_resource type="Script" uid="uid://blbowv0edisq8" path="res://scripts/menu/volume_controller.gd" id="19_ctatt"]
 [ext_resource type="Script" uid="uid://6hk3s82gadwb" path="res://scripts/menu/start_menu.gd" id="19_wdwqs"]
 [ext_resource type="Script" uid="uid://dmmv07s2ooob" path="res://scripts/menu/game_win_menu.gd" id="20_ctatt"]
 [ext_resource type="Script" uid="uid://br8y0r61tc0p3" path="res://scripts/menu/idle_menu.gd" id="21_7iits"]
@@ -155,7 +156,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="setting_label" type="Label" parent="GUI/UI/settings_ui/MarginContainer/container"]
+[node name="settings_label" type="Label" parent="GUI/UI/settings_ui/MarginContainer/container"]
 layout_mode = 2
 text = "Settings"
 label_settings = SubResource("LabelSettings_op4s2")
@@ -182,7 +183,7 @@ text = "< 1920 x 1080  >"
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../resolution_button")
-focus_neighbor_bottom = NodePath("../master_volume_button")
+focus_neighbor_bottom = NodePath("../master_volume_controller/master_volume_button")
 theme = ExtResource("17_whvfw")
 button_mask = 0
 text = "Window MODE"
@@ -196,28 +197,10 @@ theme = ExtResource("17_whvfw")
 button_mask = 0
 text = "< WINDOWED  >"
 
-[node name="master_volume_button" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container"]
-unique_name_in_owner = true
-layout_mode = 2
-focus_neighbor_top = NodePath("../window_mode_button")
-focus_neighbor_bottom = NodePath("../music_volume_button")
-theme = ExtResource("17_whvfw")
-button_mask = 0
-text = "Master Volume"
-alignment = 0
-
-[node name="master_volume_selector" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container"]
-unique_name_in_owner = true
-layout_mode = 2
-focus_neighbor_top = NodePath("../master_volume_button")
-theme = ExtResource("17_whvfw")
-button_mask = 0
-text = "< 100  >"
-
 [node name="music_volume_button" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../master_volume_button")
+focus_neighbor_top = NodePath("../master_volume_controller/master_volume_button")
 focus_neighbor_bottom = NodePath("../sfx_volume_button")
 theme = ExtResource("17_whvfw")
 button_mask = 0
@@ -246,6 +229,32 @@ alignment = 0
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../sfx_volume_button")
+theme = ExtResource("17_whvfw")
+button_mask = 0
+text = "< 100  >"
+
+[node name="master_volume_controller" type="Control" parent="GUI/UI/settings_ui/MarginContainer/container"]
+layout_mode = 2
+script = ExtResource("19_ctatt")
+
+[node name="master_volume_button" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container/master_volume_controller"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 301.0
+offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../window_mode_button")
+focus_neighbor_bottom = NodePath("../../music_volume_button")
+theme = ExtResource("17_whvfw")
+button_mask = 0
+text = "Master Volume"
+alignment = 0
+
+[node name="master_volume_selector" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container/master_volume_controller"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 141.0
+offset_bottom = 43.0
+focus_neighbor_top = NodePath("../master_volume_button")
 theme = ExtResource("17_whvfw")
 button_mask = 0
 text = "< 100  >"
@@ -440,13 +449,13 @@ game_win_menu = NodePath("../game_win_menu")
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/resolution_selector" to="GUI/UI/settings_ui" method="_on_resolution_selector_pressed"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/window_mode_button" to="GUI/UI/settings_ui" method="_on_window_mode_button_pressed"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/window_mode_selector" to="GUI/UI/settings_ui" method="_on_window_mode_selector_pressed"]
-[connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/master_volume_button" to="GUI/UI/settings_ui" method="_on_master_volume_button_pressed"]
-[connection signal="focus_exited" from="GUI/UI/settings_ui/MarginContainer/container/master_volume_selector" to="GUI/UI/settings_ui" method="_on_master_volume_selector_focus_exited"]
-[connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/master_volume_selector" to="GUI/UI/settings_ui" method="_on_master_volume_selector_pressed"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/music_volume_button" to="GUI/UI/settings_ui" method="_on_music_volume_button_pressed"]
 [connection signal="focus_exited" from="GUI/UI/settings_ui/MarginContainer/container/music_volume_selector" to="GUI/UI/settings_ui" method="_on_music_volume_selector_focus_exited"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/music_volume_selector" to="GUI/UI/settings_ui" method="_on_music_volume_selector_pressed"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/sfx_volume_button" to="GUI/UI/settings_ui" method="_on_sfx_volume_button_pressed"]
 [connection signal="focus_exited" from="GUI/UI/settings_ui/MarginContainer/container/sfx_volume_selector" to="GUI/UI/settings_ui" method="_on_sfx_volume_selector_focus_exited"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/sfx_volume_selector" to="GUI/UI/settings_ui" method="_on_sfx_volume_selector_pressed"]
+[connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/master_volume_controller/master_volume_button" to="GUI/UI/settings_ui" method="_on_master_volume_button_pressed"]
+[connection signal="focus_exited" from="GUI/UI/settings_ui/MarginContainer/container/master_volume_controller/master_volume_selector" to="GUI/UI/settings_ui" method="_on_master_volume_selector_focus_exited"]
+[connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/master_volume_controller/master_volume_selector" to="GUI/UI/settings_ui" method="_on_master_volume_selector_pressed"]
 [connection signal="timeout" from="GUI/UI/start_menu/MarginContainer/StartBlinkTimer" to="GUI/UI/start_menu" method="_on_start_blink_timer_timeout"]
