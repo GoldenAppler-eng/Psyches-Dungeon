@@ -43,6 +43,11 @@ func _ready() -> void:
 	install_sfx(self)
 
 func _process(delta : float) -> void:
+	var next_menu : Menu = current_menu.process_frame(delta)
+	
+	if next_menu:
+		change_menu(next_menu)
+	
 	settings_menu.paused = paused
 	
 	if not game_start and not game_over: 
@@ -74,6 +79,18 @@ func _process(delta : float) -> void:
 		settings_menu.process_mode = PROCESS_MODE_DISABLED
 		main_node.process_mode = PROCESS_MODE_INHERIT
 		GlobalCardTimer.process_mode = PROCESS_MODE_INHERIT		
+
+func _physics_process(delta: float) -> void:
+	var next_menu : Menu = current_menu.process_physics(delta)
+	
+	if next_menu:
+		change_menu(next_menu)
+
+func _input(event: InputEvent) -> void:
+	var next_menu : Menu = current_menu.process_input(event)
+	
+	if next_menu:
+		change_menu(next_menu)
 
 func start_game() -> void:
 	if not game_over:
@@ -147,3 +164,8 @@ func ui_sfx_play(sfx : String) -> void:
 
 func _on_retry_button_pressed() -> void:
 	retry_game()
+
+func change_menu(next_menu : Menu) -> void:
+	current_menu.exit()
+	current_menu = next_menu
+	current_menu.enter()

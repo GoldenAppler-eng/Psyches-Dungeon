@@ -113,7 +113,7 @@ z_index = -1
 position = Vector2(192.077, 255.308)
 texture = ExtResource("14_xe0ec")
 
-[node name="UI" type="Control" parent="GUI" node_paths=PackedStringArray("main_node")]
+[node name="UI" type="Control" parent="GUI" node_paths=PackedStringArray("main_node", "initial_menu")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -123,6 +123,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("16_qx2d6")
 main_node = NodePath("../..")
+initial_menu = NodePath("start_menu")
 
 [node name="pause_menu" type="Control" parent="GUI/UI"]
 unique_name_in_owner = true

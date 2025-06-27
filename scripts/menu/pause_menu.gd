@@ -12,5 +12,5 @@ func process_frame(delta : float) -> Menu:
 func process_physics(delta : float) -> Menu:
 	return null
 	
-func process_input(event : InputEventKey) -> Menu:
+func process_input(event : InputEvent) -> Menu:
 	return null
