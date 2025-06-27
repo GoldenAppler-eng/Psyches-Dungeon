@@ -17,6 +17,9 @@ var game_start := false
 var game_over := false
 var paused := true
 
+@export var initial_menu : Menu
+var current_menu : Menu 
+
 var sfx_player_dict : Dictionary = {
 	"ui_hover" : AudioStreamPlayer.new(),	
 	"ui_pressed" : AudioStreamPlayer.new(),

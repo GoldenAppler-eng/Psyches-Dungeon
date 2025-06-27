@@ -1,4 +1,4 @@
-extends Control
+extends Menu
 
 @onready var start_blink_timer : Timer =  %StartBlinkTimer
 @onready var start_label : Label = %start_label

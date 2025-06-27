@@ -1,5 +1,5 @@
 class_name SettingsMenu
-extends Control
+extends Menu
 
 @export var main_scene : Node2D
 

@@ -1,17 +1,16 @@
-class_name Menu
-extends Control
+extends Menu
 
 func enter() -> void:
-	pass
+	super()
 	
 func exit() -> void:
-	pass
+	super()
 
 func process_frame(delta : float) -> Menu:
 	return null
-	
+
 func process_physics(delta : float) -> Menu:
 	return null
-
+	
 func process_input(event : InputEventKey) -> Menu:
 	return null

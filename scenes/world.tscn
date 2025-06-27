@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dnwlwrgqvy87g"]
+[gd_scene load_steps=23 format=3 uid="uid://dnwlwrgqvy87g"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/proc_gen_handler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="1_kx658"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://drvjc51iwi4hq" path="res://sprites/table-color.png" id="13_5hjyj"]
 [ext_resource type="Texture2D" uid="uid://prrfttbbor8w" path="res://sprites/bar.png" id="14_xe0ec"]
 [ext_resource type="Texture2D" uid="uid://dffvpe62qj6q0" path="res://sprites/bg-color-2.png" id="15_3xvu6"]
+[ext_resource type="Script" uid="uid://b74m4qxtocc03" path="res://scripts/menu/pause_menu.gd" id="16_2lf6f"]
 [ext_resource type="Script" uid="uid://c3cxhfbw6aayg" path="res://scripts/menu/settings_menu.gd" id="16_d8deg"]
 [ext_resource type="FontFile" uid="uid://d2vpbv3wwvrt6" path="res://fonts/PIXY.ttf" id="16_mlxgv"]
 [ext_resource type="Script" uid="uid://mj5oakp8hbqa" path="res://scripts/menu/ui.gd" id="16_qx2d6"]
@@ -133,6 +134,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("16_2lf6f")
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/UI/pause_menu"]
 custom_minimum_size = Vector2(3.63, 0)
