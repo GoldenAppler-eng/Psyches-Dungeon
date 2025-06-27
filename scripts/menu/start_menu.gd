@@ -8,13 +8,13 @@ extends Menu
 func enter() -> void:
 	super()
 	
-	game_node.process_mode = PROCESS_MODE_DISABLED
-	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
-	
+	set_game_paused(true)
 	start_blink_timer.start()
 	
 func exit() -> void:
 	super()
+	
+	set_game_paused(false)
 	start_blink_timer.stop()
 
 func process_frame(delta: float) -> Menu:

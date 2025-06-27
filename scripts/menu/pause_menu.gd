@@ -7,23 +7,14 @@ extends Menu
 func enter() -> void:
 	super()
 	
-	settings_ui.visible = true
-	settings_ui.process_mode = PROCESS_MODE_INHERIT
-	settings_ui.custom_grab_focus()
-	
-	game_node.process_mode = PROCESS_MODE_DISABLED
-	
-	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
+	_set_settings_enabled(true)
+	set_game_paused(true)	
 	
 func exit() -> void:
 	super()
 	
-	settings_ui.visible = false
-	settings_ui.process_mode = PROCESS_MODE_DISABLED
-	
-	game_node.process_mode = PROCESS_MODE_INHERIT
-	
-	GlobalCardTimer.process_mode = PROCESS_MODE_INHERIT		
+	_set_settings_enabled(false)
+	set_game_paused(false)
 
 func process_frame(delta : float) -> Menu:
 	if Input.is_action_just_pressed("pause"):
@@ -36,3 +27,10 @@ func process_physics(delta : float) -> Menu:
 
 func process_input(event : InputEvent) -> Menu:
 	return null
+
+func _set_settings_enabled(enabled : bool) -> void:
+	settings_ui.visible = enabled
+	settings_ui.process_mode = PROCESS_MODE_INHERIT if enabled else PROCESS_MODE_DISABLED
+	
+	if enabled:
+		settings_ui.custom_grab_focus()

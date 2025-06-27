@@ -2,18 +2,6 @@ extends Control
 
 @export var game_node : Node
 
-@onready var settings_ui : SettingsUI = $settings_ui
-
-@onready var retry_button : Button = %retry_button
-@onready var resolution_button : Button = %resolution_button
-
-@onready var game_over_label : Label = %game_over_label
-
-@onready var game_over_menu : Control = %game_over_menu
-
-var game_start := false
-var game_over := false
-
 @export var initial_menu : Menu
 var current_menu : Menu 
 
@@ -23,22 +11,13 @@ var sfx_player_dict : Dictionary = {
 	"ui_switch" : AudioStreamPlayer.new()
 }
 
-func _ready() -> void:
-	change_menu(initial_menu)
-	
+func _ready() -> void:	
 	for menu : Menu in get_children():
 		menu.init(game_node)
 	
-	GlobalSignalBus.game_over.connect(_on_game_over)
-	GlobalSignalBus.game_win.connect(_on_game_win)
+	change_menu(initial_menu)
 	
-	for sfx : String in sfx_player_dict.keys():
-		var stream_player : AudioStreamPlayer = sfx_player_dict[sfx]
-		stream_player.stream = load("res://audio/sfx/" + sfx + ".wav")
-
-		stream_player.bus = "Sfx"
-		add_child(stream_player)
-
+	create_sfx_children()
 	install_sfx(self)
 
 func _process(delta : float) -> void:
@@ -59,41 +38,13 @@ func _input(event: InputEvent) -> void:
 	if next_menu:
 		change_menu(next_menu)
 
-func retry_game() -> void:
-	GlobalSignalBus.retry.emit()
-	GlobalSignalBus.game_start.emit()
+func create_sfx_children() -> void:
+	for sfx : String in sfx_player_dict.keys():
+		var stream_player : AudioStreamPlayer = sfx_player_dict[sfx]
+		stream_player.stream = load("res://audio/sfx/" + sfx + ".wav")
 
-func _on_game_over() -> void:
-	game_start = false
-	game_over = true
-	
-	settings_ui.visible = false
-	settings_ui.process_mode = PROCESS_MODE_DISABLED
-	game_node.process_mode = PROCESS_MODE_DISABLED
-	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
-	
-	game_over_menu.visible = true
-	
-	game_over_label.text = "Game over"
-	retry_button.text = "Retry"
-	
-	retry_button.grab_focus()
-	
-func _on_game_win() -> void:
-	game_start = false
-	game_over = true
-	
-	settings_ui.visible = false
-	settings_ui.process_mode = PROCESS_MODE_DISABLED
-	game_node.process_mode = PROCESS_MODE_DISABLED
-	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
-	
-	game_over_menu.visible = true
-	
-	game_over_label.text = "You win"
-	retry_button.text = "Replay"
-	
-	retry_button.grab_focus()
+		stream_player.bus = "Sfx"
+		add_child(stream_player)
 
 func install_sfx(node : Node) -> void:
 	for i in node.get_children():
@@ -113,9 +64,6 @@ func install_sfx(node : Node) -> void:
 func ui_sfx_play(sfx : String) -> void:
 	var stream_player : AudioStreamPlayer = sfx_player_dict[sfx]
 	stream_player.play()
-
-func _on_retry_button_pressed() -> void:
-	retry_game()
 
 func change_menu(next_menu : Menu) -> void:
 	if current_menu:

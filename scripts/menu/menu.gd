@@ -20,3 +20,7 @@ func process_physics(delta : float) -> Menu:
 
 func process_input(event : InputEvent) -> Menu:
 	return null
+
+func set_game_paused(paused : bool) -> void:
+	game_node.process_mode = PROCESS_MODE_DISABLED if paused else PROCESS_MODE_INHERIT 
+	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED if paused else PROCESS_MODE_INHERIT

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dnwlwrgqvy87g"]
+[gd_scene load_steps=26 format=3 uid="uid://dnwlwrgqvy87g"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/proc_gen_handler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="1_kx658"]
@@ -19,16 +19,18 @@
 [ext_resource type="FontFile" uid="uid://d2vpbv3wwvrt6" path="res://fonts/PIXY.ttf" id="16_mlxgv"]
 [ext_resource type="Script" uid="uid://mj5oakp8hbqa" path="res://scripts/menu/ui.gd" id="16_qx2d6"]
 [ext_resource type="Theme" uid="uid://cu6yoqe0up8hr" path="res://resources/button_theme.tres" id="17_whvfw"]
+[ext_resource type="Script" uid="uid://rwgfl7qpmu0k" path="res://scripts/menu/game_over_menu.gd" id="18_kpybi"]
 [ext_resource type="Script" uid="uid://6hk3s82gadwb" path="res://scripts/menu/start_menu.gd" id="19_wdwqs"]
+[ext_resource type="Script" uid="uid://dmmv07s2ooob" path="res://scripts/game_win_menu.gd" id="20_ctatt"]
 [ext_resource type="Script" uid="uid://br8y0r61tc0p3" path="res://scripts/menu/idle_menu.gd" id="21_7iits"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_2crl2"]
-font = ExtResource("16_mlxgv")
-font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_op4s2"]
 font = ExtResource("16_mlxgv")
 font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_2crl2"]
+font = ExtResource("16_mlxgv")
+font_size = 60
 
 [node name="world" type="Node2D"]
 process_mode = 1
@@ -114,7 +116,7 @@ z_index = -1
 position = Vector2(192.077, 255.308)
 texture = ExtResource("14_xe0ec")
 
-[node name="UI" type="Control" parent="GUI" node_paths=PackedStringArray("initial_menu")]
+[node name="UI" type="Control" parent="GUI" node_paths=PackedStringArray("game_node", "initial_menu")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -123,134 +125,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("16_qx2d6")
+game_node = NodePath("../..")
 initial_menu = NodePath("start_menu")
-
-[node name="pause_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu", "settings_ui")]
-visible = false
-z_index = 5
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("16_2lf6f")
-idle_menu = NodePath("../idle_menu")
-settings_ui = NodePath("../settings_ui")
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/UI/pause_menu"]
-custom_minimum_size = Vector2(3.63, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 455
-theme_override_constants/margin_right = 455
-theme_override_constants/margin_bottom = 430
-
-[node name="overlay" type="TextureRect" parent="GUI/UI/pause_menu/MarginContainer"]
-modulate = Color(1, 1, 1, 0.196078)
-layout_mode = 2
-texture = ExtResource("12_105fm")
-
-[node name="pause_label" type="Label" parent="GUI/UI/pause_menu/MarginContainer"]
-layout_mode = 2
-text = "Paused"
-label_settings = SubResource("LabelSettings_2crl2")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="game_over_menu" type="Control" parent="GUI/UI"]
-unique_name_in_owner = true
-visible = false
-z_index = 5
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/UI/game_over_menu"]
-custom_minimum_size = Vector2(3.63, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 455
-theme_override_constants/margin_right = 455
-theme_override_constants/margin_bottom = 430
-
-[node name="overlay" type="TextureRect" parent="GUI/UI/game_over_menu/MarginContainer"]
-modulate = Color(1, 1, 1, 0.196078)
-layout_mode = 2
-texture = ExtResource("12_105fm")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/UI/game_over_menu/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="game_over_label" type="Label" parent="GUI/UI/game_over_menu/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Game over"
-label_settings = SubResource("LabelSettings_2crl2")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="retry_button" type="Button" parent="GUI/UI/game_over_menu/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("17_whvfw")
-theme_override_font_sizes/font_size = 50
-button_mask = 0
-text = "retry"
-
-[node name="start_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu")]
-z_index = 5
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("19_wdwqs")
-idle_menu = NodePath("../idle_menu")
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/UI/start_menu"]
-custom_minimum_size = Vector2(3.63, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 455
-theme_override_constants/margin_right = 455
-theme_override_constants/margin_bottom = 430
-
-[node name="overlay" type="TextureRect" parent="GUI/UI/start_menu/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("12_105fm")
-
-[node name="start_label" type="Label" parent="GUI/UI/start_menu/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Press Enter
-To Start"
-label_settings = SubResource("LabelSettings_2crl2")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StartBlinkTimer" type="Timer" parent="GUI/UI/start_menu/MarginContainer"]
-unique_name_in_owner = true
-wait_time = 0.5
-autostart = true
 
 [node name="settings_ui" type="Control" parent="GUI/UI"]
 visible = false
@@ -374,16 +250,192 @@ theme = ExtResource("17_whvfw")
 button_mask = 0
 text = "< 100  >"
 
-[node name="idle_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("pause_menu")]
+[node name="pause_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu", "settings_ui")]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_2lf6f")
+idle_menu = NodePath("../idle_menu")
+settings_ui = NodePath("../settings_ui")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/UI/pause_menu"]
+custom_minimum_size = Vector2(3.63, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 455
+theme_override_constants/margin_right = 455
+theme_override_constants/margin_bottom = 430
+
+[node name="overlay" type="TextureRect" parent="GUI/UI/pause_menu/MarginContainer"]
+modulate = Color(1, 1, 1, 0.196078)
+layout_mode = 2
+texture = ExtResource("12_105fm")
+
+[node name="pause_label" type="Label" parent="GUI/UI/pause_menu/MarginContainer"]
+layout_mode = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_2crl2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="game_lose_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu")]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("18_kpybi")
+idle_menu = NodePath("../idle_menu")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/UI/game_lose_menu"]
+custom_minimum_size = Vector2(3.63, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 455
+theme_override_constants/margin_right = 455
+theme_override_constants/margin_bottom = 430
+
+[node name="overlay" type="TextureRect" parent="GUI/UI/game_lose_menu/MarginContainer"]
+modulate = Color(1, 1, 1, 0.196078)
+layout_mode = 2
+texture = ExtResource("12_105fm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/UI/game_lose_menu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="game_lose_label" type="Label" parent="GUI/UI/game_lose_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game over"
+label_settings = SubResource("LabelSettings_2crl2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="retry_button" type="Button" parent="GUI/UI/game_lose_menu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("17_whvfw")
+theme_override_font_sizes/font_size = 50
+button_mask = 0
+text = "retry"
+
+[node name="game_win_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu")]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_ctatt")
+idle_menu = NodePath("../idle_menu")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/UI/game_win_menu"]
+custom_minimum_size = Vector2(3.63, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 455
+theme_override_constants/margin_right = 455
+theme_override_constants/margin_bottom = 430
+
+[node name="overlay" type="TextureRect" parent="GUI/UI/game_win_menu/MarginContainer"]
+modulate = Color(1, 1, 1, 0.196078)
+layout_mode = 2
+texture = ExtResource("12_105fm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/UI/game_win_menu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="game_win_label" type="Label" parent="GUI/UI/game_win_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You Win!!!"
+label_settings = SubResource("LabelSettings_2crl2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="replay_button" type="Button" parent="GUI/UI/game_win_menu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("17_whvfw")
+theme_override_font_sizes/font_size = 50
+button_mask = 0
+text = "replay"
+
+[node name="start_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu")]
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_wdwqs")
+idle_menu = NodePath("../idle_menu")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/UI/start_menu"]
+custom_minimum_size = Vector2(3.63, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 455
+theme_override_constants/margin_right = 455
+theme_override_constants/margin_bottom = 430
+
+[node name="overlay" type="TextureRect" parent="GUI/UI/start_menu/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("12_105fm")
+
+[node name="start_label" type="Label" parent="GUI/UI/start_menu/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Press Enter
+To Start"
+label_settings = SubResource("LabelSettings_2crl2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartBlinkTimer" type="Timer" parent="GUI/UI/start_menu/MarginContainer"]
+unique_name_in_owner = true
+wait_time = 0.5
+autostart = true
+
+[node name="idle_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("pause_menu", "game_over_menu", "game_win_menu")]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("21_7iits")
 pause_menu = NodePath("../pause_menu")
+game_over_menu = NodePath("../game_lose_menu")
+game_win_menu = NodePath("../game_win_menu")
 
-[connection signal="pressed" from="GUI/UI/game_over_menu/MarginContainer/VBoxContainer/retry_button" to="GUI/UI" method="_on_retry_button_pressed"]
-[connection signal="timeout" from="GUI/UI/start_menu/MarginContainer/StartBlinkTimer" to="GUI/UI/start_menu" method="_on_start_blink_timer_timeout"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/resolution_button" to="GUI/UI/settings_ui" method="_on_resolution_button_pressed"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/resolution_selector" to="GUI/UI/settings_ui" method="_on_resolution_selector_pressed"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/window_mode_button" to="GUI/UI/settings_ui" method="_on_window_mode_button_pressed"]
@@ -397,3 +449,4 @@ pause_menu = NodePath("../pause_menu")
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/sfx_volume_button" to="GUI/UI/settings_ui" method="_on_sfx_volume_button_pressed"]
 [connection signal="focus_exited" from="GUI/UI/settings_ui/MarginContainer/container/sfx_volume_selector" to="GUI/UI/settings_ui" method="_on_sfx_volume_selector_focus_exited"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/sfx_volume_selector" to="GUI/UI/settings_ui" method="_on_sfx_volume_selector_pressed"]
+[connection signal="timeout" from="GUI/UI/start_menu/MarginContainer/StartBlinkTimer" to="GUI/UI/start_menu" method="_on_start_blink_timer_timeout"]
