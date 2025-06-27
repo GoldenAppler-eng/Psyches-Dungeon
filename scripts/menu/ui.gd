@@ -13,7 +13,6 @@ extends Control
 
 var game_start := false
 var game_over := false
-var paused := true
 
 @export var initial_menu : Menu
 var current_menu : Menu 
@@ -60,26 +59,13 @@ func _input(event: InputEvent) -> void:
 	if next_menu:
 		change_menu(next_menu)
 
-func start_game() -> void:
-	if not game_over:
-		GlobalBackgroundMusic.play()
-	
-	game_start = true
-	game_over = false
-	paused = false
-	
-	game_over_menu.visible = false
-
 func retry_game() -> void:
 	GlobalSignalBus.retry.emit()
 	GlobalSignalBus.game_start.emit()
-	
-	start_game()
 
 func _on_game_over() -> void:
 	game_start = false
 	game_over = true
-	paused = true
 	
 	settings_ui.visible = false
 	settings_ui.process_mode = PROCESS_MODE_DISABLED
@@ -96,7 +82,6 @@ func _on_game_over() -> void:
 func _on_game_win() -> void:
 	game_start = false
 	game_over = true
-	paused = true
 	
 	settings_ui.visible = false
 	settings_ui.process_mode = PROCESS_MODE_DISABLED

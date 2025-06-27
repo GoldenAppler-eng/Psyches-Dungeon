@@ -1,6 +1,7 @@
 extends Menu
 
 @export var pause_menu : Menu
+@export var game_over_menu : Menu
 
 func enter() -> void:
 	pass

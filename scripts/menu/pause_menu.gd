@@ -9,6 +9,7 @@ func enter() -> void:
 	
 	settings_ui.visible = true
 	settings_ui.process_mode = PROCESS_MODE_INHERIT
+	settings_ui.custom_grab_focus()
 	
 	game_node.process_mode = PROCESS_MODE_DISABLED
 	

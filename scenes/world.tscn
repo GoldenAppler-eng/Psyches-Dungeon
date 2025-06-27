@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://prrfttbbor8w" path="res://sprites/bar.png" id="14_xe0ec"]
 [ext_resource type="Texture2D" uid="uid://dffvpe62qj6q0" path="res://sprites/bg-color-2.png" id="15_3xvu6"]
 [ext_resource type="Script" uid="uid://lwbv7cx2mdvj" path="res://scripts/menu/pause_menu.gd" id="16_2lf6f"]
-[ext_resource type="Script" uid="uid://c3cxhfbw6aayg" path="res://scripts/menu/settings_menu.gd" id="16_d8deg"]
+[ext_resource type="Script" uid="uid://c3cxhfbw6aayg" path="res://scripts/menu/settings_ui.gd" id="16_d8deg"]
 [ext_resource type="FontFile" uid="uid://d2vpbv3wwvrt6" path="res://fonts/PIXY.ttf" id="16_mlxgv"]
 [ext_resource type="Script" uid="uid://mj5oakp8hbqa" path="res://scripts/menu/ui.gd" id="16_qx2d6"]
 [ext_resource type="Theme" uid="uid://cu6yoqe0up8hr" path="res://resources/button_theme.tres" id="17_whvfw"]
@@ -126,7 +126,6 @@ script = ExtResource("16_qx2d6")
 initial_menu = NodePath("start_menu")
 
 [node name="pause_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu", "settings_ui")]
-unique_name_in_owner = true
 visible = false
 z_index = 5
 layout_mode = 1

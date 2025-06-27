@@ -150,6 +150,9 @@ func _process(delta : float) -> void:
 			if sfx_volume_value < 0:
 				sfx_volume_value = 100
 
+func custom_grab_focus() -> void:
+	resolution_button.grab_focus()
+
 func _get_arrowed_text(str : String) -> String:
 	var aug_str : String = "< "
 	
