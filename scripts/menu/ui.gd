@@ -12,8 +12,10 @@ var sfx_player_dict : Dictionary = {
 }
 
 func _ready() -> void:	
-	for menu : Menu in get_children():
-		menu.init(game_node)
+	for node : Node in get_children():
+		if node is Menu:
+			var menu : Menu = node as Menu
+			menu.init(game_node)
 	
 	change_menu(initial_menu)
 	

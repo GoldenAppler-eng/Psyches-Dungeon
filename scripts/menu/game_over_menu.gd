@@ -21,6 +21,8 @@ func enter() -> void:
 	
 func exit() -> void:
 	super()
+	
+	set_game_paused(false)
 
 func process_frame(delta : float) -> Menu:
 	if retried:
