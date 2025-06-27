@@ -2,14 +2,13 @@ extends Control
 
 @export var game_node : Node
 
-@onready var settings_menu : SettingsMenu = $settings_menu
+@onready var settings_ui : SettingsUI = $settings_ui
 
 @onready var retry_button : Button = %retry_button
 @onready var resolution_button : Button = %resolution_button
 
 @onready var game_over_label : Label = %game_over_label
 
-@onready var pause_menu : Control = %pause_menu
 @onready var game_over_menu : Control = %game_over_menu
 
 var game_start := false
@@ -48,37 +47,6 @@ func _process(delta : float) -> void:
 	
 	if next_menu:
 		change_menu(next_menu)
-	
-	settings_menu.paused = paused
-	
-	if not game_start and not game_over: 
-		if Input.is_action_just_pressed("start"):
-			start_game()
-		return
-		
-	if game_over:
-		return	
-		
-	if Input.is_action_just_pressed("pause"):
-		if not paused:
-			resolution_button.grab_focus()
-		
-		paused = not paused
-
-	if paused:
-		pause_menu.visible = true
-
-		settings_menu.visible = true
-		settings_menu.process_mode = PROCESS_MODE_INHERIT
-		game_node.process_mode = PROCESS_MODE_DISABLED
-		GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
-	else:
-		pause_menu.visible = false
-		
-		settings_menu.visible = false
-		settings_menu.process_mode = PROCESS_MODE_DISABLED
-		game_node.process_mode = PROCESS_MODE_INHERIT
-		GlobalCardTimer.process_mode = PROCESS_MODE_INHERIT		
 
 func _physics_process(delta: float) -> void:
 	var next_menu : Menu = current_menu.process_physics(delta)
@@ -113,8 +81,8 @@ func _on_game_over() -> void:
 	game_over = true
 	paused = true
 	
-	settings_menu.visible = false
-	settings_menu.process_mode = PROCESS_MODE_DISABLED
+	settings_ui.visible = false
+	settings_ui.process_mode = PROCESS_MODE_DISABLED
 	game_node.process_mode = PROCESS_MODE_DISABLED
 	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
 	
@@ -130,8 +98,8 @@ func _on_game_win() -> void:
 	game_over = true
 	paused = true
 	
-	settings_menu.visible = false
-	settings_menu.process_mode = PROCESS_MODE_DISABLED
+	settings_ui.visible = false
+	settings_ui.process_mode = PROCESS_MODE_DISABLED
 	game_node.process_mode = PROCESS_MODE_DISABLED
 	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
 	
@@ -150,8 +118,8 @@ func install_sfx(node : Node) -> void:
 			button.focus_entered.connect( ui_sfx_play.bind("ui_hover") )			
 			button.pressed.connect( ui_sfx_play.bind("ui_pressed") )
 		
-		if i is SettingsMenu:
-			var settings : SettingsMenu = i as SettingsMenu
+		if i is SettingsUI:
+			var settings : SettingsUI = i as SettingsUI
 			
 			settings.ui_switch.connect ( ui_sfx_play.bind("ui_switch") )
 			

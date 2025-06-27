@@ -1,5 +1,5 @@
-class_name SettingsMenu
-extends Menu
+class_name SettingsUI
+extends Control
 
 @onready var container : VBoxContainer = %container
 
@@ -17,8 +17,6 @@ extends Menu
 
 @onready var sfx_volume_button : Button = %sfx_volume_button
 @onready var sfx_volume_selector : Button = %sfx_volume_selector
-
-var paused := false
 
 signal ui_switch
 
@@ -151,8 +149,6 @@ func _process(delta : float) -> void:
 			
 			if sfx_volume_value < 0:
 				sfx_volume_value = 100
-
-
 
 func _get_arrowed_text(str : String) -> String:
 	var aug_str : String = "< "
