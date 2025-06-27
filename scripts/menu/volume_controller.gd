@@ -1,6 +1,5 @@
 extends Control
 
-@export var select_button : Button
 @export var control_button : Button
 
 @export_enum("Master", "Music", "Sfx") var bus_name : String
@@ -8,10 +7,11 @@ extends Control
 var volume_value : int = 100
 
 func _ready() -> void:
-	select_button.pressed.connect(_on_volume_select_button_pressed)
-	select_button.pressed.connect(_on_volume_control_button_pressed)
+	focus_entered.connect(_on_focus_entered)
+	
+	control_button.pressed.connect(_on_volume_control_button_pressed)
 
-func _on_volume_select_button_pressed() -> void:
+func _on_focus_entered() -> void:
 	control_button.grab_focus()
 
 func _on_volume_control_button_pressed() -> void:

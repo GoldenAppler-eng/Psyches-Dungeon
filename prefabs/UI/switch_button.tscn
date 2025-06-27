@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd1tbvndv8i1u"]
+
+[ext_resource type="Script" uid="uid://b1at1gino5a2x" path="res://scripts/menu/switch_button.gd" id="1_hi3ma"]
+
+[node name="SwitchButton" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hi3ma")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftArrowLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "<"
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="RightArrowLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = ">"
