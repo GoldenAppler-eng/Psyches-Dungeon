@@ -1,13 +1,26 @@
 extends Menu
 
+@export var idle_menu : Menu
+
 @onready var start_blink_timer : Timer =  %StartBlinkTimer
 @onready var start_label : Label = %start_label
 
 func enter() -> void:
 	super()
+	start_blink_timer.start()
 	
 func exit() -> void:
 	super()
+	start_blink_timer.stop()
 
+func process_frame(delta: float) -> Menu:
+	return null
+	
+func process_physics(delta: float) -> Menu:
+	return null
+
+func process_input(event : InputEvent) -> Menu:
+	return null
+	
 func _on_start_blink_timer_timeout() -> void:
 	start_label.visible = not start_label.visible

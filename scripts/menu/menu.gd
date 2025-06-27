@@ -2,10 +2,10 @@ class_name Menu
 extends Control
 
 func enter() -> void:
-	pass
+	visible = true
 	
 func exit() -> void:
-	pass
+	visible = false
 
 func process_frame(delta : float) -> Menu:
 	return null
