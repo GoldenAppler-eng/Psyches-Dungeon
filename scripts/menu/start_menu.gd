@@ -14,6 +14,10 @@ func exit() -> void:
 	start_blink_timer.stop()
 
 func process_frame(delta: float) -> Menu:
+	if Input.is_action_just_pressed("start"):
+		_start_game()
+		return idle_menu
+	
 	return null
 	
 func process_physics(delta: float) -> Menu:
@@ -21,6 +25,9 @@ func process_physics(delta: float) -> Menu:
 
 func process_input(event : InputEvent) -> Menu:
 	return null
+	
+func _start_game() -> void:
+	GlobalSignalBus.game_start.emit()
 	
 func _on_start_blink_timer_timeout() -> void:
 	start_label.visible = not start_label.visible

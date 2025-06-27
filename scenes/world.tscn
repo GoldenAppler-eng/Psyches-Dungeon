@@ -211,7 +211,6 @@ button_mask = 0
 text = "retry"
 
 [node name="start_menu" type="Control" parent="GUI/UI"]
-unique_name_in_owner = true
 z_index = 5
 layout_mode = 1
 anchors_preset = 15

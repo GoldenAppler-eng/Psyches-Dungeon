@@ -10,7 +10,6 @@ extends Control
 @onready var game_over_label : Label = %game_over_label
 
 @onready var pause_menu : Control = %pause_menu
-@onready var start_menu : Control = %start_menu
 @onready var game_over_menu : Control = %game_over_menu
 
 var game_start := false
@@ -27,6 +26,8 @@ var sfx_player_dict : Dictionary = {
 }
 
 func _ready() -> void:
+	change_menu(initial_menu)
+	
 	main_node.process_mode = PROCESS_MODE_DISABLED
 	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
 
@@ -53,7 +54,6 @@ func _process(delta : float) -> void:
 	if not game_start and not game_over: 
 		if Input.is_action_just_pressed("start"):
 			start_game()
-			GlobalSignalBus.game_start.emit()
 		return
 		
 	if game_over:
@@ -100,7 +100,6 @@ func start_game() -> void:
 	game_over = false
 	paused = false
 	
-	start_menu.visible = false
 	game_over_menu.visible = false
 
 func retry_game() -> void:
@@ -166,6 +165,8 @@ func _on_retry_button_pressed() -> void:
 	retry_game()
 
 func change_menu(next_menu : Menu) -> void:
-	current_menu.exit()
+	if current_menu:
+		current_menu.exit()
+	
 	current_menu = next_menu
 	current_menu.enter()
