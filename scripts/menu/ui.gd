@@ -2,7 +2,7 @@ extends Control
 
 @export var main_node : Node
 
-@onready var settings_ui : SettingsUI = $settings_ui
+@onready var settings_menu : SettingsMenu = $settings_menu
 
 @onready var retry_button : Button = %retry_button
 @onready var resolution_button : Button = %resolution_button
@@ -40,7 +40,7 @@ func _ready() -> void:
 	install_sfx(self)
 
 func _process(delta : float) -> void:
-	settings_ui.paused = paused
+	settings_menu.paused = paused
 	
 	if not game_start and not game_over: 
 		if Input.is_action_just_pressed("start"):
@@ -60,15 +60,15 @@ func _process(delta : float) -> void:
 	if paused:
 		pause_menu.visible = true
 
-		settings_ui.visible = true
-		settings_ui.process_mode = PROCESS_MODE_INHERIT
+		settings_menu.visible = true
+		settings_menu.process_mode = PROCESS_MODE_INHERIT
 		main_node.process_mode = PROCESS_MODE_DISABLED
 		GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
 	else:
 		pause_menu.visible = false
 		
-		settings_ui.visible = false
-		settings_ui.process_mode = PROCESS_MODE_DISABLED
+		settings_menu.visible = false
+		settings_menu.process_mode = PROCESS_MODE_DISABLED
 		main_node.process_mode = PROCESS_MODE_INHERIT
 		GlobalCardTimer.process_mode = PROCESS_MODE_INHERIT		
 
@@ -94,8 +94,8 @@ func _on_game_over() -> void:
 	game_over = true
 	paused = true
 	
-	settings_ui.visible = false
-	settings_ui.process_mode = PROCESS_MODE_DISABLED
+	settings_menu.visible = false
+	settings_menu.process_mode = PROCESS_MODE_DISABLED
 	main_node.process_mode = PROCESS_MODE_DISABLED
 	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
 	
@@ -111,8 +111,8 @@ func _on_game_win() -> void:
 	game_over = true
 	paused = true
 	
-	settings_ui.visible = false
-	settings_ui.process_mode = PROCESS_MODE_DISABLED
+	settings_menu.visible = false
+	settings_menu.process_mode = PROCESS_MODE_DISABLED
 	main_node.process_mode = PROCESS_MODE_DISABLED
 	GlobalCardTimer.process_mode = PROCESS_MODE_DISABLED
 	
@@ -131,8 +131,8 @@ func install_sfx(node : Node) -> void:
 			button.focus_entered.connect( ui_sfx_play.bind("ui_hover") )			
 			button.pressed.connect( ui_sfx_play.bind("ui_pressed") )
 		
-		if i is SettingsUI:
-			var settings : SettingsUI = i as SettingsUI
+		if i is SettingsMenu:
+			var settings : SettingsMenu = i as SettingsMenu
 			
 			settings.ui_switch.connect ( ui_sfx_play.bind("ui_switch") )
 			

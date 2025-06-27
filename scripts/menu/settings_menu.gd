@@ -1,4 +1,4 @@
-class_name SettingsUI
+class_name SettingsMenu
 extends Control
 
 @export var main_scene : Node2D
