@@ -3,9 +3,9 @@ extends Node
 @export var initial_state : State
 var current_state : State
 
-func init(controller : InputController, anim_player : AnimationPlayer) -> void:
+func init(controller : InputController, anim_player : AnimationPlayer, sfx_player : SfxPlayer) -> void:
 	for state : State in get_children():
-		state.init(controller, anim_player) 
+		state.init(controller, anim_player, sfx_player) 
 	
 	change_state(initial_state)
 

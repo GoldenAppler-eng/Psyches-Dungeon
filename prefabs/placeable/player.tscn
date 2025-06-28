@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://di8bojp8w0r88"]
+[gd_scene load_steps=54 format=3 uid="uid://di8bojp8w0r88"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -7,10 +7,13 @@
 [ext_resource type="Script" uid="uid://dl3m8bjsg333d" path="res://scripts/placeable/RoomDetector.gd" id="3_0ed2m"]
 [ext_resource type="Texture2D" uid="uid://bnw6qsinnrdh" path="res://sprites/knight-final-bottom-half-90x36-Sheet.png" id="4_s44aa"]
 [ext_resource type="Texture2D" uid="uid://cmfu7x0fdldyf" path="res://sprites/progress_bar_textures/health_bar/health-bar-under-20x5.png" id="6_516xt"]
+[ext_resource type="Script" uid="uid://dibu1m0sx5bch" path="res://scripts/components/DamagerHitboxComponent.gd" id="6_u8pvg"]
 [ext_resource type="Texture2D" uid="uid://blaij2o6hcbrg" path="res://sprites/progress_bar_textures/health_bar/health-bar-progress-20x5.png" id="7_fcfru"]
 [ext_resource type="AudioStream" uid="uid://bmmafhge2io63" path="res://audio/sfx/player_attack.wav" id="8_1gq37"]
 [ext_resource type="AudioStream" uid="uid://dh7b3tdymr3ol" path="res://audio/sfx/player_hit.wav" id="9_0fyjy"]
 [ext_resource type="Script" uid="uid://ce1nso6v2sti5" path="res://scripts/state_machine/state_machine.gd" id="11_ytpbi"]
+[ext_resource type="Script" uid="uid://c53qqulwesjcf" path="res://scripts/state_machine/attack_state.gd" id="12_6gbnb"]
+[ext_resource type="Script" uid="uid://ds5i1g800tcw6" path="res://scripts/state_machine/passive_state.gd" id="13_u8pvg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouijc"]
 atlas = ExtResource("2_8m05b")
@@ -412,6 +415,7 @@ position = Vector2(-12.5, -17.5)
 collision_layer = 128
 collision_mask = 64
 monitorable = false
+script = ExtResource("6_u8pvg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitbox"]
 shape = SubResource("RectangleShape2D_tkdcx")
@@ -467,10 +471,17 @@ script = ExtResource("11_ytpbi")
 [node name="respawn_state" type="Node" parent="movement_state_machine"]
 
 [node name="attack_state_machine" type="Node" parent="."]
+script = ExtResource("11_ytpbi")
 
-[node name="attack_state" type="Node" parent="attack_state_machine"]
+[node name="attack_state" type="Node" parent="attack_state_machine" node_paths=PackedStringArray("passive_state", "damager_hitbox")]
+script = ExtResource("12_6gbnb")
+passive_state = NodePath("../passive_state")
+damager_hitbox = NodePath("../../DamagerHitbox")
 
-[node name="passive_state" type="Node" parent="attack_state_machine"]
+[node name="passive_state" type="Node" parent="attack_state_machine" node_paths=PackedStringArray("attack_state", "attack_cooldown_timer")]
+script = ExtResource("13_u8pvg")
+attack_state = NodePath("../attack_state")
+attack_cooldown_timer = NodePath("../../AttackCooldownTimer")
 
 [connection signal="animation_finished" from="TopHalf" to="." method="_on_top_half_animation_finished"]
 [connection signal="timeout" from="InvinciblityTimer" to="." method="_on_invinciblity_timer_timeout"]
