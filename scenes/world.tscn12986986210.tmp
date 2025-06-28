@@ -153,7 +153,8 @@ grow_vertical = 2
 theme_override_constants/margin_left = 45
 
 [node name="container" type="VBoxContainer" parent="GUI/UI/settings_ui/MarginContainer"]
-custom_minimum_size = Vector2(410, 0)
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0

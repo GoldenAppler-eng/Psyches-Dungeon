@@ -1,11 +1,11 @@
-extends Control
+extends UIController
 
 @onready var control_button: SwitchButton = $VBoxContainer/control_button
 
 const WINDOW_MODE_INDEX : Dictionary = {
 	0 : "Fullscreen",
 	1 : "Windowed",
-	2 : "Windowed Borderless"
+	2 : "Windowed(No B.)"
 }
 
 var window_mode_index : int = 0
@@ -19,7 +19,8 @@ func _ready() -> void:
 	focus_entered.connect(_on_focus_entered)
 	
 	_update_control_button_text()
-	_set_button_focus_neighbours()
+	_set_button_focus_neighbours(control_button)
+	control_button.init()
 
 func _on_control_button_switched(value : int) -> void:
 	display_window_mode_index += value
@@ -54,12 +55,3 @@ func _on_focus_entered() -> void:
 
 func _update_control_button_text() -> void:
 	control_button.set_button_text(WINDOW_MODE_INDEX[display_window_mode_index])
-
-func _set_button_focus_neighbours() -> void:
-	control_button.focus_neighbor_bottom = focus_neighbor_bottom
-	control_button.focus_neighbor_top = focus_neighbor_top
-	control_button.focus_neighbor_left = focus_neighbor_left
-	control_button.focus_neighbor_right = focus_neighbor_right
-	
-	control_button.focus_next = focus_next
-	control_button.focus_previous = focus_previous

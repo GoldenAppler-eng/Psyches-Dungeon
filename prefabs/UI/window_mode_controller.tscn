@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dd1tbvndv8i1u" path="res://prefabs/UI/switch_button.tscn" id="3_ptd8d"]
 
 [node name="window_mode_controller" type="MarginContainer"]
+focus_mode = 2
 theme = ExtResource("1_em75i")
 script = ExtResource("2_4whcn")
 
@@ -20,5 +21,6 @@ text = "Window MODE"
 
 [node name="control_button" parent="VBoxContainer" instance=ExtResource("3_ptd8d")]
 layout_mode = 2
+size_flags_horizontal = 4
 button_text = "Fullscreen"
 button_minimum_length = 235.0

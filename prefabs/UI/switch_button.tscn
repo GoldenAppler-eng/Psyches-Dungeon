@@ -5,6 +5,7 @@
 [node name="SwitchButton" type="MarginContainer"]
 offset_right = 36.0
 offset_bottom = 23.0
+focus_mode = 2
 script = ExtResource("1_hi3ma")
 button_text = "100"
 button_minimum_length = 36.0
@@ -18,6 +19,7 @@ size_flags_horizontal = 0
 text = "< "
 
 [node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
 text = "100"
 

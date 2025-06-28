@@ -6,5 +6,4 @@ func _ready() -> void:
 	focus_entered.connect(_on_focus_entered)
 
 func _on_focus_entered() -> void:
-	print("focus grabbed settings_ui")
 	resolution_controller.grab_focus()

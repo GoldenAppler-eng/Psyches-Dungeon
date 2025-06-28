@@ -7,6 +7,7 @@
 [node name="volume_controller" type="MarginContainer"]
 offset_right = 121.0
 offset_bottom = 18.0
+focus_mode = 2
 theme = ExtResource("1_kb14h")
 script = ExtResource("2_fpae5")
 bus_name = "Master"

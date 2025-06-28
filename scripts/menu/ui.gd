@@ -20,7 +20,7 @@ func _ready() -> void:
 	change_menu(initial_menu)
 	
 	create_sfx_children()
-	install_sfx(self)
+	#install_sfx(self)
 
 func _process(delta : float) -> void:
 	var next_menu : Menu = current_menu.process_frame(delta)

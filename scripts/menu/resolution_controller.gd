@@ -1,4 +1,4 @@
-extends Control
+extends UIController
 
 @onready var control_button: SwitchButton = $VBoxContainer/control_button
 
@@ -25,10 +25,12 @@ func _ready() -> void:
 	focus_entered.connect(_on_focus_entered)
 	
 	_update_control_button_text()
-	_set_button_focus_neighbours()
+	_set_button_focus_neighbours(control_button)
+	control_button.init()
 
 func _on_control_button_switched(value : int) -> void:
 	display_resolution_mode_index += value
+	
 	display_resolution_mode_index %= RESOLUTION_TEXT_DICT.size()
 	
 	if display_resolution_mode_index < 0:
@@ -50,12 +52,3 @@ func _on_focus_entered() -> void:
 
 func _update_control_button_text() -> void:
 	control_button.set_button_text(RESOLUTION_TEXT_DICT[display_resolution_mode_index])
-
-func _set_button_focus_neighbours() -> void:
-	control_button.focus_neighbor_bottom = focus_neighbor_bottom
-	control_button.focus_neighbor_top = focus_neighbor_top
-	control_button.focus_neighbor_left = focus_neighbor_left
-	control_button.focus_neighbor_right = focus_neighbor_right
-	
-	control_button.focus_next = focus_next
-	control_button.focus_previous = focus_previous
