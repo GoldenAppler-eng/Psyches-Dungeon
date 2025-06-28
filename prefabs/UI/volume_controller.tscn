@@ -19,7 +19,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../window_mode_button")
 focus_neighbor_bottom = NodePath("../../music_volume_controller/volume_button")
 theme = ExtResource("1_kb14h")
-text = "Master Volume"
+text = "Volume"
 
 [node name="control_button" parent="VBoxContainer" instance=ExtResource("3_fpae5")]
 layout_mode = 2

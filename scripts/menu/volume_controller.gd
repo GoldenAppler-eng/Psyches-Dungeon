@@ -1,19 +1,27 @@
+@tool
 extends Control
 
-@onready var control_button: SwitchButton = $VBoxContainer/control_button
-
 @export_enum("Master", "Music", "Sfx") var bus_name : String
+
+@onready var volume_label: Label = $VBoxContainer/volume_label
+@onready var control_button: SwitchButton = $VBoxContainer/control_button
 
 const MAX_VOLUME_VALUE : int = 100
 var volume_value : int = MAX_VOLUME_VALUE
 
 func _ready() -> void:
 	focus_entered.connect(_on_focus_entered)
-	
 	control_button.button_switched.connect(_on_volume_control_button_switched)
+
+	volume_label.text = bus_name + " " + volume_label.text
 
 	volume_value = 100 * db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index(bus_name)))
 	_update_volume_control_button_text()
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():		
+		if not volume_label.text.contains(bus_name):
+			volume_label.text = bus_name + " " + volume_label.text
 
 func _on_focus_entered() -> void:
 	control_button.grab_focus()
