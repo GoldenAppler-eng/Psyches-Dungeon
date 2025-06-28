@@ -20,7 +20,7 @@ func _ready() -> void:
 	change_menu(initial_menu)
 	
 	create_sfx_children()
-	#install_sfx(self)
+	install_sfx(self)
 
 func _process(delta : float) -> void:
 	var next_menu : Menu = current_menu.process_frame(delta)
@@ -59,8 +59,8 @@ func install_sfx(node : Node) -> void:
 		if i is SwitchButton:
 			var switch_button : SwitchButton = i as SwitchButton
 			
-			switch_button.button_switched.connect( ui_sfx_play.bind("ui_switch") )
-			switch_button.button_switched_pressed.connect( ui_sfx_play.bind("ui_switch") )
+			switch_button.button_switched.connect( ui_switch_sfx_play.bind("ui_switch") )
+			switch_button.button_switched_pressed.connect( ui_switch_sfx_play.bind("ui_switch") )
 			switch_button.button_pressed.connect( ui_sfx_play.bind("ui_pressed") )
 
 		install_sfx(i)
@@ -68,6 +68,9 @@ func install_sfx(node : Node) -> void:
 func ui_sfx_play(sfx : String) -> void:
 	var stream_player : AudioStreamPlayer = sfx_player_dict[sfx]
 	stream_player.play()
+
+func ui_switch_sfx_play(value : int, sfx : String) -> void:
+	ui_sfx_play(sfx)
 
 func change_menu(next_menu : Menu) -> void:
 	if current_menu:
