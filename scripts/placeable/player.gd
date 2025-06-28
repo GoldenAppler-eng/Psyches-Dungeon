@@ -20,7 +20,6 @@ const REGEN_RATE := 20
 @onready var top_half_sprite : AnimatedSprite2D = $%TopHalf
 @onready var bottom_half_sprite : AnimatedSprite2D = $%BottomHalf
 
-@onready var attack_sfx : AudioStreamPlayer = $AttackSfx
 @onready var hit_sfx : AudioStreamPlayer = $HitSfx
 
 @onready var hit_animation_player : AnimationPlayer = %HitAnimationPlayer
@@ -32,7 +31,6 @@ var speed := MAX_SPEED
 var speed_modifier : float = 1
 
 var _invincible := false
-var _attack_ready := true
 var _is_attacking := false
 var _is_respawning := false
 var _is_dead := false
@@ -72,7 +70,6 @@ func _physics_process(delta : float) -> void:
 		
 	_player_movement(horizontal_direction, vertical_direction, delta)
 	_player_anim(horizontal_direction, vertical_direction, delta)
-	_player_attack(delta)
 
 func _player_movement(horizontal_direction : float, vertical_direction : float, delta : float) -> void:
 	if horizontal_direction and vertical_direction :
@@ -113,23 +110,6 @@ func _player_anim(horizontal_direction : float, vertical_direction : float, delt
 		else:
 			bottom_half_sprite.play("attack")
 			bottom_half_sprite.frame = top_half_sprite.frame
-	
-func _player_attack(delta : float) -> void:
-	if not _attack_ready:
-		return
-	
-	if Input.is_action_pressed("attack"):
-		_is_attacking = true
-		_attack_ready = false
-		attack_cooldown_timer.start()
-		
-		_play_animation("attack")
-		attack_sfx.play()
-		
-		for area in damager_hitbox.get_overlapping_areas():
-			if area.owner is Enemy:
-				var enemy : Enemy = area.owner as Enemy
-				enemy.apply_damage(DAMAGE)
 	
 func apply_damage(amt : int) -> void:
 	if _invincible or _is_dead:
@@ -190,7 +170,6 @@ func _on_game_retry() -> void:
 	health = MAX_HEALTH
 	
 	_invincible = false
-	_attack_ready = true
 	_is_attacking = false
 	_is_respawning = false
 	_is_dead = false
@@ -214,9 +193,6 @@ func _on_invinciblity_timer_timeout() -> void:
 	regen_start_timer.start()
 	
 	hit_animation_player.play("RESET")
-
-func _on_attack_cooldown_timer_timeout() -> void:
-	_attack_ready = true
 
 func _on_top_half_animation_finished() -> void:
 	if top_half_sprite.animation == "attack":

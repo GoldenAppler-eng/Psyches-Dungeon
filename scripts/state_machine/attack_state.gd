@@ -1,6 +1,7 @@
 extends State
 
 @export var passive_state : State
+
 @export var damager_hitbox : DamagerHitboxComponent
 
 var attack_finished := false
@@ -9,9 +10,10 @@ func enter() -> void:
 	super()
 	
 	attack_finished = false
-	damager_hitbox.apply_damage()
+	damager_hitbox.deal_damage_to_area()
 	
 	sfx_player.play_sfx("attack")
+	anim_player.play_animation("attack")
 	
 func exit() -> void:
 	super()
