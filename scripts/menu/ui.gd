@@ -60,7 +60,9 @@ func install_sfx(node : Node) -> void:
 			var switch_button : SwitchButton = i as SwitchButton
 			
 			switch_button.button_switched.connect( ui_sfx_play.bind("ui_switch") )
-			
+			switch_button.button_switched_pressed.connect( ui_sfx_play.bind("ui_switch") )
+			switch_button.button_pressed.connect( ui_sfx_play.bind("ui_pressed") )
+
 		install_sfx(i)
 
 func ui_sfx_play(sfx : String) -> void:

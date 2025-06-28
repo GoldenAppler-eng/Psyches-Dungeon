@@ -3,6 +3,10 @@ class_name SwitchButton
 extends Control
 
 signal button_switched(value : int)
+signal button_switched_pressed(value : int)
+signal button_pressed
+
+signal button_on_focus_exited
 
 @export var button_text : String
 @export var button_minimum_length : float
@@ -11,10 +15,13 @@ signal button_switched(value : int)
 
 func _ready() -> void:
 	button.text = button_text
-	
 	button.custom_minimum_size.x = button_minimum_length
 	
 	focus_entered.connect(_on_focus_entered)
+	
+	button.pressed.connect(_on_button_pressed)
+	button.focus_exited.connect(_on_button_focus_exited)
+	
 	_set_button_focus_neighbours()
 	
 func _process(delta: float) -> void:
@@ -32,6 +39,11 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_pressed("option_right"):
 		button_switched.emit(1)	
 
+	if Input.is_action_pressed("option_left"):
+		button_switched_pressed.emit(-1)
+	elif Input.is_action_pressed("option_right"):
+		button_switched_pressed.emit(1)	
+
 func set_button_text(text : String) -> void:
 	button_text = text
 	button.text = button_text
@@ -48,3 +60,8 @@ func _set_button_focus_neighbours() -> void:
 func _on_focus_entered() -> void:
 	button.grab_focus()
 	
+func _on_button_pressed() -> void:
+	button_pressed.emit()
+
+func _on_button_focus_exited() -> void:
+	button_on_focus_exited.emit()

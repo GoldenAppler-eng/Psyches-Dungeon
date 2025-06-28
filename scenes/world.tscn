@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dnwlwrgqvy87g"]
+[gd_scene load_steps=28 format=3 uid="uid://dnwlwrgqvy87g"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/proc_gen_handler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="1_kx658"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://mj5oakp8hbqa" path="res://scripts/menu/ui.gd" id="16_qx2d6"]
 [ext_resource type="Theme" uid="uid://cu6yoqe0up8hr" path="res://resources/themes/button_theme.tres" id="17_whvfw"]
 [ext_resource type="Script" uid="uid://rwgfl7qpmu0k" path="res://scripts/menu/game_over_menu.gd" id="18_kpybi"]
+[ext_resource type="PackedScene" uid="uid://c68vnobfiodfc" path="res://prefabs/UI/resolution_controller.tscn" id="18_xgqkh"]
 [ext_resource type="PackedScene" uid="uid://cgac5b20dglax" path="res://prefabs/UI/volume_controller.tscn" id="19_ctatt"]
 [ext_resource type="Script" uid="uid://6hk3s82gadwb" path="res://scripts/menu/start_menu.gd" id="19_wdwqs"]
 [ext_resource type="Script" uid="uid://dmmv07s2ooob" path="res://scripts/menu/game_win_menu.gd" id="20_ctatt"]
@@ -160,27 +161,13 @@ layout_mode = 2
 text = "Settings"
 label_settings = SubResource("LabelSettings_op4s2")
 
-[node name="resolution_button" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container"]
-unique_name_in_owner = true
+[node name="resolution_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("18_xgqkh")]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../window_mode_button")
-theme = ExtResource("17_whvfw")
-button_mask = 0
-text = "Resolution"
-alignment = 0
-
-[node name="resolution_selector" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container"]
-unique_name_in_owner = true
-layout_mode = 2
-focus_neighbor_top = NodePath("../resolution_button")
-theme = ExtResource("17_whvfw")
-button_mask = 0
-text = "< 1920 x 1080  >"
 
 [node name="window_mode_button" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../resolution_button")
+focus_neighbor_top = NodePath("../resolution_controller/resolution_button")
 focus_neighbor_bottom = NodePath("../master_volume_controller/volume_label")
 theme = ExtResource("17_whvfw")
 button_mask = 0
@@ -396,8 +383,6 @@ pause_menu = NodePath("../pause_menu")
 game_over_menu = NodePath("../game_lose_menu")
 game_win_menu = NodePath("../game_win_menu")
 
-[connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/resolution_button" to="GUI/UI/settings_ui" method="_on_resolution_button_pressed"]
-[connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/resolution_selector" to="GUI/UI/settings_ui" method="_on_resolution_selector_pressed"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/window_mode_button" to="GUI/UI/settings_ui" method="_on_window_mode_button_pressed"]
 [connection signal="pressed" from="GUI/UI/settings_ui/MarginContainer/container/window_mode_selector" to="GUI/UI/settings_ui" method="_on_window_mode_selector_pressed"]
 [connection signal="timeout" from="GUI/UI/start_menu/MarginContainer/StartBlinkTimer" to="GUI/UI/start_menu" method="_on_start_blink_timer_timeout"]
