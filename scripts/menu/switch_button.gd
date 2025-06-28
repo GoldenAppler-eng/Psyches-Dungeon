@@ -14,6 +14,9 @@ func _ready() -> void:
 	_set_button_focus_neighbours()
 	
 func _process(delta: float) -> void:
+	if not button.has_focus():
+		return
+	
 	if Input.is_action_just_pressed("option_left"):
 		button_switched.emit(-1)
 	elif Input.is_action_just_pressed("option_right"):

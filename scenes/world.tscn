@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://mj5oakp8hbqa" path="res://scripts/menu/ui.gd" id="16_qx2d6"]
 [ext_resource type="Theme" uid="uid://cu6yoqe0up8hr" path="res://resources/themes/button_theme.tres" id="17_whvfw"]
 [ext_resource type="Script" uid="uid://rwgfl7qpmu0k" path="res://scripts/menu/game_over_menu.gd" id="18_kpybi"]
-[ext_resource type="Script" uid="uid://blbowv0edisq8" path="res://scripts/menu/volume_controller.gd" id="19_ctatt"]
+[ext_resource type="PackedScene" uid="uid://cgac5b20dglax" path="res://prefabs/UI/volume_controller.tscn" id="19_ctatt"]
 [ext_resource type="Script" uid="uid://6hk3s82gadwb" path="res://scripts/menu/start_menu.gd" id="19_wdwqs"]
 [ext_resource type="Script" uid="uid://dmmv07s2ooob" path="res://scripts/menu/game_win_menu.gd" id="20_ctatt"]
 [ext_resource type="Script" uid="uid://br8y0r61tc0p3" path="res://scripts/menu/idle_menu.gd" id="21_7iits"]
@@ -163,7 +163,6 @@ label_settings = SubResource("LabelSettings_op4s2")
 [node name="resolution_button" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../sfx_volume_controller/volume_button")
 focus_neighbor_bottom = NodePath("../window_mode_button")
 theme = ExtResource("17_whvfw")
 button_mask = 0
@@ -196,79 +195,16 @@ theme = ExtResource("17_whvfw")
 button_mask = 0
 text = "< WINDOWED  >"
 
-[node name="master_volume_controller" type="Control" parent="GUI/UI/settings_ui/MarginContainer/container" node_paths=PackedStringArray("control_button")]
+[node name="master_volume_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("19_ctatt")]
 layout_mode = 2
-script = ExtResource("19_ctatt")
-control_button = NodePath("volume_selector")
-bus_name = "Master"
 
-[node name="volume_label" type="Label" parent="GUI/UI/settings_ui/MarginContainer/container/master_volume_controller"]
+[node name="music_volume_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("19_ctatt")]
 layout_mode = 2
-offset_right = 301.0
-offset_bottom = 43.0
-focus_neighbor_top = NodePath("../../window_mode_button")
-focus_neighbor_bottom = NodePath("../../music_volume_controller/volume_button")
-theme = ExtResource("17_whvfw")
-text = "Master Volume"
+bus_name = "Music"
 
-[node name="volume_selector" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container/master_volume_controller"]
+[node name="sfx_volume_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("19_ctatt")]
 layout_mode = 2
-offset_right = 141.0
-offset_bottom = 43.0
-focus_neighbor_top = NodePath("../volume_label")
-theme = ExtResource("17_whvfw")
-button_mask = 0
-text = "< 100  >"
-
-[node name="music_volume_controller" type="Control" parent="GUI/UI/settings_ui/MarginContainer/container" node_paths=PackedStringArray("control_button")]
-layout_mode = 2
-script = ExtResource("19_ctatt")
-control_button = NodePath("")
 bus_name = "Sfx"
-
-[node name="volume_button" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container/music_volume_controller"]
-layout_mode = 2
-offset_right = 262.0
-offset_bottom = 43.0
-focus_neighbor_top = NodePath("../../master_volume_controller/volume_label")
-focus_neighbor_bottom = NodePath("../../sfx_volume_controller/volume_button")
-theme = ExtResource("17_whvfw")
-button_mask = 0
-text = "MUSIC Volume"
-alignment = 0
-
-[node name="volume_selector" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container/music_volume_controller"]
-layout_mode = 2
-offset_right = 141.0
-offset_bottom = 43.0
-focus_neighbor_top = NodePath("../volume_button")
-theme = ExtResource("17_whvfw")
-button_mask = 0
-text = "< 100  >"
-
-[node name="sfx_volume_controller" type="Control" parent="GUI/UI/settings_ui/MarginContainer/container" node_paths=PackedStringArray("control_button")]
-layout_mode = 2
-script = ExtResource("19_ctatt")
-control_button = NodePath("volume_selector")
-bus_name = "Sfx"
-
-[node name="volume_button" type="Label" parent="GUI/UI/settings_ui/MarginContainer/container/sfx_volume_controller"]
-layout_mode = 2
-offset_right = 230.0
-offset_bottom = 43.0
-focus_neighbor_top = NodePath("../../music_volume_controller/volume_button")
-focus_neighbor_bottom = NodePath("../../resolution_button")
-theme = ExtResource("17_whvfw")
-text = "Sfx Volume"
-
-[node name="volume_selector" type="Button" parent="GUI/UI/settings_ui/MarginContainer/container/sfx_volume_controller"]
-layout_mode = 2
-offset_right = 141.0
-offset_bottom = 43.0
-focus_neighbor_top = NodePath("../volume_button")
-theme = ExtResource("17_whvfw")
-button_mask = 0
-text = "< 100  >"
 
 [node name="pause_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu", "settings_ui")]
 visible = false

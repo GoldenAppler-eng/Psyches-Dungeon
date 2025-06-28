@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgac5b20dglax"]
+
+[ext_resource type="Theme" uid="uid://cu6yoqe0up8hr" path="res://resources/themes/button_theme.tres" id="1_kb14h"]
+[ext_resource type="Script" uid="uid://blbowv0edisq8" path="res://scripts/menu/volume_controller.gd" id="2_fpae5"]
+[ext_resource type="PackedScene" uid="uid://dd1tbvndv8i1u" path="res://prefabs/UI/switch_button.tscn" id="3_fpae5"]
+
+[node name="volume_controller" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_kb14h")
+script = ExtResource("2_fpae5")
+bus_name = "Master"
+
+[node name="volume_label" type="Label" parent="."]
+layout_mode = 2
+offset_right = 301.0
+offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../window_mode_button")
+focus_neighbor_bottom = NodePath("../../music_volume_controller/volume_button")
+theme = ExtResource("1_kb14h")
+text = "Master Volume"
+
+[node name="control_button" parent="." instance=ExtResource("3_fpae5")]
+layout_mode = 1
+button_text = "100"
