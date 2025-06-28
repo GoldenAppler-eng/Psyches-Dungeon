@@ -13,7 +13,7 @@ func _ready() -> void:
 	focus_entered.connect(_on_focus_entered)
 	control_button.button_switched_pressed.connect(_on_volume_control_button_switched)
 
-	volume_label.text = bus_name + " " + volume_label.text
+	volume_label.text = bus_name + " Volume"
 
 	volume_value = 100 * db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index(bus_name)))
 	_update_volume_control_button_text()
@@ -22,10 +22,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():		
-		volume_label.text = "Volume"
-		
-		if not volume_label.text.contains(bus_name):
-			volume_label.text = bus_name + " " + volume_label.text
+		volume_label.text = bus_name + " Volume"
 
 func _on_focus_entered() -> void:
 	control_button.grab_focus()

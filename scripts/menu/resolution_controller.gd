@@ -22,6 +22,8 @@ func _ready() -> void:
 	control_button.button_pressed.connect(_on_control_button_pressed)
 	control_button.button_on_focus_exited.connect(_on_control_button_focus_exited)
 	
+	focus_entered.connect(_on_focus_entered)
+	
 	_update_control_button_text()
 	_set_button_focus_neighbours()
 
@@ -42,6 +44,9 @@ func _on_control_button_pressed() -> void:
 func _on_control_button_focus_exited() -> void:
 	display_resolution_mode_index = resolution_mode_index
 	_update_control_button_text()
+
+func _on_focus_entered() -> void:
+	control_button.grab_focus()
 
 func _update_control_button_text() -> void:
 	control_button.set_button_text(RESOLUTION_TEXT_DICT[display_resolution_mode_index])

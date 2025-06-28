@@ -2,7 +2,7 @@ extends Menu
 
 @export var idle_menu : Menu
 
-@export var settings_ui : SettingsUI
+@export var settings_ui : Control
 
 func enter() -> void:
 	super()
