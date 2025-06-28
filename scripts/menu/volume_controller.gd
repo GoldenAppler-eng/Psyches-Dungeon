@@ -1,6 +1,6 @@
 extends Control
 
-@onready var control_button: SwitchButton = $control_button
+@onready var control_button: SwitchButton = $VBoxContainer/control_button
 
 @export_enum("Master", "Music", "Sfx") var bus_name : String
 

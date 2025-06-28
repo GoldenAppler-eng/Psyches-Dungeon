@@ -1,3 +1,4 @@
+@tool
 class_name SwitchButton
 extends Control
 
@@ -14,6 +15,11 @@ func _ready() -> void:
 	_set_button_focus_neighbours()
 	
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		button.text = button_text
+		
+		return
+	
 	if not button.has_focus():
 		return
 	
