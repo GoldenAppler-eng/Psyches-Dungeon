@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://uf6ennr7sfqx"]
+
+[ext_resource type="Theme" uid="uid://cu6yoqe0up8hr" path="res://resources/themes/button_theme.tres" id="1_em75i"]
+[ext_resource type="Script" uid="uid://dg1w6gava77jf" path="res://scripts/menu/window_mode_controller.gd" id="2_4whcn"]
+[ext_resource type="PackedScene" uid="uid://dd1tbvndv8i1u" path="res://prefabs/UI/switch_button.tscn" id="3_ptd8d"]
+
+[node name="window_mode_controller" type="MarginContainer"]
+theme = ExtResource("1_em75i")
+script = ExtResource("2_4whcn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="window_mode_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../resolution_controller/resolution_button")
+focus_neighbor_bottom = NodePath("../master_volume_controller/volume_label")
+theme = ExtResource("1_em75i")
+text = "Window MODE"
+
+[node name="control_button" parent="VBoxContainer" instance=ExtResource("3_ptd8d")]
+layout_mode = 2
+button_text = "Fullscreen"
+button_minimum_length = 235.0
