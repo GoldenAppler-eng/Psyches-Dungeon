@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://di8bojp8w0r88"]
+[gd_scene load_steps=51 format=3 uid="uid://di8bojp8w0r88"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://blaij2o6hcbrg" path="res://sprites/progress_bar_textures/health_bar/health-bar-progress-20x5.png" id="7_fcfru"]
 [ext_resource type="AudioStream" uid="uid://bmmafhge2io63" path="res://audio/sfx/player_attack.wav" id="8_1gq37"]
 [ext_resource type="AudioStream" uid="uid://dh7b3tdymr3ol" path="res://audio/sfx/player_hit.wav" id="9_0fyjy"]
+[ext_resource type="Script" uid="uid://ce1nso6v2sti5" path="res://scripts/state_machine/state_machine.gd" id="11_ytpbi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouijc"]
 atlas = ExtResource("2_8m05b")
@@ -451,6 +452,25 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_k2ico")
 }
+
+[node name="movement_state_machine" type="Node" parent="."]
+script = ExtResource("11_ytpbi")
+
+[node name="idle_state" type="Node" parent="movement_state_machine"]
+
+[node name="move_state" type="Node" parent="movement_state_machine"]
+
+[node name="hurt_state" type="Node" parent="movement_state_machine"]
+
+[node name="dead_state" type="Node" parent="movement_state_machine"]
+
+[node name="respawn_state" type="Node" parent="movement_state_machine"]
+
+[node name="attack_state_machine" type="Node" parent="."]
+
+[node name="attack_state" type="Node" parent="attack_state_machine"]
+
+[node name="passive_state" type="Node" parent="attack_state_machine"]
 
 [connection signal="animation_finished" from="TopHalf" to="." method="_on_top_half_animation_finished"]
 [connection signal="timeout" from="InvinciblityTimer" to="." method="_on_invinciblity_timer_timeout"]
