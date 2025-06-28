@@ -28,8 +28,6 @@ const REGEN_RATE := 20
 
 var speed := MAX_SPEED
 
-var speed_modifier : float = 1
-
 var _invincible := false
 var _is_attacking := false
 var _is_respawning := false
@@ -76,9 +74,7 @@ func _player_movement(horizontal_direction : float, vertical_direction : float, 
 		speed = MAX_SPEED * sin(deg_to_rad(45))
 	else: 
 		speed = MAX_SPEED
-	
-	speed *= speed_modifier
-		
+			
 	velocity.x = horizontal_direction * speed * delta
 	velocity.y = vertical_direction * speed * delta
 
