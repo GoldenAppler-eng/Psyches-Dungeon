@@ -17,6 +17,8 @@ func _ready() -> void:
 
 	volume_value = 100 * db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index(bus_name)))
 	_update_volume_control_button_text()
+	
+	_set_button_focus_neighbours()
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():		
@@ -41,3 +43,12 @@ func _on_volume_control_button_switched(value : int) -> void:
 	
 func _update_volume_control_button_text() -> void:
 	control_button.set_button_text(str(volume_value))
+
+func _set_button_focus_neighbours() -> void:
+	control_button.focus_neighbor_bottom = focus_neighbor_bottom
+	control_button.focus_neighbor_top = focus_neighbor_top
+	control_button.focus_neighbor_left = focus_neighbor_left
+	control_button.focus_neighbor_right = focus_neighbor_right
+	
+	control_button.focus_next = focus_next
+	control_button.focus_previous = focus_previous

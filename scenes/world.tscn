@@ -197,13 +197,17 @@ text = "< WINDOWED  >"
 
 [node name="master_volume_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("19_ctatt")]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../music_volume_controller")
 
 [node name="music_volume_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("19_ctatt")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../master_volume_controller")
+focus_neighbor_bottom = NodePath("../sfx_volume_controller")
 bus_name = "Music"
 
 [node name="sfx_volume_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("19_ctatt")]
 layout_mode = 2
+focus_neighbor_top = NodePath("../music_volume_controller")
 bus_name = "Sfx"
 
 [node name="pause_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu", "settings_ui")]

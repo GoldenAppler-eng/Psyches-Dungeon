@@ -33,4 +33,4 @@ func _set_settings_enabled(enabled : bool) -> void:
 	settings_ui.process_mode = PROCESS_MODE_INHERIT if enabled else PROCESS_MODE_DISABLED
 	
 	if enabled:
-		settings_ui.custom_grab_focus()
+		settings_ui.grab_focus()

@@ -56,10 +56,10 @@ func install_sfx(node : Node) -> void:
 			button.focus_entered.connect( ui_sfx_play.bind("ui_hover") )			
 			button.pressed.connect( ui_sfx_play.bind("ui_pressed") )
 		
-		if i is SettingsUI:
-			var settings : SettingsUI = i as SettingsUI
+		if i is SwitchButton:
+			var switch_button : SwitchButton = i as SwitchButton
 			
-			settings.ui_switch.connect ( ui_sfx_play.bind("ui_switch") )
+			switch_button.button_switched.connect( ui_sfx_play.bind("ui_switch") )
 			
 		install_sfx(i)
 
