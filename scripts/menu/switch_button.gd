@@ -5,11 +5,14 @@ extends Control
 signal button_switched(value : int)
 
 @export var button_text : String
+@export var button_minimum_length : float
 
 @onready var button: Button = $HBoxContainer/Button
 
 func _ready() -> void:
 	button.text = button_text
+	
+	button.custom_minimum_size.x = button_minimum_length
 	
 	focus_entered.connect(_on_focus_entered)
 	_set_button_focus_neighbours()
@@ -17,7 +20,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		button.text = button_text
-		
+		button_minimum_length = button.size.x
+
 		return
 	
 	if not button.has_focus():

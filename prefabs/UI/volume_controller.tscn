@@ -23,4 +23,5 @@ text = "Master Volume"
 
 [node name="control_button" parent="VBoxContainer" instance=ExtResource("3_fpae5")]
 layout_mode = 2
-button_text = "100"
+size_flags_horizontal = 4
+button_minimum_length = 59.0

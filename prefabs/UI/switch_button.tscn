@@ -6,17 +6,20 @@
 offset_right = 36.0
 offset_bottom = 23.0
 script = ExtResource("1_hi3ma")
+button_text = "100"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="LeftArrowLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-text = "<"
+size_flags_horizontal = 0
+text = "< "
 
 [node name="Button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 
 [node name="RightArrowLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-text = ">"
+size_flags_horizontal = 8
+text = " >"

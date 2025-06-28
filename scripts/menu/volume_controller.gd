@@ -20,7 +20,7 @@ func _on_focus_entered() -> void:
 
 func _on_volume_control_button_switched(value : int) -> void:
 	volume_value += value
-	volume_value %= MAX_VOLUME_VALUE
+	volume_value %= MAX_VOLUME_VALUE + 1
 			
 	if volume_value < 0:
 		volume_value = MAX_VOLUME_VALUE
