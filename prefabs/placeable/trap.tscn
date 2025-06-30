@@ -33,12 +33,13 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p88kq"]
 size = Vector2(16, 16)
 
-[node name="trap" type="RigidBody2D"]
+[node name="trap" type="RigidBody2D" node_paths=PackedStringArray("damager_hitbox_component")]
 y_sort_enabled = true
 collision_layer = 16
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_4d2cc")
+damager_hitbox_component = NodePath("DamagerHitboxComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -49,31 +50,32 @@ sprite_frames = SubResource("SpriteFrames_2n0r4")
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_fr2w3")
 
-[node name="ActivatedArea" type="Area2D" parent="."]
-position = Vector2(0, 8)
-collision_layer = 0
-collision_mask = 12
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivatedArea"]
-shape = SubResource("RectangleShape2D_p88kq")
-
 [node name="ResetTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 5.0
 
 [node name="ActivatedSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("3_cycn3")
 bus = &"Sfx"
 
 [node name="DamagerHitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 36
 script = ExtResource("4_j4sfv")
+damage = 10
 metadata/_custom_type_script = "uid://dibu1m0sx5bch"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitboxComponent"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_p88kq")
 
-[connection signal="body_entered" from="ActivatedArea" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="ActivatedArea" to="." method="_on_area_2d_body_exited"]
+[node name="ActivationArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationArea2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_p88kq")
+
 [connection signal="timeout" from="ResetTimer" to="." method="_on_reset_timer_timeout"]
+[connection signal="body_entered" from="ActivationArea2D" to="." method="_on_activation_area_2d_body_entered"]
+[connection signal="body_exited" from="ActivationArea2D" to="." method="_on_activation_area_2d_body_exited"]

@@ -396,6 +396,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("6_ggkf6")
 health_component = NodePath("../HealthComponent")
+disable_on_hit = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableHitbox"]
 shape = SubResource("RectangleShape2D_5u5iw")
