@@ -48,22 +48,7 @@ func _physics_process(delta : float) -> void:
 	if _is_dead or _is_respawning:
 		return
 		
-	_player_movement(horizontal_direction, vertical_direction, delta)
 	_player_anim(horizontal_direction, vertical_direction, delta)
-
-func _player_movement(horizontal_direction : float, vertical_direction : float, delta : float) -> void:
-	if horizontal_direction > 0:
-		damager_hitbox.position.x = -damager_hitbox_offset;
-		
-		top_half_sprite.flip_h = true		
-		bottom_half_sprite.flip_h = true
-	elif horizontal_direction < 0:
-		damager_hitbox.position.x = damager_hitbox_offset;
-		
-		top_half_sprite.flip_h = false		
-		bottom_half_sprite.flip_h = false
-
-	move_and_slide()
 	
 func _player_anim(horizontal_direction : float, vertical_direction : float, delta : float) -> void:
 	if _invincible:
@@ -80,15 +65,6 @@ func _player_anim(horizontal_direction : float, vertical_direction : float, delt
 		else:
 			bottom_half_sprite.play("attack")
 			bottom_half_sprite.frame = top_half_sprite.frame
-	
-func apply_damage(amt : int) -> void:
-	if _invincible or _is_dead:
-		return
-		
-	health -= amt
-		
-	_invincible = true
-	hit_animation_player.play("hit")
 	
 func _die() -> void:
 	if _is_respawning:

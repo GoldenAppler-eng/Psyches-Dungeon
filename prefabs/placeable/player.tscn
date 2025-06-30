@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://di8bojp8w0r88"]
+[gd_scene load_steps=67 format=3 uid="uid://di8bojp8w0r88"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -25,6 +25,8 @@
 [ext_resource type="Script" uid="uid://darw3tjoye4pr" path="res://scripts/state_machine/respawn_state.gd" id="16_rcx1k"]
 [ext_resource type="Script" uid="uid://c202cpr7hlcsr" path="res://scripts/classes/SfxPlayer.gd" id="19_s620t"]
 [ext_resource type="Script" uid="uid://drxpfuh2tcgfe" path="res://scripts/classes/MovementController.gd" id="25_uwlt0"]
+[ext_resource type="Script" uid="uid://d4bylr2bdgvbh" path="res://scripts/components/UserInputController.gd" id="26_fvq0i"]
+[ext_resource type="Script" uid="uid://nhs0uvmxrvpv" path="res://scripts/components/PlayerAnimationController.gd" id="27_5dq54"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouijc"]
 atlas = ExtResource("2_8m05b")
@@ -498,9 +500,10 @@ initial_state = NodePath("idle state")
 script = ExtResource("13_fapun")
 move_state = NodePath("../move state")
 
-[node name="move state" type="Node" parent="movement state machine" node_paths=PackedStringArray("idle_state")]
+[node name="move state" type="Node" parent="movement state machine" node_paths=PackedStringArray("idle_state", "damager_hitbox_component")]
 script = ExtResource("14_xvp6k")
 idle_state = NodePath("../idle state")
+damager_hitbox_component = NodePath("../../DamagerHitbox")
 
 [node name="attack state machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_ytpbi")
@@ -529,6 +532,12 @@ bus = &"Sfx"
 
 [node name="MovementController" type="Node" parent="."]
 script = ExtResource("25_uwlt0")
+
+[node name="UserInputController" type="Node" parent="."]
+script = ExtResource("26_fvq0i")
+
+[node name="PlayerAnimationController" type="Node2D" parent="."]
+script = ExtResource("27_5dq54")
 
 [connection signal="animation_finished" from="TopHalf" to="." method="_on_top_half_animation_finished"]
 [connection signal="timeout" from="HealthBarVisibleTimer" to="." method="_on_health_bar_visible_timer_timeout"]

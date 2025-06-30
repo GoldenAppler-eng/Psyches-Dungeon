@@ -2,6 +2,8 @@ extends State
 
 @export var idle_state : State
 
+@export var damager_hitbox_component : DamagerHitboxComponent
+
 func enter() -> void:
 	super()
 	
@@ -24,7 +26,9 @@ func process_physics(delta : float) -> State:
 	
 	if movement_direction.x > 0:
 		anim_player.flip_animation_h(true)
+		damager_hitbox_component.flip_hitbox_h(true)
 	elif movement_direction.x < 0:
 		anim_player.flip_animation_h(false)
+		damager_hitbox_component.flip_hitbox_h(false)
 	
 	return null
