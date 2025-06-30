@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://di8bojp8w0r88"]
+[gd_scene load_steps=61 format=3 uid="uid://di8bojp8w0r88"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -14,8 +14,13 @@
 [ext_resource type="Script" uid="uid://ce1nso6v2sti5" path="res://scripts/state_machine/state_machine.gd" id="11_ytpbi"]
 [ext_resource type="Script" uid="uid://c53qqulwesjcf" path="res://scripts/state_machine/attack_state.gd" id="12_6gbnb"]
 [ext_resource type="Script" uid="uid://b3sajtnm0lu5i" path="res://scripts/state_machine/idle_state.gd" id="13_fapun"]
+[ext_resource type="Script" uid="uid://ce23gllj8csnq" path="res://scripts/state_machine/living_state.gd" id="13_rh52m"]
 [ext_resource type="Script" uid="uid://ds5i1g800tcw6" path="res://scripts/state_machine/passive_state.gd" id="13_u8pvg"]
+[ext_resource type="Script" uid="uid://yqnyw10ped4u" path="res://scripts/state_machine/hurt_state.gd" id="14_usjfm"]
 [ext_resource type="Script" uid="uid://cwb1q3barvufy" path="res://scripts/state_machine/move_state.gd" id="14_xvp6k"]
+[ext_resource type="Script" uid="uid://yrkk6isden8g" path="res://scripts/state_machine/dead_state.gd" id="15_ltkry"]
+[ext_resource type="Script" uid="uid://darw3tjoye4pr" path="res://scripts/state_machine/respawn_state.gd" id="16_rcx1k"]
+[ext_resource type="Script" uid="uid://c202cpr7hlcsr" path="res://scripts/classes/SfxPlayer.gd" id="19_s620t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouijc"]
 atlas = ExtResource("2_8m05b")
@@ -445,49 +450,71 @@ value = 100.0
 texture_under = ExtResource("6_516xt")
 texture_progress = ExtResource("7_fcfru")
 
-[node name="AttackSfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_1gq37")
-bus = &"Sfx"
-
-[node name="HitSfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_0fyjy")
-bus = &"Sfx"
-
 [node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_k2ico")
 }
 
-[node name="movement_state_machine" type="Node" parent="."]
+[node name="life state machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_ytpbi")
+initial_state = NodePath("living state")
 
-[node name="idle_state" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("move_state")]
+[node name="living state" type="Node" parent="life state machine" node_paths=PackedStringArray("hurt_state", "movement_state_machine", "attack_state_machine")]
+script = ExtResource("13_rh52m")
+hurt_state = NodePath("../hurt state")
+movement_state_machine = NodePath("../../movement state machine")
+attack_state_machine = NodePath("../../attack state machine")
+
+[node name="hurt state" type="Node" parent="life state machine" node_paths=PackedStringArray("living_state", "dead_state")]
+script = ExtResource("14_usjfm")
+living_state = NodePath("../living state")
+dead_state = NodePath("../dead state")
+
+[node name="dead state" type="Node" parent="life state machine" node_paths=PackedStringArray("respawn_state")]
+script = ExtResource("15_ltkry")
+respawn_state = NodePath("../respawn state")
+
+[node name="respawn state" type="Node" parent="life state machine" node_paths=PackedStringArray("living_state")]
+script = ExtResource("16_rcx1k")
+living_state = NodePath("../living state")
+
+[node name="movement state machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("11_ytpbi")
+initial_state = NodePath("idle state")
+
+[node name="idle state" type="Node" parent="movement state machine" node_paths=PackedStringArray("move_state")]
 script = ExtResource("13_fapun")
-move_state = NodePath("../move_state")
+move_state = NodePath("../move state")
 
-[node name="move_state" type="Node" parent="movement_state_machine" node_paths=PackedStringArray("idle_state")]
+[node name="move state" type="Node" parent="movement state machine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("14_xvp6k")
-idle_state = NodePath("../idle_state")
+idle_state = NodePath("../idle state")
 
-[node name="hurt_state" type="Node" parent="movement_state_machine"]
-
-[node name="dead_state" type="Node" parent="movement_state_machine"]
-
-[node name="respawn_state" type="Node" parent="movement_state_machine"]
-
-[node name="attack_state_machine" type="Node" parent="."]
+[node name="attack state machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_ytpbi")
+initial_state = NodePath("passive state")
 
-[node name="attack_state" type="Node" parent="attack_state_machine" node_paths=PackedStringArray("passive_state", "damager_hitbox")]
+[node name="passive state" type="Node" parent="attack state machine" node_paths=PackedStringArray("attack_state", "attack_cooldown_timer")]
+script = ExtResource("13_u8pvg")
+attack_state = NodePath("../attack state")
+attack_cooldown_timer = NodePath("../../AttackCooldownTimer")
+
+[node name="attack state" type="Node" parent="attack state machine" node_paths=PackedStringArray("passive_state", "damager_hitbox")]
 script = ExtResource("12_6gbnb")
-passive_state = NodePath("../passive_state")
+passive_state = NodePath("../passive state")
 damager_hitbox = NodePath("../../DamagerHitbox")
 
-[node name="passive_state" type="Node" parent="attack_state_machine" node_paths=PackedStringArray("attack_state", "attack_cooldown_timer")]
-script = ExtResource("13_u8pvg")
-attack_state = NodePath("../attack_state")
-attack_cooldown_timer = NodePath("../../AttackCooldownTimer")
+[node name="sfx player" type="Node" parent="."]
+script = ExtResource("19_s620t")
+
+[node name="attack" type="AudioStreamPlayer" parent="sfx player"]
+stream = ExtResource("8_1gq37")
+bus = &"Sfx"
+
+[node name="hit" type="AudioStreamPlayer" parent="sfx player"]
+stream = ExtResource("9_0fyjy")
+bus = &"Sfx"
 
 [connection signal="animation_finished" from="TopHalf" to="." method="_on_top_half_animation_finished"]
 [connection signal="timeout" from="InvinciblityTimer" to="." method="_on_invinciblity_timer_timeout"]

@@ -43,6 +43,7 @@ func _ready() -> void:
 	GlobalSignalBus.revert_controls.connect(_on_revert_controls)
 	GlobalSignalBus.shift_controls.connect(_on_revert_controls)
 	GlobalSignalBus.invert_controls.connect(_on_revert_controls)
+	
 	GlobalSignalBus.retry.connect(_on_game_retry)
 	
 	GlobalCardTimer.timeout.connect(_on_global_card_timer_timeout)

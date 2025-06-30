@@ -37,6 +37,9 @@ func change_state(next_state : State) -> void:
 	current_state = next_state
 	current_state.enter()
 
+func reset_state_machine() -> void:
+	change_state(initial_state)
+
 func check_for_override() -> void:
 	var override_state : OverrideState = check_state_override_request()
 

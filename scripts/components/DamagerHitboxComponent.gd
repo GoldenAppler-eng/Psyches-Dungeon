@@ -13,8 +13,8 @@ func flip_hitbox_h(flipped : bool) -> void:
 
 func deal_damage_to_area() -> void:
 	for area in get_overlapping_areas():
-		if not (area.owner is Enemy):
+		if not (area.owner is DamagableBody2D):
 			continue
 			
-		var enemy : Enemy = area.owner as Enemy
-		enemy.apply_damage(damage)
+		var damageable_body : DamagableBody2D = area.owner as DamagableBody2D
+		damageable_body.apply_damage(damage)
