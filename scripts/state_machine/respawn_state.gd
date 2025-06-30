@@ -2,8 +2,12 @@ extends State
 
 @export var living_state : State
 
+@export var regeneration_component : RegenerationComponent
+
 func enter() -> void:
 	super()
+	
+	regeneration_component.start_regeneration()
 	
 func exit() -> void:
 	super()

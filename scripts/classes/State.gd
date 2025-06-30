@@ -11,6 +11,8 @@ func init(controller : InputController, anim_player : AnimationController, sfx_p
 	self.anim_player = anim_player
 	self.sfx_player = sfx_player
 	self.movement_controller = movement_controller
+	
+	extra_init()
 
 func enter() -> void:
 	pass
@@ -23,3 +25,6 @@ func process_frame(delta : float) -> State:
 	
 func process_physics(delta : float) -> State:
 	return null
+
+func extra_init() -> void:
+	pass

@@ -491,9 +491,10 @@ invincibility_timer = NodePath("../../InvinciblityTimer")
 script = ExtResource("15_ltkry")
 respawn_state = NodePath("../respawn state")
 
-[node name="respawn state" type="Node" parent="life state machine" node_paths=PackedStringArray("living_state")]
+[node name="respawn state" type="Node" parent="life state machine" node_paths=PackedStringArray("living_state", "regeneration_component")]
 script = ExtResource("16_rcx1k")
 living_state = NodePath("../living state")
+regeneration_component = NodePath("../../RegenerationComponent")
 
 [node name="movement state machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_ytpbi")
