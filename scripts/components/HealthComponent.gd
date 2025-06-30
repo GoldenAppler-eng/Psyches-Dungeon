@@ -4,7 +4,7 @@ extends Node2D
 signal health_regened
 signal health_lost
 
-@export var max_health : int
+@export var max_health : int = 100
 var current_health : int
 
 func _ready() -> void:

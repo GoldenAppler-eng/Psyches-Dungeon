@@ -1,6 +1,8 @@
 class_name RegenerationComponent
 extends Node2D
 
+signal full_regeneration_finished
+
 @export var health_component : HealthComponent
 
 @export var regeneration_start_timer : Timer
@@ -9,7 +11,15 @@ extends Node2D
 @export var regen_amt : int = 10
 
 func _ready() -> void:
-	pass	
+	regeneration_start_timer.timeout.connect(_on_regeneration_start_timer_timeout)
+	regeneration_step_timer.timeout.connect(_on_regeneration_step_timer_timeout)	
+	
+func start_regeneration() -> void:
+	regeneration_start_timer.start()
+	
+func stop_regeneration() -> void:
+	regeneration_start_timer.stop()
+	regeneration_step_timer.stop()
 	
 func _on_regeneration_start_timer_timeout() -> void:
 	regeneration_step_timer.start()
@@ -19,3 +29,4 @@ func _on_regeneration_step_timer_timeout() -> void:
 	
 	if health_component.is_health_full():
 		regeneration_step_timer.stop()
+		full_regeneration_finished.emit()
