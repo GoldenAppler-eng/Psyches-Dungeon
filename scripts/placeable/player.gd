@@ -6,9 +6,6 @@ extends DamagableBody2D
 
 @onready var damager_hitbox: Area2D = $%DamagerHitbox
 
-@onready var top_half_sprite : AnimatedSprite2D = $%TopHalf
-@onready var bottom_half_sprite : AnimatedSprite2D = $%BottomHalf
-
 @onready var hit_animation_player : AnimationPlayer = %HitAnimationPlayer
 
 @onready var health_bar : TextureProgressBar = $%health_bar
@@ -44,28 +41,7 @@ func _physics_process(delta : float) -> void:
 	
 	var horizontal_direction := Input.get_axis("move_left", "move_right")
 	var vertical_direction := Input.get_axis("move_up", "move_down");
-	
-	if _is_dead or _is_respawning:
-		return
 		
-	_player_anim(horizontal_direction, vertical_direction, delta)
-	
-func _player_anim(horizontal_direction : float, vertical_direction : float, delta : float) -> void:
-	if _invincible:
-		hit_animation_player.play("hit")
-	
-	if not _is_attacking:
-		if horizontal_direction or vertical_direction:
-			_play_animation("run")
-		else:
-			_play_animation("idle")
-	else:
-		if horizontal_direction or vertical_direction:
-			bottom_half_sprite.play("run")
-		else:
-			bottom_half_sprite.play("attack")
-			bottom_half_sprite.frame = top_half_sprite.frame
-	
 func _die() -> void:
 	if _is_respawning:
 		return
@@ -73,17 +49,12 @@ func _die() -> void:
 	_is_dead = true
 	
 	GlobalSignalBus.player_death.emit()
-	
-	top_half_sprite.play("death")
-	bottom_half_sprite.visible = false
 
 func _respawn() -> void:
 	_is_dead = false
 	_invincible = true
 	_is_respawning = true
-		
-	top_half_sprite.play("respawn")
-	bottom_half_sprite.visible = false
+
 
 func _update_health() -> void:
 	health_bar.value = health
@@ -100,12 +71,7 @@ func _on_game_retry() -> void:
 	_is_respawning = false
 	_is_dead = false
 	_regen_ready = false
-	
-	bottom_half_sprite.visible = true
-	top_half_sprite.visible = true
-	
-	_play_animation("idle")
-	
+		
 	health_bar_visible_timer.stop()
 
 func _on_invinciblity_timer_timeout() -> void:
@@ -120,12 +86,6 @@ func _on_top_half_animation_finished() -> void:
 	if top_half_sprite.animation == "respawn":
 		bottom_half_sprite.visible = true		
 		_is_respawning = false
-		
-func _play_animation(anim_name : String) -> void:
-	top_half_sprite.play(anim_name)
-	bottom_half_sprite.play(anim_name)
-	
-	top_half_sprite.frame = bottom_half_sprite.frame
 
 func _on_health_bar_visible_timer_timeout() -> void:
 	health_bar.visible = false
