@@ -4,10 +4,13 @@ extends State
 
 @export var damageable_hitbox_component : DamageableHitboxComponent
 
+@export var invincibility_timer : Timer
+
 @export var movement_state_machine : StateMachine
 @export var attack_state_machine : StateMachine
 
 var _hurt_flag : bool = false
+var _invincible_flag : bool = false
 
 func extra_init() -> void:
 	movement_state_machine.init(controller, anim_player, sfx_player, movement_controller)

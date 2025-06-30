@@ -4,12 +4,12 @@ extends State
 @export var dead_state : State
 
 @export var health_component : HealthComponent
-@export var invincibility_timer : Timer
+@export var hurt_timer : Timer
 
-var _invincible : bool = true
+var _hurt : bool = true
 
 func extra_init() -> void:	
-	invincibility_timer.timeout.connect(_on_invincibility_timer_timeout)
+	hurt_timer.timeout.connect(_on_hurt_timer_timeout)
 
 func enter() -> void:
 	super()
@@ -17,8 +17,8 @@ func enter() -> void:
 	anim_player.play_animation("hit")
 	sfx_player.play_sfx("hit")
 	
-	_invincible = true
-	invincibility_timer.start()
+	_hurt = true
+	hurt_timer.start()
 	
 func exit() -> void:
 	super()
@@ -27,7 +27,7 @@ func process_frame(delta : float) -> State:
 	return null
 	
 func process_physics(delta : float) -> State:
-	if _invincible:
+	if _hurt:
 		return null
 	
 	if check_dead():
@@ -41,5 +41,5 @@ func check_dead() -> bool:
 		
 	return false
 
-func _on_invincibility_timer_timeout() -> void:
-	_invincible = false
+func _on_hurt_timer_timeout() -> void:
+	_hurt = false

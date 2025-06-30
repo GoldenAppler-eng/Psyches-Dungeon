@@ -417,19 +417,20 @@ shape = SubResource("RectangleShape2D_tkdcx")
 script = ExtResource("11_ytpbi")
 initial_state = NodePath("living state")
 
-[node name="living state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("hurt_state", "damageable_hitbox_component", "movement_state_machine", "attack_state_machine")]
+[node name="living state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("hurt_state", "damageable_hitbox_component", "invincibility_timer", "movement_state_machine", "attack_state_machine")]
 script = ExtResource("13_rh52m")
 hurt_state = NodePath("../hurt state")
 damageable_hitbox_component = NodePath("../../../DamageableHitbox")
+invincibility_timer = NodePath("../../../Timers/InvinciblityTimer")
 movement_state_machine = NodePath("../../movement state machine")
 attack_state_machine = NodePath("../../attack state machine")
 
-[node name="hurt state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("living_state", "dead_state", "health_component", "invincibility_timer")]
+[node name="hurt state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("living_state", "dead_state", "health_component", "hurt_timer")]
 script = ExtResource("14_usjfm")
 living_state = NodePath("../living state")
 dead_state = NodePath("../dead state")
 health_component = NodePath("../../../HealthComponent")
-invincibility_timer = NodePath("../../../Timers/InvinciblityTimer")
+hurt_timer = NodePath("../../../Timers/HurtTimer")
 
 [node name="dead state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("respawn_state")]
 script = ExtResource("15_ltkry")
@@ -525,6 +526,9 @@ one_shot = true
 wait_time = 5.0
 
 [node name="InvinciblityTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="HurtTimer" type="Timer" parent="Timers"]
 one_shot = true
 
 [node name="RespawnTimer" type="Timer" parent="Timers"]
