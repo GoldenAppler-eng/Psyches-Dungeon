@@ -28,5 +28,5 @@ func _on_regeneration_step_timer_timeout() -> void:
 	health_component.change_health(regen_amt)
 	
 	if health_component.is_health_full():
-		regeneration_step_timer.stop()
+		stop_regeneration()
 		full_regeneration_finished.emit()
