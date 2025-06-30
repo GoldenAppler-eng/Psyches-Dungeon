@@ -410,11 +410,12 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 5.0
 
-[node name="DamageableHitbox" type="Area2D" parent="."]
+[node name="DamageableHitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 position = Vector2(-0.5, -8)
 collision_layer = 32
 monitoring = false
 script = ExtResource("6_ggkf6")
+health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableHitbox"]
 shape = SubResource("RectangleShape2D_5u5iw")
@@ -472,10 +473,12 @@ hurt_state = NodePath("../hurt state")
 movement_state_machine = NodePath("../../movement state machine")
 attack_state_machine = NodePath("../../attack state machine")
 
-[node name="hurt state" type="Node" parent="life state machine" node_paths=PackedStringArray("living_state", "dead_state")]
+[node name="hurt state" type="Node" parent="life state machine" node_paths=PackedStringArray("living_state", "dead_state", "health_component", "invincibility_timer")]
 script = ExtResource("14_usjfm")
 living_state = NodePath("../living state")
 dead_state = NodePath("../dead state")
+health_component = NodePath("../../HealthComponent")
+invincibility_timer = NodePath("../../InvinciblityTimer")
 
 [node name="dead state" type="Node" parent="life state machine" node_paths=PackedStringArray("respawn_state")]
 script = ExtResource("15_ltkry")
