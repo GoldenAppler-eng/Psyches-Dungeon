@@ -3,9 +3,22 @@ extends DamagableBody2D
 
 @onready var respawn_timer : Timer = $%RespawnTimer
 
+@export var main_state_machine : StateMachine
+
+@export var animation_controller : AnimationController
+@export var sfx_player : SfxPlayer
+@export var movement_controller : MovementController
+@export var input_controller : InputController
+
 var init_position : Vector2 
 
 func _ready() -> void:
+	animation_controller.init()
+	sfx_player.init()
+	movement_controller.init(self)
+	
+	main_state_machine.init(input_controller, animation_controller, sfx_player, movement_controller)
+	
 	GlobalSignalBus.player_respawn.connect(_on_received_player_respawn_signal)
 	GlobalSignalBus.revert_controls.connect(_on_revert_controls)
 	GlobalSignalBus.shift_controls.connect(_on_revert_controls)
@@ -18,7 +31,7 @@ func _ready() -> void:
 	init_position = global_position
 	
 func _physics_process(delta : float) -> void:
-	pass
+	main_state_machine.process_physics(delta)
 		
 func _die() -> void:
 	GlobalSignalBus.player_death.emit()

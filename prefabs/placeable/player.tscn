@@ -355,11 +355,16 @@ _data = {
 &"hit": SubResource("Animation_myfrg")
 }
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("main_state_machine", "animation_controller", "sfx_player", "movement_controller", "input_controller")]
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 258
 script = ExtResource("1_s62gp")
+main_state_machine = NodePath("StateMachines/life state machine")
+animation_controller = NodePath("PlayerAnimationController")
+sfx_player = NodePath("SfxPlayer")
+movement_controller = NodePath("MovementController")
+input_controller = NodePath("UserInputController")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)

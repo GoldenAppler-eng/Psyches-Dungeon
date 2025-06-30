@@ -10,6 +10,9 @@ extends State
 var _hurt_flag : bool = false
 
 func extra_init() -> void:
+	movement_state_machine.init(controller, anim_player, sfx_player, movement_controller)
+	attack_state_machine.init(controller, anim_player, sfx_player, movement_controller)
+
 	damageable_hitbox_component.took_damage.connect(_on_take_damage)
 
 func enter() -> void:

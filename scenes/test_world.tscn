@@ -1,15 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://47pk3lvrw00k"]
+[gd_scene load_steps=2 format=3 uid="uid://47pk3lvrw00k"]
 
-[ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/enemy.tscn" id="2_dhfeq"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="2_wgghm"]
 
 [node name="test_world" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("2_wgghm")]
 position = Vector2(72, 77)
-
-[node name="enemy" parent="." instance=ExtResource("2_dhfeq")]
-position = Vector2(111, 70)
-_guaranteed_gold = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
