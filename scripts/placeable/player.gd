@@ -1,16 +1,6 @@
 class_name Player
 extends DamagableBody2D
 
-const MAX_HEALTH := 100
-const MAX_SPEED := 15000.0
-const DAMAGE := 20
-
-const REGEN_RATE := 20
-
-@onready var invinciblity_timer : Timer = $%InvinciblityTimer
-@onready var attack_cooldown_timer : Timer = $%AttackCooldownTimer
-@onready var regen_start_timer : Timer = $%RegenStartTimer
-@onready var regen_timer : Timer = $%RegenTimer
 @onready var health_bar_visible_timer : Timer = $%HealthBarVisibleTimer
 @onready var game_over_timer : Timer = $%GameOverTimer
 @onready var respawn_timer : Timer = $%RespawnTimer
@@ -20,13 +10,9 @@ const REGEN_RATE := 20
 @onready var top_half_sprite : AnimatedSprite2D = $%TopHalf
 @onready var bottom_half_sprite : AnimatedSprite2D = $%BottomHalf
 
-@onready var hit_sfx : AudioStreamPlayer = $HitSfx
-
 @onready var hit_animation_player : AnimationPlayer = %HitAnimationPlayer
 
 @onready var health_bar : TextureProgressBar = $%health_bar
-
-var speed := MAX_SPEED
 
 var _invincible := false
 var _is_attacking := false
@@ -45,16 +31,12 @@ func _ready() -> void:
 	GlobalSignalBus.invert_controls.connect(_on_revert_controls)
 	
 	GlobalSignalBus.retry.connect(_on_game_retry)
-	
-	GlobalCardTimer.timeout.connect(_on_global_card_timer_timeout)
-	
+		
 	Global.global_player = self
 	
 	damager_hitbox_offset = damager_hitbox.position.x
 	init_position = global_position
 	
-	health = MAX_HEALTH
-
 func _physics_process(delta : float) -> void:
 	if _is_dead:
 		return
@@ -71,14 +53,6 @@ func _physics_process(delta : float) -> void:
 	_player_anim(horizontal_direction, vertical_direction, delta)
 
 func _player_movement(horizontal_direction : float, vertical_direction : float, delta : float) -> void:
-	if horizontal_direction and vertical_direction :
-		speed = MAX_SPEED * sin(deg_to_rad(45))
-	else: 
-		speed = MAX_SPEED
-			
-	velocity.x = horizontal_direction * speed * delta
-	velocity.y = vertical_direction * speed * delta
-
 	if horizontal_direction > 0:
 		damager_hitbox.position.x = -damager_hitbox_offset;
 		
@@ -111,19 +85,12 @@ func _player_anim(horizontal_direction : float, vertical_direction : float, delt
 func apply_damage(amt : int) -> void:
 	if _invincible or _is_dead:
 		return
-	
-	hit_sfx.play()
-	
+		
 	health -= amt
 		
 	_invincible = true
 	hit_animation_player.play("hit")
 	
-	invinciblity_timer.start()
-	
-	regen_start_timer.stop()
-	regen_timer.stop()
-
 func _die() -> void:
 	if _is_respawning:
 		return
@@ -141,31 +108,20 @@ func _respawn() -> void:
 	_is_dead = false
 	_invincible = true
 	_is_respawning = true
-	
-	health = MAX_HEALTH
-	
+		
 	top_half_sprite.play("respawn")
 	bottom_half_sprite.visible = false
 
 func _update_health() -> void:
-	health = clamp(health, 0, MAX_HEALTH)
-		
 	health_bar.value = health
-	
-	if health < MAX_HEALTH:
-		health_bar.visible = true
 	
 	if health <= 0:
 		_die()
 
-func _regen_health() -> void:
-	health += REGEN_RATE
 
 func _on_game_retry() -> void:
 	global_position = init_position
-	
-	health = MAX_HEALTH
-	
+		
 	_invincible = false
 	_is_attacking = false
 	_is_respawning = false
@@ -177,18 +133,12 @@ func _on_game_retry() -> void:
 	
 	_play_animation("idle")
 	
-	invinciblity_timer.stop()
-	attack_cooldown_timer.stop()
-	regen_start_timer.stop()
 	health_bar_visible_timer.stop()
-	regen_timer.stop()
 	game_over_timer.stop()
 
 func _on_invinciblity_timer_timeout() -> void:
 	_invincible = false
-	
-	regen_start_timer.start()
-	
+		
 	hit_animation_player.play("RESET")
 
 func _on_top_half_animation_finished() -> void:
@@ -198,28 +148,12 @@ func _on_top_half_animation_finished() -> void:
 	if top_half_sprite.animation == "respawn":
 		bottom_half_sprite.visible = true		
 		_is_respawning = false
-
-		invinciblity_timer.start()
 		
 func _play_animation(anim_name : String) -> void:
 	top_half_sprite.play(anim_name)
 	bottom_half_sprite.play(anim_name)
 	
 	top_half_sprite.frame = bottom_half_sprite.frame
-
-func _on_global_card_timer_timeout() -> void:
-	pass
-
-func _on_regen_start_timer_timeout() -> void:
-	regen_timer.start()
-	
-func _on_regen_timer_timeout() -> void:
-	_regen_health()
-	
-	if health >= MAX_HEALTH:
-		regen_timer.stop()
-		
-		health_bar_visible_timer.start()
 
 func _on_health_bar_visible_timer_timeout() -> void:
 	health_bar.visible = false

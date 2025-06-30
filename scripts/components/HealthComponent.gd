@@ -12,6 +12,7 @@ func _ready() -> void:
 	
 func change_health(amt : int) -> void:
 	current_health += amt
+	current_health = clamp(current_health, 0, max_health)
 	
 	if amt > 0:
 		health_regened.emit()
