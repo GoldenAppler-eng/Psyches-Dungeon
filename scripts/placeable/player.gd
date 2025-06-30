@@ -2,7 +2,6 @@ class_name Player
 extends DamagableBody2D
 
 @onready var health_bar_visible_timer : Timer = $%HealthBarVisibleTimer
-@onready var game_over_timer : Timer = $%GameOverTimer
 @onready var respawn_timer : Timer = $%RespawnTimer
 
 @onready var damager_hitbox: Area2D = $%DamagerHitbox
@@ -102,8 +101,6 @@ func _die() -> void:
 	top_half_sprite.play("death")
 	bottom_half_sprite.visible = false
 
-	game_over_timer.start()
-
 func _respawn() -> void:
 	_is_dead = false
 	_invincible = true
@@ -134,7 +131,6 @@ func _on_game_retry() -> void:
 	_play_animation("idle")
 	
 	health_bar_visible_timer.stop()
-	game_over_timer.stop()
 
 func _on_invinciblity_timer_timeout() -> void:
 	_invincible = false
@@ -160,14 +156,12 @@ func _on_health_bar_visible_timer_timeout() -> void:
 
 func _on_received_player_respawn_signal() -> void:
 	respawn_timer.start()
-	game_over_timer.stop()
 
 func _on_game_over_timer_timeout() -> void:
 	GlobalSignalBus.game_over.emit()
 
 func _on_respawn_timer_timeout() -> void:
 	_respawn()
-	game_over_timer.stop()
 
 func _on_revert_controls() -> void:
 	Input.action_release("move_down")
