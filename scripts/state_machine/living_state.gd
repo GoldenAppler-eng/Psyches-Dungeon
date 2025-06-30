@@ -9,9 +9,7 @@ extends State
 
 var _hurt_flag : bool = false
 
-func init(controller : InputController, anim_player : AnimationController, sfx_player : SfxPlayer, movement_controller : MovementController) -> void:
-	super(controller, anim_player , sfx_player, movement_controller)
-	
+func extra_init() -> void:
 	damageable_hitbox_component.took_damage.connect(_on_take_damage)
 
 func enter() -> void:

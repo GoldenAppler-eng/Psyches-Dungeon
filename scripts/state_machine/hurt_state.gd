@@ -8,9 +8,7 @@ extends State
 
 var _invincible : bool = true
 
-func init(controller : InputController, anim_player : AnimationController, sfx_player : SfxPlayer, movement_controller : MovementController) -> void:
-	super(controller, anim_player , sfx_player, movement_controller)
-	
+func extra_init() -> void:	
 	invincibility_timer.timeout.connect(_on_invincibility_timer_timeout)
 
 func enter() -> void:

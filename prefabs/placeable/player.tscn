@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://di8bojp8w0r88"]
+[gd_scene load_steps=65 format=3 uid="uid://di8bojp8w0r88"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -6,11 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://v1wftaebrqwp" path="res://sprites/knight-final-90x36-Sheet.png" id="2_ytfcl"]
 [ext_resource type="Script" uid="uid://dl3m8bjsg333d" path="res://scripts/placeable/RoomDetector.gd" id="3_0ed2m"]
 [ext_resource type="Texture2D" uid="uid://bnw6qsinnrdh" path="res://sprites/knight-final-bottom-half-90x36-Sheet.png" id="4_s44aa"]
-[ext_resource type="Texture2D" uid="uid://cmfu7x0fdldyf" path="res://sprites/progress_bar_textures/health_bar/health-bar-under-20x5.png" id="6_516xt"]
 [ext_resource type="Script" uid="uid://2entraauuyax" path="res://scripts/components/DamageableHitboxComponent.gd" id="6_ggkf6"]
 [ext_resource type="Script" uid="uid://c2qjbrdw0kppt" path="res://scripts/components/RegenerationComponent.gd" id="6_rfdks"]
 [ext_resource type="Script" uid="uid://dibu1m0sx5bch" path="res://scripts/components/DamagerHitboxComponent.gd" id="6_u8pvg"]
-[ext_resource type="Texture2D" uid="uid://blaij2o6hcbrg" path="res://sprites/progress_bar_textures/health_bar/health-bar-progress-20x5.png" id="7_fcfru"]
 [ext_resource type="AudioStream" uid="uid://bmmafhge2io63" path="res://audio/sfx/player_attack.wav" id="8_1gq37"]
 [ext_resource type="AudioStream" uid="uid://dh7b3tdymr3ol" path="res://audio/sfx/player_hit.wav" id="9_0fyjy"]
 [ext_resource type="Script" uid="uid://bvv3mec31i7dv" path="res://scripts/components/HealthComponent.gd" id="11_ddk21"]
@@ -27,6 +25,18 @@
 [ext_resource type="Script" uid="uid://drxpfuh2tcgfe" path="res://scripts/classes/MovementController.gd" id="25_uwlt0"]
 [ext_resource type="Script" uid="uid://d4bylr2bdgvbh" path="res://scripts/components/UserInputController.gd" id="26_fvq0i"]
 [ext_resource type="Script" uid="uid://nhs0uvmxrvpv" path="res://scripts/components/PlayerAnimationController.gd" id="27_5dq54"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_826fu"]
+size = Vector2(13, 19)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iy7w6"]
+radius = 5.09902
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5u5iw"]
+size = Vector2(17, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdcx"]
+size = Vector2(51, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouijc"]
 atlas = ExtResource("2_8m05b")
@@ -284,24 +294,12 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_826fu"]
-size = Vector2(13, 19)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5u5iw"]
-size = Vector2(17, 22)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdcx"]
-size = Vector2(51, 21)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_iy7w6"]
-radius = 5.09902
-
 [sub_resource type="Animation" id="Animation_qc7wd"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomHalf:material:shader_parameter/effect_on")
+tracks/0/path = NodePath("PlayerAnimationController/BottomHalf:material:shader_parameter/effect_on")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -313,7 +311,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TopHalf:material:shader_parameter/effect_on")
+tracks/1/path = NodePath("PlayerAnimationController/TopHalf:material:shader_parameter/effect_on")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -329,7 +327,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomHalf:material:shader_parameter/effect_on")
+tracks/0/path = NodePath("PlayerAnimationController/BottomHalf:material:shader_parameter/effect_on")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -341,7 +339,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TopHalf:material:shader_parameter/effect_on")
+tracks/1/path = NodePath("PlayerAnimationController/TopHalf:material:shader_parameter/effect_on")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -363,52 +361,27 @@ collision_layer = 4
 collision_mask = 258
 script = ExtResource("1_s62gp")
 
-[node name="TopHalf" type="AnimatedSprite2D" parent="."]
-material = ExtResource("2_r0tfm")
-position = Vector2(1, -16)
-sprite_frames = SubResource("SpriteFrames_vcljs")
-animation = &"attack"
-autoplay = "idle"
-
-[node name="BottomHalf" type="AnimatedSprite2D" parent="."]
-z_index = -1
-material = ExtResource("2_r0tfm")
-position = Vector2(1, -16)
-sprite_frames = SubResource("SpriteFrames_0cdcd")
-animation = &"idle"
-autoplay = "idle"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_826fu")
 
-[node name="InvinciblityTimer" type="Timer" parent="."]
-one_shot = true
+[node name="RoomDetector" type="Area2D" parent="."]
+position = Vector2(-1, -11)
+collision_layer = 0
+collision_mask = 2048
+script = ExtResource("3_0ed2m")
 
-[node name="AttackCooldownTimer" type="Timer" parent="."]
-wait_time = 0.3
-one_shot = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomDetector"]
+shape = SubResource("CircleShape2D_iy7w6")
 
-[node name="RegenStartTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="RegenTimer" type="Timer" parent="."]
-wait_time = 5.0
-
-[node name="HealthBarVisibleTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 3.0
-one_shot = true
-
-[node name="RespawnTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-one_shot = true
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("11_ddk21")
 
 [node name="RegenerationComponent" type="Node2D" parent="." node_paths=PackedStringArray("health_component", "regeneration_start_timer", "regeneration_step_timer")]
 script = ExtResource("6_rfdks")
 health_component = NodePath("../HealthComponent")
-regeneration_start_timer = NodePath("../RegenStartTimer")
-regeneration_step_timer = NodePath("../RegenTimer")
+regeneration_start_timer = NodePath("../Timers/RegenStartTimer")
+regeneration_step_timer = NodePath("../Timers/RegenStepTimer")
 regen_amt = 20
 
 [node name="DamageableHitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
@@ -432,90 +405,89 @@ script = ExtResource("6_u8pvg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitbox"]
 shape = SubResource("RectangleShape2D_tkdcx")
 
-[node name="RoomDetector" type="Area2D" parent="."]
-position = Vector2(-1, -11)
-collision_layer = 0
-collision_mask = 2048
-script = ExtResource("3_0ed2m")
+[node name="StateMachines" type="Node" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomDetector"]
-shape = SubResource("CircleShape2D_iy7w6")
-
-[node name="health_bar" type="TextureProgressBar" parent="."]
-unique_name_in_owner = true
-visible = false
-z_index = 50
-z_as_relative = false
-offset_left = -10.0
-offset_top = -40.0
-offset_right = 10.0
-offset_bottom = -35.0
-step = 10.0
-value = 100.0
-texture_under = ExtResource("6_516xt")
-texture_progress = ExtResource("7_fcfru")
-
-[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_k2ico")
-}
-
-[node name="HealthComponent" type="Node2D" parent="."]
-script = ExtResource("11_ddk21")
-
-[node name="life state machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="life state machine" type="Node" parent="StateMachines" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_ytpbi")
 initial_state = NodePath("living state")
 
-[node name="living state" type="Node" parent="life state machine" node_paths=PackedStringArray("hurt_state", "movement_state_machine", "attack_state_machine")]
+[node name="living state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("hurt_state", "damageable_hitbox_component", "movement_state_machine", "attack_state_machine")]
 script = ExtResource("13_rh52m")
 hurt_state = NodePath("../hurt state")
+damageable_hitbox_component = NodePath("../../../DamageableHitbox")
 movement_state_machine = NodePath("../../movement state machine")
 attack_state_machine = NodePath("../../attack state machine")
 
-[node name="hurt state" type="Node" parent="life state machine" node_paths=PackedStringArray("living_state", "dead_state", "health_component", "invincibility_timer")]
+[node name="hurt state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("living_state", "dead_state", "health_component", "invincibility_timer")]
 script = ExtResource("14_usjfm")
 living_state = NodePath("../living state")
 dead_state = NodePath("../dead state")
-health_component = NodePath("../../HealthComponent")
-invincibility_timer = NodePath("../../InvinciblityTimer")
+health_component = NodePath("../../../HealthComponent")
+invincibility_timer = NodePath("../../../Timers/InvinciblityTimer")
 
-[node name="dead state" type="Node" parent="life state machine" node_paths=PackedStringArray("respawn_state")]
+[node name="dead state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("respawn_state")]
 script = ExtResource("15_ltkry")
 respawn_state = NodePath("../respawn state")
 
-[node name="respawn state" type="Node" parent="life state machine" node_paths=PackedStringArray("living_state", "regeneration_component")]
+[node name="respawn state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("living_state", "regeneration_component")]
 script = ExtResource("16_rcx1k")
 living_state = NodePath("../living state")
-regeneration_component = NodePath("../../RegenerationComponent")
+regeneration_component = NodePath("../../../RegenerationComponent")
 
-[node name="movement state machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="movement state machine" type="Node" parent="StateMachines" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_ytpbi")
 initial_state = NodePath("idle state")
 
-[node name="idle state" type="Node" parent="movement state machine" node_paths=PackedStringArray("move_state")]
+[node name="idle state" type="Node" parent="StateMachines/movement state machine" node_paths=PackedStringArray("move_state")]
 script = ExtResource("13_fapun")
 move_state = NodePath("../move state")
 
-[node name="move state" type="Node" parent="movement state machine" node_paths=PackedStringArray("idle_state", "damager_hitbox_component")]
+[node name="move state" type="Node" parent="StateMachines/movement state machine" node_paths=PackedStringArray("idle_state", "damager_hitbox_component")]
 script = ExtResource("14_xvp6k")
 idle_state = NodePath("../idle state")
-damager_hitbox_component = NodePath("../../DamagerHitbox")
+damager_hitbox_component = NodePath("../../../DamagerHitbox")
 
-[node name="attack state machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="attack state machine" type="Node" parent="StateMachines" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_ytpbi")
 initial_state = NodePath("passive state")
 
-[node name="passive state" type="Node" parent="attack state machine" node_paths=PackedStringArray("attack_state", "attack_cooldown_timer")]
+[node name="passive state" type="Node" parent="StateMachines/attack state machine" node_paths=PackedStringArray("attack_state", "attack_cooldown_timer")]
 script = ExtResource("13_u8pvg")
 attack_state = NodePath("../attack state")
-attack_cooldown_timer = NodePath("../../AttackCooldownTimer")
+attack_cooldown_timer = NodePath("../../../Timers/AttackCooldownTimer")
 
-[node name="attack state" type="Node" parent="attack state machine" node_paths=PackedStringArray("passive_state", "damager_hitbox")]
+[node name="attack state" type="Node" parent="StateMachines/attack state machine" node_paths=PackedStringArray("passive_state", "damager_hitbox")]
 script = ExtResource("12_6gbnb")
 passive_state = NodePath("../passive state")
-damager_hitbox = NodePath("../../DamagerHitbox")
+damager_hitbox = NodePath("../../../DamagerHitbox")
+
+[node name="PlayerAnimationController" type="Node2D" parent="." node_paths=PackedStringArray("top_half_sprite", "bottom_half_sprite", "animation_player")]
+script = ExtResource("27_5dq54")
+top_half_sprite = NodePath("TopHalf")
+bottom_half_sprite = NodePath("BottomHalf")
+animation_player = NodePath("HitAnimationPlayer")
+
+[node name="TopHalf" type="AnimatedSprite2D" parent="PlayerAnimationController"]
+material = ExtResource("2_r0tfm")
+position = Vector2(1, -16)
+sprite_frames = SubResource("SpriteFrames_vcljs")
+animation = &"attack"
+autoplay = "idle"
+
+[node name="BottomHalf" type="AnimatedSprite2D" parent="PlayerAnimationController"]
+z_index = -1
+material = ExtResource("2_r0tfm")
+position = Vector2(1, -16)
+sprite_frames = SubResource("SpriteFrames_0cdcd")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="PlayerAnimationController"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_k2ico")
+}
 
 [node name="SfxPlayer" type="Node" parent="."]
 script = ExtResource("19_s620t")
@@ -534,10 +506,25 @@ script = ExtResource("25_uwlt0")
 [node name="UserInputController" type="Node" parent="."]
 script = ExtResource("26_fvq0i")
 
-[node name="PlayerAnimationController" type="Node2D" parent="."]
-script = ExtResource("27_5dq54")
+[node name="Timers" type="Node" parent="."]
 
-[connection signal="timeout" from="HealthBarVisibleTimer" to="." method="_on_health_bar_visible_timer_timeout"]
-[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[node name="AttackCooldownTimer" type="Timer" parent="Timers"]
+wait_time = 0.3
+one_shot = true
+
+[node name="RegenStartTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="RegenStepTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+
+[node name="InvinciblityTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
 [connection signal="area_entered" from="RoomDetector" to="RoomDetector" method="_on_new_room_entered"]
 [connection signal="area_exited" from="RoomDetector" to="RoomDetector" method="_on_room_exited"]
+[connection signal="timeout" from="Timers/RespawnTimer" to="." method="_on_respawn_timer_timeout"]

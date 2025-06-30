@@ -6,6 +6,9 @@ extends State
 
 var attack_finished := false
 
+func extra_init() -> void:
+	anim_player.animation_finished.connect(_on_animation_finished)
+
 func enter() -> void:
 	super()
 	
@@ -26,3 +29,6 @@ func process_physics(delta : float) -> State:
 		return passive_state
 	
 	return null
+
+func _on_animation_finished(anim_name : StringName) -> void:
+	pass

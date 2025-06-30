@@ -6,9 +6,7 @@ extends State
 
 var attack_ready := true
 
-func init(controller : InputController, anim_player : AnimationController, sfx_player : SfxPlayer, movement_controller : MovementController) -> void:
-	super(controller, anim_player, sfx_player, movement_controller)
-	
+func extra_init() -> void:
 	attack_cooldown_timer.timeout.connect(_on_attack_cooldown_timer_timeout)
 
 func enter() -> void:
