@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://di8bojp8w0r88"]
+[gd_scene load_steps=63 format=3 uid="uid://di8bojp8w0r88"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -7,10 +7,12 @@
 [ext_resource type="Script" uid="uid://dl3m8bjsg333d" path="res://scripts/placeable/RoomDetector.gd" id="3_0ed2m"]
 [ext_resource type="Texture2D" uid="uid://bnw6qsinnrdh" path="res://sprites/knight-final-bottom-half-90x36-Sheet.png" id="4_s44aa"]
 [ext_resource type="Texture2D" uid="uid://cmfu7x0fdldyf" path="res://sprites/progress_bar_textures/health_bar/health-bar-under-20x5.png" id="6_516xt"]
+[ext_resource type="Script" uid="uid://2entraauuyax" path="res://scripts/components/DamageableHitboxComponent.gd" id="6_ggkf6"]
 [ext_resource type="Script" uid="uid://dibu1m0sx5bch" path="res://scripts/components/DamagerHitboxComponent.gd" id="6_u8pvg"]
 [ext_resource type="Texture2D" uid="uid://blaij2o6hcbrg" path="res://sprites/progress_bar_textures/health_bar/health-bar-progress-20x5.png" id="7_fcfru"]
 [ext_resource type="AudioStream" uid="uid://bmmafhge2io63" path="res://audio/sfx/player_attack.wav" id="8_1gq37"]
 [ext_resource type="AudioStream" uid="uid://dh7b3tdymr3ol" path="res://audio/sfx/player_hit.wav" id="9_0fyjy"]
+[ext_resource type="Script" uid="uid://bvv3mec31i7dv" path="res://scripts/components/HealthComponent.gd" id="11_ddk21"]
 [ext_resource type="Script" uid="uid://ce1nso6v2sti5" path="res://scripts/state_machine/state_machine.gd" id="11_ytpbi"]
 [ext_resource type="Script" uid="uid://c53qqulwesjcf" path="res://scripts/state_machine/attack_state.gd" id="12_6gbnb"]
 [ext_resource type="Script" uid="uid://b3sajtnm0lu5i" path="res://scripts/state_machine/idle_state.gd" id="13_fapun"]
@@ -408,12 +410,13 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 5.0
 
-[node name="PlayerHitbox" type="Area2D" parent="."]
+[node name="DamageableHitbox" type="Area2D" parent="."]
 position = Vector2(-0.5, -8)
 collision_layer = 32
 monitoring = false
+script = ExtResource("6_ggkf6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableHitbox"]
 shape = SubResource("RectangleShape2D_5u5iw")
 
 [node name="DamagerHitbox" type="Area2D" parent="."]
@@ -455,6 +458,9 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_k2ico")
 }
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("11_ddk21")
 
 [node name="life state machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_ytpbi")
