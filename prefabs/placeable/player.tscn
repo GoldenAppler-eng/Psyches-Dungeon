@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://di8bojp8w0r88"]
+[gd_scene load_steps=64 format=3 uid="uid://di8bojp8w0r88"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bnw6qsinnrdh" path="res://sprites/knight-final-bottom-half-90x36-Sheet.png" id="4_s44aa"]
 [ext_resource type="Texture2D" uid="uid://cmfu7x0fdldyf" path="res://sprites/progress_bar_textures/health_bar/health-bar-under-20x5.png" id="6_516xt"]
 [ext_resource type="Script" uid="uid://2entraauuyax" path="res://scripts/components/DamageableHitboxComponent.gd" id="6_ggkf6"]
+[ext_resource type="Script" uid="uid://c2qjbrdw0kppt" path="res://scripts/components/RegenerationComponent.gd" id="6_rfdks"]
 [ext_resource type="Script" uid="uid://dibu1m0sx5bch" path="res://scripts/components/DamagerHitboxComponent.gd" id="6_u8pvg"]
 [ext_resource type="Texture2D" uid="uid://blaij2o6hcbrg" path="res://sprites/progress_bar_textures/health_bar/health-bar-progress-20x5.png" id="7_fcfru"]
 [ext_resource type="AudioStream" uid="uid://bmmafhge2io63" path="res://audio/sfx/player_attack.wav" id="8_1gq37"]
@@ -409,6 +410,12 @@ one_shot = true
 [node name="GameOverTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 5.0
+
+[node name="RegenerationComponent" type="Node2D" parent="." node_paths=PackedStringArray("health_component", "regeneration_start_timer", "regeneration_step_timer")]
+script = ExtResource("6_rfdks")
+health_component = NodePath("../HealthComponent")
+regeneration_start_timer = NodePath("../RegenStartTimer")
+regeneration_step_timer = NodePath("../RegenTimer")
 
 [node name="DamageableHitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 position = Vector2(-0.5, -8)

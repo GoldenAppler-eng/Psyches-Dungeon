@@ -17,3 +17,6 @@ func change_health(amt : int) -> void:
 		health_regened.emit()
 	elif amt < 0:
 		health_lost.emit()
+
+func is_health_full() -> bool:	
+	return current_health == max_health
