@@ -12,6 +12,8 @@ func extra_init() -> void:
 func enter() -> void:
 	super()
 	
+	anim_player.play_current_animation()
+	
 func exit() -> void:
 	super()
 	

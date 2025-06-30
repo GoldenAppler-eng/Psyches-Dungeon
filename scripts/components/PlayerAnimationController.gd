@@ -35,6 +35,12 @@ func flip_animation_h(flipped : bool) -> void:
 	top_half_sprite.flip_h = flipped
 	bottom_half_sprite.flip_h = flipped
 
+func play_current_animation() -> void:
+	if bottom_half_sprite.animation == "attack":
+		_sync_play_animation("idle", false)
+	else:
+		_sync_play_animation(bottom_half_sprite.animation, false)
+
 func _sync_play_animation(anim_name : StringName, follow_top : bool) -> void:
 	top_half_sprite.play(anim_name)
 	bottom_half_sprite.play(anim_name)

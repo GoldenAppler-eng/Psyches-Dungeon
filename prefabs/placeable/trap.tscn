@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ln8wdsnv7xo2"]
+[gd_scene load_steps=10 format=3 uid="uid://ln8wdsnv7xo2"]
 
 [ext_resource type="Script" uid="uid://bnwuxtmtccv8k" path="res://scripts/placeable/trap.gd" id="1_4d2cc"]
 [ext_resource type="Texture2D" uid="uid://jsml6q6em3nw" path="res://sprites/trap-Sheet.png" id="2_kjsx1"]
 [ext_resource type="AudioStream" uid="uid://bydyrkfhjurh3" path="res://audio/sfx/trap_activate.wav" id="3_cycn3"]
+[ext_resource type="Script" uid="uid://dibu1m0sx5bch" path="res://scripts/components/DamagerHitboxComponent.gd" id="4_j4sfv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_df40o"]
 atlas = ExtResource("2_kjsx1")
@@ -64,6 +65,14 @@ wait_time = 5.0
 [node name="ActivatedSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_cycn3")
 bus = &"Sfx"
+
+[node name="DamagerHitboxComponent" type="Area2D" parent="."]
+script = ExtResource("4_j4sfv")
+metadata/_custom_type_script = "uid://dibu1m0sx5bch"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitboxComponent"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_p88kq")
 
 [connection signal="body_entered" from="ActivatedArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="ActivatedArea" to="." method="_on_area_2d_body_exited"]

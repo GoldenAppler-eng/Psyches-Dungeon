@@ -31,4 +31,5 @@ func process_physics(delta : float) -> State:
 	return null
 
 func _on_animation_finished(anim_name : StringName) -> void:
-	pass
+	if anim_name == "attack":
+		attack_finished = true

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://47pk3lvrw00k"]
+[gd_scene load_steps=3 format=3 uid="uid://47pk3lvrw00k"]
 
+[ext_resource type="PackedScene" uid="uid://ln8wdsnv7xo2" path="res://prefabs/placeable/trap.tscn" id="2_amxg5"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="2_wgghm"]
 
 [node name="test_world" type="Node2D"]
@@ -8,3 +9,6 @@
 position = Vector2(72, 77)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.525, 2.525)
+
+[node name="trap" parent="." instance=ExtResource("2_amxg5")]

@@ -392,6 +392,7 @@ regen_amt = 20
 [node name="DamageableHitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 position = Vector2(-0.5, -8)
 collision_layer = 32
+collision_mask = 0
 monitoring = false
 script = ExtResource("6_ggkf6")
 health_component = NodePath("../HealthComponent")
@@ -400,7 +401,6 @@ health_component = NodePath("../HealthComponent")
 shape = SubResource("RectangleShape2D_5u5iw")
 
 [node name="DamagerHitbox" type="Area2D" parent="."]
-unique_name_in_owner = true
 position = Vector2(-12.5, -17.5)
 collision_layer = 128
 collision_mask = 64
@@ -470,7 +470,7 @@ damager_hitbox = NodePath("../../../DamagerHitbox")
 script = ExtResource("27_5dq54")
 top_half_sprite = NodePath("TopHalf")
 bottom_half_sprite = NodePath("BottomHalf")
-animation_player = NodePath("HitAnimationPlayer")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="TopHalf" type="AnimatedSprite2D" parent="PlayerAnimationController"]
 material = ExtResource("2_r0tfm")
@@ -487,8 +487,7 @@ sprite_frames = SubResource("SpriteFrames_0cdcd")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="HitAnimationPlayer" type="AnimationPlayer" parent="PlayerAnimationController"]
-unique_name_in_owner = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimationController"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_k2ico")
@@ -507,6 +506,7 @@ bus = &"Sfx"
 
 [node name="MovementController" type="Node" parent="."]
 script = ExtResource("25_uwlt0")
+max_speed = 15000.0
 
 [node name="UserInputController" type="Node" parent="."]
 script = ExtResource("26_fvq0i")
