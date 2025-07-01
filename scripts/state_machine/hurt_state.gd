@@ -1,6 +1,6 @@
 extends State
 
-@export var living_state : State
+@export var invincible_state : State
 @export var dead_state : State
 
 @export var health_component : HealthComponent
@@ -33,7 +33,7 @@ func process_physics(delta : float) -> State:
 	if check_dead():
 		return dead_state
 	
-	return living_state
+	return invincible_state
 
 func check_dead() -> bool:
 	if health_component.current_health == 0:

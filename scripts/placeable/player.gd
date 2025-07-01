@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var respawn_timer : Timer = $%RespawnTimer
 
 @export var main_state_machine : StateMachine
+@export var movement_state_machine : StateMachine
+@export var attack_state_machine : StateMachine
 
 @export var animation_controller : AnimationController
 @export var sfx_player : SfxPlayer
@@ -18,7 +20,9 @@ func _ready() -> void:
 	movement_controller.init(self)
 	
 	main_state_machine.init(input_controller, animation_controller, sfx_player, movement_controller)
-	
+	movement_state_machine.init(input_controller, animation_controller, sfx_player, movement_controller)
+	attack_state_machine.init(input_controller, animation_controller, sfx_player, movement_controller)
+
 	GlobalSignalBus.player_respawn.connect(_on_received_player_respawn_signal)
 	GlobalSignalBus.revert_controls.connect(_on_revert_controls)
 	GlobalSignalBus.shift_controls.connect(_on_revert_controls)
