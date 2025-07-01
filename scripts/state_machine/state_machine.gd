@@ -28,7 +28,5 @@ func change_state(next_state : State) -> void:
 	current_state = next_state
 	current_state.enter()
 	
-	print(current_state.name)
-
 func reset_state_machine() -> void:
 	change_state(initial_state)
