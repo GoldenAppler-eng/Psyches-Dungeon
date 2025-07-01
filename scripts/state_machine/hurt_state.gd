@@ -15,6 +15,7 @@ func enter() -> void:
 	super()
 	
 	anim_player.play_animation("hit")
+	anim_player.play_animation_overlay("hit")
 	sfx_player.play_sfx("hit")
 	
 	_hurt = true
@@ -22,6 +23,8 @@ func enter() -> void:
 	
 func exit() -> void:
 	super()
+	
+	anim_player.clear_all_animation_overlay()
 	
 func process_frame(delta : float) -> State:
 	return null

@@ -25,7 +25,7 @@ func play_animation(anim_name : StringName) -> void:
 			if bottom_half_sprite.animation == "idle":
 				_sync_play_animation(anim_name, true)
 		"hit":
-			animation_player.play(anim_name)
+			pass
 		"death":
 			_play_top_half_animation_only(anim_name)
 		"respawn":
@@ -41,6 +41,14 @@ func play_current_animation() -> void:
 	else:
 		_sync_play_animation(bottom_half_sprite.animation, false)
 
+func play_animation_overlay(overlay_name : StringName) -> void:
+	match overlay_name:
+		"hit":
+			animation_player.play("hit")
+			
+func clear_all_animation_overlay() -> void:
+	animation_player.play("RESET")
+
 func _sync_play_animation(anim_name : StringName, follow_top : bool) -> void:
 	top_half_sprite.play(anim_name)
 	bottom_half_sprite.play(anim_name)
@@ -51,7 +59,6 @@ func _sync_play_animation(anim_name : StringName, follow_top : bool) -> void:
 		top_half_sprite.frame = bottom_half_sprite.frame
 
 func _clean_previous_animation() -> void:
-	animation_player.play("RESET")
 	bottom_half_sprite.visible = true
 
 func _play_top_half_animation_only(anim_name : StringName) -> void:
