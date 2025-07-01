@@ -1,16 +1,12 @@
 class_name Enemy
-extends DamagableBody2D
+extends CharacterBody2D
 
-const MAX_HEALTH := 100
-const MAX_SPEED := 10000.0
 
 const GOLD_CHANCE := .4
-const DAMAGE := 20
 const KNOCKBACK_SPEED := 100.0
 
 @export var jump_component_prefab : PackedScene
 
-@onready var damager_hitbox : Area2D = $%DamagerHitbox
 @onready var attack_detection_area : Area2D = $%AttackDetectionArea
 @onready var object_detection_area : Area2D = $%ObjectDetectionArea
 
@@ -19,27 +15,11 @@ const KNOCKBACK_SPEED := 100.0
 
 @onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
 
-@onready var health_bar : TextureProgressBar = $%health_bar
-
-@onready var attack_sfx : AudioStreamPlayer = $AttackSfx
-@onready var hit_sfx : AudioStreamPlayer = $HitSfx
-
-@onready var hit_animation_player : AnimationPlayer = %HitAnimationPlayer
-
 @export var dropped_item : PackedScene
 
 var target_player : Player
 
-var damager_hitbox_offset : float
-var attack_detection_offset : float
-var speed := MAX_SPEED
-
 var _is_golden := false
-var _attack_ready := false
-var _charging := false
-var _invincible := false
-var _is_attacking := false
-var _is_dead := false
 
 @export var _guaranteed_gold : bool
 
@@ -54,77 +34,9 @@ func _ready() -> void:
 		(animated_sprite_2d.material as ShaderMaterial).set_shader_parameter("is_golden", true)
 	
 	target_player = Global.global_player
-	
-	health = MAX_HEALTH
-	damager_hitbox_offset = damager_hitbox.position.x	
-	attack_detection_offset = attack_detection_area.position.x
 
 func _physics_process(delta : float) -> void:	
-	if _is_dead:
-		return
-		
-	_update_health()
-	
-	if _is_dead:
-		return
-	
-	var movement_direction := _enemy_movement(delta)
-	
-	_enemy_anim(movement_direction.x, movement_direction.y, delta)
-	
-	if _invincible:
-		_charging = false
-		return
-		
-	_enemy_attack(delta)
-
-func _update_health() -> void:
-	health = clamp(health, 0, MAX_HEALTH)
-		
-	health_bar.value = health
-	
-	if health < MAX_HEALTH and health > 0:
-		health_bar.visible = true
-	else:
-		health_bar.visible = false
-	
-	if health <= 0:
-		_die()
-
-func _enemy_movement(delta : float) -> Vector2:
-	_get_target_direction()
-	
-	if target_player._is_dead:
-		return Vector2(0, 0)
-	
-	var horizontal_direction : float = sign(_target_direction.x)
-	var vertical_direction : float = sign(_target_direction.y)
-	
-	if _invincible or _is_attacking or _charging:
-		horizontal_direction = 0
-		vertical_direction = 0
-	
-	if not _invincible:
-		velocity.x = MAX_SPEED * horizontal_direction * abs(_target_direction.x) * delta
-		velocity.y = MAX_SPEED * vertical_direction * abs(_target_direction.y) * delta
-	else:
-		velocity.x = move_toward(velocity.x, 0, KNOCKBACK_SPEED * delta)
-		velocity.y = move_toward(velocity.y ,0, KNOCKBACK_SPEED * delta)
-
-	if horizontal_direction > 0:
-		damager_hitbox.position.x = -damager_hitbox_offset		
-		attack_detection_area.position.x = -attack_detection_offset
-		
-		animated_sprite_2d.flip_h = true
-	elif horizontal_direction < 0:
-		damager_hitbox.position.x = damager_hitbox_offset
-		attack_detection_area.position.x = attack_detection_offset
-	
-		animated_sprite_2d.flip_h = false
-		
-	move_and_slide()
-	
-	return Vector2(horizontal_direction, vertical_direction)
+	pass
 
 func _get_target_direction() -> void:
 	var normalized_vector2_to_player : Vector2 = (target_player.global_position - global_position).normalized()
@@ -147,45 +59,7 @@ func _get_target_direction() -> void:
 	else:
 		_target_direction = normalized_vector2_to_player
 
-func _enemy_anim(horizontal_direction : float, vertical_direction : float, delta : float) -> void:		
-	if _invincible:
-		animated_sprite_2d.pause()
-		hit_animation_player.play("hit")
-		return
-	else:
-		animated_sprite_2d.play()	
-		
-	if not _is_attacking:
-		if horizontal_direction or vertical_direction:
-			animated_sprite_2d.play("run")
-		else:
-			animated_sprite_2d.play("idle")
-
-func _enemy_attack(delta: float) -> void:
-	if damager_hitbox.has_overlapping_areas():		
-		if not _charging:
-			_charging = true
-			attack_cooldown_timer.start()
-	
-		if _attack_ready:
-			_attack_ready = false
-			_is_attacking = true
-			
-			animated_sprite_2d.play("attack")
-			attack_sfx.play()
-			
-			for area in damager_hitbox.get_overlapping_areas():
-				if area.owner is Player:
-					var player : Player = area.owner as Player
-					player.apply_damage(DAMAGE)
-	else:
-		attack_cooldown_timer.stop()
-		_attack_ready = false
-		_charging = false
-
-func _die() -> void:
-	_is_dead = true
-	
+func _die() -> void:	
 	animated_sprite_2d.play("death")
 	
 	if _is_golden:
@@ -199,38 +73,9 @@ func _die() -> void:
 		
 	GlobalSignalBus.enemy_death.emit(_is_golden)
 
-func apply_damage(amt : int) -> void:
-	if _invincible or _is_dead:
-		return
-	
-	_invincible = true
-	invincibility_timer.start()
-	
-	hit_sfx.play()
-	hit_animation_player.play("hit")
-	
-	_knockback_direction = -_target_direction
-	velocity = _knockback_direction * KNOCKBACK_SPEED
-	
-	health -= amt
-
-func _on_attack_cooldown_timer_timeout() -> void:
-	_attack_ready = true;
-	_charging = false
-
-func _on_invincibility_timer_timeout() -> void:
-	_invincible = false
-	
-	hit_animation_player.play("RESET")
-
 func _on_object_detection_area_body_entered(body : Node2D) -> void:
 	avoided_objects.append(body)
 
 func _on_object_detection_area_body_exited(body : Node2D) -> void:
 	if avoided_objects.has(body):
 		avoided_objects.remove_at(avoided_objects.find(body))
-
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if animated_sprite_2d.animation == "attack":
-		_is_attacking = false

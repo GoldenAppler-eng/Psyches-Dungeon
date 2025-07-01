@@ -421,19 +421,17 @@ shape = SubResource("RectangleShape2D_tkdcx")
 script = ExtResource("11_ytpbi")
 initial_state = NodePath("living state")
 
-[node name="living state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("hurt_state", "damageable_hitbox_component", "movement_state_machine", "attack_state_machine")]
+[node name="living state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("hurt_state", "damageable_hitbox_component", "sub_state_machines")]
 script = ExtResource("13_rh52m")
 hurt_state = NodePath("../hurt state")
 damageable_hitbox_component = NodePath("../../../DamageableHitbox")
-movement_state_machine = NodePath("../../movement state machine")
-attack_state_machine = NodePath("../../attack state machine")
+sub_state_machines = [NodePath("../../movement state machine"), NodePath("../../attack state machine")]
 
-[node name="invincible state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("living_state", "invincibility_timer", "movement_state_machine", "attack_state_machine")]
+[node name="invincible state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("living_state", "invincibility_timer", "sub_state_machines")]
 script = ExtResource("9_fvq0i")
 living_state = NodePath("../living state")
 invincibility_timer = NodePath("../../../Timers/InvinciblityTimer")
-movement_state_machine = NodePath("../../movement state machine")
-attack_state_machine = NodePath("../../attack state machine")
+sub_state_machines = [NodePath("../../movement state machine"), NodePath("../../attack state machine")]
 
 [node name="hurt state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("invincible_state", "dead_state", "health_component", "hurt_timer")]
 script = ExtResource("14_usjfm")

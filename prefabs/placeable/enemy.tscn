@@ -1,14 +1,41 @@
-[gd_scene load_steps=34 format=3 uid="uid://du3tmqtt127gu"]
+[gd_scene load_steps=46 format=3 uid="uid://du3tmqtt127gu"]
 
 [ext_resource type="Script" uid="uid://dd5gn034twoup" path="res://scripts/placeable/enemy.gd" id="1_smd3p"]
 [ext_resource type="PackedScene" uid="uid://c5ksnc33jrjk7" path="res://prefabs/components/jump_component.tscn" id="2_6wgmk"]
 [ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/placeable/coin.tscn" id="2_s3tct"]
 [ext_resource type="Texture2D" uid="uid://s6en6lbn8ili" path="res://sprites/enemy-final-90x36-Sheet.png" id="3_a5rh0"]
+[ext_resource type="Script" uid="uid://bvv3mec31i7dv" path="res://scripts/components/HealthComponent.gd" id="4_pwlrm"]
 [ext_resource type="Material" uid="uid://derkgmqh45esb" path="res://resources/shaders/hit_effect_enemy.tres" id="4_xqm1v"]
-[ext_resource type="Texture2D" uid="uid://cmfu7x0fdldyf" path="res://sprites/progress_bar_textures/health_bar/health-bar-under-20x5.png" id="5_eeivd"]
-[ext_resource type="Texture2D" uid="uid://blaij2o6hcbrg" path="res://sprites/progress_bar_textures/health_bar/health-bar-progress-20x5.png" id="6_q5ix1"]
+[ext_resource type="Script" uid="uid://2entraauuyax" path="res://scripts/components/DamageableHitboxComponent.gd" id="5_5tmjw"]
+[ext_resource type="Script" uid="uid://dibu1m0sx5bch" path="res://scripts/components/DamagerHitboxComponent.gd" id="6_vvc3c"]
+[ext_resource type="Script" uid="uid://ce1nso6v2sti5" path="res://scripts/state_machine/state_machine.gd" id="7_a27eq"]
 [ext_resource type="AudioStream" uid="uid://7px5delra3nk" path="res://audio/sfx/enemy_attack.wav" id="7_tm01o"]
+[ext_resource type="Script" uid="uid://ce23gllj8csnq" path="res://scripts/state_machine/living_state.gd" id="8_1wxu8"]
 [ext_resource type="AudioStream" uid="uid://t7dwgqsynuvu" path="res://audio/sfx/enemy_hit.wav" id="8_cpyx8"]
+[ext_resource type="Script" uid="uid://c202cpr7hlcsr" path="res://scripts/classes/SfxPlayer.gd" id="8_wpihy"]
+[ext_resource type="Script" uid="uid://yqnyw10ped4u" path="res://scripts/state_machine/hurt_state.gd" id="9_khejp"]
+[ext_resource type="Script" uid="uid://yrkk6isden8g" path="res://scripts/state_machine/dead_state.gd" id="10_g7t0f"]
+[ext_resource type="Script" uid="uid://drxpfuh2tcgfe" path="res://scripts/classes/MovementController.gd" id="10_yoppe"]
+[ext_resource type="Script" uid="uid://dtajnbvdxf0eh" path="res://scripts/components/EnemyInputController.gd" id="11_wif34"]
+[ext_resource type="Script" uid="uid://b3sajtnm0lu5i" path="res://scripts/state_machine/idle_state.gd" id="11_y4mh1"]
+[ext_resource type="Script" uid="uid://c7f6dnwg06f80" path="res://scripts/components/EnemyAnimationController.gd" id="11_yoppe"]
+[ext_resource type="Script" uid="uid://cwb1q3barvufy" path="res://scripts/state_machine/move_state.gd" id="12_beo1o"]
+[ext_resource type="Script" uid="uid://c53qqulwesjcf" path="res://scripts/state_machine/attack_state.gd" id="13_51fkn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kjina"]
+size = Vector2(13, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l30rr"]
+size = Vector2(23, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s04jv"]
+size = Vector2(12, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tfr4d"]
+radius = 50.1597
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lun2x"]
+size = Vector2(27, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0byb6"]
 atlas = ExtResource("3_a5rh0")
@@ -138,27 +165,12 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kjina"]
-size = Vector2(13, 18)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l30rr"]
-size = Vector2(23, 34)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s04jv"]
-size = Vector2(12, 20)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tfr4d"]
-radius = 50.1597
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lun2x"]
-size = Vector2(27, 26)
-
 [sub_resource type="Animation" id="Animation_5r0s0"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/effect_on")
+tracks/0/path = NodePath("EnemyAnimationController/AnimatedSprite2D:material:shader_parameter/effect_on")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -174,7 +186,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/effect_on")
+tracks/0/path = NodePath("EnemyAnimationController/AnimatedSprite2D:material:shader_parameter/effect_on")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -198,50 +210,40 @@ script = ExtResource("1_smd3p")
 jump_component_prefab = ExtResource("2_6wgmk")
 dropped_item = ExtResource("2_s3tct")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
-material = ExtResource("4_xqm1v")
-position = Vector2(-1, -18)
-sprite_frames = SubResource("SpriteFrames_fpalx")
-animation = &"idle"
-autoplay = "idle"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -9)
 shape = SubResource("RectangleShape2D_kjina")
 
-[node name="AttackCooldownTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.5
-one_shot = true
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("4_pwlrm")
+metadata/_custom_type_script = "uid://bvv3mec31i7dv"
 
-[node name="InvincibilityTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-one_shot = true
-
-[node name="EnemyHitbox" type="Area2D" parent="."]
+[node name="DamageableHitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 visible = false
 position = Vector2(-4, -16)
 collision_layer = 64
 collision_mask = 0
 monitoring = false
+script = ExtResource("5_5tmjw")
+health_component = NodePath("../HealthComponent")
+disable_on_hit = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableHitbox"]
 shape = SubResource("RectangleShape2D_l30rr")
 
 [node name="DamagerHitbox" type="Area2D" parent="."]
-unique_name_in_owner = true
 visible = false
 position = Vector2(-13, -17)
 collision_layer = 0
 collision_mask = 32
 monitorable = false
+script = ExtResource("6_vvc3c")
+damage = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitbox"]
 shape = SubResource("RectangleShape2D_s04jv")
 
 [node name="ObjectDetectionArea" type="Area2D" parent="."]
-unique_name_in_owner = true
 visible = false
 position = Vector2(-1, -18)
 collision_layer = 0
@@ -252,7 +254,6 @@ monitorable = false
 shape = SubResource("CircleShape2D_tfr4d")
 
 [node name="AttackDetectionArea" type="Area2D" parent="."]
-unique_name_in_owner = true
 visible = false
 position = Vector2(-20.5, -17)
 collision_layer = 0
@@ -261,35 +262,88 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionArea"]
 shape = SubResource("RectangleShape2D_lun2x")
 
-[node name="health_bar" type="TextureProgressBar" parent="."]
-unique_name_in_owner = true
-z_index = 50
-z_as_relative = false
-offset_left = -10.0
-offset_top = -39.0
-offset_right = 10.0
-offset_bottom = -34.0
-step = 10.0
-value = 100.0
-texture_under = ExtResource("5_eeivd")
-texture_progress = ExtResource("6_q5ix1")
+[node name="StateMachines" type="Node" parent="."]
 
-[node name="AttackSfx" type="AudioStreamPlayer" parent="."]
+[node name="life state machine" type="Node" parent="StateMachines" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("7_a27eq")
+initial_state = NodePath("living state")
+
+[node name="living state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("hurt_state", "damageable_hitbox_component", "sub_state_machines")]
+script = ExtResource("8_1wxu8")
+hurt_state = NodePath("../hurt state")
+damageable_hitbox_component = NodePath("../../../DamageableHitbox")
+sub_state_machines = [NodePath("../../movement state machine")]
+
+[node name="hurt state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("invincible_state", "dead_state", "health_component", "hurt_timer")]
+script = ExtResource("9_khejp")
+invincible_state = NodePath("../living state")
+dead_state = NodePath("../dead state")
+health_component = NodePath("../../../HealthComponent")
+hurt_timer = NodePath("../../../Timers/HurtTimer")
+
+[node name="dead state" type="Node" parent="StateMachines/life state machine"]
+script = ExtResource("10_g7t0f")
+
+[node name="movement state machine" type="Node" parent="StateMachines" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("7_a27eq")
+initial_state = NodePath("idle state")
+
+[node name="idle state" type="Node" parent="StateMachines/movement state machine" node_paths=PackedStringArray("move_state")]
+script = ExtResource("11_y4mh1")
+move_state = NodePath("../move state")
+
+[node name="move state" type="Node" parent="StateMachines/movement state machine" node_paths=PackedStringArray("idle_state", "damager_hitbox_component")]
+script = ExtResource("12_beo1o")
+idle_state = NodePath("../idle state")
+damager_hitbox_component = NodePath("../../../DamagerHitbox")
+
+[node name="attack state" type="Node" parent="StateMachines/movement state machine" node_paths=PackedStringArray("passive_state", "damager_hitbox")]
+script = ExtResource("13_51fkn")
+passive_state = NodePath("../idle state")
+damager_hitbox = NodePath("../../../DamagerHitbox")
+
+[node name="EnemyAnimationController" type="Node2D" parent="."]
+script = ExtResource("11_yoppe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyAnimationController"]
+material = ExtResource("4_xqm1v")
+position = Vector2(-1, -18)
+sprite_frames = SubResource("SpriteFrames_fpalx")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyAnimationController"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_ao3sq")
+}
+
+[node name="SfxPlayer" type="Node" parent="."]
+script = ExtResource("8_wpihy")
+metadata/_custom_type_script = "uid://c202cpr7hlcsr"
+
+[node name="attack" type="AudioStreamPlayer" parent="SfxPlayer"]
 stream = ExtResource("7_tm01o")
 bus = &"Sfx"
 
-[node name="HitSfx" type="AudioStreamPlayer" parent="."]
+[node name="hit" type="AudioStreamPlayer" parent="SfxPlayer"]
 stream = ExtResource("8_cpyx8")
 bus = &"Sfx"
 
-[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_ao3sq")
-}
+[node name="MovementController" type="Node" parent="."]
+script = ExtResource("10_yoppe")
+max_speed = 10000.0
+metadata/_custom_type_script = "uid://drxpfuh2tcgfe"
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
-[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
-[connection signal="body_entered" from="ObjectDetectionArea" to="." method="_on_object_detection_area_body_entered"]
-[connection signal="body_exited" from="ObjectDetectionArea" to="." method="_on_object_detection_area_body_exited"]
+[node name="EnemyInputController" type="Node" parent="."]
+script = ExtResource("11_wif34")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="AttackCooldownTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="HurtTimer" type="Timer" parent="Timers"]
+one_shot = true
