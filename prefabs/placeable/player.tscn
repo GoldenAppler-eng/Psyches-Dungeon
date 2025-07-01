@@ -427,10 +427,12 @@ damageable_hitbox_component = NodePath("../../../DamageableHitbox")
 movement_state_machine = NodePath("../../movement state machine")
 attack_state_machine = NodePath("../../attack state machine")
 
-[node name="invincible state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("living_state", "invincibility_timer")]
+[node name="invincible state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("living_state", "invincibility_timer", "movement_state_machine", "attack_state_machine")]
 script = ExtResource("9_fvq0i")
 living_state = NodePath("../living state")
 invincibility_timer = NodePath("../../../Timers/InvinciblityTimer")
+movement_state_machine = NodePath("../../movement state machine")
+attack_state_machine = NodePath("../../attack state machine")
 
 [node name="hurt state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("invincible_state", "dead_state", "health_component", "hurt_timer")]
 script = ExtResource("14_usjfm")
