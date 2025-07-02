@@ -6,12 +6,11 @@ extends Node2D
 @onready var current : Card = %current
 @onready var cover : Card = %cover
 
-@onready var task_failed_sfx : AudioStreamPlayer = $TaskFailedSfx
-@onready var task_completed_sfx : AudioStreamPlayer= $TaskCompletedSfx
 @onready var card_draw_sfx : AudioStreamPlayer = $CardDrawSfx
 
 func _ready() -> void:
 	card_handler.card_changed.connect(_on_card_changed)
+	card_handler.card_text_updated.connect(_on_card_text_updated)
 	
 	var cover_animation_player : AnimationPlayer = cover.find_child("AnimationPlayer")
 	cover_animation_player.animation_finished.connect(_on_flipping_animation_finished)
@@ -22,9 +21,12 @@ func _on_card_changed() -> void:
 	next.visible = false
 	cover.modulate = Color8(255, 255, 255, 255)
 	
+	_set_card_infos()
+	
 	cover.play_flip_card_animation()
 	card_draw_sfx.play()
 	
+func _on_card_text_updated() -> void:
 	_set_card_infos()
 	
 func _set_card_infos() -> void:

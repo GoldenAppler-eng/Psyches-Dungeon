@@ -35,7 +35,7 @@ func _process(delta : float) -> void:
 	effect_icon.frame = card_info.effect_type
 	
 	task_text_label.text = card_info.task_text
-	effect_text_label.text = card_info.seffect_text
+	effect_text_label.text = card_info.effect_text
 
 func play_flip_card_animation() -> void:
 	animation_player.play("flip_card")

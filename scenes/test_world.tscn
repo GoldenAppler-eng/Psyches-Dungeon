@@ -1,15 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://47pk3lvrw00k"]
+[gd_scene load_steps=6 format=3 uid="uid://47pk3lvrw00k"]
 
-[ext_resource type="PackedScene" uid="uid://blel4b2ar46uf" path="res://prefabs/placeable/chest.tscn" id="2_amxg5"]
-[ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="2_wgghm"]
+[ext_resource type="PackedScene" uid="uid://bnj71gqcb0bcx" path="res://prefabs/handlers/card_handler.tscn" id="1_umbte"]
+[ext_resource type="PackedScene" uid="uid://dwqki74onshog" path="res://prefabs/handlers/goal_handler.tscn" id="2_ynswa"]
+[ext_resource type="PackedScene" uid="uid://b745s8ogrbuvm" path="res://prefabs/handlers/task_handler.tscn" id="3_dvny0"]
+[ext_resource type="PackedScene" uid="uid://bh85bemgdn78m" path="res://prefabs/handlers/effect_resolution_handler.tscn" id="4_xwrkq"]
+[ext_resource type="PackedScene" uid="uid://dfu6vdkfj2okp" path="res://prefabs/HUD/card_hud_display.tscn" id="5_ynswa"]
 
 [node name="test_world" type="Node2D"]
-
-[node name="player" parent="." instance=ExtResource("2_wgghm")]
-position = Vector2(72, 77)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.525, 2.525)
 
-[node name="chest" parent="." instance=ExtResource("2_amxg5")]
-position = Vector2(42, 45)
+[node name="card_handler" parent="." node_paths=PackedStringArray("task_handler", "effect_handler", "goal_handler") instance=ExtResource("1_umbte")]
+task_handler = NodePath("../task_handler")
+effect_handler = NodePath("../effect_resolution_handler")
+goal_handler = NodePath("../goal_handler")
+
+[node name="goal_handler" parent="." instance=ExtResource("2_ynswa")]
+
+[node name="task_handler" parent="." instance=ExtResource("3_dvny0")]
+
+[node name="effect_resolution_handler" parent="." instance=ExtResource("4_xwrkq")]
+
+[node name="CardHUDDisplay" parent="." node_paths=PackedStringArray("card_handler") instance=ExtResource("5_ynswa")]
+position = Vector2(-290, 111)
+card_handler = NodePath("../card_handler")

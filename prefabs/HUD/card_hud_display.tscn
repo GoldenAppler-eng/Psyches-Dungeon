@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfu6vdkfj2okp"]
+[gd_scene load_steps=4 format=3 uid="uid://dfu6vdkfj2okp"]
 
 [ext_resource type="Script" uid="uid://bmylp1eh0eb4v" path="res://scripts/HUD/card_hud_display.gd" id="1_5brif"]
 [ext_resource type="PackedScene" uid="uid://bd48cv83wcg06" path="res://prefabs/cards/card.tscn" id="2_w8vnt"]
-[ext_resource type="AudioStream" uid="uid://k6g6tr4pqxmh" path="res://audio/sfx/fail_mission.wav" id="3_oqshx"]
-[ext_resource type="AudioStream" uid="uid://cma8j7ln5ywk5" path="res://audio/sfx/complete_mission.wav" id="4_woqky"]
 [ext_resource type="AudioStream" uid="uid://c6c7yjpt6vgac" path="res://audio/sfx/card_draw.wav" id="5_8h4kd"]
 
 [node name="CardHUDDisplay" type="Node2D"]
@@ -30,14 +28,6 @@ hide_effect = true
 z_index = 20
 face_down = true
 hide_effect = true
-
-[node name="TaskFailedSfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_oqshx")
-bus = &"Sfx"
-
-[node name="TaskCompletedSfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_woqky")
-bus = &"Sfx"
 
 [node name="CardDrawSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_8h4kd")

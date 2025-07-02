@@ -2,6 +2,7 @@ class_name CardHandler
 extends Node2D
 
 signal card_changed
+signal card_text_updated
 
 @export var effect_pool : Array[WildEffect]
 
@@ -20,6 +21,10 @@ var next_task_values : Array[int]
 var next_card_effect : WildEffect
 
 func _ready() -> void:
+	next = CardResource.new()
+	current = CardResource.new()
+	cover = CardResource.new()	
+	
 	GlobalCardTimer.timeout.connect(_on_new_card_timer_timeout)
 	
 	GlobalSignalBus.retry.connect(_on_game_retry)
@@ -98,6 +103,7 @@ func _on_psyche_task_received() -> void:
 	var task_text : String = task_handler.get_current_task_description()
 	
 	current.task_text = task_text
+	card_text_updated.emit()
 	
 func _change_card() -> void:
 	_update_current_task()
