@@ -36,7 +36,7 @@ size = Vector2(12, 20)
 radius = 50.1597
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lun2x"]
-size = Vector2(27, 26)
+size = Vector2(12, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0byb6"]
 atlas = ExtResource("3_a5rh0")
@@ -263,6 +263,7 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionArea"]
+position = Vector2(7.5, 0)
 shape = SubResource("RectangleShape2D_lun2x")
 
 [node name="StateMachines" type="Node" parent="."]
