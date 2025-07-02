@@ -1,6 +1,9 @@
 class_name InputController
 extends Node
 
+func init() -> void:
+	pass
+
 func get_movement_axis() -> Vector2:
 	return Vector2(0, 0)
 	
