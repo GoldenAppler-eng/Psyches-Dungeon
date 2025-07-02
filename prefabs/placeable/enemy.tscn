@@ -209,6 +209,7 @@ y_sort_enabled = true
 collision_layer = 8
 collision_mask = 258
 script = ExtResource("1_smd3p")
+_guaranteed_gold = true
 main_state_machine = NodePath("StateMachines/life state machine")
 movement_state_machine = NodePath("StateMachines/movement state machine")
 input_controller = NodePath("EnemyInputController")
@@ -285,9 +286,10 @@ dead_state = NodePath("../dead state")
 health_component = NodePath("../../../HealthComponent")
 hurt_timer = NodePath("../../../Timers/HurtTimer")
 
-[node name="dead state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("summoner_component")]
+[node name="dead state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("summoner_component", "enemy")]
 script = ExtResource("10_a27eq")
 summoner_component = NodePath("../../../SummonerComponent")
+enemy = NodePath("../../..")
 
 [node name="movement state machine" type="Node" parent="StateMachines" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_1wxu8")
@@ -357,7 +359,7 @@ summoner_node = NodePath("..")
 [node name="Timers" type="Node" parent="."]
 
 [node name="AttackCooldownTimer" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 1.5
 one_shot = true
 
 [node name="HurtTimer" type="Timer" parent="Timers"]

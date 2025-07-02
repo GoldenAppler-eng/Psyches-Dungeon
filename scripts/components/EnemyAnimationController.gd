@@ -17,6 +17,9 @@ func play_animation_overlay(overlay_name : StringName) -> void:
 	match overlay_name:
 		"hit":
 			animation_player.play(overlay_name)
+		"gold":
+			var shader_mat : ShaderMaterial = sprite.material as ShaderMaterial
+			shader_mat.set_shader_parameter("is_golden", true)
 	
 func clear_all_animation_overlay() -> void:
 		animation_player.play("RESET")	

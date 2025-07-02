@@ -15,7 +15,6 @@ func init() -> void:
 	_target_player = Global.global_player
 	
 	_connect_signals()
-	print("signals connected")
 
 func get_movement_axis() -> Vector2:
 	return _get_target_direction()
@@ -60,10 +59,8 @@ func _on_object_detection_area_body_exited(body : Node2D) -> void:
 	if avoided_objects.has(body):
 		avoided_objects.remove_at(avoided_objects.find(body))
 
-func _on_attack_detection_area_area_entered(body : Node2D) -> void:
-	print("player detected")
-	
+func _on_attack_detection_area_area_entered(area : Area2D) -> void:
 	player_in_attack_range = true
 	
-func _on_attack_detection_area_area_exited(body : Node2D) -> void:
+func _on_attack_detection_area_area_exited(area : Area2D) -> void:
 	player_in_attack_range = false
