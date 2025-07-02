@@ -1,17 +1,13 @@
 class_name Enemy
 extends CharacterBody2D
 
-
 const GOLD_CHANCE := .4
 const KNOCKBACK_SPEED := 100.0
 
 @export var jump_component_prefab : PackedScene
 
-@onready var attack_detection_area : Area2D = $%AttackDetectionArea
-@onready var object_detection_area : Area2D = $%ObjectDetectionArea
-
-@onready var attack_cooldown_timer : Timer = $%AttackCooldownTimer
-@onready var invincibility_timer : Timer = $%InvincibilityTimer
+@onready var attack_detection_area : Area2D = $AttackDetectionArea
+@onready var object_detection_area : Area2D = $ObjectDetectionArea
 
 @onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
 
