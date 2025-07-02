@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://dd5gn034twoup" path="res://scripts/placeable/enemy.gd" id="1_smd3p"]
 [ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/placeable/coin.tscn" id="2_s3tct"]
 [ext_resource type="Texture2D" uid="uid://s6en6lbn8ili" path="res://sprites/enemy-final-90x36-Sheet.png" id="3_a5rh0"]
+[ext_resource type="Script" uid="uid://bqeqs6mhy2eno" path="res://scripts/components/EnemyDamagerHitboxComponent.gd" id="4_1wxu8"]
 [ext_resource type="Script" uid="uid://bvv3mec31i7dv" path="res://scripts/components/HealthComponent.gd" id="4_pwlrm"]
 [ext_resource type="Material" uid="uid://derkgmqh45esb" path="res://resources/shaders/hit_effect_enemy.tres" id="4_xqm1v"]
 [ext_resource type="Script" uid="uid://2entraauuyax" path="res://scripts/components/DamageableHitboxComponent.gd" id="5_5tmjw"]
-[ext_resource type="Script" uid="uid://dibu1m0sx5bch" path="res://scripts/components/DamagerHitboxComponent.gd" id="6_vvc3c"]
 [ext_resource type="Script" uid="uid://b1p2bbkkdfsgb" path="res://scripts/state_machine/overridable_state_machine.gd" id="7_1wxu8"]
 [ext_resource type="Script" uid="uid://ce1nso6v2sti5" path="res://scripts/state_machine/state_machine.gd" id="7_a27eq"]
 [ext_resource type="AudioStream" uid="uid://7px5delra3nk" path="res://audio/sfx/enemy_attack.wav" id="7_tm01o"]
@@ -184,6 +184,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_c0gnn"]
 resource_name = "hit"
 length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -235,12 +236,13 @@ disable_on_hit = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableHitbox"]
 shape = SubResource("RectangleShape2D_l30rr")
 
-[node name="DamagerHitbox" type="Area2D" parent="."]
+[node name="DamagerHitbox" type="Area2D" parent="." node_paths=PackedStringArray("attack_detection_area")]
 position = Vector2(-13, -17)
 collision_layer = 0
 collision_mask = 32
 monitorable = false
-script = ExtResource("6_vvc3c")
+script = ExtResource("4_1wxu8")
+attack_detection_area = NodePath("../AttackDetectionArea")
 damage = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitbox"]
@@ -318,7 +320,6 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyAnimationController"]
-unique_name_in_owner = true
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ao3sq")
@@ -341,10 +342,11 @@ script = ExtResource("10_yoppe")
 max_speed = 10000.0
 metadata/_custom_type_script = "uid://drxpfuh2tcgfe"
 
-[node name="EnemyInputController" type="Node" parent="." node_paths=PackedStringArray("actor", "object_detection_area")]
+[node name="EnemyInputController" type="Node" parent="." node_paths=PackedStringArray("actor", "object_detection_area", "attack_detection_area")]
 script = ExtResource("11_wif34")
 actor = NodePath("..")
 object_detection_area = NodePath("../ObjectDetectionArea")
+attack_detection_area = NodePath("../AttackDetectionArea")
 
 [node name="SummonerComponent" type="Node2D" parent="." node_paths=PackedStringArray("summoner_node")]
 script = ExtResource("23_khejp")

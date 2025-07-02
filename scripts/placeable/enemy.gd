@@ -4,7 +4,7 @@ extends CharacterBody2D
 const GOLD_CHANCE := .4
 const KNOCKBACK_SPEED := 100.0
 
-@onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $EnemyAnimationController/AnimatedSprite2D
 var _is_golden := false
 
 @export var _guaranteed_gold : bool

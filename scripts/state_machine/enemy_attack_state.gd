@@ -14,7 +14,6 @@ func enter() -> void:
 	super()
 	
 	attack_ready = false
-	attack_cooldown_timer.start()
 	
 	damager_hitbox.deal_damage_to_area()
 	
@@ -23,6 +22,8 @@ func enter() -> void:
 	
 func exit() -> void:
 	super()
+	
+	attack_cooldown_timer.start()
 	
 func process_frame(delta : float) -> State:
 	return super(delta)

@@ -7,7 +7,7 @@ func enter() -> void:
 	
 	summoner_component.summon(true)
 	
-	anim_player.play("death")
+	anim_player.play_animation("death")
 	GlobalSignalBus.enemy_death.emit(true)
 	
 func exit() -> void:
