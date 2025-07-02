@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5ksnc33jrjk7"]
 
-[ext_resource type="Script" uid="uid://c13nd8wkywvve" path="res://scripts/components/jump_component.gd" id="1_rgr58"]
+[ext_resource type="Script" uid="uid://c13nd8wkywvve" path="res://scripts/components/JumpComponent.gd" id="1_rgr58"]
 
 [node name="jump_component" type="Node2D"]
 process_mode = 1
