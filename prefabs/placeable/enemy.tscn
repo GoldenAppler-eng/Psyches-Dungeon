@@ -203,11 +203,17 @@ _data = {
 &"hit": SubResource("Animation_c0gnn")
 }
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("main_state_machine", "movement_state_machine", "input_controller", "movement_controller", "anim_player", "sfx_player")]
 y_sort_enabled = true
 collision_layer = 8
 collision_mask = 258
 script = ExtResource("1_smd3p")
+main_state_machine = NodePath("StateMachines/life state machine")
+movement_state_machine = NodePath("StateMachines/movement state machine")
+input_controller = NodePath("EnemyInputController")
+movement_controller = NodePath("MovementController")
+anim_player = NodePath("EnemyAnimationController")
+sfx_player = NodePath("SfxPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -9)
@@ -218,7 +224,6 @@ script = ExtResource("4_pwlrm")
 metadata/_custom_type_script = "uid://bvv3mec31i7dv"
 
 [node name="DamageableHitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
-visible = false
 position = Vector2(-4, -16)
 collision_layer = 64
 collision_mask = 0
@@ -231,7 +236,6 @@ disable_on_hit = true
 shape = SubResource("RectangleShape2D_l30rr")
 
 [node name="DamagerHitbox" type="Area2D" parent="."]
-visible = false
 position = Vector2(-13, -17)
 collision_layer = 0
 collision_mask = 32
@@ -243,7 +247,6 @@ damage = 20
 shape = SubResource("RectangleShape2D_s04jv")
 
 [node name="ObjectDetectionArea" type="Area2D" parent="."]
-visible = false
 position = Vector2(-1, -18)
 collision_layer = 0
 collision_mask = 282
@@ -253,7 +256,6 @@ monitorable = false
 shape = SubResource("CircleShape2D_tfr4d")
 
 [node name="AttackDetectionArea" type="Area2D" parent="."]
-visible = false
 position = Vector2(-20.5, -17)
 collision_layer = 0
 collision_mask = 32
@@ -271,7 +273,7 @@ initial_state = NodePath("living state")
 script = ExtResource("8_1wxu8")
 hurt_state = NodePath("../hurt state")
 damageable_hitbox_component = NodePath("../../../DamageableHitbox")
-sub_state_machines = [null]
+sub_state_machines = [NodePath("../../movement state machine")]
 
 [node name="hurt state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("invincible_state", "dead_state", "health_component", "hurt_timer")]
 script = ExtResource("9_khejp")
@@ -303,8 +305,10 @@ damager_hitbox = NodePath("../../../DamagerHitbox")
 attack_cooldown_timer = NodePath("../../../Timers/AttackCooldownTimer")
 override_priority = 1
 
-[node name="EnemyAnimationController" type="Node2D" parent="."]
+[node name="EnemyAnimationController" type="Node2D" parent="." node_paths=PackedStringArray("sprite", "animation_player")]
 script = ExtResource("11_yoppe")
+sprite = NodePath("AnimatedSprite2D")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyAnimationController"]
 material = ExtResource("4_xqm1v")
@@ -337,8 +341,10 @@ script = ExtResource("10_yoppe")
 max_speed = 10000.0
 metadata/_custom_type_script = "uid://drxpfuh2tcgfe"
 
-[node name="EnemyInputController" type="Node" parent="."]
+[node name="EnemyInputController" type="Node" parent="." node_paths=PackedStringArray("actor", "object_detection_area")]
 script = ExtResource("11_wif34")
+actor = NodePath("..")
+object_detection_area = NodePath("../ObjectDetectionArea")
 
 [node name="SummonerComponent" type="Node2D" parent="." node_paths=PackedStringArray("summoner_node")]
 script = ExtResource("23_khejp")

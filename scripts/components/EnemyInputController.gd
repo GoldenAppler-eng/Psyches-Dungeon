@@ -2,12 +2,16 @@ extends InputController
 
 @export var actor : CharacterBody2D
 
+@export var object_detection_area: Area2D
+
 var _target_player : Player
 var _target_direction : Vector2
 var avoided_objects : Array[Node2D] = []
 
 func init() -> void:
 	_target_player = Global.global_player
+	
+	_connect_signals()
 
 func get_movement_axis() -> Vector2:
 	return _get_target_direction()
@@ -37,3 +41,14 @@ func _get_target_direction() -> Vector2:
 		_target_direction = normalized_vector2_to_player
 		
 	return _target_direction
+
+func _connect_signals() -> void:
+	object_detection_area.body_entered.connect(_on_object_detection_area_body_entered)
+	object_detection_area.body_exited.connect(_on_object_detection_area_body_exited)
+
+func _on_object_detection_area_body_entered(body : Node2D) -> void:
+	avoided_objects.append(body)
+
+func _on_object_detection_area_body_exited(body : Node2D) -> void:
+	if avoided_objects.has(body):
+		avoided_objects.remove_at(avoided_objects.find(body))

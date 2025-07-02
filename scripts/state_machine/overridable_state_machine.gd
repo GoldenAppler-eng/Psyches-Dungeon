@@ -1,8 +1,5 @@
 class_name OverrideableStateMachine
-extends Node
-
-@export var initial_state : State
-var current_state : State
+extends StateMachine
 
 var override_states : Array[OverrideState] = []
 
