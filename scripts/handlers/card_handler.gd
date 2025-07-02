@@ -1,27 +1,25 @@
 class_name CardHandler
 extends Node2D
 
+signal card_changed
+
 @export var effect_pool : Array[WildEffect]
 
 @export var task_handler : TaskHandler
 @export var effect_handler : EffectHandler
 @export var goal_handler : GoalHandler
 
-@onready var next : Card = $%next
-@onready var current : Card = $%current
-@onready var cover : Card = $%cover
+var next : CardResource
+var current : CardResource
+var cover : CardResource
 
 @onready var task_failed_sfx : AudioStreamPlayer = $TaskFailedSfx
 @onready var task_completed_sfx : AudioStreamPlayer= $TaskCompletedSfx
-@onready var card_draw_sfx : AudioStreamPlayer = $CardDrawSfx
 
 var next_task_values : Array[int] 
 var next_card_effect : WildEffect
 
 func _ready() -> void:
-	var cover_animation_player : AnimationPlayer = cover.find_child("AnimationPlayer")
-	cover_animation_player.animation_finished.connect(_on_flipping_animation_finished)
-	
 	GlobalCardTimer.timeout.connect(_on_new_card_timer_timeout)
 	
 	GlobalSignalBus.retry.connect(_on_game_retry)
@@ -31,7 +29,7 @@ func _ready() -> void:
 	GlobalSignalBus.psyche_task_request.connect(_on_psyche_task_received)
 	
 	_generate_new_next_card()	
-	_change_cards()
+	_change_card()
 
 func _generate_new_next_card() -> void:
 	var task_values : Array[int] = _generate_new_task()
@@ -74,16 +72,16 @@ func _generate_new_task() -> Array[int]:
 
 func _on_game_retry() -> void:
 	_generate_new_next_card()	
-	_change_cards()
+	_change_card()
 
 func _on_new_card_timer_timeout() -> void:	
-	_change_cards()	
+	_change_card()	
 	
 func _on_task_completed(task_type : int) -> void:
 	task_completed_sfx.play()
 	goal_handler.mark_completed_task(current.effect_type)
 	
-	_change_cards()	
+	_change_card()	
 	
 	GlobalCardTimer.start()
 	
@@ -95,23 +93,12 @@ func _on_goal_count_changed(inc_amt : int) -> void:
 	
 func _on_psyche_task_received() -> void:
 	var task_values : Array[int] = _generate_new_task()
-	
 	task_handler.set_task_type(task_values[0], task_values[1], task_values[2])
 	
 	var task_text : String = task_handler.get_current_task_description()
 	
 	current.task_text = task_text
-		
-func _change_cards() -> void:
-	next.visible = false
-	cover.modulate = Color8(255, 255, 255, 255)
 	
-	cover.play_flip_card_animation()
-	card_draw_sfx.play()
-	
-func _on_flipping_animation_finished(anim_name : String) -> void:
-	if anim_name == "flip_card":
-		next.visible = true
-		cover.modulate = Color8(255, 255, 255, 100)
-		
-		_update_current_task()
+func _change_card() -> void:
+	_update_current_task()
+	card_changed.emit()

@@ -565,7 +565,6 @@ _data = {
 
 [node name="card" type="Node2D"]
 script = ExtResource("1_c2vn4")
-effect_type = 1
 
 [node name="base" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -610,7 +609,7 @@ autowrap_mode = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_m6ryn")
+&"": SubResource("AnimationLibrary_m6ryn")
 }
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
