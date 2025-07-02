@@ -209,13 +209,13 @@ y_sort_enabled = true
 collision_layer = 8
 collision_mask = 258
 script = ExtResource("1_smd3p")
-_guaranteed_gold = true
 main_state_machine = NodePath("StateMachines/life state machine")
 movement_state_machine = NodePath("StateMachines/movement state machine")
 input_controller = NodePath("EnemyInputController")
 movement_controller = NodePath("MovementController")
 anim_player = NodePath("EnemyAnimationController")
 sfx_player = NodePath("SfxPlayer")
+_guaranteed_gold = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -9)

@@ -2,7 +2,7 @@ class_name DamageableHitboxComponent
 extends Area2D
 
 signal took_damage
-signal took_knockback(knockback_speed : float)
+signal took_knockback(knockback_speed : float, incoming_direction : Vector2)
 
 @export var health_component : HealthComponent
 
@@ -23,9 +23,9 @@ func take_damage(amt : int) -> void:
 	if disable_on_hit:
 		set_enabled(false)
 
-func take_knockback(knockback_speed : float) -> void:
+func take_knockback(knockback_speed : float, incoming_direction : Vector2) -> void:
 	if can_take_knockback:
-		took_knockback.emit(knockback_speed / (knockback_resistance + 1))
+		took_knockback.emit(knockback_speed / (knockback_resistance + 1), incoming_direction)
 
 func set_enabled(enabled : bool) -> void:
 	self.enabled = enabled

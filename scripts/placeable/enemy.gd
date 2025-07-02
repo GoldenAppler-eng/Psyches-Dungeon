@@ -2,12 +2,6 @@ class_name Enemy
 extends CharacterBody2D
 
 const GOLD_CHANCE := .4
-const KNOCKBACK_SPEED := 100.0
-
-@onready var animated_sprite_2d: AnimatedSprite2D = $EnemyAnimationController/AnimatedSprite2D
-var _is_golden := false
-
-@export var _guaranteed_gold : bool
 
 @export var main_state_machine : StateMachine
 @export var movement_state_machine : StateMachine
@@ -16,6 +10,9 @@ var _is_golden := false
 @export var movement_controller : MovementController
 @export var anim_player : AnimationController
 @export var sfx_player : SfxPlayer
+
+@export var _guaranteed_gold : bool
+var _is_golden := false
 	
 func _ready() -> void:
 	input_controller.init()

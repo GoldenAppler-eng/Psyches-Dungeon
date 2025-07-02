@@ -19,4 +19,4 @@ func deal_damage_to_area() -> void:
 			
 		var damageable_hitbox : DamageableHitboxComponent = area as DamageableHitboxComponent
 		damageable_hitbox.take_damage(damage)
-		damageable_hitbox.take_knockback(knockback_speed)
+		damageable_hitbox.take_knockback(knockback_speed, (damageable_hitbox.global_position - global_position).normalized())

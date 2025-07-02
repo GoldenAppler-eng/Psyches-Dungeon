@@ -412,6 +412,7 @@ collision_mask = 64
 monitorable = false
 script = ExtResource("6_u8pvg")
 damage = 20
+knockback_speed = 5000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitbox"]
 shape = SubResource("RectangleShape2D_tkdcx")
@@ -434,11 +435,12 @@ living_state = NodePath("../living state")
 invincibility_timer = NodePath("../../../Timers/InvinciblityTimer")
 sub_state_machines = [NodePath("../../movement state machine"), NodePath("../../attack state machine")]
 
-[node name="hurt state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("invincible_state", "dead_state", "health_component", "hurt_timer")]
+[node name="hurt state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("invincible_state", "dead_state", "health_component", "damageable_hitbox_component", "hurt_timer")]
 script = ExtResource("14_usjfm")
 invincible_state = NodePath("../invincible state")
 dead_state = NodePath("../dead state")
 health_component = NodePath("../../../HealthComponent")
+damageable_hitbox_component = NodePath("../../../DamageableHitbox")
 hurt_timer = NodePath("../../../Timers/HurtTimer")
 
 [node name="dead state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("respawn_state")]
