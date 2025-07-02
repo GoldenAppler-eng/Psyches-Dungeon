@@ -1,8 +1,9 @@
 extends StaticBody2D
 
-@export var enemy_prefab : PackedScene
-@export var coin_prefab : PackedScene
-@export var jump_component_prefab : PackedScene
+const LUCKY_OPEN_CHANCE : float = 0.8
+
+@onready var coin_summoner_component: SummonerComponent = %CoinSummonerComponent
+@onready var enemy_summoner_component: SummonerComponent = %EnemySummonerComponent
 
 @onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
 @onready var open_sfx : AudioStreamPlayer = $OpenSfx
@@ -26,23 +27,11 @@ func _open_chest() -> void:
 	animated_sprite_2d.frame = 1	
 	
 	open_sfx.play()
-	
-	var rng := randf()
-	
-	if rng < 0.8: 
-		_spawn(coin_prefab, randi_range(1, 3))
-	else:
-		_spawn(enemy_prefab, randi_range(1, 3))
 
-func _spawn(prefab : PackedScene, num : int) -> void:
-	for i in num:
-		var spawned : Node2D = prefab.instantiate()
-		var jump_comp : Node2D = jump_component_prefab.instantiate()
-		
-		get_parent().add_child(spawned)
-		spawned.global_position = global_position
-		
-		spawned.add_child(jump_comp)
+	if randf() < LUCKY_OPEN_CHANCE: 
+		coin_summoner_component.summon_multiple(randi_range(1, 3), true)
+	else:
+		enemy_summoner_component.summon_multiple(randi_range(1, 2), true)
 
 func _on_area_2d_player_entered(body: Node2D) -> void:
 	_player_nearby = true

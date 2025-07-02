@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://6ua0gd6pdnqn" path="res://scripts/placeable/chest.gd" id="1_e66pm"]
 [ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/enemy.tscn" id="2_fbo2m"]
 [ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/placeable/coin.tscn" id="3_dg2ca"]
-[ext_resource type="PackedScene" uid="uid://c5ksnc33jrjk7" path="res://prefabs/components/JumpComponent.tscn" id="4_heo5f"]
 [ext_resource type="Texture2D" uid="uid://dwfy571fxosqu" path="res://sprites/chest-Sheet.png" id="5_awcew"]
 [ext_resource type="AudioStream" uid="uid://bl3gfsl81twao" path="res://audio/sfx/chest_open.wav" id="6_b5q2c"]
+[ext_resource type="Script" uid="uid://7qu6n16ohs8q" path="res://scripts/components/SummonerComponent.gd" id="7_800rp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nc8py"]
 atlas = ExtResource("5_awcew")
@@ -40,9 +40,6 @@ y_sort_enabled = true
 collision_layer = 256
 collision_mask = 0
 script = ExtResource("1_e66pm")
-enemy_prefab = ExtResource("2_fbo2m")
-coin_prefab = ExtResource("3_dg2ca")
-jump_component_prefab = ExtResource("4_heo5f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -65,6 +62,20 @@ shape = SubResource("RectangleShape2D_fa4qy")
 [node name="OpenSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_b5q2c")
 bus = &"Sfx"
+
+[node name="CoinSummonerComponent" type="Node2D" parent="." node_paths=PackedStringArray("summoner_node")]
+unique_name_in_owner = true
+script = ExtResource("7_800rp")
+summoned_prefab = ExtResource("3_dg2ca")
+summoner_node = NodePath("..")
+metadata/_custom_type_script = "uid://7qu6n16ohs8q"
+
+[node name="EnemySummonerComponent" type="Node2D" parent="." node_paths=PackedStringArray("summoner_node")]
+unique_name_in_owner = true
+script = ExtResource("7_800rp")
+summoned_prefab = ExtResource("2_fbo2m")
+summoner_node = NodePath("..")
+metadata/_custom_type_script = "uid://7qu6n16ohs8q"
 
 [connection signal="body_entered" from="OpenArea" to="." method="_on_area_2d_player_entered"]
 [connection signal="body_exited" from="OpenArea" to="." method="_on_area_2d_player_exited"]

@@ -15,3 +15,7 @@ func summon(jump_summon : bool) -> void:
 		item.add_child(jump_comp)
 		
 	item.global_position = summoner_node.global_position
+
+func summon_multiple(num : int, jump_summon : bool) -> void:
+	for i in num:
+		summon(jump_summon)
