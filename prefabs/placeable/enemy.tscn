@@ -233,6 +233,7 @@ monitoring = false
 script = ExtResource("5_5tmjw")
 health_component = NodePath("../HealthComponent")
 disable_on_hit = true
+can_take_knockback = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableHitbox"]
 shape = SubResource("RectangleShape2D_l30rr")
@@ -279,11 +280,12 @@ hurt_state = NodePath("../hurt state")
 damageable_hitbox_component = NodePath("../../../DamageableHitbox")
 sub_state_machines = [NodePath("../../movement state machine")]
 
-[node name="hurt state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("invincible_state", "dead_state", "health_component", "hurt_timer")]
+[node name="hurt state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("invincible_state", "dead_state", "health_component", "damageable_hitbox_component", "hurt_timer")]
 script = ExtResource("9_khejp")
 invincible_state = NodePath("../living state")
 dead_state = NodePath("../dead state")
 health_component = NodePath("../../../HealthComponent")
+damageable_hitbox_component = NodePath("../../../DamageableHitbox")
 hurt_timer = NodePath("../../../Timers/HurtTimer")
 
 [node name="dead state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("summoner_component", "enemy")]

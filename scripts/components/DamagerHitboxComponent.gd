@@ -2,6 +2,7 @@ class_name DamagerHitboxComponent
 extends Area2D
 
 @export var damage : int
+@export var knockback_speed : float
 
 var damager_hitbox_offset : float
 
@@ -18,3 +19,4 @@ func deal_damage_to_area() -> void:
 			
 		var damageable_hitbox : DamageableHitboxComponent = area as DamageableHitboxComponent
 		damageable_hitbox.take_damage(damage)
+		damageable_hitbox.take_knockback(knockback_speed)
