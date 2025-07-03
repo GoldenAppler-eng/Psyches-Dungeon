@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://dhaij0jq75c1n" path="res://scripts/tasks/CoinCollectionTask.gd" id="1_bwxbr"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_bwxbr")
 task_description = "Collect {requirement_amount} coins"
-max_requirement = 0
+min_requirement = 1
+max_requirement = 1
 metadata/_custom_type_script = "uid://dhaij0jq75c1n"

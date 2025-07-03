@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://47pk3lvrw00k"]
+[gd_scene load_steps=14 format=3 uid="uid://47pk3lvrw00k"]
 
 [ext_resource type="PackedScene" uid="uid://bnj71gqcb0bcx" path="res://prefabs/handlers/card_handler.tscn" id="1_umbte"]
 [ext_resource type="PackedScene" uid="uid://dwqki74onshog" path="res://prefabs/handlers/goal_handler.tscn" id="2_ynswa"]
 [ext_resource type="PackedScene" uid="uid://b745s8ogrbuvm" path="res://prefabs/handlers/task_handler.tscn" id="3_dvny0"]
+[ext_resource type="Script" uid="uid://dkpu6enc78l64" path="res://scripts/tasks/Task.gd" id="4_mjm4b"]
 [ext_resource type="PackedScene" uid="uid://bh85bemgdn78m" path="res://prefabs/handlers/effect_resolution_handler.tscn" id="4_xwrkq"]
+[ext_resource type="Resource" uid="uid://bgigvtrhaj0po" path="res://resources/tasks/ActivateTrapTask.tres" id="5_dv75v"]
 [ext_resource type="PackedScene" uid="uid://dfu6vdkfj2okp" path="res://prefabs/HUD/card_hud_display.tscn" id="5_ynswa"]
+[ext_resource type="Resource" uid="uid://daogxkitkq3v0" path="res://resources/tasks/CollectCoinTask.tres" id="6_x05cw"]
+[ext_resource type="Resource" uid="uid://b2rtpuyphllsr" path="res://resources/tasks/DefeatEnemyTask.tres" id="7_bn472"]
+[ext_resource type="Resource" uid="uid://1yhrc1ub53k2" path="res://resources/tasks/DefeatGoldEnemyTask.tres" id="8_3xk6l"]
+[ext_resource type="Resource" uid="uid://djb8cuplfedsb" path="res://resources/tasks/DieTask.tres" id="9_ko4od"]
+[ext_resource type="Resource" uid="uid://bmdytjud0rc6k" path="res://resources/tasks/OpenChestTask.tres" id="10_y60ib"]
+[ext_resource type="Resource" uid="uid://dd1ksnr2phjg1" path="res://resources/tasks/TravelConsecutiveRoomTask.tres" id="11_xp3in"]
 
 [node name="test_world" type="Node2D"]
 
@@ -19,6 +27,7 @@ goal_handler = NodePath("../goal_handler")
 [node name="goal_handler" parent="." instance=ExtResource("2_ynswa")]
 
 [node name="task_handler" parent="." instance=ExtResource("3_dvny0")]
+task_pool = Array[ExtResource("4_mjm4b")]([ExtResource("5_dv75v"), ExtResource("6_x05cw"), ExtResource("7_bn472"), ExtResource("8_3xk6l"), ExtResource("9_ko4od"), ExtResource("10_y60ib"), ExtResource("11_xp3in")])
 
 [node name="effect_resolution_handler" parent="." instance=ExtResource("4_xwrkq")]
 

@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://ckmgawqorome5" path="res://scripts/tasks/EnemyDefeatTask.gd" id="1_dpx1a"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_dpx1a")
 need_golden_enemy = true
 task_description = "Defeat {requirement_amount} golden enemies"
-max_requirement = 0
+min_requirement = 1
+max_requirement = 1
 metadata/_custom_type_script = "uid://ckmgawqorome5"

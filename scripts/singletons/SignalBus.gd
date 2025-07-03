@@ -9,7 +9,7 @@ signal player_death
 signal room_exited(room_area : Node2D)
 signal room_entered(room_area : Node2D)
 signal room_changed(direction : int, room_area : Node2D)
-signal task_completed(task_type : int)
+signal task_completed
 
 signal player_respawn
 

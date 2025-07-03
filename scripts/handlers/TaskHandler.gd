@@ -1,148 +1,54 @@
 class_name TaskHandler
 extends Node2D
 
+signal task_finished
+
+@export var task_pool : Array[Task]
+
 @onready var task_display_label : Label = $TaskDisplayLabel
+@onready var task_completed_sfx: AudioStreamPlayer = $TaskCompletedSfx
 
-var current_task_type : int = -1
+var current_task : Task
+var next_task : Task
 
-var task_completion_counter : int = 0
-var task_completion_amount : int = 5 
+var _finished_flag : bool = false
 
-var task_completed := false
-
-var direction_dict : Dictionary = {
-	Global.DIRECTION.NORTH : "upwards",
-	Global.DIRECTION.SOUTH : "downwards",
-	Global.DIRECTION.EAST : "right",
-	Global.DIRECTION.WEST : "left"
-}
-
-var task_completion_direction : int = 0
-
-func _ready() -> void:
-	GlobalSignalBus.coin_collected.connect(_on_coin_collected)
-	GlobalSignalBus.chest_opened.connect(_on_chest_opened)
-	GlobalSignalBus.trap_activated.connect(_on_trap_activated)
-	GlobalSignalBus.enemy_death.connect(_on_enemy_death)
-	GlobalSignalBus.player_death.connect(_on_player_death)
-	GlobalSignalBus.room_changed.connect(_on_room_changed)
-
-func _process(delta : float) -> void:
-	if task_completion_counter >= task_completion_amount:
-		signal_task_completed()
-	
-	var task_text : String = ""
-	
-	match current_task_type:
-		Global.TASK_TYPE.DEFEAT:
-			task_text = "Defeat (" + str(task_completion_counter) + "/" + str(task_completion_amount) + ") enemies"
-		Global.TASK_TYPE.DEFEAT_GOLD:
-			task_text = "Defeat (" + str(task_completion_counter) + "/" + str(task_completion_amount) + ") golden enemies"
-		Global.TASK_TYPE.COLLECT:
-			task_text = "Collect (" + str(task_completion_counter) + "/" + str(task_completion_amount) + ") coins"
-		Global.TASK_TYPE.OPEN:
-			task_text = "Open (" + str(task_completion_counter) + "/" + str(task_completion_amount) + ") chests"
-		Global.TASK_TYPE.ACTIVATE:
-			task_text = "Activate (" + str(task_completion_counter) + "/" + str(task_completion_amount) + ") traps"
-		Global.TASK_TYPE.DIE:
-			task_text = "Die"
-		Global.TASK_TYPE.TRAVEL:
-			task_text = "Go " + direction_dict[task_completion_direction] + " into another room (" + str(task_completion_counter) + "/" + str(task_completion_amount) + ") times in a row"	
-	
-	task_display_label.text = task_text
-	
-
-func set_task_type(type : int, amt : int, dir : int) -> void:
-	reset_counter()
-	task_completed = false
-	
-	current_task_type = type
-	task_completion_amount = amt
-	task_completion_direction = dir
-	
-	if type == Global.TASK_TYPE.TRAVEL:
-		task_completion_direction = randi_range(0, 3) + Global.DIRECTION.NORTH
-
-func reset_counter() -> void :
-	task_completion_counter = 0
-
-func _on_coin_collected() -> void:
-	if current_task_type == Global.TASK_TYPE.COLLECT:
-		task_completion_counter += 1
-		
-func _on_chest_opened() -> void:
-	if current_task_type == Global.TASK_TYPE.OPEN:
-		task_completion_counter += 1
-		
-func _on_trap_activated(activating_body : Node2D) -> void:
-	if current_task_type == Global.TASK_TYPE.ACTIVATE and activating_body is Player:
-		task_completion_counter += 1
-		
-func _on_enemy_death(is_gold : bool) -> void:
-	if current_task_type == Global.TASK_TYPE.DEFEAT:
-		task_completion_counter += 1
-	elif current_task_type == Global.TASK_TYPE.DEFEAT_GOLD and is_gold:
-		task_completion_counter += 1
-		
-func _on_player_death() -> void:
-	if current_task_type == Global.TASK_TYPE.DIE:
-		signal_task_completed()
-		GlobalSignalBus.player_respawn.emit()
-		
-func _on_room_changed(direction : int, room_area : Node2D) -> void:
-	if current_task_type == Global.TASK_TYPE.TRAVEL:
-		if task_completion_direction == direction:
-			task_completion_counter += 1
-		else:
-			reset_counter()
-			
-func signal_task_completed() -> void:
-	if task_completed:
+func _process(delta : float) -> void:		
+	if not current_task:
 		return
-		
-	reset_counter()
 	
-	task_completed = true
-	GlobalSignalBus.task_completed.emit(current_task_type)
+	if current_task.get_is_finished() and not _finished_flag:
+		_process_task_finished()
+	
+	var task_text : String = current_task.get_task_description_formatted(true)
+
+func change_task() -> void:
+	current_task = next_task
+	current_task.set_active(true)
+	generate_new_next_task()
+
+func generate_new_current_task() -> void:
+	current_task = _get_random_task()
+	current_task.set_active(true)
+	
+func generate_new_next_task() -> void:
+	next_task = _get_random_task()
+
+func _get_random_task() -> Task:
+	var rand_task : Task = task_pool.pick_random() as Task
+	rand_task = rand_task.duplicate()
+	rand_task.generate_new()
+		
+	return rand_task
+
+func _process_task_finished() -> void:
+	_finished_flag = true
+	
+	task_completed_sfx.play()
+	task_finished.emit()
 	
 func get_current_task_description() -> String:
-	var task_desc : String = ""
-	
-	match current_task_type:
-		Global.TASK_TYPE.DEFEAT:
-			task_desc = "Defeat " + str(task_completion_amount) + " enemies"
-		Global.TASK_TYPE.DEFEAT_GOLD:
-			task_desc = "Defeat " + str(task_completion_amount) + " golden enemies"
-		Global.TASK_TYPE.COLLECT:
-			task_desc = "Collect " + str(task_completion_amount) + " coins"
-		Global.TASK_TYPE.OPEN:
-			task_desc = "Open " + str(task_completion_amount) + " chests"
-		Global.TASK_TYPE.ACTIVATE:
-			task_desc = "Activate " + str(task_completion_amount) + " traps"
-		Global.TASK_TYPE.DIE:
-			task_desc = "Die"
-		Global.TASK_TYPE.TRAVEL:
-			task_desc = "Go " + direction_dict[task_completion_direction] + " into another room " + str(task_completion_amount) + " times in a row"	
+	return current_task.get_task_description_formatted(false)
 
-	return task_desc
-
-func get_task_description(task_type : int, task_amt : int, task_dir : int) -> String:
-	var task_desc : String = ""
-	
-	match task_type:
-		Global.TASK_TYPE.DEFEAT:
-			task_desc = "Defeat " + str(task_amt) + " enemies"
-		Global.TASK_TYPE.DEFEAT_GOLD:
-			task_desc = "Defeat " + str(task_amt) + " golden enemies"
-		Global.TASK_TYPE.COLLECT:
-			task_desc = "Collect " + str(task_amt) + " coins"
-		Global.TASK_TYPE.OPEN:
-			task_desc = "Open " + str(task_amt) + " chests"
-		Global.TASK_TYPE.ACTIVATE:
-			task_desc = "Activate " + str(task_amt) + " traps"
-		Global.TASK_TYPE.DIE:
-			task_desc = "Die"
-		Global.TASK_TYPE.TRAVEL:
-			task_desc = "Go " + direction_dict[task_dir] + " into another room " + str(task_amt) + " times in a row"	
-
-	return task_desc
+func get_next_task_description() -> String:
+	return next_task.get_task_description_formatted(false)

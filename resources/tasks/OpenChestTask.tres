@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://cp8anq50qc5x5" path="res://scripts/tasks/ChestOpeningTask.gd" id="1_58nti"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_58nti")
 task_description = "Open {requirement_amount} chests"
-max_requirement = 0
+min_requirement = 1
+max_requirement = 1
 metadata/_custom_type_script = "uid://cp8anq50qc5x5"

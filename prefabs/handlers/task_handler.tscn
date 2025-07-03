@@ -1,13 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://b745s8ogrbuvm"]
+[gd_scene load_steps=12 format=3 uid="uid://b745s8ogrbuvm"]
 
 [ext_resource type="Script" uid="uid://cnww4j5i3fvr0" path="res://scripts/handlers/TaskHandler.gd" id="1_ix626"]
+[ext_resource type="Script" uid="uid://dkpu6enc78l64" path="res://scripts/tasks/Task.gd" id="2_7h0u8"]
 [ext_resource type="LabelSettings" uid="uid://bwtvtucat5qpe" path="res://fonts/task_handler_label_settings.tres" id="2_b7y0e"]
+[ext_resource type="Resource" uid="uid://bgigvtrhaj0po" path="res://resources/tasks/ActivateTrapTask.tres" id="3_a6nyf"]
+[ext_resource type="Resource" uid="uid://daogxkitkq3v0" path="res://resources/tasks/CollectCoinTask.tres" id="4_6jt4n"]
+[ext_resource type="Resource" uid="uid://b2rtpuyphllsr" path="res://resources/tasks/DefeatEnemyTask.tres" id="5_kujg3"]
+[ext_resource type="Resource" uid="uid://1yhrc1ub53k2" path="res://resources/tasks/DefeatGoldEnemyTask.tres" id="6_bxdcv"]
+[ext_resource type="Resource" uid="uid://djb8cuplfedsb" path="res://resources/tasks/DieTask.tres" id="7_jkccb"]
+[ext_resource type="Resource" uid="uid://bmdytjud0rc6k" path="res://resources/tasks/OpenChestTask.tres" id="8_7j571"]
+[ext_resource type="Resource" uid="uid://dd1ksnr2phjg1" path="res://resources/tasks/TravelConsecutiveRoomTask.tres" id="9_3fgab"]
+[ext_resource type="AudioStream" uid="uid://cma8j7ln5ywk5" path="res://audio/sfx/complete_mission.wav" id="11_a6nyf"]
 
 [node name="task_handler" type="Node2D"]
 script = ExtResource("1_ix626")
+task_pool = Array[ExtResource("2_7h0u8")]([ExtResource("3_a6nyf"), ExtResource("4_6jt4n"), ExtResource("5_kujg3"), ExtResource("6_bxdcv"), ExtResource("7_jkccb"), ExtResource("8_7j571"), ExtResource("9_3fgab")])
 
 [node name="TaskDisplayLabel" type="Label" parent="."]
 offset_right = 158.0
 offset_bottom = 191.0
 label_settings = ExtResource("2_b7y0e")
 autowrap_mode = 2
+
+[node name="TaskCompletedSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_a6nyf")
+bus = &"Sfx"

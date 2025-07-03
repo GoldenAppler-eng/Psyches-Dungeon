@@ -9,12 +9,12 @@ enum TASK_STATUS { ACTIVE = 0, INACTIVE, FINISHED }
 @export var min_requirement : int = 1
 @export var max_requirement : int = 1
 
-var _requirement_amount : int = 0
+var _requirement_amount : int = 1
 var _progress_counter : int = 0
 
 var status : TASK_STATUS = TASK_STATUS.INACTIVE
 
-func get_new_task() -> void:
+func generate_new() -> void:
 	reset_task_progress()
 	generate_new_requirement()
 

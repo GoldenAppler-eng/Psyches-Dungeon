@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://f0ftkbwhqhcs"]
 
-[ext_resource type="PackedScene" uid="uid://d0jlkactf4p11" path="res://prefabs/goal/loss_marker.tscn" id="1_0kpkl"]
+[ext_resource type="PackedScene" uid="uid://d0jlkactf4p11" path="res://prefabs/markers/loss_marker.tscn" id="1_0kpkl"]
 [ext_resource type="Script" uid="uid://wth0q63im50u" path="res://scripts/handlers/loss_handler.gd" id="1_b2phb"]
 
 [node name="loss_handler" type="Node2D"]
