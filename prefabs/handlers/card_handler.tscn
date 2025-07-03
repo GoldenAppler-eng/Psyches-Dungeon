@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bnj71gqcb0bcx"]
 
-[ext_resource type="Script" uid="uid://dl5ud1ql633mm" path="res://scripts/handlers/card_handler.gd" id="1_hahlu"]
+[ext_resource type="Script" uid="uid://dl5ud1ql633mm" path="res://scripts/handlers/CardHandler.gd" id="1_hahlu"]
 [ext_resource type="Resource" uid="uid://cw065otp2t7k6" path="res://resources/effects/change_mission.tres" id="2_ed2ct"]
 [ext_resource type="Script" uid="uid://cu4by2s0jrl0g" path="res://scripts/effects/WildEffect.gd" id="2_otrrv"]
 [ext_resource type="Resource" uid="uid://tu7cgss2s5g8" path="res://resources/effects/decrease_goal.tres" id="3_qxo1t"]

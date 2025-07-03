@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyDefeatTask" load_steps=2 format=3 uid="uid://1yhrc1ub53k2"]
+
+[ext_resource type="Script" uid="uid://ckmgawqorome5" path="res://scripts/tasks/EnemyDefeatTask.gd" id="1_dpx1a"]
+
+[resource]
+script = ExtResource("1_dpx1a")
+need_golden_enemy = true
+task_description = "Defeat {requirement_amount} golden enemies"
+max_requirement = 0
+metadata/_custom_type_script = "uid://ckmgawqorome5"

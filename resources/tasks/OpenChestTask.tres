@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ChestOpeningTask" load_steps=2 format=3 uid="uid://bmdytjud0rc6k"]
+
+[ext_resource type="Script" uid="uid://cp8anq50qc5x5" path="res://scripts/tasks/ChestOpeningTask.gd" id="1_58nti"]
+
+[resource]
+script = ExtResource("1_58nti")
+task_description = "Open {requirement_amount} chests"
+max_requirement = 0
+metadata/_custom_type_script = "uid://cp8anq50qc5x5"

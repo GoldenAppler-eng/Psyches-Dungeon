@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerDeathTask" load_steps=2 format=3 uid="uid://djb8cuplfedsb"]
+
+[ext_resource type="Script" uid="uid://ohix4wy5pm66" path="res://scripts/tasks/PlayerDeathTask.gd" id="1_j4ljf"]
+
+[resource]
+script = ExtResource("1_j4ljf")
+task_description = "Die {requirement_amount} times"
+max_requirement = 0
+metadata/_custom_type_script = "uid://ohix4wy5pm66"

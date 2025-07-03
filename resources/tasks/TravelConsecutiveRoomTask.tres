@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RoomTravelTask" load_steps=2 format=3 uid="uid://dd1ksnr2phjg1"]
+
+[ext_resource type="Script" uid="uid://cmktuyanlwaem" path="res://scripts/tasks/RoomTravelTask.gd" id="1_fajrt"]
+
+[resource]
+script = ExtResource("1_fajrt")
+need_consecutive = true
+task_description = "Go {requirement_direction} into another room {requirement_amount} times consecutively"
+min_requirement = 1
+max_requirement = 1
+metadata/_custom_type_script = "uid://cmktuyanlwaem"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CoinCollectionTask" load_steps=2 format=3 uid="uid://daogxkitkq3v0"]
+
+[ext_resource type="Script" uid="uid://dhaij0jq75c1n" path="res://scripts/tasks/CoinCollectionTask.gd" id="1_bwxbr"]
+
+[resource]
+script = ExtResource("1_bwxbr")
+task_description = "Collect {requirement_amount} coins"
+max_requirement = 0
+metadata/_custom_type_script = "uid://dhaij0jq75c1n"

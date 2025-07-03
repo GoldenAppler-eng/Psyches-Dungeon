@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b745s8ogrbuvm"]
 
-[ext_resource type="Script" uid="uid://cnww4j5i3fvr0" path="res://scripts/handlers/task_handler.gd" id="1_ix626"]
+[ext_resource type="Script" uid="uid://cnww4j5i3fvr0" path="res://scripts/handlers/TaskHandler.gd" id="1_ix626"]
 [ext_resource type="LabelSettings" uid="uid://bwtvtucat5qpe" path="res://fonts/task_handler_label_settings.tres" id="2_b7y0e"]
 
 [node name="task_handler" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwqki74onshog"]
 
-[ext_resource type="Script" uid="uid://gobsniblv3s5" path="res://scripts/handlers/goal_handler.gd" id="1_6hlea"]
+[ext_resource type="Script" uid="uid://gobsniblv3s5" path="res://scripts/handlers/GoalHandler.gd" id="1_6hlea"]
 [ext_resource type="PackedScene" uid="uid://0e30thyp8jfa" path="res://prefabs/goal/goal_marker.tscn" id="1_a1610"]
 
 [node name="goal_handler" type="Node2D"]
