@@ -1,27 +1,73 @@
-[gd_scene load_steps=12 format=3 uid="uid://b745s8ogrbuvm"]
+[gd_scene load_steps=16 format=3 uid="uid://b745s8ogrbuvm"]
 
 [ext_resource type="Script" uid="uid://cnww4j5i3fvr0" path="res://scripts/handlers/TaskHandler.gd" id="1_ix626"]
 [ext_resource type="Script" uid="uid://dkpu6enc78l64" path="res://scripts/tasks/Task.gd" id="2_7h0u8"]
-[ext_resource type="LabelSettings" uid="uid://bwtvtucat5qpe" path="res://fonts/task_handler_label_settings.tres" id="2_b7y0e"]
-[ext_resource type="Resource" uid="uid://bgigvtrhaj0po" path="res://resources/tasks/ActivateTrapTask.tres" id="3_a6nyf"]
-[ext_resource type="Resource" uid="uid://daogxkitkq3v0" path="res://resources/tasks/CollectCoinTask.tres" id="4_6jt4n"]
-[ext_resource type="Resource" uid="uid://b2rtpuyphllsr" path="res://resources/tasks/DefeatEnemyTask.tres" id="5_kujg3"]
-[ext_resource type="Resource" uid="uid://1yhrc1ub53k2" path="res://resources/tasks/DefeatGoldEnemyTask.tres" id="6_bxdcv"]
-[ext_resource type="Resource" uid="uid://djb8cuplfedsb" path="res://resources/tasks/DieTask.tres" id="7_jkccb"]
-[ext_resource type="Resource" uid="uid://bmdytjud0rc6k" path="res://resources/tasks/OpenChestTask.tres" id="8_7j571"]
-[ext_resource type="Resource" uid="uid://dd1ksnr2phjg1" path="res://resources/tasks/TravelConsecutiveRoomTask.tres" id="9_3fgab"]
-[ext_resource type="AudioStream" uid="uid://cma8j7ln5ywk5" path="res://audio/sfx/complete_mission.wav" id="11_a6nyf"]
+[ext_resource type="Script" uid="uid://ddv2p0x28l04f" path="res://scripts/tasks/TrapActivationTask.gd" id="3_om0b3"]
+[ext_resource type="Script" uid="uid://dhaij0jq75c1n" path="res://scripts/tasks/CoinCollectionTask.gd" id="4_kq03u"]
+[ext_resource type="Script" uid="uid://ckmgawqorome5" path="res://scripts/tasks/EnemyDefeatTask.gd" id="5_7h0u8"]
+[ext_resource type="Script" uid="uid://ohix4wy5pm66" path="res://scripts/tasks/PlayerDeathTask.gd" id="6_a6nyf"]
+[ext_resource type="Script" uid="uid://cp8anq50qc5x5" path="res://scripts/tasks/ChestOpeningTask.gd" id="7_6jt4n"]
+[ext_resource type="Script" uid="uid://cmktuyanlwaem" path="res://scripts/tasks/RoomTravelTask.gd" id="8_kujg3"]
+
+[sub_resource type="Resource" id="Resource_xp3in"]
+resource_local_to_scene = true
+script = ExtResource("3_om0b3")
+task_description = "Activate {requirement_amount} traps"
+min_requirement = 1
+max_requirement = 1
+metadata/_custom_type_script = "uid://ddv2p0x28l04f"
+
+[sub_resource type="Resource" id="Resource_lltfd"]
+resource_local_to_scene = true
+script = ExtResource("4_kq03u")
+task_description = "Collect {requirement_amount} coins"
+min_requirement = 1
+max_requirement = 1
+metadata/_custom_type_script = "uid://dhaij0jq75c1n"
+
+[sub_resource type="Resource" id="Resource_rofg6"]
+resource_local_to_scene = true
+script = ExtResource("5_7h0u8")
+need_golden_enemy = true
+task_description = "Defeat {requirement_amount} enemies"
+min_requirement = 1
+max_requirement = 1
+metadata/_custom_type_script = "uid://ckmgawqorome5"
+
+[sub_resource type="Resource" id="Resource_1ia3q"]
+resource_local_to_scene = true
+script = ExtResource("5_7h0u8")
+need_golden_enemy = true
+task_description = "Defeat {requirement_amount} golden enemies"
+min_requirement = 1
+max_requirement = 1
+metadata/_custom_type_script = "uid://ckmgawqorome5"
+
+[sub_resource type="Resource" id="Resource_yq81k"]
+resource_local_to_scene = true
+script = ExtResource("6_a6nyf")
+task_description = "Die {requirement_amount} times"
+min_requirement = 1
+max_requirement = 1
+metadata/_custom_type_script = "uid://ohix4wy5pm66"
+
+[sub_resource type="Resource" id="Resource_4ehwd"]
+resource_local_to_scene = true
+script = ExtResource("7_6jt4n")
+task_description = "Open {requirement_amount} chests"
+min_requirement = 1
+max_requirement = 1
+metadata/_custom_type_script = "uid://cp8anq50qc5x5"
+
+[sub_resource type="Resource" id="Resource_wiwno"]
+resource_local_to_scene = true
+script = ExtResource("8_kujg3")
+need_consecutive = true
+task_description = "Go {requirement_direction} into another room {requirement_amount} times consecutively"
+min_requirement = 1
+max_requirement = 1
+metadata/_custom_type_script = "uid://cmktuyanlwaem"
 
 [node name="task_handler" type="Node2D"]
 script = ExtResource("1_ix626")
-task_pool = Array[ExtResource("2_7h0u8")]([ExtResource("3_a6nyf"), ExtResource("4_6jt4n"), ExtResource("5_kujg3"), ExtResource("6_bxdcv"), ExtResource("7_jkccb"), ExtResource("8_7j571"), ExtResource("9_3fgab")])
-
-[node name="TaskDisplayLabel" type="Label" parent="."]
-offset_right = 158.0
-offset_bottom = 191.0
-label_settings = ExtResource("2_b7y0e")
-autowrap_mode = 2
-
-[node name="TaskCompletedSfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_a6nyf")
-bus = &"Sfx"
+task_pool = Array[ExtResource("2_7h0u8")]([SubResource("Resource_xp3in"), SubResource("Resource_lltfd"), SubResource("Resource_rofg6"), SubResource("Resource_1ia3q"), SubResource("Resource_yq81k"), SubResource("Resource_4ehwd"), SubResource("Resource_wiwno")])

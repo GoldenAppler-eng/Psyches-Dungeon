@@ -15,7 +15,6 @@ var current : CardResource
 var cover : CardResource
 
 @onready var task_failed_sfx : AudioStreamPlayer = $TaskFailedSfx
-@onready var task_completed_sfx : AudioStreamPlayer= $TaskCompletedSfx
 
 func _ready() -> void:
 	next = CardResource.new()
@@ -32,8 +31,6 @@ func _ready() -> void:
 	
 	task_handler.task_finished.connect(_on_task_finished)
 	
-	_on_game_start()
-
 func _generate_new_next_card() -> void:
 	task_handler.generate_new_next_task()	
 	next.task_text = task_handler.get_next_task_description()

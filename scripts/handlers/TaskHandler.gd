@@ -2,34 +2,34 @@ class_name TaskHandler
 extends Node2D
 
 signal task_finished
+signal current_task_changed
 
 @export var task_pool : Array[Task]
-
-@onready var task_display_label : Label = $TaskDisplayLabel
-@onready var task_completed_sfx: AudioStreamPlayer = $TaskCompletedSfx
 
 var current_task : Task
 var next_task : Task
 
 var _finished_flag : bool = false
 
-func _process(delta : float) -> void:		
+func _process(delta : float) -> void:			
 	if not current_task:
 		return
 	
 	if current_task.get_is_finished() and not _finished_flag:
 		_process_task_finished()
 	
-	var task_text : String = current_task.get_task_description_formatted(true)
-
 func change_task() -> void:
 	current_task = next_task
 	current_task.set_active(true)
 	generate_new_next_task()
+	
+	current_task_changed.emit()
 
 func generate_new_current_task() -> void:
 	current_task = _get_random_task()
 	current_task.set_active(true)
+	
+	current_task_changed.emit()
 	
 func generate_new_next_task() -> void:
 	next_task = _get_random_task()
@@ -43,12 +43,13 @@ func _get_random_task() -> Task:
 
 func _process_task_finished() -> void:
 	_finished_flag = true
-	
-	task_completed_sfx.play()
 	task_finished.emit()
 	
 func get_current_task_description() -> String:
 	return current_task.get_task_description_formatted(false)
+
+func get_current_task_description_with_progress() -> String:
+	return current_task.get_task_description_formatted(true)
 
 func get_next_task_description() -> String:
 	return next_task.get_task_description_formatted(false)
