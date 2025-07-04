@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dnwlwrgqvy87g"]
+[gd_scene load_steps=46 format=3 uid="uid://dnwlwrgqvy87g"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/proc_gen_handler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://di8bojp8w0r88" path="res://prefabs/placeable/player.tscn" id="1_kx658"]
@@ -31,10 +31,13 @@
 [ext_resource type="PackedScene" uid="uid://cgac5b20dglax" path="res://prefabs/UI/volume_controller.tscn" id="19_ctatt"]
 [ext_resource type="PackedScene" uid="uid://uf6ennr7sfqx" path="res://prefabs/UI/window_mode_controller.tscn" id="19_munwf"]
 [ext_resource type="Script" uid="uid://6hk3s82gadwb" path="res://scripts/menu/start_menu.gd" id="19_wdwqs"]
+[ext_resource type="PackedScene" uid="uid://dfu6vdkfj2okp" path="res://prefabs/HUD/card_hud_display.tscn" id="19_x2olw"]
+[ext_resource type="PackedScene" uid="uid://b3lpxmm30ga21" path="res://prefabs/HUD/goal_hud_display.tscn" id="20_817gm"]
 [ext_resource type="Script" uid="uid://dmmv07s2ooob" path="res://scripts/menu/game_win_menu.gd" id="20_ctatt"]
 [ext_resource type="Script" uid="uid://br8y0r61tc0p3" path="res://scripts/menu/idle_menu.gd" id="21_7iits"]
+[ext_resource type="PackedScene" uid="uid://bmky0n8q8chq4" path="res://prefabs/HUD/task_handler_hud_display.tscn" id="21_ggc52"]
 
-[sub_resource type="Resource" id="Resource_e75v4"]
+[sub_resource type="Resource" id="Resource_l8ah6"]
 resource_local_to_scene = true
 script = ExtResource("9_4kbfs")
 task_description = "Activate {requirement_amount} traps"
@@ -42,7 +45,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ddv2p0x28l04f"
 
-[sub_resource type="Resource" id="Resource_8u370"]
+[sub_resource type="Resource" id="Resource_e75v4"]
 resource_local_to_scene = true
 script = ExtResource("10_f17e3")
 task_description = "Collect {requirement_amount} coins"
@@ -50,7 +53,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://dhaij0jq75c1n"
 
-[sub_resource type="Resource" id="Resource_rga7q"]
+[sub_resource type="Resource" id="Resource_8u370"]
 resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = true
@@ -59,7 +62,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_6oujy"]
+[sub_resource type="Resource" id="Resource_rga7q"]
 resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = true
@@ -68,7 +71,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_hi6a0"]
+[sub_resource type="Resource" id="Resource_6oujy"]
 resource_local_to_scene = true
 script = ExtResource("12_817gm")
 task_description = "Die {requirement_amount} times"
@@ -76,7 +79,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ohix4wy5pm66"
 
-[sub_resource type="Resource" id="Resource_eo1xk"]
+[sub_resource type="Resource" id="Resource_hi6a0"]
 resource_local_to_scene = true
 script = ExtResource("13_ggc52")
 task_description = "Open {requirement_amount} chests"
@@ -84,7 +87,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://cp8anq50qc5x5"
 
-[sub_resource type="Resource" id="Resource_18clu"]
+[sub_resource type="Resource" id="Resource_eo1xk"]
 resource_local_to_scene = true
 script = ExtResource("14_l8ah6")
 need_consecutive = true
@@ -140,13 +143,14 @@ position = Vector2(192, 128)
 
 [node name="task_handler" parent="GUI/HUD" instance=ExtResource("7_ke0n8")]
 position = Vector2(396, 41)
-task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_e75v4"), SubResource("Resource_8u370"), SubResource("Resource_rga7q"), SubResource("Resource_6oujy"), SubResource("Resource_hi6a0"), SubResource("Resource_eo1xk"), SubResource("Resource_18clu")])
+task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_l8ah6"), SubResource("Resource_e75v4"), SubResource("Resource_8u370"), SubResource("Resource_rga7q"), SubResource("Resource_6oujy"), SubResource("Resource_hi6a0"), SubResource("Resource_eo1xk")])
 
 [node name="psyche" parent="GUI/HUD" instance=ExtResource("10_7p5jc")]
 process_mode = 3
 position = Vector2(192, 338)
 
 [node name="controls_display" parent="GUI/HUD" instance=ExtResource("11_d1e4f")]
+visible = false
 z_index = 1
 position = Vector2(346, 348)
 
@@ -154,9 +158,25 @@ position = Vector2(346, 348)
 position = Vector2(394, 7)
 
 [node name="arrow_display_bg" type="Sprite2D" parent="GUI/HUD"]
+visible = false
 position = Vector2(346.5, 362)
 scale = Vector2(3.46875, 2.5625)
 texture = ExtResource("15_3xvu6")
+
+[node name="CardHUDDisplay" parent="GUI/HUD" node_paths=PackedStringArray("card_handler") instance=ExtResource("19_x2olw")]
+position = Vector2(-90, 340.385)
+card_handler = NodePath("../card_handler")
+
+[node name="GoalHUDDisplay" parent="GUI/HUD" node_paths=PackedStringArray("goal_handler") instance=ExtResource("20_817gm")]
+position = Vector2(304.231, 319.231)
+goal_handler = NodePath("../goal_handler")
+
+[node name="TaskHandlerHUDDisplay" parent="GUI/HUD" node_paths=PackedStringArray("task_handler") instance=ExtResource("21_ggc52")]
+offset_left = 398.077
+offset_top = 52.6923
+offset_right = 399.077
+offset_bottom = 74.6923
+task_handler = NodePath("../task_handler")
 
 [node name="boxing" type="Node2D" parent="GUI"]
 z_index = 20
