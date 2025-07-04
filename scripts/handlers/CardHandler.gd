@@ -71,7 +71,7 @@ func _on_new_card_timer_timeout() -> void:
 	_change_card()	
 	
 func _on_task_finished() -> void:
-	goal_handler.mark_completed_task(current.effect_type)
+	goal_handler.mark_finished_task(current.effect_type)
 	_change_card()	
 	
 	GlobalCardTimer.start()

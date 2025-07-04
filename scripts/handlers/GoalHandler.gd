@@ -3,14 +3,12 @@ extends Node2D
 
 signal marker_added
 signal marker_removed
+signal goal_marked(marker_index : int, goal_type : int)
+signal markers_reset
 
-const MARKER_WIDTH := 32
-const MARKER_HEIGHT := 32
-
-const GAP_WIDTH := 16
-
-const MIN_MARKER_COUNT := 3
-const MAX_MARKER_COUNT := 10
+const MIN_MARKER_COUNT : int = 3
+const INITIAL_MARKER_COUNT : int = 5
+const MAX_MARKER_COUNT : int = 10
 
 enum GOAL_TYPE { PSYCHE = 0, CONTROL, GOAL, NONE, FAIL }
 
@@ -22,34 +20,37 @@ var total_marker_count : int = 0
 func _ready() -> void:
 	GlobalSignalBus.change_goal_count.connect(_on_goal_count_changed)
 	GlobalSignalBus.retry.connect(_on_game_retry)
-	
-	goal_marker_types = []
-	
-	initialize_markers()
+	GlobalSignalBus.game_start.connect(_on_game_start)
 
 func _process(delta : float) -> void:
 	pass
+	
+func _on_game_start() -> void:
+	goal_marker_types = []
+	reset_marker_types()
+	initialize_markers()
 
 func _on_game_retry() -> void:
-	for child in get_children():
-		remove_child(child)
-	
 	reset_marker_types()
 	initialize_markers()
 
 func initialize_markers() -> void:
-	while total_marker_count < MIN_MARKER_COUNT:
+	while total_marker_count < INITIAL_MARKER_COUNT:
 		add_marker()
 
 func reset_marker_types() -> void:
 	goal_completion_counter = 0
+	total_marker_count = 0
 	goal_marker_types.clear()
+	
+	markers_reset.emit()
 
 func mark_finished_task(effect_type : int) -> void:
 	if goal_completion_counter >= goal_marker_types.size():
 		return
 	
 	goal_marker_types[goal_completion_counter] = effect_type
+	goal_marked.emit(goal_completion_counter, 	goal_marker_types[goal_completion_counter])
 	
 	goal_completion_counter += 1
 	
@@ -58,7 +59,8 @@ func mark_finished_task(effect_type : int) -> void:
 
 func mark_failed_task() -> void:
 	goal_marker_types[goal_completion_counter] = GOAL_TYPE.FAIL
-	
+	goal_marked.emit(goal_completion_counter, 	goal_marker_types[goal_completion_counter])
+
 	goal_completion_counter += 1
 
 func add_marker() -> void:
