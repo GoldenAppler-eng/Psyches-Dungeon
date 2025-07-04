@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://0e30thyp8jfa"]
+[gd_scene load_steps=9 format=3 uid="uid://0e30thyp8jfa"]
 
 [ext_resource type="Texture2D" uid="uid://bmoy1o2dwvybf" path="res://sprites/effect_icons_markers-Sheet.png" id="1_76xg1"]
+[ext_resource type="Script" uid="uid://phqepo46spn8" path="res://scripts/HUD/GoalMarker.gd" id="1_vyk5t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nc3ey"]
 atlas = ExtResource("1_76xg1")
@@ -46,8 +47,10 @@ animations = [{
 }]
 
 [node name="goal_marker" type="Node2D"]
+script = ExtResource("1_vyk5t")
 
 [node name="icon" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 z_index = 1
 position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_fhpyx")

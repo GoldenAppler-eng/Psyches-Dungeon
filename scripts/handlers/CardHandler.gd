@@ -26,7 +26,6 @@ func _ready() -> void:
 	GlobalSignalBus.game_start.connect(_on_game_start)
 	GlobalSignalBus.retry.connect(_on_game_retry)
 	
-	GlobalSignalBus.change_goal_count.connect(_on_goal_count_changed)
 	GlobalSignalBus.psyche_task_request.connect(_on_psyche_task_received)
 	
 	task_handler.task_finished.connect(_on_task_finished)
@@ -76,12 +75,6 @@ func _on_task_finished() -> void:
 	_change_card()	
 	
 	GlobalCardTimer.start()
-	
-func _on_goal_count_changed(inc_amt : int) -> void:
-	if inc_amt > 0:
-		goal_handler.add_marker()
-	elif inc_amt < 0:
-		goal_handler.remove_marker()
 	
 func _on_psyche_task_received() -> void:
 	task_handler.generate_new_current_task()	

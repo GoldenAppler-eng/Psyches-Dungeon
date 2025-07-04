@@ -30,5 +30,6 @@ face_down = true
 hide_effect = true
 
 [node name="CardDrawSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("5_8h4kd")
 bus = &"Sfx"

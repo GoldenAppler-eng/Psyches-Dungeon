@@ -6,7 +6,7 @@ extends Node2D
 @onready var current : Card = %current
 @onready var cover : Card = %cover
 
-@onready var card_draw_sfx : AudioStreamPlayer = $CardDrawSfx
+@onready var card_draw_sfx : AudioStreamPlayer = %CardDrawSfx
 
 func _ready() -> void:
 	card_handler.card_changed.connect(_on_card_changed)
