@@ -215,7 +215,6 @@ input_controller = NodePath("EnemyInputController")
 movement_controller = NodePath("MovementController")
 anim_player = NodePath("EnemyAnimationController")
 sfx_player = NodePath("SfxPlayer")
-_guaranteed_gold = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -9)
