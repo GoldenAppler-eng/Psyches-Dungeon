@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdd77wos0eltc"]
+
+[ext_resource type="AudioStream" uid="uid://cf14v4607100o" path="res://audio/music/salvation_question_mark.wav" id="1_b3ggg"]
+[ext_resource type="Script" uid="uid://dj3eppwhp0x7u" path="res://scripts/singletons/GlobalBackgroundMusic.gd" id="2_3wbjj"]
+
+[node name="GlobalBackgroundMusic" type="AudioStreamPlayer"]
+stream = ExtResource("1_b3ggg")
+bus = &"Music"
+script = ExtResource("2_3wbjj")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

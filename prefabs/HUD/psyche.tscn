@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dojll77pj6uq7"]
 
 [ext_resource type="Texture2D" uid="uid://b25n4k2836ydo" path="res://sprites/psyche-Sheet.png" id="1_6uspd"]
-[ext_resource type="Script" uid="uid://dcc5p3vywvepy" path="res://scripts/HUD/psyche.gd" id="1_i1pbe"]
+[ext_resource type="Script" uid="uid://dcc5p3vywvepy" path="res://scripts/HUD/Psyche.gd" id="1_i1pbe"]
 [ext_resource type="AudioStream" uid="uid://cum3jxnngcutj" path="res://audio/sfx/psyche_voice_lines/psyche_1.wav" id="3_0uisg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tleo0"]

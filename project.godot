@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 
 GlobalSignalBus="*res://scripts/singletons/SignalBus.gd"
 Global="*res://scripts/singletons/Global.gd"
-GlobalCardTimer="*res://prefabs/singletons/global_card_timer.tscn"
-GlobalBackgroundMusic="*res://prefabs/singletons/global_background_music.tscn"
+GlobalCardTimer="*res://prefabs/singletons/GlobalCardTimer.tscn"
+GlobalBackgroundMusic="*res://prefabs/singletons/GlobalBackgroundMusic.tscn"
 
 [debug]
 

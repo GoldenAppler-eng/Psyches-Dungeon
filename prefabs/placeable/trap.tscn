@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://ln8wdsnv7xo2"]
 
-[ext_resource type="Script" uid="uid://bnwuxtmtccv8k" path="res://scripts/placeable/trap.gd" id="1_4d2cc"]
+[ext_resource type="Script" uid="uid://bnwuxtmtccv8k" path="res://scripts/placeable/Trap.gd" id="1_4d2cc"]
 [ext_resource type="Texture2D" uid="uid://jsml6q6em3nw" path="res://sprites/trap-Sheet.png" id="2_kjsx1"]
 [ext_resource type="AudioStream" uid="uid://bydyrkfhjurh3" path="res://audio/sfx/trap_activate.wav" id="3_cycn3"]
 [ext_resource type="Script" uid="uid://dibu1m0sx5bch" path="res://scripts/components/DamagerHitboxComponent.gd" id="4_j4sfv"]

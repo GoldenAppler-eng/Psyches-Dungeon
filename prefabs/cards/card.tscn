@@ -1,10 +1,10 @@
 [gd_scene load_steps=23 format=3 uid="uid://bd48cv83wcg06"]
 
-[ext_resource type="Script" uid="uid://dpja757ryymet" path="res://scripts/placeable/card.gd" id="1_c2vn4"]
+[ext_resource type="Script" uid="uid://dpja757ryymet" path="res://scripts/placeable/Card.gd" id="1_c2vn4"]
 [ext_resource type="Texture2D" uid="uid://ci1ig3gb1umca" path="res://sprites/card-96x220-Sheet.png" id="2_clvhy"]
 [ext_resource type="Texture2D" uid="uid://fwitmm7c2m8k" path="res://sprites/effect_icons-Sheet.png" id="3_thhpu"]
-[ext_resource type="LabelSettings" uid="uid://b4bpldjpxvp3g" path="res://fonts/task_label_settings.tres" id="4_g14va"]
-[ext_resource type="LabelSettings" uid="uid://c16ltvcfw0j2i" path="res://fonts/effect_label_settings.tres" id="5_sdqcw"]
+[ext_resource type="LabelSettings" uid="uid://b4bpldjpxvp3g" path="res://resources/themes/labels/TaskLabelSettings.tres" id="4_g14va"]
+[ext_resource type="LabelSettings" uid="uid://c16ltvcfw0j2i" path="res://resources/themes/labels/EffectLabelSettings.tres" id="5_sdqcw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jdoff"]
 atlas = ExtResource("2_clvhy")

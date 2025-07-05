@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd1tbvndv8i1u"]
+
+[ext_resource type="Script" uid="uid://b1at1gino5a2x" path="res://scripts/UI/SwitchButton.gd" id="1_hi3ma"]
+
+[node name="SwitchButton" type="MarginContainer"]
+offset_right = 36.0
+offset_bottom = 23.0
+focus_mode = 2
+script = ExtResource("1_hi3ma")
+button_text = "100"
+button_minimum_length = 36.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LeftArrowLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "< "
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+text = "100"
+
+[node name="RightArrowLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = " >"

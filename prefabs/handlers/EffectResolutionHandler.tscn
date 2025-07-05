@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh85bemgdn78m"]
+
+[ext_resource type="Script" uid="uid://4h02tycmkumf" path="res://scripts/handlers/EffectResolutionHandler.gd" id="1_hwya8"]
+
+[node name="effect_resolution_handler" type="Node2D"]
+script = ExtResource("1_hwya8")

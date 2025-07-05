@@ -1,0 +1,167 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckvatex8kd2dj"]
+
+[ext_resource type="PackedScene" uid="uid://dsjdgntcmuavr" path="res://prefabs/rooms/templates/RoomTemplate.tscn" id="1_frts4"]
+[ext_resource type="PackedScene" uid="uid://ln8wdsnv7xo2" path="res://prefabs/placeable/Trap.tscn" id="2_p232b"]
+[ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/Enemy.tscn" id="3_1c2gy"]
+[ext_resource type="PackedScene" uid="uid://blel4b2ar46uf" path="res://prefabs/placeable/Chest.tscn" id="4_xftg3"]
+
+[node name="row_room" instance=ExtResource("1_frts4")]
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(458763, 65536, 1, 393227, 196608, 2, 327691, 262144, 2, 262155, 65536, 1, 196619, 65536, 2, 131083, 65536, 1, 65547, 196608, 2, 11, 196608, 2, 458762, 65536, 1, 393226, 65536, 1, 327690, 196608, 2, 262154, 196608, 2, 196618, 65536, 1, 131082, 65536, 1, 65546, 196608, 2, 10, 65536, 1, 458761, 65536, 1, 393225, 65536, 1, 327689, 65536, 1, 262153, 65536, 1, 196617, 65536, 1, 131081, 196608, 2, 65545, 131072, 1, 9, 65536, 1, 458760, 131072, 1, 393224, 131072, 1, 327688, 65536, 1, 262152, 65536, 1, 196616, 131072, 1, 131080, 65536, 1, 65544, 65536, 1, 8, 65536, 1, 458759, 262144, 2, 393223, 65536, 1, 327687, 65536, 1, 262151, 65536, 1, 196615, 65536, 1, 131079, 196608, 2, 65543, 196608, 2, 7, 196608, 2, 458758, 65536, 1, 393222, 131072, 1, 327686, 131072, 2, 262150, 196608, 2, 196614, 131072, 1, 131078, 131072, 1, 65542, 131072, 1, 6, 65536, 1, 458757, 65536, 1, 393221, 65536, 1, 327685, 196608, 1, 262149, 196608, 2, 196613, 65536, 1, 131077, 131072, 1, 65541, 65536, 2, 5, 196608, 2, 458756, 65536, 1, 393220, 65536, 1, 327684, 65536, 1, 262148, 65536, 1, 196612, 131072, 1, 131076, 65536, 1, 65540, 196608, 2, 4, 65536, 1, 458755, 65536, 2, 393219, 65536, 1, 327683, 65536, 1, 262147, 65536, 2, 196611, 131072, 1, 131075, 65536, 1, 65539, 262144, 2, 3, 65536, 2, 458754, 65536, 1, 393218, 131072, 2, 327682, 65536, 1, 262146, 65536, 1, 196610, 65536, 1, 131074, 65536, 1, 65538, 196608, 1, 2, 131072, 2, 458753, 65536, 1, 393217, 65536, 1, 327681, 131072, 1, 262145, 262144, 2, 196609, 65536, 1, 131073, 65536, 1, 65537, 65536, 1, 1, 65536, 2, 458752, 65536, 1, 393216, 65536, 1, 327680, 131072, 1, 262144, 65536, 1, 196608, 65536, 1, 131072, 65536, 1, 65536, 131072, 2, 0, 262144, 1)
+
+[node name="trap" parent="." index="6" instance=ExtResource("2_p232b")]
+position = Vector2(168, 32)
+
+[node name="trap2" parent="." index="7" instance=ExtResource("2_p232b")]
+position = Vector2(184, 32)
+
+[node name="trap3" parent="." index="8" instance=ExtResource("2_p232b")]
+position = Vector2(184, 48)
+
+[node name="trap4" parent="." index="9" instance=ExtResource("2_p232b")]
+position = Vector2(168, 48)
+
+[node name="trap5" parent="." index="10" instance=ExtResource("2_p232b")]
+position = Vector2(200, 32)
+
+[node name="trap6" parent="." index="11" instance=ExtResource("2_p232b")]
+position = Vector2(216, 32)
+
+[node name="trap7" parent="." index="12" instance=ExtResource("2_p232b")]
+position = Vector2(216, 48)
+
+[node name="trap8" parent="." index="13" instance=ExtResource("2_p232b")]
+position = Vector2(200, 48)
+
+[node name="trap9" parent="." index="14" instance=ExtResource("2_p232b")]
+position = Vector2(168, 64)
+
+[node name="trap10" parent="." index="15" instance=ExtResource("2_p232b")]
+position = Vector2(184, 64)
+
+[node name="trap11" parent="." index="16" instance=ExtResource("2_p232b")]
+position = Vector2(184, 80)
+
+[node name="trap12" parent="." index="17" instance=ExtResource("2_p232b")]
+position = Vector2(168, 80)
+
+[node name="trap13" parent="." index="18" instance=ExtResource("2_p232b")]
+position = Vector2(200, 64)
+
+[node name="trap14" parent="." index="19" instance=ExtResource("2_p232b")]
+position = Vector2(216, 64)
+
+[node name="trap15" parent="." index="20" instance=ExtResource("2_p232b")]
+position = Vector2(216, 80)
+
+[node name="trap16" parent="." index="21" instance=ExtResource("2_p232b")]
+position = Vector2(200, 80)
+
+[node name="trap17" parent="." index="22" instance=ExtResource("2_p232b")]
+position = Vector2(168, 96)
+
+[node name="trap18" parent="." index="23" instance=ExtResource("2_p232b")]
+position = Vector2(184, 96)
+
+[node name="trap19" parent="." index="24" instance=ExtResource("2_p232b")]
+position = Vector2(184, 112)
+
+[node name="trap20" parent="." index="25" instance=ExtResource("2_p232b")]
+position = Vector2(168, 112)
+
+[node name="trap21" parent="." index="26" instance=ExtResource("2_p232b")]
+position = Vector2(200, 96)
+
+[node name="trap22" parent="." index="27" instance=ExtResource("2_p232b")]
+position = Vector2(216, 96)
+
+[node name="trap23" parent="." index="28" instance=ExtResource("2_p232b")]
+position = Vector2(216, 112)
+
+[node name="trap24" parent="." index="29" instance=ExtResource("2_p232b")]
+position = Vector2(200, 112)
+
+[node name="trap25" parent="." index="30" instance=ExtResource("2_p232b")]
+position = Vector2(168, 128)
+
+[node name="trap26" parent="." index="31" instance=ExtResource("2_p232b")]
+position = Vector2(184, 128)
+
+[node name="trap27" parent="." index="32" instance=ExtResource("2_p232b")]
+position = Vector2(184, 144)
+
+[node name="trap28" parent="." index="33" instance=ExtResource("2_p232b")]
+position = Vector2(168, 144)
+
+[node name="trap29" parent="." index="34" instance=ExtResource("2_p232b")]
+position = Vector2(200, 128)
+
+[node name="trap30" parent="." index="35" instance=ExtResource("2_p232b")]
+position = Vector2(216, 128)
+
+[node name="trap31" parent="." index="36" instance=ExtResource("2_p232b")]
+position = Vector2(216, 144)
+
+[node name="trap32" parent="." index="37" instance=ExtResource("2_p232b")]
+position = Vector2(200, 144)
+
+[node name="trap33" parent="." index="38" instance=ExtResource("2_p232b")]
+position = Vector2(168, 160)
+
+[node name="trap34" parent="." index="39" instance=ExtResource("2_p232b")]
+position = Vector2(184, 160)
+
+[node name="trap35" parent="." index="40" instance=ExtResource("2_p232b")]
+position = Vector2(184, 176)
+
+[node name="trap36" parent="." index="41" instance=ExtResource("2_p232b")]
+position = Vector2(168, 176)
+
+[node name="trap37" parent="." index="42" instance=ExtResource("2_p232b")]
+position = Vector2(200, 160)
+
+[node name="trap38" parent="." index="43" instance=ExtResource("2_p232b")]
+position = Vector2(216, 160)
+
+[node name="trap39" parent="." index="44" instance=ExtResource("2_p232b")]
+position = Vector2(216, 176)
+
+[node name="trap40" parent="." index="45" instance=ExtResource("2_p232b")]
+position = Vector2(200, 176)
+
+[node name="trap41" parent="." index="46" instance=ExtResource("2_p232b")]
+position = Vector2(168, 192)
+
+[node name="trap42" parent="." index="47" instance=ExtResource("2_p232b")]
+position = Vector2(184, 192)
+
+[node name="trap43" parent="." index="48" instance=ExtResource("2_p232b")]
+position = Vector2(184, 208)
+
+[node name="trap44" parent="." index="49" instance=ExtResource("2_p232b")]
+position = Vector2(168, 208)
+
+[node name="trap45" parent="." index="50" instance=ExtResource("2_p232b")]
+position = Vector2(200, 192)
+
+[node name="trap46" parent="." index="51" instance=ExtResource("2_p232b")]
+position = Vector2(216, 192)
+
+[node name="trap47" parent="." index="52" instance=ExtResource("2_p232b")]
+position = Vector2(216, 208)
+
+[node name="trap48" parent="." index="53" instance=ExtResource("2_p232b")]
+position = Vector2(200, 208)
+
+[node name="enemy" parent="." index="54" instance=ExtResource("3_1c2gy")]
+position = Vector2(113, 177)
+
+[node name="enemy2" parent="." index="55" instance=ExtResource("3_1c2gy")]
+position = Vector2(274, 86)
+
+[node name="chest" parent="." index="56" instance=ExtResource("4_xftg3")]
+position = Vector2(112, 86)
+
+[node name="chest2" parent="." index="57" instance=ExtResource("4_xftg3")]
+position = Vector2(272, 182)

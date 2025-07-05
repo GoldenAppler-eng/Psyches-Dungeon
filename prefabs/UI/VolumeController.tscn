@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgac5b20dglax"]
+
+[ext_resource type="Theme" uid="uid://cu6yoqe0up8hr" path="res://resources/themes/ButtonTheme.tres" id="1_kb14h"]
+[ext_resource type="Script" uid="uid://blbowv0edisq8" path="res://scripts/UI/VolumeController.gd" id="2_fpae5"]
+[ext_resource type="PackedScene" uid="uid://dd1tbvndv8i1u" path="res://prefabs/UI/SwitchButton.tscn" id="3_fpae5"]
+
+[node name="volume_controller" type="MarginContainer"]
+offset_right = 121.0
+offset_bottom = 18.0
+focus_mode = 2
+theme = ExtResource("1_kb14h")
+script = ExtResource("2_fpae5")
+bus_name = "Master"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="volume_label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../window_mode_button")
+focus_neighbor_bottom = NodePath("../../music_volume_controller/volume_button")
+theme = ExtResource("1_kb14h")
+text = "Master Volume"
+
+[node name="control_button" parent="VBoxContainer" instance=ExtResource("3_fpae5")]
+layout_mode = 2
+size_flags_horizontal = 4
+button_minimum_length = 59.0

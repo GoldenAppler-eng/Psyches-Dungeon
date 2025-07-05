@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ddh0spxirgq63"]
+
+[ext_resource type="Shader" uid="uid://f30ifr0pvk3s" path="res://resources/shaders/HitEffect.gdshader" id="1_j6b2a"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_j6b2a")
+shader_parameter/effect_on = false

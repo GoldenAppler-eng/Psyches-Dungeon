@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WildEffect" load_steps=3 format=3 uid="uid://drnk23f2sqo7i"]
+
+[ext_resource type="Script" uid="uid://bb3kwecjdoj24" path="res://scripts/effects/InvertControls.gd" id="1_btd26"]
+[ext_resource type="Script" uid="uid://cu4by2s0jrl0g" path="res://scripts/effects/WildEffect.gd" id="1_xpkvl"]
+
+[resource]
+script = ExtResource("1_xpkvl")
+effect_type = 1
+effect_name = "Invert Controls"
+action_script = ExtResource("1_btd26")
