@@ -64,6 +64,9 @@ func mark_finished_task(effect_type : int) -> void:
 		goal_marked.emit(goal_completion_counter, goal_marker_types[goal_completion_counter])
 		
 		goal_completion_counter += 1
+		
+	if goal_completion_counter >= goal_marker_types.size():
+		GlobalSignalBus.game_win.emit()
 
 func mark_failed_task() -> void:
 	if goal_completion_counter >= goal_marker_types.size():
@@ -85,7 +88,10 @@ func mark_failed_task() -> void:
 		goal_marked.emit(goal_completion_counter, goal_marker_types[goal_completion_counter])
 		
 		goal_completion_counter += 1
-
+		
+	if goal_completion_counter >= goal_marker_types.size():
+		GlobalSignalBus.game_over.emit()
+	
 func add_marker() -> void:
 	if total_marker_count >= MAX_MARKER_COUNT:
 		return
