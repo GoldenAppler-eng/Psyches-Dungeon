@@ -108,43 +108,48 @@ font_size = 60
 process_mode = 1
 y_sort_enabled = true
 
-[node name="room_container" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="proc_gen_handler" parent="room_container" instance=ExtResource("1_4gt5v")]
-
-[node name="player" parent="." instance=ExtResource("1_kx658")]
-position = Vector2(192, 124)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(192, 128)
 offset = Vector2(0, 79.68)
 zoom = Vector2(2.6, 2.6)
 script = ExtResource("3_mdjvo")
 
+[node name="player" parent="." instance=ExtResource("1_kx658")]
+position = Vector2(192, 124)
+
+[node name="room_container" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="proc_gen_handler" parent="room_container" instance=ExtResource("1_4gt5v")]
+
+[node name="Handlers" type="Node2D" parent="."]
+
+[node name="card_handler" parent="Handlers" node_paths=PackedStringArray("task_handler", "effect_handler", "goal_handler") instance=ExtResource("5_g57ya")]
+position = Vector2(256.6, 886.6)
+scale = Vector2(2.6, 2.6)
+task_handler = NodePath("../task_handler")
+effect_handler = NodePath("../effect_resolution_handler")
+goal_handler = NodePath("../goal_handler")
+
+[node name="goal_handler" parent="Handlers" instance=ExtResource("6_we2tv")]
+position = Vector2(1853, 733.2)
+scale = Vector2(2.6, 2.6)
+
+[node name="effect_resolution_handler" parent="Handlers" instance=ExtResource("6_yxh6h")]
+position = Vector2(961.2, 332.8)
+scale = Vector2(2.6, 2.6)
+
+[node name="task_handler" parent="Handlers" instance=ExtResource("7_ke0n8")]
+position = Vector2(1491.6, 106.6)
+scale = Vector2(2.6, 2.6)
+task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_e4yt5"), SubResource("Resource_x70b3"), SubResource("Resource_5w2bu"), SubResource("Resource_1bdwf"), SubResource("Resource_1w2qq"), SubResource("Resource_yd118"), SubResource("Resource_lffjk")])
+
 [node name="GUI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="HUD" type="Node2D" parent="GUI"]
 z_index = 20
 position = Vector2(462, 0)
 scale = Vector2(2.6, 2.6)
-
-[node name="card_handler" parent="GUI/HUD" node_paths=PackedStringArray("task_handler", "effect_handler", "goal_handler") instance=ExtResource("5_g57ya")]
-position = Vector2(-79, 341)
-task_handler = NodePath("../task_handler")
-effect_handler = NodePath("../effect_resolution_handler")
-goal_handler = NodePath("../goal_handler")
-
-[node name="goal_handler" parent="GUI/HUD" instance=ExtResource("6_we2tv")]
-position = Vector2(535, 282)
-
-[node name="effect_resolution_handler" parent="GUI/HUD" instance=ExtResource("6_yxh6h")]
-position = Vector2(192, 128)
-
-[node name="task_handler" parent="GUI/HUD" instance=ExtResource("7_ke0n8")]
-position = Vector2(396, 41)
-task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_e4yt5"), SubResource("Resource_x70b3"), SubResource("Resource_5w2bu"), SubResource("Resource_1bdwf"), SubResource("Resource_1w2qq"), SubResource("Resource_yd118"), SubResource("Resource_lffjk")])
 
 [node name="psyche" parent="GUI/HUD" instance=ExtResource("10_7p5jc")]
 process_mode = 3
@@ -166,18 +171,18 @@ texture = ExtResource("15_3xvu6")
 
 [node name="CardHUDDisplay" parent="GUI/HUD" node_paths=PackedStringArray("card_handler") instance=ExtResource("19_x2olw")]
 position = Vector2(-90, 340.385)
-card_handler = NodePath("../card_handler")
+card_handler = NodePath("../../../Handlers/card_handler")
 
 [node name="GoalHUDDisplay" parent="GUI/HUD" node_paths=PackedStringArray("goal_handler") instance=ExtResource("20_817gm")]
 position = Vector2(304.231, 319.231)
-goal_handler = NodePath("../goal_handler")
+goal_handler = NodePath("../../../Handlers/goal_handler")
 
 [node name="TaskHandlerHUDDisplay" parent="GUI/HUD" node_paths=PackedStringArray("task_handler") instance=ExtResource("21_ggc52")]
 offset_left = 398.077
 offset_top = 52.6923
 offset_right = 399.077
 offset_bottom = 74.6923
-task_handler = NodePath("../task_handler")
+task_handler = NodePath("../../../Handlers/task_handler")
 
 [node name="boxing" type="Node2D" parent="GUI"]
 z_index = 20

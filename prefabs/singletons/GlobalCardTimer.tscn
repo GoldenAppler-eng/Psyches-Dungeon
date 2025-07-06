@@ -1,5 +1,5 @@
 [gd_scene format=3 uid="uid://c465e8ql5u4ao"]
 
 [node name="GlobalCardTimer" type="Timer"]
-wait_time = 15.0
+wait_time = 100.0
 autostart = true

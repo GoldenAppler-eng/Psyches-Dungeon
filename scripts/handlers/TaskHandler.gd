@@ -14,13 +14,15 @@ var _finished_flag : bool = false
 func _process(delta : float) -> void:			
 	if not current_task:
 		return
-	
+		
 	if current_task.get_is_finished() and not _finished_flag:
 		_process_task_finished()
 	
 func change_task() -> void:
 	current_task = next_task
 	current_task.set_active(true)
+	
+	_finished_flag = false
 	generate_new_next_task()
 	
 	current_task_changed.emit()
@@ -28,6 +30,8 @@ func change_task() -> void:
 func generate_new_current_task() -> void:
 	current_task = _get_random_task()
 	current_task.set_active(true)
+	
+	_finished_flag = false
 	
 	current_task_changed.emit()
 	
@@ -44,7 +48,7 @@ func _get_random_task() -> Task:
 func _process_task_finished() -> void:
 	_finished_flag = true
 	task_finished.emit()
-	
+		
 func get_current_task_description() -> String:
 	return current_task.get_task_description_formatted(false)
 

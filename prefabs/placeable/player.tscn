@@ -1,6 +1,6 @@
 [gd_scene load_steps=66 format=3 uid="uid://5f7subrgsxq"]
 
-[ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/Player.gd" id="1_s62gp"]
+[ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
 [ext_resource type="Material" uid="uid://derkgmqh45esb" path="res://resources/shaders/HitEffectEnemy.tres" id="2_r0tfm"]
 [ext_resource type="Texture2D" uid="uid://v1wftaebrqwp" path="res://sprites/knight-final-90x36-Sheet.png" id="2_ytfcl"]

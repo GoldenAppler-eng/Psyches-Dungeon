@@ -21,23 +21,22 @@ func _process(delta : float) -> void:
 func _set_activated(activated : bool) -> void:
 	self.activated = activated
 	animated_sprite_2d.frame = 1 if activated else 0
+	
+	if activated:
+		activated_sfx.play()
 
 func _on_reset_timer_timeout() -> void:
 	_set_activated(false)
 	
 func _on_activation_area_2d_body_entered(body: Node2D) -> void:
 	reset_timer.stop()
-	_set_activated(true)
-	
 	bodies_entered += 1
 	
 	if activated:
 		return
 		
-	activated_sfx.play()
-		
-	if body is Player:
-		GlobalSignalBus.trap_activated.emit(body)
+	_set_activated(true)	
+	GlobalSignalBus.trap_activated.emit(body)
 
 func _on_activation_area_2d_body_exited(body: Node2D) -> void:
 	bodies_entered -= 1

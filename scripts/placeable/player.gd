@@ -24,9 +24,6 @@ func _ready() -> void:
 	attack_state_machine.init(input_controller, animation_controller, sfx_player, movement_controller)
 
 	GlobalSignalBus.player_respawn.connect(_on_received_player_respawn_signal)
-	GlobalSignalBus.revert_controls.connect(_on_revert_controls)
-	GlobalSignalBus.shift_controls.connect(_on_revert_controls)
-	GlobalSignalBus.invert_controls.connect(_on_revert_controls)
 	
 	GlobalSignalBus.retry.connect(_on_game_retry)
 		
@@ -48,10 +45,3 @@ func _on_received_player_respawn_signal() -> void:
 
 func _on_game_over_timer_timeout() -> void:
 	GlobalSignalBus.game_over.emit()
-
-func _on_revert_controls() -> void:
-	Input.action_release("move_down")
-	Input.action_release("move_up")
-	Input.action_release("move_right")
-	Input.action_release("move_left")
-	

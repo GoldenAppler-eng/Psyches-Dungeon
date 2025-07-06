@@ -21,11 +21,11 @@ func _ready() -> void:
 	var jump_angle : float = deg_to_rad(randf_range(0, 360))
 	jump_direction = Vector2(cos(jump_angle), sin(jump_angle))
 	
-	for child in get_parent().get_children():
-		if (child is Sprite2D or child is AnimatedSprite2D) and not sprite:
-			sprite = child
-			break 
-			
+	sprite = find_sprite_child(get_parent())
+	
+	if not sprite:
+		return
+	
 	original_sprite_offset = sprite.position
 	original_sprite_z_index = sprite.z_index
 	
@@ -33,6 +33,18 @@ func _ready() -> void:
 	y_velocity = JUMP_VELOCITY
 	
 	get_parent().process_mode = PROCESS_MODE_DISABLED
+
+func find_sprite_child(root : Node) -> Node2D:
+	for child in root.get_children():
+		if child is Sprite2D or child is AnimatedSprite2D:
+			return child
+		else:
+			var sprite_child : Node2D = find_sprite_child(child)
+			
+			if sprite_child:
+				return sprite_child
+	
+	return null
 
 func _process(delta : float) -> void:
 	var parent : PhysicsBody2D = get_parent() as PhysicsBody2D
