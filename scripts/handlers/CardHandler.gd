@@ -68,7 +68,8 @@ func _on_game_start() -> void:
 	_change_card()
 
 func _on_new_card_timer_timeout() -> void:	
-	_change_card()	
+	_change_card()
+	goal_handler.mark_failed_task()	
 	
 func _on_task_finished() -> void:
 	goal_handler.mark_finished_task(current.effect_type)

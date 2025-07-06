@@ -17,6 +17,8 @@ var goal_marker_types : Array[int]
 var goal_completion_counter : int = 0
 var total_marker_count : int = 0
 
+var failing : bool = false
+
 func _ready() -> void:
 	GlobalSignalBus.change_goal_count.connect(_on_goal_count_changed)
 	GlobalSignalBus.retry.connect(_on_game_retry)
@@ -49,19 +51,40 @@ func mark_finished_task(effect_type : int) -> void:
 	if goal_completion_counter >= goal_marker_types.size():
 		return
 	
-	goal_marker_types[goal_completion_counter] = effect_type
-	goal_marked.emit(goal_completion_counter, 	goal_marker_types[goal_completion_counter])
+	if goal_completion_counter == 0:
+		failing = false
 	
-	goal_completion_counter += 1
-	
-	if goal_completion_counter >= goal_marker_types.size():
-		GlobalSignalBus.game_win.emit()
+	if failing:
+		goal_completion_counter -= 1
+		
+		goal_marker_types[goal_completion_counter] = GOAL_TYPE.NONE
+		goal_marked.emit(goal_completion_counter, goal_marker_types[goal_completion_counter])
+	else:
+		goal_marker_types[goal_completion_counter] = effect_type
+		goal_marked.emit(goal_completion_counter, goal_marker_types[goal_completion_counter])
+		
+		goal_completion_counter += 1
 
 func mark_failed_task() -> void:
-	goal_marker_types[goal_completion_counter] = GOAL_TYPE.FAIL
-	goal_marked.emit(goal_completion_counter, 	goal_marker_types[goal_completion_counter])
-
-	goal_completion_counter += 1
+	if goal_completion_counter >= goal_marker_types.size():
+		return
+	
+	if goal_completion_counter == 0:
+		failing = true
+	
+	if not failing:
+		goal_completion_counter -= 1
+		
+		goal_marker_types[goal_completion_counter] = GOAL_TYPE.NONE
+		goal_marked.emit(goal_completion_counter, goal_marker_types[goal_completion_counter])
+		
+		if goal_completion_counter == 0:
+			failing = false
+	else:
+		goal_marker_types[goal_completion_counter] = GOAL_TYPE.FAIL
+		goal_marked.emit(goal_completion_counter, goal_marker_types[goal_completion_counter])
+		
+		goal_completion_counter += 1
 
 func add_marker() -> void:
 	if total_marker_count >= MAX_MARKER_COUNT:
