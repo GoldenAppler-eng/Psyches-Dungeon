@@ -15,6 +15,7 @@ func _ready() -> void:
 	GlobalSignalBus.retry.connect(_on_game_retry)
 	
 	init_position = global_position
+	target_position = init_position
 
 func _process(delta : float) -> void:
 	global_position.x = move_toward(global_position.x, target_position.x, delta * CAMERA_SPEED)	

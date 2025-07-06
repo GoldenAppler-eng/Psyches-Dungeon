@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bd48cv83wcg06"]
+[gd_scene load_steps=23 format=3 uid="uid://cge8gvp1k2trb"]
 
 [ext_resource type="Script" uid="uid://dpja757ryymet" path="res://scripts/placeable/Card.gd" id="1_c2vn4"]
 [ext_resource type="Texture2D" uid="uid://ci1ig3gb1umca" path="res://sprites/card-96x220-Sheet.png" id="2_clvhy"]

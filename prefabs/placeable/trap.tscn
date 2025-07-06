@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ln8wdsnv7xo2"]
+[gd_scene load_steps=10 format=3 uid="uid://fpwclbkyilln"]
 
 [ext_resource type="Script" uid="uid://bnwuxtmtccv8k" path="res://scripts/placeable/Trap.gd" id="1_4d2cc"]
 [ext_resource type="Texture2D" uid="uid://jsml6q6em3nw" path="res://sprites/trap-Sheet.png" id="2_kjsx1"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://di8bojp8w0r88"]
+[gd_scene load_steps=66 format=3 uid="uid://5f7subrgsxq"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/Player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]

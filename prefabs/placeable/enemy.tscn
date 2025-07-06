@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://du3tmqtt127gu"]
+[gd_scene load_steps=47 format=3 uid="uid://cdf2lbwqoxlpy"]
 
 [ext_resource type="Script" uid="uid://dd5gn034twoup" path="res://scripts/placeable/Enemy.gd" id="1_smd3p"]
 [ext_resource type="PackedScene" uid="uid://3v1d7p2qk7hi" path="res://prefabs/placeable/Coin.tscn" id="2_s3tct"]
