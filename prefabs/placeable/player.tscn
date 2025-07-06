@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://5f7subrgsxq"]
+[gd_scene load_steps=67 format=3 uid="uid://5f7subrgsxq"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bvv3mec31i7dv" path="res://scripts/components/HealthComponent.gd" id="11_ddk21"]
 [ext_resource type="Script" uid="uid://ce1nso6v2sti5" path="res://scripts/state_machine/StateMachine.gd" id="11_ytpbi"]
 [ext_resource type="Script" uid="uid://c53qqulwesjcf" path="res://scripts/states/AttackState.gd" id="12_6gbnb"]
+[ext_resource type="Script" uid="uid://cpmqqgfwsbwx6" path="res://scripts/states/RespawnIntermediateState.gd" id="13_5dq54"]
 [ext_resource type="Script" uid="uid://b3sajtnm0lu5i" path="res://scripts/states/IdleState.gd" id="13_fapun"]
 [ext_resource type="Script" uid="uid://ce23gllj8csnq" path="res://scripts/states/LivingState.gd" id="13_rh52m"]
 [ext_resource type="Script" uid="uid://ds5i1g800tcw6" path="res://scripts/states/PassiveState.gd" id="13_u8pvg"]
@@ -447,10 +448,14 @@ hurt_timer = NodePath("../../../Timers/HurtTimer")
 script = ExtResource("15_ltkry")
 respawn_state = NodePath("../respawn state")
 
-[node name="respawn state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("living_state", "regeneration_component")]
+[node name="respawn state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("respawn_intermediate_state", "regeneration_component")]
 script = ExtResource("16_rcx1k")
-living_state = NodePath("../living state")
+respawn_intermediate_state = NodePath("../respawn intermediate state")
 regeneration_component = NodePath("../../../RegenerationComponent")
+
+[node name="respawn intermediate state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("living_state")]
+script = ExtResource("13_5dq54")
+living_state = NodePath("../living state")
 
 [node name="movement state machine" type="Node" parent="StateMachines" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_ytpbi")

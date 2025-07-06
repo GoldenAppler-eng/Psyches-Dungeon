@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://fpwclbkyilln" path="res://prefabs/placeable/trap.tscn" id="16_xdopa"]
 [ext_resource type="PackedScene" uid="uid://cdf2lbwqoxlpy" path="res://prefabs/placeable/enemy.tscn" id="17_8dxvp"]
 
-[sub_resource type="Resource" id="Resource_fgoxv"]
+[sub_resource type="Resource" id="Resource_8dxvp"]
 resource_local_to_scene = true
 script = ExtResource("5_mjm4b")
 task_description = "Activate {requirement_amount} traps"
@@ -26,7 +26,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ddv2p0x28l04f"
 
-[sub_resource type="Resource" id="Resource_eqd57"]
+[sub_resource type="Resource" id="Resource_fgoxv"]
 resource_local_to_scene = true
 script = ExtResource("6_dv75v")
 task_description = "Collect {requirement_amount} coins"
@@ -34,7 +34,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://dhaij0jq75c1n"
 
-[sub_resource type="Resource" id="Resource_w5lph"]
+[sub_resource type="Resource" id="Resource_eqd57"]
 resource_local_to_scene = true
 script = ExtResource("7_x05cw")
 need_golden_enemy = true
@@ -43,7 +43,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_m8urk"]
+[sub_resource type="Resource" id="Resource_w5lph"]
 resource_local_to_scene = true
 script = ExtResource("7_x05cw")
 need_golden_enemy = true
@@ -52,7 +52,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_3mvhw"]
+[sub_resource type="Resource" id="Resource_m8urk"]
 resource_local_to_scene = true
 script = ExtResource("8_bn472")
 task_description = "Die {requirement_amount} times"
@@ -60,7 +60,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ohix4wy5pm66"
 
-[sub_resource type="Resource" id="Resource_c8yxe"]
+[sub_resource type="Resource" id="Resource_3mvhw"]
 resource_local_to_scene = true
 script = ExtResource("9_3xk6l")
 task_description = "Open {requirement_amount} chests"
@@ -68,7 +68,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://cp8anq50qc5x5"
 
-[sub_resource type="Resource" id="Resource_dpf0u"]
+[sub_resource type="Resource" id="Resource_c8yxe"]
 resource_local_to_scene = true
 script = ExtResource("10_ko4od")
 need_consecutive = true
@@ -92,7 +92,7 @@ goal_handler = NodePath("../goal_handler")
 [node name="goal_handler" parent="." instance=ExtResource("2_ynswa")]
 
 [node name="task_handler" parent="." instance=ExtResource("3_dvny0")]
-task_pool = Array[ExtResource("4_mjm4b")]([SubResource("Resource_fgoxv"), SubResource("Resource_eqd57"), SubResource("Resource_w5lph"), SubResource("Resource_m8urk"), SubResource("Resource_3mvhw"), SubResource("Resource_c8yxe"), SubResource("Resource_dpf0u")])
+task_pool = Array[ExtResource("4_mjm4b")]([SubResource("Resource_8dxvp"), SubResource("Resource_fgoxv"), SubResource("Resource_eqd57"), SubResource("Resource_w5lph"), SubResource("Resource_m8urk"), SubResource("Resource_3mvhw"), SubResource("Resource_c8yxe")])
 
 [node name="effect_resolution_handler" parent="." instance=ExtResource("4_xwrkq")]
 

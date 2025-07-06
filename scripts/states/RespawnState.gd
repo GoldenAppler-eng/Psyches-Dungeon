@@ -1,6 +1,6 @@
 extends State
 
-@export var living_state : State
+@export var respawn_intermediate_state : State
 
 @export var regeneration_component : RegenerationComponent
 
@@ -20,7 +20,7 @@ func process_frame(delta : float) -> State:
 	
 func process_physics(delta : float) -> State:
 	if _full_regeneration_flag:
-		return living_state
+		return respawn_intermediate_state
 	
 	return null
 
