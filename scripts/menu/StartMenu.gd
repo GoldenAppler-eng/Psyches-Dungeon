@@ -11,6 +11,8 @@ func enter() -> void:
 	set_game_paused(true)
 	start_blink_timer.start()
 	
+	GlobalBackgroundMusic.play_soundtrack("start menu")
+	
 func exit() -> void:
 	super()
 	

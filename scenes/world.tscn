@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://d0bx6c0glfwiw"]
+[gd_scene load_steps=47 format=3 uid="uid://d0bx6c0glfwiw"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/ProcGenHandler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/player.tscn" id="1_kx658"]
@@ -36,6 +36,7 @@
 [ext_resource type="Script" uid="uid://dmmv07s2ooob" path="res://scripts/menu/GameWinMenu.gd" id="20_ctatt"]
 [ext_resource type="Script" uid="uid://br8y0r61tc0p3" path="res://scripts/menu/IdleMenu.gd" id="21_7iits"]
 [ext_resource type="PackedScene" uid="uid://bmky0n8q8chq4" path="res://prefabs/HUD/TaskHandlerHUDDisplay.tscn" id="21_ggc52"]
+[ext_resource type="Script" uid="uid://b7cxqp1ujn0bv" path="res://scripts/DebugMode.gd" id="37_x70b3"]
 
 [sub_resource type="Resource" id="Resource_e4yt5"]
 resource_local_to_scene = true
@@ -468,5 +469,9 @@ script = ExtResource("21_7iits")
 pause_menu = NodePath("../pause_menu")
 game_over_menu = NodePath("../game_lose_menu")
 game_win_menu = NodePath("../game_win_menu")
+
+[node name="DebugMode" type="Node" parent="." node_paths=PackedStringArray("task_handler")]
+script = ExtResource("37_x70b3")
+task_handler = NodePath("../Handlers/task_handler")
 
 [connection signal="timeout" from="GUI/UI/start_menu/MarginContainer/StartBlinkTimer" to="GUI/UI/start_menu" method="_on_start_blink_timer_timeout"]

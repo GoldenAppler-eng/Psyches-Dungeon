@@ -17,6 +17,8 @@ func enter() -> void:
 	game_lose = false
 	game_win = false
 	
+	GlobalBackgroundMusic.play_soundtrack("in-game")
+	
 func exit() -> void:
 	pass
 

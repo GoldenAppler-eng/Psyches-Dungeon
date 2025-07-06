@@ -1,9 +1,14 @@
 extends AudioStreamPlayer
 
-func _ready() -> void:
-	GlobalSignalBus.game_start.connect(_on_game_started)
+const soundtrack_list : Dictionary = {
+	"in-game" : preload("res://audio/music/salvationquestionmarkv2.wav"),
+	"start menu" : preload("res://audio/music/enterthedungeon.wav"),
+	"game lose" : preload("res://audio/music/psychewins.wav"),
+	"game win" : preload("res://audio/music/salvationexclamationmark.wav")
+}
 
-func _on_game_started() -> void:
+func play_soundtrack(soundtrack : StringName) -> void:
+	stream = soundtrack_list[soundtrack]
 	play()
 
 func _on_finished() -> void:

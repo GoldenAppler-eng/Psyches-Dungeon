@@ -19,6 +19,8 @@ func enter() -> void:
 	set_game_paused(true)
 	replay_button.grab_focus()
 	
+	GlobalBackgroundMusic.play_soundtrack("game win")
+	
 func exit() -> void:
 	super()
 	
