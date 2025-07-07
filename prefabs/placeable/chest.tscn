@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cquuxff5k576x"]
+[gd_scene load_steps=13 format=3 uid="uid://cquuxff5k576x"]
 
 [ext_resource type="Script" uid="uid://6ua0gd6pdnqn" path="res://scripts/placeable/Chest.gd" id="1_e66pm"]
 [ext_resource type="PackedScene" uid="uid://cdf2lbwqoxlpy" path="res://prefabs/placeable/Enemy.tscn" id="2_fbo2m"]
@@ -7,22 +7,29 @@
 [ext_resource type="AudioStream" uid="uid://bl3gfsl81twao" path="res://audio/sfx/chest_open.wav" id="6_b5q2c"]
 [ext_resource type="Script" uid="uid://7qu6n16ohs8q" path="res://scripts/components/SummonerComponent.gd" id="7_800rp"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nc8py"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1svl"]
 atlas = ExtResource("5_awcew")
 region = Rect2(0, 0, 18, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vss0c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f51o3"]
 atlas = ExtResource("5_awcew")
 region = Rect2(18, 0, 18, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nuflp"]
+atlas = ExtResource("5_awcew")
+region = Rect2(36, 0, 18, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2gih6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nc8py")
+"texture": SubResource("AtlasTexture_g1svl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vss0c")
+"texture": SubResource("AtlasTexture_f51o3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nuflp")
 }],
 "loop": false,
 "name": &"default",
