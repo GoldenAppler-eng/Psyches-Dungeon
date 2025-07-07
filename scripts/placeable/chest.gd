@@ -7,6 +7,7 @@ const LUCKY_OPEN_CHANCE : float = 0.8
 
 @onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
 @onready var open_sfx : AudioStreamPlayer = $OpenSfx
+@onready var open_buffer_timer: Timer = %OpenBufferTimer
 
 var _player_nearby := false
 var _opened := false
@@ -45,5 +46,8 @@ func _on_area_2d_player_exited(body: Node2D) -> void:
 	if _opened:
 		return
 	
+	open_buffer_timer.start()
+
+func _on_open_buffer_timer_timeout() -> void:
 	_player_nearby = false
 	animated_sprite_2d.frame = 0
