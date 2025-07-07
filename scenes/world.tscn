@@ -147,43 +147,62 @@ task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_x70b3"), SubRes
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="HUD" type="Node2D" parent="GUI"]
+[node name="HUD" type="Control" parent="GUI"]
 z_index = 20
-position = Vector2(462, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResizedHUD" type="Node2D" parent="GUI/HUD"]
 scale = Vector2(2.6, 2.6)
 
-[node name="psyche" parent="GUI/HUD" instance=ExtResource("10_7p5jc")]
+[node name="psyche" parent="GUI/HUD/ResizedHUD" instance=ExtResource("10_7p5jc")]
 process_mode = 3
-position = Vector2(192, 338)
+position = Vector2(377.385, 338)
 
-[node name="controls_display" parent="GUI/HUD" instance=ExtResource("11_d1e4f")]
+[node name="controls_display" parent="GUI/HUD/ResizedHUD" instance=ExtResource("11_d1e4f")]
 visible = false
 z_index = 1
 position = Vector2(346, 348)
 
-[node name="timer_sprite" parent="GUI/HUD" instance=ExtResource("8_nmwfv")]
-position = Vector2(394, 7)
+[node name="timer_sprite" parent="GUI/HUD/ResizedHUD" instance=ExtResource("8_nmwfv")]
+position = Vector2(579.385, 7)
 
-[node name="arrow_display_bg" type="Sprite2D" parent="GUI/HUD"]
+[node name="arrow_display_bg" type="Sprite2D" parent="GUI/HUD/ResizedHUD"]
 visible = false
 position = Vector2(346.5, 362)
 scale = Vector2(3.46875, 2.5625)
 texture = ExtResource("15_3xvu6")
 
-[node name="CardHUDDisplay" parent="GUI/HUD" node_paths=PackedStringArray("card_handler") instance=ExtResource("19_x2olw")]
-position = Vector2(-90, 340.385)
-card_handler = NodePath("../../../Handlers/card_handler")
+[node name="CardHUDDisplay" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("card_handler") instance=ExtResource("19_x2olw")]
+position = Vector2(95.3846, 340.385)
+card_handler = NodePath("../../../../Handlers/card_handler")
 
-[node name="GoalHUDDisplay" parent="GUI/HUD" node_paths=PackedStringArray("goal_handler") instance=ExtResource("20_817gm")]
-position = Vector2(304.231, 319.231)
-goal_handler = NodePath("../../../Handlers/goal_handler")
+[node name="GoalHUDDisplay" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("goal_handler") instance=ExtResource("20_817gm")]
+position = Vector2(489.616, 319.231)
+goal_handler = NodePath("../../../../Handlers/goal_handler")
 
-[node name="TaskHandlerHUDDisplay" parent="GUI/HUD" node_paths=PackedStringArray("task_handler") instance=ExtResource("21_ggc52")]
-offset_left = 398.077
-offset_top = 52.6923
-offset_right = 399.077
-offset_bottom = 74.6923
-task_handler = NodePath("../../../Handlers/task_handler")
+[node name="MarginContainer" type="MarginContainer" parent="GUI/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 1500
+theme_override_constants/margin_top = 135
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 500
+
+[node name="TaskHandlerHUDDisplay" parent="GUI/HUD/MarginContainer" node_paths=PackedStringArray("task_handler") instance=ExtResource("21_ggc52")]
+custom_minimum_size = Vector2(390, 500)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+task_handler = NodePath("../../../../Handlers/task_handler")
 
 [node name="boxing" type="Node2D" parent="GUI"]
 z_index = 20
