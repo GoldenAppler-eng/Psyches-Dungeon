@@ -15,8 +15,8 @@
 [ext_resource type="Script" uid="uid://cmktuyanlwaem" path="res://scripts/tasks/RoomTravelTask.gd" id="10_ko4od"]
 [ext_resource type="PackedScene" uid="uid://b3lpxmm30ga21" path="res://prefabs/HUD/GoalHUDDisplay.tscn" id="13_dv75v"]
 [ext_resource type="PackedScene" uid="uid://bmky0n8q8chq4" path="res://prefabs/HUD/TaskHandlerHUDDisplay.tscn" id="13_y60ib"]
-[ext_resource type="PackedScene" uid="uid://fpwclbkyilln" path="res://prefabs/placeable/trap.tscn" id="16_xdopa"]
-[ext_resource type="PackedScene" uid="uid://cdf2lbwqoxlpy" path="res://prefabs/placeable/enemy.tscn" id="17_8dxvp"]
+[ext_resource type="PackedScene" uid="uid://fpwclbkyilln" path="res://prefabs/placeable/Trap.tscn" id="16_xdopa"]
+[ext_resource type="PackedScene" uid="uid://cdf2lbwqoxlpy" path="res://prefabs/placeable/Enemy.tscn" id="17_8dxvp"]
 
 [sub_resource type="Resource" id="Resource_8dxvp"]
 resource_local_to_scene = true

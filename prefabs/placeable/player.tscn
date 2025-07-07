@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
 [ext_resource type="Material" uid="uid://derkgmqh45esb" path="res://resources/shaders/HitEffectEnemy.tres" id="2_r0tfm"]
 [ext_resource type="Texture2D" uid="uid://v1wftaebrqwp" path="res://sprites/knight-final-90x36-Sheet.png" id="2_ytfcl"]
-[ext_resource type="Script" uid="uid://dl3m8bjsg333d" path="res://scripts/placeable/RoomDetector.gd" id="3_0ed2m"]
+[ext_resource type="Script" uid="uid://dl3m8bjsg333d" path="res://scripts/components/RoomDetector.gd" id="3_0ed2m"]
 [ext_resource type="Texture2D" uid="uid://bnw6qsinnrdh" path="res://sprites/knight-final-bottom-half-90x36-Sheet.png" id="4_s44aa"]
 [ext_resource type="Script" uid="uid://2entraauuyax" path="res://scripts/components/DamageableHitboxComponent.gd" id="6_ggkf6"]
 [ext_resource type="Script" uid="uid://c2qjbrdw0kppt" path="res://scripts/components/RegenerationComponent.gd" id="6_rfdks"]

@@ -33,7 +33,7 @@ animations = [{
 size = Vector2(18, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fa4qy"]
-size = Vector2(22, 20)
+size = Vector2(49, 35)
 
 [node name="chest" type="StaticBody2D"]
 y_sort_enabled = true
@@ -57,6 +57,7 @@ collision_mask = 4
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OpenArea"]
+position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_fa4qy")
 
 [node name="OpenSfx" type="AudioStreamPlayer" parent="."]

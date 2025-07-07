@@ -1,7 +1,7 @@
 [gd_scene load_steps=47 format=3 uid="uid://d0bx6c0glfwiw"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/ProcGenHandler.tscn" id="1_4gt5v"]
-[ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/player.tscn" id="1_kx658"]
+[ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/Player.tscn" id="1_kx658"]
 [ext_resource type="Script" uid="uid://ddxjrhicpne46" path="res://scripts/handlers/CameraHandler.gd" id="3_mdjvo"]
 [ext_resource type="PackedScene" uid="uid://bnj71gqcb0bcx" path="res://prefabs/handlers/CardHandler.tscn" id="5_g57ya"]
 [ext_resource type="PackedScene" uid="uid://dwqki74onshog" path="res://prefabs/handlers/GoalHandler.tscn" id="6_we2tv"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bsetdbcop2wtx" path="res://prefabs/HUD/TimerSprite.tscn" id="8_nmwfv"]
 [ext_resource type="Script" uid="uid://dkpu6enc78l64" path="res://scripts/tasks/Task.gd" id="8_rup4s"]
 [ext_resource type="Script" uid="uid://ddv2p0x28l04f" path="res://scripts/tasks/TrapActivationTask.gd" id="9_4kbfs"]
-[ext_resource type="PackedScene" uid="uid://tsgd00awej7" path="res://prefabs/HUD/psyche.tscn" id="10_7p5jc"]
+[ext_resource type="PackedScene" uid="uid://tsgd00awej7" path="res://prefabs/HUD/Psyche.tscn" id="10_7p5jc"]
 [ext_resource type="Script" uid="uid://dhaij0jq75c1n" path="res://scripts/tasks/CoinCollectionTask.gd" id="10_f17e3"]
 [ext_resource type="PackedScene" uid="uid://b328jm4xb4p6i" path="res://prefabs/HUD/ControlsDisplay.tscn" id="11_d1e4f"]
 [ext_resource type="Script" uid="uid://ckmgawqorome5" path="res://scripts/tasks/EnemyDefeatTask.gd" id="11_x2olw"]
