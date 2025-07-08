@@ -12,6 +12,7 @@ func enter() -> void:
 	start_blink_timer.start()
 	
 	GlobalBackgroundMusic.play_soundtrack("start menu")
+	GlobalBackgroundMusic.change_playback_speed(1)
 	
 func exit() -> void:
 	super()

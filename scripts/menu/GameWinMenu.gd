@@ -20,6 +20,7 @@ func enter() -> void:
 	replay_button.grab_focus()
 	
 	GlobalBackgroundMusic.play_soundtrack("game win")
+	GlobalBackgroundMusic.change_playback_speed(1)
 	
 func exit() -> void:
 	super()

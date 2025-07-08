@@ -11,5 +11,8 @@ func play_soundtrack(soundtrack : StringName) -> void:
 	stream = soundtrack_list[soundtrack]
 	play()
 
+func change_playback_speed(speed : float) -> void:
+	pitch_scale = speed
+	
 func _on_finished() -> void:
 	play()

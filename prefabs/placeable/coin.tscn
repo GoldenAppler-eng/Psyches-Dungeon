@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://beb170nn2q6h5"]
+[gd_scene load_steps=14 format=3 uid="uid://beb170nn2q6h5"]
 
 [ext_resource type="Script" uid="uid://cen7tjnbvi3" path="res://scripts/placeable/Coin.gd" id="1_mys2i"]
 [ext_resource type="Texture2D" uid="uid://dbajeelhls4dn" path="res://sprites/coin-8x8-Sheet.png" id="2_c16rf"]
 [ext_resource type="AudioStream" uid="uid://ciprnxy30cs1r" path="res://audio/sfx/coin_pickup.wav" id="3_k6rmr"]
+[ext_resource type="Texture2D" uid="uid://cmxsoc8n23w68" path="res://sprites/sparkle-5x5.png" id="4_np4uj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wm5eg"]
 atlas = ExtResource("2_c16rf")
@@ -29,6 +30,29 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7trh6"]
 radius = 15.0
 
+[sub_resource type="Curve" id="Curve_0qu7b"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mi534"]
+curve = SubResource("Curve_0qu7b")
+
+[sub_resource type="Curve" id="Curve_iwvw7"]
+_data = [Vector2(0, 1), 0.0, -1.45222, 0, 0, Vector2(1, 0.495379), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mdw5s"]
+curve = SubResource("Curve_iwvw7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xrqfo"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 6.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_mdw5s")
+emission_curve = SubResource("CurveTexture_mi534")
+
 [node name="coin" type="RigidBody2D"]
 collision_layer = 512
 collision_mask = 258
@@ -36,6 +60,7 @@ gravity_scale = 0.0
 script = ExtResource("1_mys2i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_l786k")
 autoplay = "default"
 frame_progress = 0.290016
@@ -44,6 +69,7 @@ frame_progress = 0.290016
 shape = SubResource("CircleShape2D_7trh6")
 
 [node name="PickupArea" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 4
 monitorable = false
@@ -52,8 +78,19 @@ monitorable = false
 shape = SubResource("CircleShape2D_7trh6")
 
 [node name="PickupSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("3_k6rmr")
 bus = &"Sfx"
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 4
+texture = ExtResource("4_np4uj")
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_xrqfo")
+
 [connection signal="body_entered" from="PickupArea" to="." method="_on_area_2d_player_entered"]
 [connection signal="finished" from="PickupSfx" to="." method="_on_pickup_sfx_finished"]
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

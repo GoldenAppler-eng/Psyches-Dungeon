@@ -20,6 +20,7 @@ func enter() -> void:
 	retry_button.grab_focus()
 	
 	GlobalBackgroundMusic.play_soundtrack("game lose")
+	GlobalBackgroundMusic.change_playback_speed(1)
 	
 func exit() -> void:
 	super()
