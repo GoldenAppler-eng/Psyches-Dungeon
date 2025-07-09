@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var task_handler : TaskHandler
+
 @onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
 @onready var audio_player : AudioStreamPlayer = $%AudioPlayer
 
@@ -39,7 +41,7 @@ func _ready() -> void:
 	
 	GlobalSignalBus.enemy_death.connect(_on_enemy_death)
 	
-	GlobalSignalBus.task_completed.connect(_on_task_completed)
+	task_handler.task_finished.connect(_on_task_finished)
 	GlobalCardTimer.timeout.connect(_on_player_death)
 
 func _process(delta : float ) -> void:
@@ -67,11 +69,8 @@ func _on_enemy_death(is_golden : bool) -> void:
 	else:
 		animated_sprite_2d.play("angry")
 	
-func _on_task_completed(task_type : int) -> void:
-	if task_type == Global.TASK_TYPE.DEFEAT || task_type == Global.TASK_TYPE.DEFEAT_GOLD:
-		animated_sprite_2d.play("really_angry")
-	else:
-		animated_sprite_2d.play("angry")
+func _on_task_finished() -> void:
+	animated_sprite_2d.play("hurt")
 	
 func _on_psyche_request_received() -> void:
 	var i : int = randi_range(1, 2)
@@ -111,5 +110,5 @@ func _on_player_death() -> void:
 	_play_audio(audio_name)
 	animated_sprite_2d.play("laugh")
 	
-func _on_audio_player_finished() -> void:
+func _on_animated_sprite_2d_animation_finished() -> void:
 	animated_sprite_2d.play("rest")

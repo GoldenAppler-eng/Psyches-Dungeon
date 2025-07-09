@@ -158,9 +158,10 @@ grow_vertical = 2
 
 [node name="ResizedHUD" type="Node2D" parent="GUI/HUD"]
 
-[node name="psyche" parent="GUI/HUD/ResizedHUD" instance=ExtResource("10_7p5jc")]
+[node name="psyche" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("task_handler") instance=ExtResource("10_7p5jc")]
 process_mode = 3
 position = Vector2(383, 346)
+task_handler = NodePath("../../../../Handlers/task_handler")
 
 [node name="controls_display" parent="GUI/HUD/ResizedHUD" instance=ExtResource("11_d1e4f")]
 visible = false

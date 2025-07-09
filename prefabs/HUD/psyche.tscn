@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://tsgd00awej7"]
+[gd_scene load_steps=23 format=3 uid="uid://tsgd00awej7"]
 
 [ext_resource type="Texture2D" uid="uid://b25n4k2836ydo" path="res://sprites/psyche-Sheet.png" id="1_6uspd"]
-[ext_resource type="Script" uid="uid://dcc5p3vywvepy" path="res://scripts/HUD/Psyche.gd" id="1_i1pbe"]
+[ext_resource type="Script" uid="uid://dcc5p3vywvepy" path="res://scripts/HUD/psyche.gd" id="1_i1pbe"]
 [ext_resource type="AudioStream" uid="uid://cum3jxnngcutj" path="res://audio/sfx/psyche_voice_lines/psyche_1.wav" id="3_0uisg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tleo0"]
@@ -19,6 +19,34 @@ region = Rect2(1008, 0, 144, 144)
 [sub_resource type="AtlasTexture" id="AtlasTexture_li41c"]
 atlas = ExtResource("1_6uspd")
 region = Rect2(1152, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sjhw"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(1440, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wt5p"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(1584, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_418us"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(1728, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbl2x"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(1872, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk0kw"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(2016, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1ur0"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(2160, 0, 144, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pmr1"]
+atlas = ExtResource("1_6uspd")
+region = Rect2(2304, 0, 144, 144)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_clc56"]
 atlas = ExtResource("1_6uspd")
@@ -79,6 +107,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7sjhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wt5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_418us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbl2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk0kw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1ur0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pmr1")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_clc56")
 }, {
 "duration": 1.0,
@@ -127,10 +181,10 @@ unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_uq4wb")
 animation = &"rest"
 autoplay = "rest"
-frame_progress = 0.266189
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_0uisg")
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="finished" from="AudioPlayer" to="." method="_on_audio_player_finished"]
