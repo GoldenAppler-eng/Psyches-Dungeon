@@ -16,8 +16,12 @@ func enter() -> void:
 	_invincible_flag = true
 	invincibility_timer.start()
 	
+	anim_player.play_animation_overlay("invincible")
+	
 func exit() -> void:
 	super()
+	
+	await anim_player.clear_all_animation_overlay()
 	
 func process_frame(delta : float) -> State:
 	_process_sub_state_machines_frame(delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://5f7subrgsxq"]
+[gd_scene load_steps=68 format=3 uid="uid://5f7subrgsxq"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/Player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -322,6 +322,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerAnimationController/TopHalf:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerAnimationController/BottomHalf:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_myfrg"]
 resource_name = "hit"
@@ -337,12 +361,41 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("PlayerAnimationController/TopHalf:material:shader_parameter/effect_on")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_tv4iu"]
+resource_name = "invincible"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimationController/TopHalf:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimationController/BottomHalf:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -355,7 +408,8 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k2ico"]
 _data = {
 &"RESET": SubResource("Animation_qc7wd"),
-&"hit": SubResource("Animation_myfrg")
+&"hit": SubResource("Animation_myfrg"),
+&"invincible": SubResource("Animation_tv4iu")
 }
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("main_state_machine", "movement_state_machine", "attack_state_machine", "animation_controller", "sfx_player", "movement_controller", "input_controller")]
@@ -494,7 +548,7 @@ animation_player = NodePath("AnimationPlayer")
 material = ExtResource("2_r0tfm")
 position = Vector2(1, -16)
 sprite_frames = SubResource("SpriteFrames_vcljs")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="BottomHalf" type="AnimatedSprite2D" parent="PlayerAnimationController"]
@@ -510,6 +564,7 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_k2ico")
 }
+autoplay = "RESET"
 
 [node name="SfxPlayer" type="Node" parent="."]
 script = ExtResource("19_s620t")

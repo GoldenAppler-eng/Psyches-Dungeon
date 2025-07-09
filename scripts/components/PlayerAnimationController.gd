@@ -44,7 +44,9 @@ func play_current_animation() -> void:
 func play_animation_overlay(overlay_name : StringName) -> void:
 	match overlay_name:
 		"hit":
-			animation_player.play(overlay_name)
+			animation_player.play.call_deferred(overlay_name)
+		"invincible":
+			animation_player.play.call_deferred(overlay_name)
 			
 func clear_all_animation_overlay() -> void:
 	animation_player.play("RESET")
