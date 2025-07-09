@@ -23,4 +23,3 @@ text = "Window MODE"
 layout_mode = 2
 size_flags_horizontal = 4
 button_text = "Fullscreen"
-button_minimum_length = 235.0

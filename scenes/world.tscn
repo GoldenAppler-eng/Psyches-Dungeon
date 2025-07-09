@@ -99,20 +99,20 @@ metadata/_custom_type_script = "uid://cmktuyanlwaem"
 
 [sub_resource type="LabelSettings" id="LabelSettings_op4s2"]
 font = ExtResource("16_mlxgv")
-font_size = 80
+font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_2crl2"]
 font = ExtResource("16_mlxgv")
-font_size = 60
+font_size = 30
 
 [node name="world" type="Node2D"]
 process_mode = 1
 y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2(192, 128)
 offset = Vector2(0, 79.68)
-zoom = Vector2(2.6, 2.6)
 script = ExtResource("3_mdjvo")
 
 [node name="player" parent="." instance=ExtResource("1_kx658")]
@@ -157,11 +157,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ResizedHUD" type="Node2D" parent="GUI/HUD"]
-scale = Vector2(2.6, 2.6)
 
 [node name="psyche" parent="GUI/HUD/ResizedHUD" instance=ExtResource("10_7p5jc")]
 process_mode = 3
-position = Vector2(377.385, 338)
+position = Vector2(383, 346)
 
 [node name="controls_display" parent="GUI/HUD/ResizedHUD" instance=ExtResource("11_d1e4f")]
 visible = false
@@ -169,7 +168,7 @@ z_index = 1
 position = Vector2(346, 348)
 
 [node name="timer_sprite" parent="GUI/HUD/ResizedHUD" instance=ExtResource("8_nmwfv")]
-position = Vector2(579.385, 7)
+position = Vector2(585, 15)
 
 [node name="arrow_display_bg" type="Sprite2D" parent="GUI/HUD/ResizedHUD"]
 visible = false
@@ -178,11 +177,11 @@ scale = Vector2(3.46875, 2.5625)
 texture = ExtResource("15_3xvu6")
 
 [node name="CardHUDDisplay" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("card_handler") instance=ExtResource("19_x2olw")]
-position = Vector2(95.3846, 340.385)
+position = Vector2(101, 348.385)
 card_handler = NodePath("../../../../Handlers/card_handler")
 
 [node name="GoalHUDDisplay" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("goal_handler") instance=ExtResource("20_817gm")]
-position = Vector2(489.616, 319.231)
+position = Vector2(495.231, 327.231)
 goal_handler = NodePath("../../../../Handlers/goal_handler")
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/HUD"]
@@ -192,13 +191,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 1500
-theme_override_constants/margin_top = 135
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 500
+theme_override_constants/margin_left = 570
+theme_override_constants/margin_top = 60
 
 [node name="TaskHandlerHUDDisplay" parent="GUI/HUD/MarginContainer" node_paths=PackedStringArray("task_handler") instance=ExtResource("21_ggc52")]
-custom_minimum_size = Vector2(390, 500)
+custom_minimum_size = Vector2(150, 180)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -206,8 +203,7 @@ task_handler = NodePath("../../../../Handlers/task_handler")
 
 [node name="boxing" type="Node2D" parent="GUI"]
 z_index = 20
-position = Vector2(462, 0)
-scale = Vector2(2.6, 2.6)
+position = Vector2(178, 0)
 
 [node name="pillarbox" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
@@ -223,13 +219,13 @@ texture = ExtResource("12_105fm")
 
 [node name="letterbox" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
-position = Vector2(194.077, 335.308)
+position = Vector2(194, 345)
 scale = Vector2(23.8125, 5)
 texture = ExtResource("13_5hjyj")
 
 [node name="bar" type="Sprite2D" parent="GUI/boxing"]
 z_index = -1
-position = Vector2(192.077, 255.308)
+position = Vector2(194, 265)
 texture = ExtResource("14_xe0ec")
 
 [node name="UI" type="Control" parent="GUI" node_paths=PackedStringArray("game_node", "initial_menu")]
@@ -263,10 +259,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 45
+theme_override_constants/margin_left = 15
 
 [node name="container" type="VBoxContainer" parent="GUI/UI/settings_ui/MarginContainer"]
-custom_minimum_size = Vector2(410, 0)
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -360,9 +356,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 455
-theme_override_constants/margin_right = 455
-theme_override_constants/margin_bottom = 430
+theme_override_constants/margin_left = 170
+theme_override_constants/margin_right = 170
+theme_override_constants/margin_bottom = 150
 
 [node name="overlay" type="TextureRect" parent="GUI/UI/game_lose_menu/MarginContainer"]
 modulate = Color(1, 1, 1, 0.196078)
@@ -385,7 +381,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("17_whvfw")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 30
 button_mask = 0
 text = "retry"
 
@@ -409,9 +405,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 455
-theme_override_constants/margin_right = 455
-theme_override_constants/margin_bottom = 430
+theme_override_constants/margin_left = 170
+theme_override_constants/margin_right = 170
+theme_override_constants/margin_bottom = 150
 
 [node name="overlay" type="TextureRect" parent="GUI/UI/game_win_menu/MarginContainer"]
 modulate = Color(1, 1, 1, 0.196078)
@@ -434,7 +430,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("17_whvfw")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 30
 button_mask = 0
 text = "replay"
 
@@ -457,9 +453,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 455
-theme_override_constants/margin_right = 455
-theme_override_constants/margin_bottom = 430
+theme_override_constants/margin_left = 170
+theme_override_constants/margin_right = 170
+theme_override_constants/margin_bottom = 150
 
 [node name="overlay" type="TextureRect" parent="GUI/UI/start_menu/MarginContainer"]
 layout_mode = 2

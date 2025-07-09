@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dd1tbvndv8i1u" path="res://prefabs/UI/SwitchButton.tscn" id="3_lfvla"]
 
 [node name="resolution_controller" type="MarginContainer"]
+offset_right = 110.0
+offset_bottom = 40.0
 focus_mode = 2
 theme = ExtResource("1_0xua2")
 script = ExtResource("1_whxe6")
@@ -22,4 +24,4 @@ text = "Resolution"
 layout_mode = 2
 size_flags_horizontal = 4
 button_text = "1920x1080"
-button_minimum_length = 188.0
+button_minimum_length = 76.0
