@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://d0bx6c0glfwiw"]
+[gd_scene load_steps=53 format=3 uid="uid://d0bx6c0glfwiw"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/ProcGenHandler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/Player.tscn" id="1_kx658"]
@@ -38,8 +38,9 @@
 [ext_resource type="PackedScene" uid="uid://bmky0n8q8chq4" path="res://prefabs/HUD/TaskHandlerHUDDisplay.tscn" id="21_ggc52"]
 [ext_resource type="Shader" uid="uid://bf7xlj18qupmj" path="res://resources/shaders/screen_shader.gdshader" id="37_5w2bu"]
 [ext_resource type="Script" uid="uid://b7cxqp1ujn0bv" path="res://scripts/DebugMode.gd" id="37_x70b3"]
+[ext_resource type="Script" uid="uid://bk85kfe6o41ve" path="res://scripts/singletons/DistortionEffect.gd" id="38_1bdwf"]
 
-[sub_resource type="Resource" id="Resource_1bdwf"]
+[sub_resource type="Resource" id="Resource_1w2qq"]
 resource_local_to_scene = true
 script = ExtResource("9_4kbfs")
 task_description = "Activate {requirement_amount} traps"
@@ -47,7 +48,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ddv2p0x28l04f"
 
-[sub_resource type="Resource" id="Resource_1w2qq"]
+[sub_resource type="Resource" id="Resource_yd118"]
 resource_local_to_scene = true
 script = ExtResource("10_f17e3")
 task_description = "Collect {requirement_amount} coins"
@@ -55,7 +56,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://dhaij0jq75c1n"
 
-[sub_resource type="Resource" id="Resource_yd118"]
+[sub_resource type="Resource" id="Resource_lffjk"]
 resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = true
@@ -64,7 +65,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_lffjk"]
+[sub_resource type="Resource" id="Resource_cgwb4"]
 resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = true
@@ -73,7 +74,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_cgwb4"]
+[sub_resource type="Resource" id="Resource_tx6do"]
 resource_local_to_scene = true
 script = ExtResource("12_817gm")
 task_description = "Die {requirement_amount} times"
@@ -81,7 +82,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ohix4wy5pm66"
 
-[sub_resource type="Resource" id="Resource_tx6do"]
+[sub_resource type="Resource" id="Resource_jot8m"]
 resource_local_to_scene = true
 script = ExtResource("13_ggc52")
 task_description = "Open {requirement_amount} chests"
@@ -89,7 +90,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://cp8anq50qc5x5"
 
-[sub_resource type="Resource" id="Resource_jot8m"]
+[sub_resource type="Resource" id="Resource_302v5"]
 resource_local_to_scene = true
 script = ExtResource("14_l8ah6")
 need_consecutive = true
@@ -110,6 +111,33 @@ font_size = 30
 shader = ExtResource("37_5w2bu")
 shader_parameter/offset = 0.0
 
+[sub_resource type="Animation" id="Animation_1bdwf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DistortionEffect:distort_drive")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_5w2bu"]
 resource_name = "screen_distort"
 length = 0.7
@@ -125,20 +153,17 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 1.0, 0.0, -1.0, 0.0]
 }
-
-[sub_resource type="Animation" id="Animation_1bdwf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DistortionEffect:distort_drive")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 1.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1w2qq"]
@@ -185,7 +210,7 @@ scale = Vector2(2.6, 2.6)
 [node name="task_handler" parent="Handlers" instance=ExtResource("7_ke0n8")]
 position = Vector2(1491.6, 106.6)
 scale = Vector2(2.6, 2.6)
-task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_1bdwf"), SubResource("Resource_1w2qq"), SubResource("Resource_yd118"), SubResource("Resource_lffjk"), SubResource("Resource_cgwb4"), SubResource("Resource_tx6do"), SubResource("Resource_jot8m")])
+task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_1w2qq"), SubResource("Resource_yd118"), SubResource("Resource_lffjk"), SubResource("Resource_cgwb4"), SubResource("Resource_tx6do"), SubResource("Resource_jot8m"), SubResource("Resource_302v5")])
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -539,10 +564,15 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScreenShaderAnimationPlayer" type="AnimationPlayer" parent="ScreenShader"]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_1w2qq")
 }
 autoplay = "RESET"
+
+[node name="DistortionEffect" type="Node" parent="ScreenShader" node_paths=PackedStringArray("card_handler")]
+script = ExtResource("38_1bdwf")
+card_handler = NodePath("../../Handlers/card_handler")
 
 [node name="DebugMode" type="Node" parent="." node_paths=PackedStringArray("task_handler")]
 script = ExtResource("37_x70b3")

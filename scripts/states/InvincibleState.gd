@@ -21,7 +21,7 @@ func enter() -> void:
 func exit() -> void:
 	super()
 	
-	await anim_player.clear_all_animation_overlay()
+	anim_player.clear_all_animation_overlay()
 	
 func process_frame(delta : float) -> State:
 	_process_sub_state_machines_frame(delta)
