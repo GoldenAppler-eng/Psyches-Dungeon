@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://d0bx6c0glfwiw"]
+[gd_scene load_steps=54 format=3 uid="uid://d0bx6c0glfwiw"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/ProcGenHandler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/Player.tscn" id="1_kx658"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://dfu6vdkfj2okp" path="res://prefabs/HUD/CardHUDDisplay.tscn" id="19_x2olw"]
 [ext_resource type="PackedScene" uid="uid://b3lpxmm30ga21" path="res://prefabs/HUD/GoalHUDDisplay.tscn" id="20_817gm"]
 [ext_resource type="Script" uid="uid://dmmv07s2ooob" path="res://scripts/menu/GameWinMenu.gd" id="20_ctatt"]
+[ext_resource type="PackedScene" uid="uid://cq7f57q4er01o" path="res://prefabs/HUD/PlayerHealthHUD.tscn" id="21_1w2qq"]
 [ext_resource type="Script" uid="uid://br8y0r61tc0p3" path="res://scripts/menu/IdleMenu.gd" id="21_7iits"]
 [ext_resource type="PackedScene" uid="uid://bmky0n8q8chq4" path="res://prefabs/HUD/TaskHandlerHUDDisplay.tscn" id="21_ggc52"]
 [ext_resource type="Shader" uid="uid://bf7xlj18qupmj" path="res://resources/shaders/screen_shader.gdshader" id="37_5w2bu"]
@@ -251,6 +252,10 @@ card_handler = NodePath("../../../../Handlers/card_handler")
 [node name="GoalHUDDisplay" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("goal_handler") instance=ExtResource("20_817gm")]
 position = Vector2(495.231, 327.231)
 goal_handler = NodePath("../../../../Handlers/goal_handler")
+
+[node name="PlayerHealthHUD" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("timer_controller") instance=ExtResource("21_1w2qq")]
+position = Vector2(495, 289)
+timer_controller = NodePath("../timer_sprite")
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/HUD"]
 layout_mode = 1

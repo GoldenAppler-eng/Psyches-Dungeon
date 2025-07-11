@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=3 uid="uid://bueg4t1j0j3b6"]
+
+[ext_resource type="Texture2D" uid="uid://d17ic77dfdovr" path="res://sprites/heart_icon-33x34-Sheet.png" id="1_iadry"]
+[ext_resource type="Script" uid="uid://c51ch81l11aup" path="res://scripts/HUD/HeartIcon.gd" id="2_yjkp3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjkp3"]
+atlas = ExtResource("1_iadry")
+region = Rect2(0, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kcto"]
+atlas = ExtResource("1_iadry")
+region = Rect2(33, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0j8e"]
+atlas = ExtResource("1_iadry")
+region = Rect2(132, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8ehr"]
+atlas = ExtResource("1_iadry")
+region = Rect2(66, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2ty8"]
+atlas = ExtResource("1_iadry")
+region = Rect2(99, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhq0u"]
+atlas = ExtResource("1_iadry")
+region = Rect2(165, 0, 33, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq3hi"]
+atlas = ExtResource("1_iadry")
+region = Rect2(198, 0, 33, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xgec2"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_yjkp3")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_7kcto")
+}],
+"loop": true,
+"name": &"beating",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjkp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kcto")
+}],
+"loop": true,
+"name": &"beating_fast",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0j8e")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8ehr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2ty8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8ehr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0j8e")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_bhq0u")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_bq3hi")
+}],
+"loop": true,
+"name": &"regeneration",
+"speed": 5.0
+}]
+
+[node name="heart_icon" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_xgec2")
+animation = &"beating"
+autoplay = "beating"
+script = ExtResource("2_yjkp3")
