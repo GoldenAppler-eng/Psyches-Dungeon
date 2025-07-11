@@ -1,6 +1,6 @@
 extends State
 
-@export var living_state : State
+@export var invincible_state : State
 
 var _finished_flag : bool = false
 
@@ -21,7 +21,7 @@ func process_frame(delta : float) -> State:
 	
 func process_physics(delta : float) -> State:
 	if _finished_flag:
-		return living_state
+		return invincible_state
 	
 	return null
 

@@ -508,9 +508,9 @@ script = ExtResource("16_rcx1k")
 respawn_intermediate_state = NodePath("../respawn intermediate state")
 regeneration_component = NodePath("../../../RegenerationComponent")
 
-[node name="respawn intermediate state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("living_state")]
+[node name="respawn intermediate state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("invincible_state")]
 script = ExtResource("13_5dq54")
-living_state = NodePath("../living state")
+invincible_state = NodePath("../invincible state")
 
 [node name="movement state machine" type="Node" parent="StateMachines" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_ytpbi")
