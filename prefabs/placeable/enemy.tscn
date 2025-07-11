@@ -222,7 +222,7 @@ shape = SubResource("RectangleShape2D_kjina")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("4_pwlrm")
-max_health = 10
+max_health = 1
 metadata/_custom_type_script = "uid://bvv3mec31i7dv"
 
 [node name="DamageableHitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
@@ -245,7 +245,7 @@ collision_mask = 32
 monitorable = false
 script = ExtResource("4_1wxu8")
 attack_detection_area = NodePath("../AttackDetectionArea")
-damage = 20
+damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitbox"]
 shape = SubResource("RectangleShape2D_s04jv")

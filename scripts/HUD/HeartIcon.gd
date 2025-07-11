@@ -1,14 +1,20 @@
 class_name HeartIcon
 extends AnimatedSprite2D
 
+func set_beating(beating : bool) -> void:
+	if beating:
+		play("beating")
+	else:
+		play("dead")
+
 func set_regen(regen : bool) -> void:
 	if regen: 
 		play("regeneration")
 	elif not is_beating():
 		play("dead")
-		
+	
 func hurt() -> void:
-	play("hurt")		
+	play("hurt")
 
 func play_faster_beating(fast : bool) -> void:
 	if not is_beating():
@@ -21,3 +27,7 @@ func play_faster_beating(fast : bool) -> void:
 
 func is_beating() -> bool:
 	return animation == "beating" or animation == "beating_fast"
+
+func _on_animation_finished() -> void:
+	if animation == "hurt":
+		play("dead")

@@ -30,3 +30,6 @@ func _on_regeneration_step_timer_timeout() -> void:
 	if health_component.is_health_full():
 		stop_regeneration()
 		full_regeneration_finished.emit()
+
+func is_regenerating() -> bool:
+	return not regeneration_step_timer.is_stopped()

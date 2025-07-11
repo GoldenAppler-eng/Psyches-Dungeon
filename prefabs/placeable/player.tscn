@@ -440,13 +440,14 @@ shape = SubResource("CircleShape2D_iy7w6")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("11_ddk21")
+max_health = 5
 
 [node name="RegenerationComponent" type="Node2D" parent="." node_paths=PackedStringArray("health_component", "regeneration_start_timer", "regeneration_step_timer")]
 script = ExtResource("6_rfdks")
 health_component = NodePath("../HealthComponent")
 regeneration_start_timer = NodePath("../Timers/RegenStartTimer")
 regeneration_step_timer = NodePath("../Timers/RegenStepTimer")
-regen_amt = 20
+regen_amt = 1
 
 [node name="DamageableHitbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 position = Vector2(-0.5, -8)
@@ -466,7 +467,7 @@ collision_layer = 128
 collision_mask = 64
 monitorable = false
 script = ExtResource("6_u8pvg")
-damage = 20
+damage = 1
 knockback_speed = 5000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitbox"]
