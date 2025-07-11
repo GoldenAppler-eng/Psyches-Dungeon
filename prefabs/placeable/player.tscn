@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://5f7subrgsxq"]
+[gd_scene load_steps=69 format=3 uid="uid://5f7subrgsxq"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/Player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -39,6 +39,10 @@ size = Vector2(17, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdcx"]
 size = Vector2(51, 21)
+
+[sub_resource type="Curve" id="Curve_tv4iu"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouijc"]
 atlas = ExtResource("2_8m05b")
@@ -498,6 +502,7 @@ dead_state = NodePath("../dead state")
 health_component = NodePath("../../../HealthComponent")
 damageable_hitbox_component = NodePath("../../../DamageableHitbox")
 hurt_timer = NodePath("../../../Timers/HurtTimer")
+knockback_decay_curve = SubResource("Curve_tv4iu")
 
 [node name="dead state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("respawn_state")]
 script = ExtResource("15_ltkry")

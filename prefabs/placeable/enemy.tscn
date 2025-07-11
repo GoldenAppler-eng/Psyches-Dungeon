@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cdf2lbwqoxlpy"]
+[gd_scene load_steps=48 format=3 uid="uid://cdf2lbwqoxlpy"]
 
 [ext_resource type="Script" uid="uid://dd5gn034twoup" path="res://scripts/placeable/Enemy.gd" id="1_smd3p"]
 [ext_resource type="PackedScene" uid="uid://beb170nn2q6h5" path="res://prefabs/placeable/Coin.tscn" id="2_s3tct"]
@@ -37,6 +37,10 @@ radius = 50.1597
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lun2x"]
 size = Vector2(12, 20)
+
+[sub_resource type="Curve" id="Curve_vajjy"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0byb6"]
 atlas = ExtResource("3_a5rh0")
@@ -287,6 +291,7 @@ dead_state = NodePath("../dead state")
 health_component = NodePath("../../../HealthComponent")
 damageable_hitbox_component = NodePath("../../../DamageableHitbox")
 hurt_timer = NodePath("../../../Timers/HurtTimer")
+knockback_decay_curve = SubResource("Curve_vajjy")
 
 [node name="dead state" type="Node" parent="StateMachines/life state machine" node_paths=PackedStringArray("summoner_component", "enemy")]
 script = ExtResource("10_a27eq")

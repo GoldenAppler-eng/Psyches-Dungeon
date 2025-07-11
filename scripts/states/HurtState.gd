@@ -7,6 +7,8 @@ extends State
 @export var damageable_hitbox_component : DamageableHitboxComponent
 @export var hurt_timer : Timer
 
+@export var knockback_decay_curve : Curve
+
 var _hurt : bool = true
 
 var _knockback_speed : float = 0
@@ -40,7 +42,9 @@ func process_frame(delta : float) -> State:
 	
 func process_physics(delta : float) -> State:
 	if _hurt:
-		movement_controller.move_with_custom_speed(delta, _knockback_speed, _knockback_direction)
+		var curve_sample : float = (hurt_timer.wait_time - hurt_timer.time_left) / hurt_timer.wait_time
+		var knockback_speed_modifier : float = 1 - knockback_decay_curve.sample(curve_sample)
+		movement_controller.move_with_custom_speed(delta, _knockback_speed * knockback_speed_modifier, _knockback_direction)
 		return null
 	
 	if check_dead():
