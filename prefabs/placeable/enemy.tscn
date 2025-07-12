@@ -39,8 +39,8 @@ radius = 50.1597
 size = Vector2(12, 20)
 
 [sub_resource type="Curve" id="Curve_vajjy"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, -0.0803445, 0, 0, Vector2(0.225131, 0), 2.03086, 2.03086, 0, 0, Vector2(0.748691, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0628113, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0byb6"]
 atlas = ExtResource("3_a5rh0")

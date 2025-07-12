@@ -62,5 +62,7 @@ func _on_hurt_timer_timeout() -> void:
 	_hurt = false
 
 func _on_take_knockback(knockback_speed : float, incoming_direction : Vector2) -> void:
-	_knockback_speed = knockback_speed
+	var rand_modifier : float = randf_range(0.5, 2)
+	
+	_knockback_speed = knockback_speed * rand_modifier
 	_knockback_direction = incoming_direction
