@@ -6,4 +6,6 @@ func _ready() -> void:
 	card_handler.card_changed.connect(_on_card_changed)
 
 func _on_card_changed() -> void:
-	text = card_handler.current.effect_text
+	var current_card_info : CardResource = card_handler.current
+	
+	text = "[color=" + current_card_info.get_effect_color_hex() + "]" + current_card_info.effect_text + "[/color]"
