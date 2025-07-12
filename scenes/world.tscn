@@ -383,6 +383,7 @@ focus_neighbor_bottom = NodePath("../resolution_controller")
 bus_name = "Sfx"
 
 [node name="pause_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu", "settings_ui")]
+visible = false
 z_index = 5
 layout_mode = 1
 anchors_preset = 15
@@ -402,9 +403,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 455
-theme_override_constants/margin_right = 455
-theme_override_constants/margin_bottom = 430
+theme_override_constants/margin_left = 170
+theme_override_constants/margin_right = 170
+theme_override_constants/margin_bottom = 150
 
 [node name="overlay" type="TextureRect" parent="GUI/UI/pause_menu/MarginContainer"]
 modulate = Color(1, 1, 1, 0.196078)
@@ -517,7 +518,6 @@ button_mask = 0
 text = "replay"
 
 [node name="start_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu")]
-visible = false
 z_index = 5
 layout_mode = 1
 anchors_preset = 15
