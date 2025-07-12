@@ -22,3 +22,4 @@ Button/styles/normal = SubResource("StyleBoxEmpty_x6ruu")
 Button/styles/pressed = SubResource("StyleBoxEmpty_mxw42")
 Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("1_mhv1k")
+RichTextLabel/fonts/normal_font = ExtResource("1_mhv1k")

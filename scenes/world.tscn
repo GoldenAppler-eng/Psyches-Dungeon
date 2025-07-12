@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://d0bx6c0glfwiw"]
+[gd_scene load_steps=55 format=3 uid="uid://d0bx6c0glfwiw"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/ProcGenHandler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/Player.tscn" id="1_kx658"]
@@ -37,11 +37,12 @@
 [ext_resource type="PackedScene" uid="uid://cq7f57q4er01o" path="res://prefabs/HUD/PlayerHealthHUD.tscn" id="21_1w2qq"]
 [ext_resource type="Script" uid="uid://br8y0r61tc0p3" path="res://scripts/menu/IdleMenu.gd" id="21_7iits"]
 [ext_resource type="PackedScene" uid="uid://bmky0n8q8chq4" path="res://prefabs/HUD/TaskHandlerHUDDisplay.tscn" id="21_ggc52"]
+[ext_resource type="PackedScene" uid="uid://c5580pjxngcgg" path="res://prefabs/HUD/WildEfffectHUD.tscn" id="22_yd118"]
 [ext_resource type="Shader" uid="uid://bf7xlj18qupmj" path="res://resources/shaders/screen_shader.gdshader" id="37_5w2bu"]
 [ext_resource type="Script" uid="uid://b7cxqp1ujn0bv" path="res://scripts/DebugMode.gd" id="37_x70b3"]
 [ext_resource type="Script" uid="uid://bk85kfe6o41ve" path="res://scripts/singletons/DistortionEffect.gd" id="38_1bdwf"]
 
-[sub_resource type="Resource" id="Resource_1w2qq"]
+[sub_resource type="Resource" id="Resource_yd118"]
 resource_local_to_scene = true
 script = ExtResource("9_4kbfs")
 task_description = "Activate {requirement_amount} traps"
@@ -49,7 +50,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ddv2p0x28l04f"
 
-[sub_resource type="Resource" id="Resource_yd118"]
+[sub_resource type="Resource" id="Resource_lffjk"]
 resource_local_to_scene = true
 script = ExtResource("10_f17e3")
 task_description = "Collect {requirement_amount} coins"
@@ -57,7 +58,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://dhaij0jq75c1n"
 
-[sub_resource type="Resource" id="Resource_lffjk"]
+[sub_resource type="Resource" id="Resource_cgwb4"]
 resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = true
@@ -66,7 +67,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_cgwb4"]
+[sub_resource type="Resource" id="Resource_tx6do"]
 resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = true
@@ -75,7 +76,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_tx6do"]
+[sub_resource type="Resource" id="Resource_jot8m"]
 resource_local_to_scene = true
 script = ExtResource("12_817gm")
 task_description = "Die {requirement_amount} times"
@@ -83,7 +84,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ohix4wy5pm66"
 
-[sub_resource type="Resource" id="Resource_jot8m"]
+[sub_resource type="Resource" id="Resource_302v5"]
 resource_local_to_scene = true
 script = ExtResource("13_ggc52")
 task_description = "Open {requirement_amount} chests"
@@ -91,7 +92,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://cp8anq50qc5x5"
 
-[sub_resource type="Resource" id="Resource_302v5"]
+[sub_resource type="Resource" id="Resource_im3ha"]
 resource_local_to_scene = true
 script = ExtResource("14_l8ah6")
 need_consecutive = true
@@ -211,7 +212,7 @@ scale = Vector2(2.6, 2.6)
 [node name="task_handler" parent="Handlers" instance=ExtResource("7_ke0n8")]
 position = Vector2(1491.6, 106.6)
 scale = Vector2(2.6, 2.6)
-task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_1w2qq"), SubResource("Resource_yd118"), SubResource("Resource_lffjk"), SubResource("Resource_cgwb4"), SubResource("Resource_tx6do"), SubResource("Resource_jot8m"), SubResource("Resource_302v5")])
+task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_yd118"), SubResource("Resource_lffjk"), SubResource("Resource_cgwb4"), SubResource("Resource_tx6do"), SubResource("Resource_jot8m"), SubResource("Resource_302v5"), SubResource("Resource_im3ha")])
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -266,13 +267,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 570
 theme_override_constants/margin_top = 60
+theme_override_constants/margin_bottom = 175
 
-[node name="TaskHandlerHUDDisplay" parent="GUI/HUD/MarginContainer" node_paths=PackedStringArray("task_handler") instance=ExtResource("21_ggc52")]
-custom_minimum_size = Vector2(150, 180)
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/HUD/MarginContainer"]
+layout_mode = 2
+
+[node name="WildEffectHUD" parent="GUI/HUD/MarginContainer/VBoxContainer" node_paths=PackedStringArray("card_handler") instance=ExtResource("22_yd118")]
+layout_mode = 2
+size_flags_vertical = 3
+card_handler = NodePath("../../../../../Handlers/card_handler")
+
+[node name="TaskHandlerHUDDisplay" parent="GUI/HUD/MarginContainer/VBoxContainer" node_paths=PackedStringArray("task_handler") instance=ExtResource("21_ggc52")]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-task_handler = NodePath("../../../../Handlers/task_handler")
+task_handler = NodePath("../../../../../Handlers/task_handler")
 
 [node name="boxing" type="Node2D" parent="GUI"]
 z_index = 20
@@ -373,7 +383,6 @@ focus_neighbor_bottom = NodePath("../resolution_controller")
 bus_name = "Sfx"
 
 [node name="pause_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu", "settings_ui")]
-visible = false
 z_index = 5
 layout_mode = 1
 anchors_preset = 15
@@ -508,6 +517,7 @@ button_mask = 0
 text = "replay"
 
 [node name="start_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu")]
+visible = false
 z_index = 5
 layout_mode = 1
 anchors_preset = 15

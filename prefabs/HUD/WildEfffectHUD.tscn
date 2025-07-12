@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5580pjxngcgg"]
+
+[ext_resource type="Script" uid="uid://dkt67l33pr42p" path="res://scripts/HUD/WildEfffectHUD.gd" id="1_13ebd"]
+[ext_resource type="Theme" uid="uid://cu6yoqe0up8hr" path="res://resources/themes/ButtonTheme.tres" id="1_gv5mv"]
+
+[node name="WildEffectHUD" type="RichTextLabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_gv5mv")
+bbcode_enabled = true
+script = ExtResource("1_13ebd")
