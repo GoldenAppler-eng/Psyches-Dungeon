@@ -8,8 +8,6 @@ func extra_init() -> void:
 
 func play_animation(anim_name : StringName) -> void:
 	match anim_name:
-		"hit":
-			pass
 		_:
 			sprite.play(anim_name)
 	

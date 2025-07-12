@@ -21,7 +21,7 @@ func extra_init() -> void:
 func enter() -> void:
 	super()
 	
-	anim_player.play_animation("hit")
+	anim_player.play_animation("hurt")
 	anim_player.play_animation_overlay("hit")
 	sfx_player.play_sfx("hit")
 	

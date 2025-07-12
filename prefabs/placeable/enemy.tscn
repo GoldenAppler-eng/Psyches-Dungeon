@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cdf2lbwqoxlpy"]
+[gd_scene load_steps=49 format=3 uid="uid://cdf2lbwqoxlpy"]
 
 [ext_resource type="Script" uid="uid://dd5gn034twoup" path="res://scripts/placeable/Enemy.gd" id="1_smd3p"]
 [ext_resource type="PackedScene" uid="uid://beb170nn2q6h5" path="res://prefabs/placeable/Coin.tscn" id="2_s3tct"]
@@ -70,6 +70,10 @@ region = Rect2(1170, 0, 90, 36)
 atlas = ExtResource("3_a5rh0")
 region = Rect2(1260, 0, 90, 36)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vajjy"]
+atlas = ExtResource("3_a5rh0")
+region = Rect2(1350, 0, 90, 36)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_pshwo"]
 atlas = ExtResource("3_a5rh0")
 region = Rect2(0, 0, 90, 36)
@@ -133,6 +137,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vajjy")
+}],
+"loop": true,
+"name": &"hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -326,8 +338,9 @@ animation_player = NodePath("AnimationPlayer")
 material = ExtResource("4_xqm1v")
 position = Vector2(-1, -18)
 sprite_frames = SubResource("SpriteFrames_fpalx")
-animation = &"idle"
+animation = &"hurt"
 autoplay = "idle"
+frame_progress = 0.54599
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyAnimationController"]
 root_node = NodePath("../..")
