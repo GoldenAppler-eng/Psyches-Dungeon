@@ -8,6 +8,9 @@ const soundtrack_list : Dictionary = {
 }
 
 func play_soundtrack(soundtrack : StringName) -> void:
+	if stream == soundtrack_list[soundtrack]:
+		return
+	
 	stream = soundtrack_list[soundtrack]
 	play()
 
