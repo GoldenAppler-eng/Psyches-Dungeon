@@ -569,6 +569,7 @@ game_over_menu = NodePath("../game_lose_menu")
 game_win_menu = NodePath("../game_win_menu")
 
 [node name="ScreenShader" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="ColorRect" type="ColorRect" parent="ScreenShader"]
 material = SubResource("ShaderMaterial_302v5")
