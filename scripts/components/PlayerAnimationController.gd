@@ -24,8 +24,8 @@ func play_animation(anim_name : StringName) -> void:
 			
 			if bottom_half_sprite.animation == "idle":
 				_sync_play_animation(anim_name, true)
-		"hit":
-			pass
+		"hurt":
+			_play_top_half_animation_only(anim_name)
 		"death":
 			_play_top_half_animation_only(anim_name)
 		"respawn":

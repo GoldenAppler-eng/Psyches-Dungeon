@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://5f7subrgsxq"]
+[gd_scene load_steps=70 format=3 uid="uid://5f7subrgsxq"]
 
 [ext_resource type="Script" uid="uid://b1qrrli5wwme" path="res://scripts/placeable/Player.gd" id="1_s62gp"]
 [ext_resource type="Texture2D" uid="uid://dc4fl0tw6qa41" path="res://sprites/knight-final-top-half-90x36-Sheet.png" id="2_8m05b"]
@@ -71,6 +71,10 @@ region = Rect2(1170, 0, 90, 36)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pnwyh"]
 atlas = ExtResource("2_ytfcl")
 region = Rect2(1260, 0, 90, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv4iu"]
+atlas = ExtResource("2_ytfcl")
+region = Rect2(1350, 0, 90, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2op5t"]
 atlas = ExtResource("2_8m05b")
@@ -151,6 +155,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv4iu")
+}],
+"loop": true,
+"name": &"hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -554,7 +566,7 @@ animation_player = NodePath("AnimationPlayer")
 material = ExtResource("2_r0tfm")
 position = Vector2(1, -16)
 sprite_frames = SubResource("SpriteFrames_vcljs")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
 
 [node name="BottomHalf" type="AnimatedSprite2D" parent="PlayerAnimationController"]
