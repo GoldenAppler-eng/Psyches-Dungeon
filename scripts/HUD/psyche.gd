@@ -75,6 +75,7 @@ func _on_enemy_death(is_golden : bool) -> void:
 	
 func _on_task_finished() -> void:
 	animated_sprite_2d.play("hurt")
+	sfx_player.play_sfx("hurt")
 	
 func _on_psyche_request_received() -> void:
 	var i : int = randi_range(1, 2)

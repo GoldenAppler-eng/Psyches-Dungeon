@@ -13,9 +13,6 @@ func _ready() -> void:
 	sfx_player.init()
 
 func _process(delta : float) -> void:
-	if Input.is_action_just_pressed("attack"):
-		sfx_player.play_sfx("pickup")
-	
 	if _sfx_finished_flag and _particles_finished_flag:
 		queue_free.call_deferred()
 

@@ -190,6 +190,7 @@ stream = ExtResource("3_0uisg")
 
 [node name="SfxPlayer" type="Node" parent="."]
 script = ExtResource("4_3wt5p")
+max_pitch_scale = 1.1
 metadata/_custom_type_script = "uid://c202cpr7hlcsr"
 
 [node name="hurt" type="AudioStreamPlayer" parent="SfxPlayer"]
