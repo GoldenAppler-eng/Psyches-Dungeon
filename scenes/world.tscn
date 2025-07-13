@@ -229,7 +229,7 @@ grow_vertical = 2
 
 [node name="psyche" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("task_handler") instance=ExtResource("10_7p5jc")]
 process_mode = 3
-position = Vector2(383, 346)
+position = Vector2(383, 345)
 task_handler = NodePath("../../../../Handlers/task_handler")
 
 [node name="controls_display" parent="GUI/HUD/ResizedHUD" instance=ExtResource("11_d1e4f")]
@@ -247,7 +247,7 @@ scale = Vector2(3.46875, 2.5625)
 texture = ExtResource("15_3xvu6")
 
 [node name="CardHUDDisplay" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("card_handler") instance=ExtResource("19_x2olw")]
-position = Vector2(101, 348.385)
+position = Vector2(101, 344)
 card_handler = NodePath("../../../../Handlers/card_handler")
 
 [node name="GoalHUDDisplay" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("goal_handler") instance=ExtResource("20_817gm")]
