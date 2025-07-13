@@ -31,17 +31,14 @@ var _game_win := false
 var _game_lose := false
 
 func _ready() -> void:
-	GlobalSignalBus.player_death.connect(_on_player_death)
-	GlobalSignalBus.player_respawn.connect(_on_psyche_request_received)
-	GlobalSignalBus.psyche_task_request.connect(_on_psyche_request_received)
-	GlobalSignalBus.change_goal_count.connect(_on_change_goal_count)
-	
 	GlobalSignalBus.game_start.connect(_on_game_start)
 	GlobalSignalBus.game_over.connect(_on_game_over)
 	GlobalSignalBus.game_win.connect(_on_game_win)
 	GlobalSignalBus.retry.connect(_on_game_retry)
-	
-	GlobalSignalBus.enemy_death.connect(_on_enemy_death)
+		
+	GlobalSignalBus.player_death.connect(_on_player_death)
+	GlobalSignalBus.psyche_task_request.connect(_on_psyche_request_received)
+	GlobalSignalBus.change_goal_count.connect(_on_change_goal_count)
 	
 	task_handler.task_finished.connect(_on_task_finished)
 	GlobalCardTimer.timeout.connect(_on_player_death)
@@ -64,15 +61,10 @@ func _on_game_retry() -> void:
 
 func _on_game_start() -> void:
 	animated_sprite_2d.play("rest")
+	
+	_game_win = false
+	_game_lose = false
 
-func _on_enemy_death(is_golden : bool) -> void:
-	enemy_death_counter += 1
-	
-	if enemy_death_counter > 15:
-		animated_sprite_2d.play("really_angry")
-	else:
-		animated_sprite_2d.play("angry")
-	
 func _on_task_finished() -> void:
 	animated_sprite_2d.play("hurt")
 	sfx_player.play_sfx("hurt")
@@ -116,4 +108,7 @@ func _on_player_death() -> void:
 	animated_sprite_2d.play("laugh")
 	
 func _on_animated_sprite_2d_animation_finished() -> void:
+	animated_sprite_2d.play("rest")
+
+func _on_audio_player_finished() -> void:
 	animated_sprite_2d.play("rest")

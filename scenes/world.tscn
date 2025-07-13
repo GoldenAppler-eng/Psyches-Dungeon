@@ -593,5 +593,6 @@ card_handler = NodePath("../../Handlers/card_handler")
 [node name="DebugMode" type="Node" parent="." node_paths=PackedStringArray("task_handler")]
 script = ExtResource("37_x70b3")
 task_handler = NodePath("../Handlers/task_handler")
+mute_audio = true
 
 [connection signal="timeout" from="GUI/UI/start_menu/MarginContainer/StartBlinkTimer" to="GUI/UI/start_menu" method="_on_start_blink_timer_timeout"]
