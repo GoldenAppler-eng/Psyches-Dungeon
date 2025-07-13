@@ -223,7 +223,7 @@ _data = {
 [node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("main_state_machine", "movement_state_machine", "input_controller", "movement_controller", "anim_player", "sfx_player")]
 y_sort_enabled = true
 collision_layer = 8
-collision_mask = 258
+collision_mask = 8450
 script = ExtResource("1_smd3p")
 main_state_machine = NodePath("StateMachines/life state machine")
 movement_state_machine = NodePath("StateMachines/movement state machine")

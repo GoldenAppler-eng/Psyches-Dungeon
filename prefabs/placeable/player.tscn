@@ -566,7 +566,7 @@ animation_player = NodePath("AnimationPlayer")
 material = ExtResource("2_r0tfm")
 position = Vector2(1, -16)
 sprite_frames = SubResource("SpriteFrames_vcljs")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="BottomHalf" type="AnimatedSprite2D" parent="PlayerAnimationController"]

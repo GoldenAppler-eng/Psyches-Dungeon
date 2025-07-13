@@ -120,6 +120,7 @@ debug_finish_task={
 2d_physics/layer_11="room_connectors"
 2d_physics/layer_12="room"
 2d_physics/layer_13="room_anti_connectors"
+2d_physics/layer_14="secret_walls"
 
 [rendering]
 
