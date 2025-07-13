@@ -33,9 +33,6 @@ func _ready() -> void:
 	
 func _physics_process(delta : float) -> void:
 	main_state_machine.process_physics(delta)
-		
-func _die() -> void:
-	GlobalSignalBus.player_death.emit()
 
 func _on_game_retry() -> void:
 	global_position = init_position

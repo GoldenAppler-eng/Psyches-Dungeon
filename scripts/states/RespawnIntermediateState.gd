@@ -12,6 +12,7 @@ func enter() -> void:
 	
 	_finished_flag = false
 	anim_player.play_animation("respawn")
+	GlobalSignalBus.player_respawn.emit()
 	
 func exit() -> void:
 	super()

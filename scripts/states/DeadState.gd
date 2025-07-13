@@ -6,6 +6,7 @@ func enter() -> void:
 	super()
 	
 	anim_player.play_animation("death")
+	GlobalSignalBus.player_death.emit()
 	
 func exit() -> void:
 	super()

@@ -38,7 +38,7 @@ radius = 5.09902
 size = Vector2(17, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdcx"]
-size = Vector2(51, 21)
+size = Vector2(48, 21)
 
 [sub_resource type="Curve" id="Curve_tv4iu"]
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -478,10 +478,9 @@ disable_on_hit = true
 shape = SubResource("RectangleShape2D_5u5iw")
 
 [node name="DamagerHitbox" type="Area2D" parent="."]
-position = Vector2(-12.5, -17.5)
+position = Vector2(-18, -17.5)
 collision_layer = 128
 collision_mask = 64
-monitorable = false
 script = ExtResource("6_u8pvg")
 damage = 1
 knockback_speed = 5000.0
