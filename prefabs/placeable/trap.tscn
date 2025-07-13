@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://fpwclbkyilln"]
+[gd_scene load_steps=11 format=3 uid="uid://fpwclbkyilln"]
 
 [ext_resource type="Script" uid="uid://bnwuxtmtccv8k" path="res://scripts/placeable/Trap.gd" id="1_4d2cc"]
 [ext_resource type="Texture2D" uid="uid://jsml6q6em3nw" path="res://sprites/trap-Sheet.png" id="2_kjsx1"]
@@ -13,6 +13,10 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("2_kjsx1")
 region = Rect2(16, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7twy7"]
+atlas = ExtResource("2_kjsx1")
+region = Rect2(32, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_2n0r4"]
 animations = [{
 "frames": [{
@@ -21,6 +25,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qvxav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7twy7")
 }],
 "loop": false,
 "name": &"default",
@@ -53,6 +60,12 @@ shape = SubResource("RectangleShape2D_fr2w3")
 [node name="ResetTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 5.0
+one_shot = true
+
+[node name="ActivateBufferTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
 
 [node name="ActivatedSfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -79,5 +92,6 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_p88kq")
 
 [connection signal="timeout" from="ResetTimer" to="." method="_on_reset_timer_timeout"]
+[connection signal="timeout" from="ActivateBufferTimer" to="." method="_on_activate_buffer_timer_timeout"]
 [connection signal="body_entered" from="ActivationArea2D" to="." method="_on_activation_area_2d_body_entered"]
 [connection signal="body_exited" from="ActivationArea2D" to="." method="_on_activation_area_2d_body_exited"]

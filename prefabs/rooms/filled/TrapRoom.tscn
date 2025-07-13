@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://6ffa7ehsuamx"]
+[gd_scene load_steps=4 format=3 uid="uid://6ffa7ehsuamx"]
 
 [ext_resource type="PackedScene" uid="uid://dsjdgntcmuavr" path="res://prefabs/rooms/templates/RoomTemplate.tscn" id="1_8lubk"]
-[ext_resource type="PackedScene" uid="uid://ln8wdsnv7xo2" path="res://prefabs/placeable/Trap.tscn" id="2_xe6u3"]
+[ext_resource type="PackedScene" uid="uid://fpwclbkyilln" path="res://prefabs/placeable/Trap.tscn" id="2_xe6u3"]
+[ext_resource type="PackedScene" uid="uid://cdf2lbwqoxlpy" path="res://prefabs/placeable/Enemy.tscn" id="3_wv7d0"]
 
 [node name="trap_room" instance=ExtResource("1_8lubk")]
 
@@ -391,3 +392,6 @@ position = Vector2(296, 80)
 
 [node name="trap128" parent="." index="133" instance=ExtResource("2_xe6u3")]
 position = Vector2(312, 80)
+
+[node name="enemy" parent="." index="134" instance=ExtResource("3_wv7d0")]
+position = Vector2(193, 132)
