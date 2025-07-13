@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://beb170nn2q6h5"]
+[gd_scene load_steps=15 format=3 uid="uid://beb170nn2q6h5"]
 
 [ext_resource type="Script" uid="uid://cen7tjnbvi3" path="res://scripts/placeable/Coin.gd" id="1_mys2i"]
 [ext_resource type="Texture2D" uid="uid://dbajeelhls4dn" path="res://sprites/coin-8x8-Sheet.png" id="2_c16rf"]
 [ext_resource type="AudioStream" uid="uid://ciprnxy30cs1r" path="res://audio/sfx/coin_pickup.wav" id="3_k6rmr"]
+[ext_resource type="Script" uid="uid://c202cpr7hlcsr" path="res://scripts/classes/SfxPlayer.gd" id="4_0qu7b"]
 [ext_resource type="Texture2D" uid="uid://cmxsoc8n23w68" path="res://sprites/sparkle-5x5.png" id="4_np4uj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wm5eg"]
@@ -77,11 +78,6 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource("CircleShape2D_7trh6")
 
-[node name="PickupSfx" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("3_k6rmr")
-bus = &"Sfx"
-
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
 emitting = false
@@ -91,6 +87,14 @@ lifetime = 0.2
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_xrqfo")
 
+[node name="SfxPlayer" type="Node" parent="."]
+script = ExtResource("4_0qu7b")
+metadata/_custom_type_script = "uid://c202cpr7hlcsr"
+
+[node name="pickup" type="AudioStreamPlayer" parent="SfxPlayer"]
+stream = ExtResource("3_k6rmr")
+bus = &"Sfx"
+
 [connection signal="body_entered" from="PickupArea" to="." method="_on_area_2d_player_entered"]
-[connection signal="finished" from="PickupSfx" to="." method="_on_pickup_sfx_finished"]
 [connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]
+[connection signal="finished" from="SfxPlayer/pickup" to="." method="_on_pickup_sfx_finished"]

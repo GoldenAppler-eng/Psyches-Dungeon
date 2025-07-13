@@ -1,14 +1,21 @@
 extends RigidBody2D
 
-@onready var pickup_sfx : AudioStreamPlayer = %PickupSfx
 @onready var pickup_area : Area2D = %PickupArea
 @onready var animated_sprite_2d : AnimatedSprite2D = %AnimatedSprite2D
 @onready var gpu_particles_2d : GPUParticles2D = %GPUParticles2D
 
+@onready var sfx_player: SfxPlayer = $SfxPlayer
+
 var _sfx_finished_flag : bool = false
 var _particles_finished_flag : bool = false
 
+func _ready() -> void:
+	sfx_player.init()
+
 func _process(delta : float) -> void:
+	if Input.is_action_just_pressed("attack"):
+		sfx_player.play_sfx("pickup")
+	
 	if _sfx_finished_flag and _particles_finished_flag:
 		queue_free.call_deferred()
 
@@ -18,7 +25,7 @@ func _on_area_2d_player_entered(body : Node2D) -> void:
 	pickup()
 
 func pickup() -> void:
-	pickup_sfx.play()
+	sfx_player.play_sfx("pickup")
 	gpu_particles_2d.emitting = true
 	
 	animated_sprite_2d.visible = false

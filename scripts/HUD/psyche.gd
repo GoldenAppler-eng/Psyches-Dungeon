@@ -2,8 +2,10 @@ extends Node2D
 
 @export var task_handler : TaskHandler
 
-@onready var animated_sprite_2d : AnimatedSprite2D = $%AnimatedSprite2D
-@onready var audio_player : AudioStreamPlayer = $%AudioPlayer
+@onready var animated_sprite_2d : AnimatedSprite2D = %AnimatedSprite2D
+@onready var audio_player : AudioStreamPlayer = %AudioPlayer
+
+@onready var sfx_player: SfxPlayer = $SfxPlayer
 
 var audio_dict : Dictionary = {
 	"death_1" : load("res://audio/sfx/psyche_voice_lines/death_1.wav"),
@@ -43,6 +45,8 @@ func _ready() -> void:
 	
 	task_handler.task_finished.connect(_on_task_finished)
 	GlobalCardTimer.timeout.connect(_on_player_death)
+	
+	sfx_player.init()
 
 func _process(delta : float ) -> void:
 	if _game_win:
@@ -77,7 +81,7 @@ func _on_psyche_request_received() -> void:
 	var audio_name : String = "psyche_" + str(i)
 	
 	_play_audio(audio_name)
-	animated_sprite_2d.play("talk")			
+	animated_sprite_2d.play("talk")	
 	
 func _on_change_goal_count(inc_amt : int) -> void:
 	if inc_amt > 0:
