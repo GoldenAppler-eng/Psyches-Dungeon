@@ -21,19 +21,18 @@
 [ext_resource type="Script" uid="uid://c7f6dnwg06f80" path="res://scripts/components/EnemyAnimationController.gd" id="11_yoppe"]
 [ext_resource type="Script" uid="uid://cyc68duonfcim" path="res://scripts/states/EnemyAttackState.gd" id="12_7nts4"]
 [ext_resource type="Script" uid="uid://cwb1q3barvufy" path="res://scripts/states/MoveState.gd" id="12_beo1o"]
+[ext_resource type="Script" uid="uid://da7je3uwy0yqj" path="res://scripts/gizmos/TargetDirectionGizmo.gd" id="21_dnhyp"]
 [ext_resource type="Script" uid="uid://7qu6n16ohs8q" path="res://scripts/components/SummonerComponent.gd" id="23_khejp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kjina"]
-size = Vector2(13, 18)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vajjy"]
+radius = 5.5
+height = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l30rr"]
 size = Vector2(23, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s04jv"]
 size = Vector2(12, 20)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_tfr4d"]
-radius = 50.1597
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lun2x"]
 size = Vector2(12, 20)
@@ -234,7 +233,7 @@ sfx_player = NodePath("SfxPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -9)
-shape = SubResource("RectangleShape2D_kjina")
+shape = SubResource("CapsuleShape2D_vajjy")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("4_pwlrm")
@@ -266,15 +265,6 @@ damage = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagerHitbox"]
 shape = SubResource("RectangleShape2D_s04jv")
 
-[node name="ObjectDetectionArea" type="Area2D" parent="."]
-position = Vector2(-1, -18)
-collision_layer = 0
-collision_mask = 282
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectDetectionArea"]
-shape = SubResource("CircleShape2D_tfr4d")
-
 [node name="AttackDetectionArea" type="Area2D" parent="."]
 position = Vector2(-20.5, -17)
 collision_layer = 0
@@ -283,6 +273,78 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionArea"]
 position = Vector2(7.5, 0)
 shape = SubResource("RectangleShape2D_lun2x")
+
+[node name="ObstructionDetectors" type="Node2D" parent="."]
+
+[node name="ObstructionDetectorCast1" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(3, -9)
+target_position = Vector2(0, -25)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast13" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-6, -9)
+target_position = Vector2(0, -25)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast2" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-1.5, -9)
+target_position = Vector2(17, -17)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast3" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-1.5, -16)
+target_position = Vector2(25, 0)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast11" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-1.5, -9)
+target_position = Vector2(25, 0)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast9" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-1.5, -2)
+target_position = Vector2(25, 0)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast4" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-1.5, -9)
+target_position = Vector2(17, 17)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast5" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(3, -9)
+target_position = Vector2(0, 25)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast14" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-5, -9)
+target_position = Vector2(0, 25)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast6" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-1.5, -9)
+target_position = Vector2(-17, 17)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast7" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-1.5, -2)
+target_position = Vector2(-25, 0)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast12" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-1.5, -9)
+target_position = Vector2(-25, 0)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast10" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-1.5, -16)
+target_position = Vector2(-25, 0)
+collision_mask = 8458
+
+[node name="ObstructionDetectorCast8" type="RayCast2D" parent="ObstructionDetectors"]
+position = Vector2(-1.5, -9)
+target_position = Vector2(-17, -17)
+collision_mask = 8458
 
 [node name="StateMachines" type="Node" parent="."]
 
@@ -364,11 +426,17 @@ script = ExtResource("10_yoppe")
 max_speed = 10000.0
 metadata/_custom_type_script = "uid://drxpfuh2tcgfe"
 
-[node name="EnemyInputController" type="Node" parent="." node_paths=PackedStringArray("actor", "object_detection_area", "attack_detection_area")]
+[node name="EnemyInputController" type="Node" parent="." node_paths=PackedStringArray("actor", "attack_detection_area")]
 script = ExtResource("11_wif34")
 actor = NodePath("..")
-object_detection_area = NodePath("../ObjectDetectionArea")
 attack_detection_area = NodePath("../AttackDetectionArea")
+obstruction_detectors = Array[Array]([[NodePath("../ObstructionDetectors/ObstructionDetectorCast1"), NodePath("../ObstructionDetectors/ObstructionDetectorCast13"), NodePath("../ObstructionDetectors/ObstructionDetectorCast2"), NodePath("../ObstructionDetectors/ObstructionDetectorCast8")], [NodePath("../ObstructionDetectors/ObstructionDetectorCast2"), NodePath("../ObstructionDetectors/ObstructionDetectorCast3"), NodePath("../ObstructionDetectors/ObstructionDetectorCast1")], [NodePath("../ObstructionDetectors/ObstructionDetectorCast3"), NodePath("../ObstructionDetectors/ObstructionDetectorCast9"), NodePath("../ObstructionDetectors/ObstructionDetectorCast11")], [NodePath("../ObstructionDetectors/ObstructionDetectorCast9"), NodePath("../ObstructionDetectors/ObstructionDetectorCast4"), NodePath("../ObstructionDetectors/ObstructionDetectorCast5")], [NodePath("../ObstructionDetectors/ObstructionDetectorCast5"), NodePath("../ObstructionDetectors/ObstructionDetectorCast14"), NodePath("../ObstructionDetectors/ObstructionDetectorCast4"), NodePath("../ObstructionDetectors/ObstructionDetectorCast6")], [NodePath("../ObstructionDetectors/ObstructionDetectorCast6"), NodePath("../ObstructionDetectors/ObstructionDetectorCast7"), NodePath("../ObstructionDetectors/ObstructionDetectorCast14")], [NodePath("../ObstructionDetectors/ObstructionDetectorCast7"), NodePath("../ObstructionDetectors/ObstructionDetectorCast10"), NodePath("../ObstructionDetectors/ObstructionDetectorCast12")], [NodePath("../ObstructionDetectors/ObstructionDetectorCast10"), NodePath("../ObstructionDetectors/ObstructionDetectorCast8"), NodePath("../ObstructionDetectors/ObstructionDetectorCast13")]])
+
+[node name="TargetDirectionGizmo" type="Node2D" parent="." node_paths=PackedStringArray("input_controller")]
+position = Vector2(-1.5, -9)
+script = ExtResource("21_dnhyp")
+input_controller = NodePath("../EnemyInputController")
+length = 40.0
 
 [node name="SummonerComponent" type="Node2D" parent="." node_paths=PackedStringArray("summoner_node")]
 script = ExtResource("23_khejp")
