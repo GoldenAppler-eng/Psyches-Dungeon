@@ -10,7 +10,7 @@ const MIN_MARKER_COUNT : int = 3
 const INITIAL_MARKER_COUNT : int = 5
 const MAX_MARKER_COUNT : int = 10
 
-enum GOAL_TYPE { PSYCHE = 0, CONTROL, GOAL, NONE, FAIL }
+enum GOAL_TYPE { PSYCHE = 0, CONTROL, GOAL, HEART, LUCK, NONE, FAIL }
 
 var goal_marker_types : Array[int]
 
