@@ -31,10 +31,10 @@ height = 16.0
 size = Vector2(23, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s04jv"]
-size = Vector2(12, 20)
+size = Vector2(12, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lun2x"]
-size = Vector2(12, 20)
+size = Vector2(11, 18)
 
 [sub_resource type="Curve" id="Curve_vajjy"]
 _data = [Vector2(0, 0), 0.0, -0.0803445, 0, 0, Vector2(0.225131, 0), 2.03086, 2.03086, 0, 0, Vector2(0.748691, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0628113, 0.0, 0, 0]
@@ -221,7 +221,7 @@ _data = {
 [node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("main_state_machine", "movement_state_machine", "input_controller", "movement_controller", "anim_player", "sfx_player")]
 y_sort_enabled = true
 collision_layer = 8
-collision_mask = 8450
+collision_mask = 8458
 script = ExtResource("1_smd3p")
 main_state_machine = NodePath("StateMachines/life state machine")
 movement_state_machine = NodePath("StateMachines/movement state machine")
@@ -270,6 +270,7 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionArea"]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_lun2x")
 
 [node name="ObstructionDetectors" type="Node2D" parent="."]
@@ -412,8 +413,9 @@ animation_player = NodePath("AnimationPlayer")
 material = ExtResource("4_xqm1v")
 position = Vector2(-1, -18)
 sprite_frames = SubResource("SpriteFrames_fpalx")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyAnimationController"]
 root_node = NodePath("../..")

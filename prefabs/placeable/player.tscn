@@ -28,14 +28,15 @@
 [ext_resource type="Script" uid="uid://d4bylr2bdgvbh" path="res://scripts/components/UserInputController.gd" id="26_fvq0i"]
 [ext_resource type="Script" uid="uid://nhs0uvmxrvpv" path="res://scripts/components/PlayerAnimationController.gd" id="27_5dq54"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_826fu"]
-size = Vector2(13, 19)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tv4iu"]
+radius = 6.0
+height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iy7w6"]
 radius = 5.09902
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5u5iw"]
-size = Vector2(17, 22)
+size = Vector2(14, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkdcx"]
 size = Vector2(48, 21)
@@ -443,7 +444,7 @@ input_controller = NodePath("UserInputController")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_826fu")
+shape = SubResource("CapsuleShape2D_tv4iu")
 
 [node name="RoomDetector" type="Area2D" parent="."]
 position = Vector2(-1, -11)
@@ -475,6 +476,7 @@ health_component = NodePath("../HealthComponent")
 disable_on_hit = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageableHitbox"]
+position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_5u5iw")
 
 [node name="DamagerHitbox" type="Area2D" parent="."]
