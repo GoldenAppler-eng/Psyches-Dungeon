@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-const LUCKY_OPEN_CHANCE : float = 0.8
+var lucky_open_chance : float = 0.8
 
 @onready var coin_summoner_component: SummonerComponent = %CoinSummonerComponent
 @onready var enemy_summoner_component: SummonerComponent = %EnemySummonerComponent
@@ -29,8 +29,16 @@ func _open_chest() -> void:
 	animated_sprite_2d.frame = 2	
 	
 	open_sfx.play()
-
-	if randf() < LUCKY_OPEN_CHANCE: 
+	
+	if Global.lucky_flag:
+		animated_sprite_2d.self_modulate = Color8(0, 100, 0)
+		lucky_open_chance = 1
+		
+	if Global.unlucky_flag:
+		animated_sprite_2d.self_modulate = Color8(100, 0, 0)
+		lucky_open_chance = 0.2
+	
+	if randf() < lucky_open_chance: 
 		coin_summoner_component.summon_multiple(randi_range(1, 3), true)
 	else:
 		enemy_summoner_component.summon_multiple(randi_range(1, 2), true)

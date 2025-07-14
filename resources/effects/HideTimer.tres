@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WildEffect" load_steps=2 format=3 uid="uid://nj8x8bcnwndm"]
+
+[ext_resource type="Script" uid="uid://cu4by2s0jrl0g" path="res://scripts/effects/WildEffect.gd" id="2_l01tw"]
+
+[resource]
+script = ExtResource("2_l01tw")
+effect_type = 0
+effect_name = "Hide Timer"
