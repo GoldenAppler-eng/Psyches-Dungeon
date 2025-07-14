@@ -6,6 +6,6 @@
 resource_local_to_scene = true
 script = ExtResource("1_aj6aq")
 task_description = "Activate {requirement_amount} traps"
-min_requirement = 1
-max_requirement = 1
+min_requirement = 15
+max_requirement = 30
 metadata/_custom_type_script = "uid://ddv2p0x28l04f"

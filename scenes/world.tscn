@@ -44,39 +44,31 @@
 
 [sub_resource type="Resource" id="Resource_yd118"]
 resource_local_to_scene = true
-script = ExtResource("9_4kbfs")
-task_description = "Activate {requirement_amount} traps"
-min_requirement = 1
-max_requirement = 1
-metadata/_custom_type_script = "uid://ddv2p0x28l04f"
+script = ExtResource("10_f17e3")
+task_description = "Collect {requirement_amount} coins"
+min_requirement = 3
+max_requirement = 6
+metadata/_custom_type_script = "uid://dhaij0jq75c1n"
 
 [sub_resource type="Resource" id="Resource_lffjk"]
 resource_local_to_scene = true
-script = ExtResource("10_f17e3")
-task_description = "Collect {requirement_amount} coins"
-min_requirement = 1
-max_requirement = 1
-metadata/_custom_type_script = "uid://dhaij0jq75c1n"
+script = ExtResource("11_x2olw")
+need_golden_enemy = false
+task_description = "Defeat {requirement_amount} enemies"
+min_requirement = 4
+max_requirement = 6
+metadata/_custom_type_script = "uid://ckmgawqorome5"
 
 [sub_resource type="Resource" id="Resource_cgwb4"]
 resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = true
-task_description = "Defeat {requirement_amount} enemies"
+task_description = "Defeat {requirement_amount} golden enemies"
 min_requirement = 1
-max_requirement = 1
+max_requirement = 2
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
 [sub_resource type="Resource" id="Resource_tx6do"]
-resource_local_to_scene = true
-script = ExtResource("11_x2olw")
-need_golden_enemy = true
-task_description = "Defeat {requirement_amount} golden enemies"
-min_requirement = 1
-max_requirement = 1
-metadata/_custom_type_script = "uid://ckmgawqorome5"
-
-[sub_resource type="Resource" id="Resource_jot8m"]
 resource_local_to_scene = true
 script = ExtResource("12_817gm")
 task_description = "Die {requirement_amount} times"
@@ -84,22 +76,30 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ohix4wy5pm66"
 
-[sub_resource type="Resource" id="Resource_302v5"]
+[sub_resource type="Resource" id="Resource_jot8m"]
 resource_local_to_scene = true
 script = ExtResource("13_ggc52")
 task_description = "Open {requirement_amount} chests"
-min_requirement = 1
-max_requirement = 1
+min_requirement = 2
+max_requirement = 5
 metadata/_custom_type_script = "uid://cp8anq50qc5x5"
 
-[sub_resource type="Resource" id="Resource_im3ha"]
+[sub_resource type="Resource" id="Resource_302v5"]
 resource_local_to_scene = true
 script = ExtResource("14_l8ah6")
 need_consecutive = true
 task_description = "Go {requirement_direction} into another room {requirement_amount} times consecutively"
-min_requirement = 1
-max_requirement = 1
+min_requirement = 2
+max_requirement = 4
 metadata/_custom_type_script = "uid://cmktuyanlwaem"
+
+[sub_resource type="Resource" id="Resource_im3ha"]
+resource_local_to_scene = true
+script = ExtResource("9_4kbfs")
+task_description = "Activate {requirement_amount} traps"
+min_requirement = 15
+max_requirement = 30
+metadata/_custom_type_script = "uid://ddv2p0x28l04f"
 
 [sub_resource type="LabelSettings" id="LabelSettings_op4s2"]
 font = ExtResource("16_mlxgv")

@@ -5,8 +5,8 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_rjgrh")
-need_golden_enemy = true
+need_golden_enemy = false
 task_description = "Defeat {requirement_amount} enemies"
-min_requirement = 1
-max_requirement = 1
+min_requirement = 4
+max_requirement = 6
 metadata/_custom_type_script = "uid://ckmgawqorome5"

@@ -8,5 +8,5 @@ script = ExtResource("1_dpx1a")
 need_golden_enemy = true
 task_description = "Defeat {requirement_amount} golden enemies"
 min_requirement = 1
-max_requirement = 1
+max_requirement = 2
 metadata/_custom_type_script = "uid://ckmgawqorome5"

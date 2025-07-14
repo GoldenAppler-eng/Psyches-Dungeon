@@ -1,6 +1,8 @@
 class_name Task
 extends Resource
 
+signal progress_made
+
 const format_placeholder : String = "{_}"
 
 enum TASK_STATUS { ACTIVE = 0, INACTIVE, FINISHED }
@@ -14,6 +16,9 @@ var _progress_counter : int = 0
 
 var status : TASK_STATUS = TASK_STATUS.INACTIVE
 
+func init() -> void:
+	pass 
+	
 func generate_new() -> void:
 	reset_task_progress()
 	generate_new_requirement()
@@ -46,6 +51,7 @@ func _on_task_progress_made() -> void:
 		return
 	
 	_progress_counter += 1
+	progress_made.emit()
 	
 	if _progress_counter >= _requirement_amount:
 		status = TASK_STATUS.FINISHED

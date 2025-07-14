@@ -6,6 +6,6 @@
 resource_local_to_scene = true
 script = ExtResource("1_58nti")
 task_description = "Open {requirement_amount} chests"
-min_requirement = 1
-max_requirement = 1
+min_requirement = 2
+max_requirement = 5
 metadata/_custom_type_script = "uid://cp8anq50qc5x5"

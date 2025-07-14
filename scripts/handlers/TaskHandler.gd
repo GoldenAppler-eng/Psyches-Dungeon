@@ -3,6 +3,7 @@ extends Node2D
 
 signal task_finished
 signal current_task_changed
+signal task_progress_made
 
 @export var task_pool : Array[Task]
 
@@ -10,6 +11,10 @@ var current_task : Task
 var next_task : Task
 
 var _finished_flag : bool = false
+
+func _ready() -> void:
+	for task in task_pool:
+		task.init()
 
 func _process(delta : float) -> void:			
 	if not current_task:
@@ -19,8 +24,12 @@ func _process(delta : float) -> void:
 		_process_task_finished()
 	
 func change_task() -> void:
+	if current_task:
+		current_task.progress_made.disconnect(_on_current_task_progress_made)
+	
 	current_task = next_task
 	current_task.set_active(true)
+	current_task.progress_made.connect(_on_current_task_progress_made)
 	
 	_finished_flag = false
 	generate_new_next_task()
@@ -28,9 +37,13 @@ func change_task() -> void:
 	current_task_changed.emit()
 
 func generate_new_current_task() -> void:
+	if current_task:
+		current_task.progress_made.disconnect(_on_current_task_progress_made)
+	
 	current_task = _get_random_task()
 	current_task.set_active(true)
-	
+	current_task.progress_made.connect(_on_current_task_progress_made)
+
 	_finished_flag = false
 	
 	current_task_changed.emit()
@@ -57,3 +70,6 @@ func get_current_task_description_with_progress() -> String:
 
 func get_next_task_description() -> String:
 	return next_task.get_task_description_formatted(false)
+
+func _on_current_task_progress_made() -> void:
+	task_progress_made.emit()
