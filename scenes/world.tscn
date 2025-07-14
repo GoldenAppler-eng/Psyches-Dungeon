@@ -1,7 +1,7 @@
 [gd_scene load_steps=55 format=3 uid="uid://d0bx6c0glfwiw"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/ProcGenHandler.tscn" id="1_4gt5v"]
-[ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/Player.tscn" id="1_kx658"]
+[ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/player.tscn" id="1_kx658"]
 [ext_resource type="Script" uid="uid://ddxjrhicpne46" path="res://scripts/handlers/CameraHandler.gd" id="3_mdjvo"]
 [ext_resource type="PackedScene" uid="uid://bnj71gqcb0bcx" path="res://prefabs/handlers/CardHandler.tscn" id="5_g57ya"]
 [ext_resource type="PackedScene" uid="uid://dwqki74onshog" path="res://prefabs/handlers/GoalHandler.tscn" id="6_we2tv"]
