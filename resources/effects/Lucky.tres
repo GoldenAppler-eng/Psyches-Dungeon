@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="WildEffect" load_steps=2 format=3 uid="uid://bkwth7h457uak"]
+[gd_resource type="Resource" script_class="WildEffect" load_steps=3 format=3 uid="uid://bkwth7h457uak"]
 
 [ext_resource type="Script" uid="uid://cu4by2s0jrl0g" path="res://scripts/effects/WildEffect.gd" id="1_3cr3x"]
+[ext_resource type="Script" uid="uid://5suko0g4uure" path="res://scripts/effects/Lucky.gd" id="1_b555u"]
 
 [resource]
 script = ExtResource("1_3cr3x")
 effect_type = 4
 effect_name = "Lucky"
+action_script = ExtResource("1_b555u")
 metadata/_custom_type_script = "uid://cu4by2s0jrl0g"

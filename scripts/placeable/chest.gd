@@ -31,12 +31,12 @@ func _open_chest() -> void:
 	open_sfx.play()
 	
 	if Global.lucky_flag:
-		animated_sprite_2d.self_modulate = Color8(0, 100, 0)
+		animated_sprite_2d.self_modulate = Color8(251, 255, 0)
 		lucky_open_chance = 1
 		
 	if Global.unlucky_flag:
-		animated_sprite_2d.self_modulate = Color8(100, 0, 0)
-		lucky_open_chance = 0.2
+		animated_sprite_2d.self_modulate = Color8(217, 87, 99)
+		lucky_open_chance = 0.1
 	
 	if randf() < lucky_open_chance: 
 		coin_summoner_component.summon_multiple(randi_range(1, 3), true)

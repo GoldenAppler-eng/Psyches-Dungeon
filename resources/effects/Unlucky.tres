@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="WildEffect" load_steps=2 format=3 uid="uid://c64w6x7isln2f"]
+[gd_resource type="Resource" script_class="WildEffect" load_steps=3 format=3 uid="uid://c64w6x7isln2f"]
 
 [ext_resource type="Script" uid="uid://cu4by2s0jrl0g" path="res://scripts/effects/WildEffect.gd" id="1_65gnx"]
+[ext_resource type="Script" uid="uid://cwnaxyi3llvfu" path="res://scripts/effects/Unlucky.gd" id="1_p6kan"]
 
 [resource]
 script = ExtResource("1_65gnx")
 effect_type = 4
 effect_name = "Unlucky"
+action_script = ExtResource("1_p6kan")
 metadata/_custom_type_script = "uid://cu4by2s0jrl0g"
