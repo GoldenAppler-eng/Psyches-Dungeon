@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_gfvag")
-effect_type = 4
+effect_type = 3
 effect_name = "Instant Health"
 metadata/_custom_type_script = "uid://cu4by2s0jrl0g"

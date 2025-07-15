@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_3cr3x")
-effect_type = 0
-effect_name = ""
+effect_type = 4
+effect_name = "Lucky"
 metadata/_custom_type_script = "uid://cu4by2s0jrl0g"

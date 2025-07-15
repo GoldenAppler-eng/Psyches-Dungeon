@@ -595,6 +595,7 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(-26, -51)
 sprite_frames = SubResource("SpriteFrames_go5d2")
+frame = 5
 
 [node name="task_text_label" type="Label" parent="."]
 unique_name_in_owner = true

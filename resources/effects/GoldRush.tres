@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_7xptj")
-effect_type = 5
+effect_type = 4
 effect_name = "Gold Rush"
 metadata/_custom_type_script = "uid://cu4by2s0jrl0g"

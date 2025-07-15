@@ -5,8 +5,9 @@ signal low_time
 
 const MAX_WAIT_TIME : float = 15
 
-@onready var progress_bar : TextureProgressBar = $%progress_bar
+@export var card_handler : CardHandler
 
+@onready var progress_bar : TextureProgressBar = $%progress_bar
 @onready var timer_sfx : AudioStreamPlayer = $TimerSfx
 
 var _low_time_flag : bool = false
@@ -15,10 +16,12 @@ func _ready() -> void:
 	progress_bar.max_value = MAX_WAIT_TIME
 	
 	GlobalSignalBus.game_start.connect(_on_game_start)
+	GlobalSignalBus.timer_hidden.connect(_on_timer_hidden)
+	card_handler.card_changed.connect(_on_card_changed)
 
 func _process(delta : float) -> void:
 	var time_left : float = GlobalCardTimer.time_left
-	
+
 	progress_bar.value = time_left
 	
 	if time_left < MAX_WAIT_TIME / 2:
@@ -37,6 +40,12 @@ func _process(delta : float) -> void:
 func _on_game_start() -> void:
 	GlobalCardTimer.start(MAX_WAIT_TIME)
 	_low_time_flag = false
+
+func _on_timer_hidden() -> void:
+	visible = false
+
+func _on_card_changed() -> void:
+	visible = true
 
 func _on_progress_bar_value_changed(value : float) -> void:
 	timer_sfx.play()

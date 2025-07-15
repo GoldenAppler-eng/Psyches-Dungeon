@@ -1,7 +1,7 @@
 class_name GoalMarker
 extends Node2D
 
-const DEFAULT_FRAME : int = 3
+const DEFAULT_FRAME : int = 5
 
 @onready var icon : AnimatedSprite2D = %icon
 

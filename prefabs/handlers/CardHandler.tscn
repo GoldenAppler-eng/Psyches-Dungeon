@@ -1,18 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnj71gqcb0bcx"]
+[gd_scene load_steps=16 format=3 uid="uid://bnj71gqcb0bcx"]
 
 [ext_resource type="Script" uid="uid://dl5ud1ql633mm" path="res://scripts/handlers/CardHandler.gd" id="1_hahlu"]
 [ext_resource type="Resource" uid="uid://cw065otp2t7k6" path="res://resources/effects/ChangeMission.tres" id="2_ed2ct"]
 [ext_resource type="Script" uid="uid://cu4by2s0jrl0g" path="res://scripts/effects/WildEffect.gd" id="2_otrrv"]
 [ext_resource type="Resource" uid="uid://tu7cgss2s5g8" path="res://resources/effects/DecreaseGoal.tres" id="3_qxo1t"]
 [ext_resource type="Resource" uid="uid://c7eh5sgplycxv" path="res://resources/effects/HalfTime.tres" id="4_v2hfx"]
+[ext_resource type="Resource" uid="uid://biwcq2t6ntbug" path="res://resources/effects/DoubleAmount.tres" id="5_3o5mg"]
 [ext_resource type="Resource" uid="uid://cvup04gpap6e5" path="res://resources/effects/IncreaseGoal.tres" id="5_683ri"]
-[ext_resource type="Resource" uid="uid://drnk23f2sqo7i" path="res://resources/effects/InvertControls.tres" id="6_3jmvb"]
-[ext_resource type="Resource" uid="uid://c1q7jgka7p1hs" path="res://resources/effects/ShiftControls.tres" id="7_llhrb"]
+[ext_resource type="Resource" uid="uid://bbb8qpsw7aukm" path="res://resources/effects/DoubleMarker.tres" id="6_ddsbl"]
+[ext_resource type="Resource" uid="uid://bilgowopqbn20" path="res://resources/effects/GoldRush.tres" id="7_rhate"]
+[ext_resource type="Resource" uid="uid://nj8x8bcnwndm" path="res://resources/effects/HideTimer.tres" id="9_5u6x2"]
 [ext_resource type="AudioStream" uid="uid://k6g6tr4pqxmh" path="res://audio/sfx/fail_mission.wav" id="9_yac0f"]
+[ext_resource type="Resource" uid="uid://deehqpq5fabqh" path="res://resources/effects/InstantDamage.tres" id="11_xsrlf"]
+[ext_resource type="Resource" uid="uid://b2eoavygbs7mu" path="res://resources/effects/InstantHealth.tres" id="12_ustxx"]
+[ext_resource type="Resource" uid="uid://bkwth7h457uak" path="res://resources/effects/Lucky.tres" id="13_x32jq"]
+[ext_resource type="Resource" uid="uid://c64w6x7isln2f" path="res://resources/effects/Unlucky.tres" id="14_3pdjl"]
 
 [node name="card_handler" type="Node2D"]
 script = ExtResource("1_hahlu")
-effect_pool = Array[ExtResource("2_otrrv")]([ExtResource("2_ed2ct"), ExtResource("3_qxo1t"), ExtResource("4_v2hfx"), ExtResource("5_683ri"), ExtResource("6_3jmvb"), ExtResource("7_llhrb"), ExtResource("2_ed2ct"), ExtResource("5_683ri"), ExtResource("2_ed2ct"), ExtResource("4_v2hfx")])
+effect_pool = Array[ExtResource("2_otrrv")]([ExtResource("2_ed2ct"), ExtResource("3_qxo1t"), ExtResource("5_3o5mg"), ExtResource("6_ddsbl"), ExtResource("7_rhate"), ExtResource("4_v2hfx"), ExtResource("9_5u6x2"), ExtResource("5_683ri"), ExtResource("11_xsrlf"), ExtResource("12_ustxx"), ExtResource("13_x32jq"), ExtResource("14_3pdjl")])
 
 [node name="TaskFailedSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_yac0f")

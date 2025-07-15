@@ -16,5 +16,9 @@ func get_effect_color_hex() -> String:
 			return "#6abe30"
 		Global.EFFECT_TYPE.CONTROL:
 			return "#639bff"
+		Global.EFFECT_TYPE.LUCK:
+			return "#ede544"
+		Global.EFFECT_TYPE.HEART:
+			return "#d95763"
 		
 	return "#fffff"

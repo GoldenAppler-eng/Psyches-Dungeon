@@ -43,8 +43,8 @@ func _on_marker_added() -> void:
 	total_active_marker_count += 1
 	
 func _on_marker_removed() -> void:
-	goal_markers[total_active_marker_count].set_active(false)
 	total_active_marker_count -= 1
+	goal_markers[total_active_marker_count].set_active(false)
 	
 func _on_markers_reset() -> void:	
 	initialize_markers()

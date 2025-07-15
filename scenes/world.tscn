@@ -229,8 +229,9 @@ visible = false
 z_index = 1
 position = Vector2(346, 348)
 
-[node name="timer_sprite" parent="GUI/HUD/ResizedHUD" instance=ExtResource("8_nmwfv")]
+[node name="timer_sprite" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("card_handler") instance=ExtResource("8_nmwfv")]
 position = Vector2(585, 15)
+card_handler = NodePath("../../../../Handlers/card_handler")
 
 [node name="arrow_display_bg" type="Sprite2D" parent="GUI/HUD/ResizedHUD"]
 visible = false
