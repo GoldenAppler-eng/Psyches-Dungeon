@@ -113,7 +113,5 @@ func remove_marker() -> void:
 func _on_goal_count_changed(inc_amt : int) -> void:
 	if inc_amt > 0:
 		add_marker()
-		print("Marker added")
 	elif inc_amt < 0:
 		remove_marker()
-		print("Marker removed")
