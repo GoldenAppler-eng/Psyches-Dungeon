@@ -74,8 +74,6 @@ func _on_task_finished() -> void:
 	goal_handler.mark_finished_task(current.effect_type)
 	_change_card()	
 	
-	GlobalCardTimer.start()
-	
 func _on_psyche_task_received() -> void:
 	task_handler.generate_new_current_task()	
 	_update_current_task_text()

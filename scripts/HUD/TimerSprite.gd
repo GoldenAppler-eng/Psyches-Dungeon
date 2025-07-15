@@ -39,11 +39,11 @@ func _on_game_start() -> void:
 	GlobalCardTimer.start(MAX_WAIT_TIME)
 	_low_time_flag = false
 
-func _on_timer_hidden() -> void:
-	visible = false
+func _on_timer_hidden(hidden : bool) -> void:
+	visible = not hidden
 
 func _on_card_changed() -> void:
-	visible = true
+	GlobalCardTimer.start()
 
 func _on_progress_bar_value_changed(value : float) -> void:
 	timer_sfx.play()

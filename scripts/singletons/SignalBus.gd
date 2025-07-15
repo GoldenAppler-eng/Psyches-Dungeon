@@ -21,7 +21,7 @@ signal game_start
 
 signal change_goal_count(inc_amt : int)
 signal psyche_task_request
-signal timer_hidden
+signal timer_hidden(hidden : bool)
 
 signal invert_controls
 signal shift_controls
