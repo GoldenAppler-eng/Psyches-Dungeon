@@ -10,10 +10,12 @@ func enter() -> void:
 	super()
 	
 	_full_regeneration_flag = false
-	regeneration_component.start_regeneration()
+	regeneration_component.start_override_regeneration()
 	
 func exit() -> void:
 	super()
+	
+	regeneration_component.stop_override_regneration()
 	
 func process_frame(delta : float) -> State:
 	return null
