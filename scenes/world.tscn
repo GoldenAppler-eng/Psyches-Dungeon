@@ -1,7 +1,7 @@
-[gd_scene load_steps=55 format=3 uid="uid://d0bx6c0glfwiw"]
+[gd_scene load_steps=57 format=3 uid="uid://d0bx6c0glfwiw"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/ProcGenHandler.tscn" id="1_4gt5v"]
-[ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/Player.tscn" id="1_kx658"]
+[ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/player.tscn" id="1_kx658"]
 [ext_resource type="Script" uid="uid://ddxjrhicpne46" path="res://scripts/handlers/CameraHandler.gd" id="3_mdjvo"]
 [ext_resource type="PackedScene" uid="uid://bnj71gqcb0bcx" path="res://prefabs/handlers/CardHandler.tscn" id="5_g57ya"]
 [ext_resource type="PackedScene" uid="uid://dwqki74onshog" path="res://prefabs/handlers/GoalHandler.tscn" id="6_we2tv"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://cmktuyanlwaem" path="res://scripts/tasks/RoomTravelTask.gd" id="14_l8ah6"]
 [ext_resource type="Texture2D" uid="uid://prrfttbbor8w" path="res://sprites/bar.png" id="14_xe0ec"]
 [ext_resource type="Texture2D" uid="uid://dffvpe62qj6q0" path="res://sprites/bg-color-2.png" id="15_3xvu6"]
+[ext_resource type="PackedScene" uid="uid://biuqobf0g3mnk" path="res://prefabs/handlers/ScoreHandler.tscn" id="15_lffjk"]
 [ext_resource type="Script" uid="uid://lwbv7cx2mdvj" path="res://scripts/menu/PauseMenu.gd" id="16_2lf6f"]
 [ext_resource type="Script" uid="uid://c3cxhfbw6aayg" path="res://scripts/UI/SettingsUI.gd" id="16_d8deg"]
 [ext_resource type="FontFile" uid="uid://d2vpbv3wwvrt6" path="res://fonts/PIXY.ttf" id="16_mlxgv"]
@@ -38,11 +39,12 @@
 [ext_resource type="Script" uid="uid://br8y0r61tc0p3" path="res://scripts/menu/IdleMenu.gd" id="21_7iits"]
 [ext_resource type="PackedScene" uid="uid://bmky0n8q8chq4" path="res://prefabs/HUD/TaskHandlerHUDDisplay.tscn" id="21_ggc52"]
 [ext_resource type="PackedScene" uid="uid://c5580pjxngcgg" path="res://prefabs/HUD/WildEfffectHUD.tscn" id="22_yd118"]
+[ext_resource type="PackedScene" uid="uid://bw7e667d45og3" path="res://prefabs/HUD/ScoreHandlerHUD.tscn" id="25_cgwb4"]
 [ext_resource type="Shader" uid="uid://bf7xlj18qupmj" path="res://resources/shaders/screen_shader.gdshader" id="37_5w2bu"]
 [ext_resource type="Script" uid="uid://b7cxqp1ujn0bv" path="res://scripts/DebugMode.gd" id="37_x70b3"]
 [ext_resource type="Script" uid="uid://bk85kfe6o41ve" path="res://scripts/singletons/DistortionEffect.gd" id="38_1bdwf"]
 
-[sub_resource type="Resource" id="Resource_yd118"]
+[sub_resource type="Resource" id="Resource_cgwb4"]
 resource_local_to_scene = true
 script = ExtResource("10_f17e3")
 task_description = "Collect {requirement_amount} coins"
@@ -50,7 +52,7 @@ min_requirement = 3
 max_requirement = 6
 metadata/_custom_type_script = "uid://dhaij0jq75c1n"
 
-[sub_resource type="Resource" id="Resource_lffjk"]
+[sub_resource type="Resource" id="Resource_tx6do"]
 resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = false
@@ -59,7 +61,7 @@ min_requirement = 4
 max_requirement = 6
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_cgwb4"]
+[sub_resource type="Resource" id="Resource_jot8m"]
 resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = true
@@ -68,7 +70,7 @@ min_requirement = 1
 max_requirement = 2
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_tx6do"]
+[sub_resource type="Resource" id="Resource_302v5"]
 resource_local_to_scene = true
 script = ExtResource("12_817gm")
 task_description = "Die {requirement_amount} times"
@@ -76,7 +78,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ohix4wy5pm66"
 
-[sub_resource type="Resource" id="Resource_jot8m"]
+[sub_resource type="Resource" id="Resource_im3ha"]
 resource_local_to_scene = true
 script = ExtResource("13_ggc52")
 task_description = "Open {requirement_amount} chests"
@@ -84,7 +86,7 @@ min_requirement = 2
 max_requirement = 5
 metadata/_custom_type_script = "uid://cp8anq50qc5x5"
 
-[sub_resource type="Resource" id="Resource_302v5"]
+[sub_resource type="Resource" id="Resource_6fpx2"]
 resource_local_to_scene = true
 script = ExtResource("14_l8ah6")
 need_consecutive = true
@@ -93,7 +95,7 @@ min_requirement = 2
 max_requirement = 4
 metadata/_custom_type_script = "uid://cmktuyanlwaem"
 
-[sub_resource type="Resource" id="Resource_im3ha"]
+[sub_resource type="Resource" id="Resource_pd53d"]
 resource_local_to_scene = true
 script = ExtResource("9_4kbfs")
 task_description = "Activate {requirement_amount} traps"
@@ -204,7 +206,10 @@ goal_handler = NodePath("../goal_handler")
 [node name="effect_resolution_handler" parent="Handlers" instance=ExtResource("6_yxh6h")]
 
 [node name="task_handler" parent="Handlers" instance=ExtResource("7_ke0n8")]
-task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_yd118"), SubResource("Resource_lffjk"), SubResource("Resource_cgwb4"), SubResource("Resource_tx6do"), SubResource("Resource_jot8m"), SubResource("Resource_302v5"), SubResource("Resource_im3ha")])
+task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_cgwb4"), SubResource("Resource_tx6do"), SubResource("Resource_jot8m"), SubResource("Resource_302v5"), SubResource("Resource_im3ha"), SubResource("Resource_6fpx2"), SubResource("Resource_pd53d")])
+
+[node name="ScoreHandler" parent="Handlers" node_paths=PackedStringArray("task_handler") instance=ExtResource("15_lffjk")]
+task_handler = NodePath("../task_handler")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -258,11 +263,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 570
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_bottom = 175
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 185
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/HUD/MarginContainer"]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+
+[node name="ScoreHandlerHUD" parent="GUI/HUD/MarginContainer/VBoxContainer/MarginContainer" node_paths=PackedStringArray("score_handler") instance=ExtResource("25_cgwb4")]
+layout_mode = 2
+score_handler = NodePath("../../../../../../Handlers/ScoreHandler")
 
 [node name="WildEffectHUD" parent="GUI/HUD/MarginContainer/VBoxContainer" node_paths=PackedStringArray("card_handler") instance=ExtResource("22_yd118")]
 layout_mode = 2
