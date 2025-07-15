@@ -12,3 +12,5 @@ var lucky_flag : bool = false
 var unlucky_flag : bool = false
 
 var gold_rush_flag : bool = false
+
+var double_marker_flag : bool = false

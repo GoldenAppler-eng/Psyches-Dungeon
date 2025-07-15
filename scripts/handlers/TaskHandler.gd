@@ -75,8 +75,6 @@ func get_next_task_description() -> String:
 	return next_task.get_task_description_formatted(false)
 
 func _on_task_requirement_doubled() -> void:
-	print("double task")
-	
 	current_task.double_requirement()
 	current_task_changed.emit()
 

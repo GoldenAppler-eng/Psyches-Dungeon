@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="WildEffect" load_steps=2 format=3 uid="uid://bbb8qpsw7aukm"]
+[gd_resource type="Resource" script_class="WildEffect" load_steps=3 format=3 uid="uid://bbb8qpsw7aukm"]
 
+[ext_resource type="Script" uid="uid://78v7a8mmbkhh" path="res://scripts/effects/DoubleMarker.gd" id="1_5n1g3"]
 [ext_resource type="Script" uid="uid://cu4by2s0jrl0g" path="res://scripts/effects/WildEffect.gd" id="1_qykma"]
 
 [resource]
 script = ExtResource("1_qykma")
 effect_type = 2
 effect_name = "Double Marker"
+action_script = ExtResource("1_5n1g3")
