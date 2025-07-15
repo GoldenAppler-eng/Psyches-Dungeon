@@ -1,7 +1,6 @@
 class_name CardHandler
 extends Node2D
 
-signal card_changed
 signal card_text_updated
 
 @export var effect_pool : Array[WildEffect]
@@ -57,7 +56,7 @@ func _change_card() -> void:
 	
 	_generate_new_next_card()
 	
-	card_changed.emit()
+	GlobalSignalBus.card_changed.emit()
 
 func _on_game_retry() -> void:
 	_generate_new_next_card()	

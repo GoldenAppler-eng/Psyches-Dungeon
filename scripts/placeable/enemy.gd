@@ -29,6 +29,6 @@ func _physics_process(delta : float) -> void:
 	main_state_machine.process_physics(delta)
 
 func _decide_is_golden() -> void:
-	if _guaranteed_gold or randf() < GOLD_CHANCE:
+	if _guaranteed_gold or randf() < GOLD_CHANCE or Global.gold_rush_flag:
 		_is_golden = true
 		anim_player.play_animation_overlay("gold")

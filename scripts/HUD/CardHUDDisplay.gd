@@ -9,7 +9,7 @@ extends Node2D
 @onready var card_draw_sfx : AudioStreamPlayer = %CardDrawSfx
 
 func _ready() -> void:
-	card_handler.card_changed.connect(_on_card_changed)
+	GlobalSignalBus.card_changed.connect(_on_card_changed)
 	card_handler.card_text_updated.connect(_on_card_text_updated)
 	
 	var cover_animation_player : AnimationPlayer = cover.find_child("AnimationPlayer")
