@@ -15,6 +15,9 @@ var _finished_flag : bool = false
 func _ready() -> void:
 	for task in task_pool:
 		task.init()
+		
+	GlobalSignalBus.task_requirement_doubled.connect(_on_task_requirement_doubled)
+	GlobalSignalBus.psyche_task_request.connect(_on_psyche_task_received)
 
 func _process(delta : float) -> void:			
 	if not current_task:
@@ -70,6 +73,15 @@ func get_current_task_description_with_progress() -> String:
 
 func get_next_task_description() -> String:
 	return next_task.get_task_description_formatted(false)
+
+func _on_task_requirement_doubled() -> void:
+	print("double task")
+	
+	current_task.double_requirement()
+	current_task_changed.emit()
+
+func _on_psyche_task_received() -> void:
+	generate_new_current_task()	
 
 func _on_current_task_progress_made() -> void:
 	task_progress_made.emit()

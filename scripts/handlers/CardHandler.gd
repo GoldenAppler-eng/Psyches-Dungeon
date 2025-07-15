@@ -24,10 +24,9 @@ func _ready() -> void:
 	
 	GlobalSignalBus.game_start.connect(_on_game_start)
 	GlobalSignalBus.retry.connect(_on_game_retry)
-	
-	GlobalSignalBus.psyche_task_request.connect(_on_psyche_task_received)
-	
+		
 	task_handler.task_finished.connect(_on_task_finished)
+	task_handler.current_task_changed.connect(_on_current_task_changed)
 	
 func _generate_new_next_card() -> void:
 	task_handler.generate_new_next_task()	
@@ -74,6 +73,5 @@ func _on_task_finished() -> void:
 	goal_handler.mark_finished_task(current.effect_type)
 	_change_card()	
 	
-func _on_psyche_task_received() -> void:
-	task_handler.generate_new_current_task()	
+func _on_current_task_changed() -> void:
 	_update_current_task_text()

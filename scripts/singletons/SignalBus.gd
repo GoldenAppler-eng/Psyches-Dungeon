@@ -9,7 +9,6 @@ signal player_death
 signal room_exited(room_area : Node2D)
 signal room_entered(room_area : Node2D)
 signal room_changed(direction : int, room_area : Node2D)
-signal task_completed
 signal card_changed
 
 signal player_respawn
@@ -21,6 +20,7 @@ signal game_start
 
 signal change_goal_count(inc_amt : int)
 signal psyche_task_request
+signal task_requirement_doubled
 signal timer_hidden(hidden : bool)
 
 signal invert_controls

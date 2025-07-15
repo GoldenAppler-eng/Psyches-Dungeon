@@ -37,6 +37,9 @@ func get_task_description_formatted(counter_included : bool) -> String:
 	
 	return task_description.format({"requirement_amount" : replacement_str}, format_placeholder)
 
+func double_requirement() -> void:
+	_requirement_amount *= 2
+
 func set_active(active : bool) -> void:
 	status = TASK_STATUS.ACTIVE if active else TASK_STATUS.INACTIVE
 
