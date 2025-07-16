@@ -23,17 +23,12 @@ var failing : bool = false
 
 func _ready() -> void:
 	GlobalSignalBus.change_goal_count.connect(_on_goal_count_changed)
-	GlobalSignalBus.retry.connect(_on_game_retry)
 	GlobalSignalBus.game_start.connect(_on_game_start)
 	
 	game_over_timer.timeout.connect(_on_game_over_timer_timeout)
 	
 func _on_game_start() -> void:
 	goal_marker_types = []
-	reset_marker_types()
-	initialize_markers()
-
-func _on_game_retry() -> void:
 	reset_marker_types()
 	initialize_markers()
 

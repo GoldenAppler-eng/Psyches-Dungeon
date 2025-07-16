@@ -39,7 +39,7 @@ func process_physics(delta : float) -> Menu:
 func process_input(event : InputEvent) -> Menu:
 	return null
 
-func _retry_game() -> void:
+func _retry_game() -> void:	
 	GlobalSignalBus.retry.emit()
 	GlobalSignalBus.game_start.emit()
 	
