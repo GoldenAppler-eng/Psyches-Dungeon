@@ -386,6 +386,8 @@ summoner_component = NodePath("../../../SummonerComponent")
 enemy = NodePath("../../..")
 
 [node name="movement state machine" type="Node" parent="StateMachines" node_paths=PackedStringArray("initial_state")]
+process_priority = -1
+process_physics_priority = -1
 script = ExtResource("7_1wxu8")
 initial_state = NodePath("idle state")
 
@@ -399,6 +401,8 @@ idle_state = NodePath("../idle state")
 damager_hitbox_component = NodePath("../../../DamagerHitbox")
 
 [node name="attack state" type="Node" parent="StateMachines/movement state machine" node_paths=PackedStringArray("damager_hitbox", "attack_cooldown_timer")]
+process_priority = -1
+process_physics_priority = -1
 script = ExtResource("12_7nts4")
 damager_hitbox = NodePath("../../../DamagerHitbox")
 attack_cooldown_timer = NodePath("../../../Timers/AttackCooldownTimer")
