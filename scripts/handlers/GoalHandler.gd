@@ -12,6 +12,8 @@ const MAX_MARKER_COUNT : int = 10
 
 enum GOAL_TYPE { PSYCHE = 0, CONTROL, GOAL, HEART, LUCK, NONE, FAIL }
 
+@onready var game_over_timer: Timer = $GameOverTimer
+
 var goal_marker_types : Array[int]
 
 var goal_completion_counter : int = 0
@@ -23,9 +25,8 @@ func _ready() -> void:
 	GlobalSignalBus.change_goal_count.connect(_on_goal_count_changed)
 	GlobalSignalBus.retry.connect(_on_game_retry)
 	GlobalSignalBus.game_start.connect(_on_game_start)
-
-func _process(delta : float) -> void:
-	pass
+	
+	game_over_timer.timeout.connect(_on_game_over_timer_timeout)
 	
 func _on_game_start() -> void:
 	goal_marker_types = []
@@ -65,8 +66,7 @@ func mark_finished_task(effect_type : int) -> void:
 		
 		goal_completion_counter += 1
 		
-	if goal_completion_counter >= goal_marker_types.size():
-		GlobalSignalBus.game_win.emit()
+	_start_game_over_countdown()
 
 func mark_failed_task() -> void:
 	if goal_completion_counter >= goal_marker_types.size():
@@ -89,9 +89,20 @@ func mark_failed_task() -> void:
 		
 		goal_completion_counter += 1
 		
-	if goal_completion_counter >= goal_marker_types.size():
+	_start_game_over_countdown()
+
+func _start_game_over_countdown() -> void:
+	game_over_timer.start()
+
+func _on_game_over_timer_timeout() -> void:
+	if goal_completion_counter < goal_marker_types.size():
+		return
+		
+	if failing:
 		GlobalSignalBus.game_over.emit()
-	
+	else:
+		GlobalSignalBus.game_win.emit()
+
 func add_marker() -> void:
 	if total_marker_count >= MAX_MARKER_COUNT:
 		return
