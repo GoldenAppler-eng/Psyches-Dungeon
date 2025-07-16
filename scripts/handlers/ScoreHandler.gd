@@ -29,7 +29,9 @@ func _change_score(amt : int) -> void:
 
 func _on_enemy_death(is_gold : bool) -> void:
 	var score : int = enemy_defeat_score
-	score = score if not is_gold else score * gold_enemy_defeat_multipler
+	
+	if is_gold:
+		score *= gold_enemy_defeat_multipler
 	
 	_change_score(score)
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b58r1n5nl8cek"]
 
 [ext_resource type="PackedScene" uid="uid://dsjdgntcmuavr" path="res://prefabs/rooms/templates/RoomTemplate.tscn" id="1_awn5h"]
-[ext_resource type="PackedScene" uid="uid://blel4b2ar46uf" path="res://prefabs/placeable/Chest.tscn" id="2_55bdu"]
-[ext_resource type="PackedScene" uid="uid://ln8wdsnv7xo2" path="res://prefabs/placeable/Trap.tscn" id="3_1pxow"]
-[ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/Enemy.tscn" id="4_5d7lu"]
+[ext_resource type="PackedScene" uid="uid://cquuxff5k576x" path="res://prefabs/placeable/Chest.tscn" id="2_55bdu"]
+[ext_resource type="PackedScene" uid="uid://fpwclbkyilln" path="res://prefabs/placeable/Trap.tscn" id="3_1pxow"]
+[ext_resource type="PackedScene" uid="uid://cdf2lbwqoxlpy" path="res://prefabs/placeable/Enemy.tscn" id="4_5d7lu"]
 
 [node name="tic_tac_toe_room" instance=ExtResource("1_awn5h")]
 

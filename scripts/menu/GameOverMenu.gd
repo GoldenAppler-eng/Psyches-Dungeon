@@ -6,8 +6,8 @@ extends Menu
 
 var retried := false
 
-func init(game_node : Node) -> void:
-	super(game_node)
+func init(pgame_node : Node) -> void:
+	super(pgame_node)
 	
 	retry_button.pressed.connect(_retry_game)
 	

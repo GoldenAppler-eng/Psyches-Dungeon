@@ -37,8 +37,8 @@ func _on_game_start() -> void:
 	GlobalCardTimer.start(Global.MAX_TIME_LIMIT)
 	_low_time_flag = false
 
-func _on_timer_hidden(hidden : bool) -> void:
-	visible = not hidden
+func _on_timer_hidden(phidden : bool) -> void:
+	visible = not phidden
 
 func _on_card_changed() -> void:
 	GlobalCardTimer.start()

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://3ke2y5a813n0"]
 
 [ext_resource type="PackedScene" uid="uid://dsjdgntcmuavr" path="res://prefabs/rooms/templates/RoomTemplate.tscn" id="1_j8x0p"]
-[ext_resource type="PackedScene" uid="uid://ln8wdsnv7xo2" path="res://prefabs/placeable/Trap.tscn" id="2_6pif5"]
-[ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/Enemy.tscn" id="3_venvo"]
+[ext_resource type="PackedScene" uid="uid://fpwclbkyilln" path="res://prefabs/placeable/Trap.tscn" id="2_6pif5"]
+[ext_resource type="PackedScene" uid="uid://cdf2lbwqoxlpy" path="res://prefabs/placeable/Enemy.tscn" id="3_venvo"]
 
 [node name="south_block_room" instance=ExtResource("1_j8x0p")]
 

@@ -11,10 +11,10 @@ signal took_knockback(knockback_speed : float, incoming_direction : Vector2)
 @export var can_take_knockback : bool = false
 @export var knockback_resistance : float = 0
 
-var enabled : bool = true
+var _enabled : bool = true
 
 func take_damage(amt : int) -> void:
-	if not enabled:
+	if not _enabled:
 		return
 	
 	health_component.change_health(-amt)
@@ -28,4 +28,4 @@ func take_knockback(knockback_speed : float, incoming_direction : Vector2) -> vo
 		took_knockback.emit(knockback_speed / (knockback_resistance + 1), incoming_direction)
 
 func set_enabled(enabled : bool) -> void:
-	self.enabled = enabled
+	_enabled = enabled

@@ -7,8 +7,8 @@ extends Menu
 var game_lose := false
 var game_win := false
 
-func init(game_node : Node) -> void:
-	super(game_node)
+func init(pgame_node : Node) -> void:
+	super(pgame_node)
 	
 	GlobalSignalBus.game_over.connect(_on_game_over)
 	GlobalSignalBus.game_win.connect(_on_game_win)

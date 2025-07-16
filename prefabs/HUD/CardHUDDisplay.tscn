@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfu6vdkfj2okp"]
 
 [ext_resource type="Script" uid="uid://bmylp1eh0eb4v" path="res://scripts/HUD/CardHUDDisplay.gd" id="1_5brif"]
-[ext_resource type="PackedScene" uid="uid://bd48cv83wcg06" path="res://prefabs/cards/Card.tscn" id="2_w8vnt"]
+[ext_resource type="PackedScene" uid="uid://cge8gvp1k2trb" path="res://prefabs/cards/Card.tscn" id="2_w8vnt"]
 [ext_resource type="AudioStream" uid="uid://c6c7yjpt6vgac" path="res://audio/sfx/card_draw.wav" id="5_8h4kd"]
 
 [node name="CardHUDDisplay" type="Node2D"]

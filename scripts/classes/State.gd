@@ -6,11 +6,11 @@ var anim_player : AnimationController
 var sfx_player : SfxPlayer
 var movement_controller : MovementController
 
-func init(controller : InputController, anim_player : AnimationController, sfx_player : SfxPlayer, movement_controller : MovementController) -> void:
-	self.controller = controller
-	self.anim_player = anim_player
-	self.sfx_player = sfx_player
-	self.movement_controller = movement_controller
+func init(pcontroller : InputController, panim_player : AnimationController, psfx_player : SfxPlayer, pmovement_controller : MovementController) -> void:
+	controller = pcontroller
+	anim_player = panim_player
+	sfx_player = psfx_player
+	movement_controller = pmovement_controller
 	
 	extra_init()
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4oux61vblbfd"]
 
 [ext_resource type="PackedScene" uid="uid://dsjdgntcmuavr" path="res://prefabs/rooms/templates/RoomTemplate.tscn" id="1_4mtiv"]
-[ext_resource type="PackedScene" uid="uid://blel4b2ar46uf" path="res://prefabs/placeable/Chest.tscn" id="2_pvcw3"]
-[ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/Enemy.tscn" id="3_hwee7"]
+[ext_resource type="PackedScene" uid="uid://cquuxff5k576x" path="res://prefabs/placeable/Chest.tscn" id="2_pvcw3"]
+[ext_resource type="PackedScene" uid="uid://cdf2lbwqoxlpy" path="res://prefabs/placeable/Enemy.tscn" id="3_hwee7"]
 
 [node name="guarded_chest_room" instance=ExtResource("1_4mtiv")]
 

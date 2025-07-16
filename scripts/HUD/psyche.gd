@@ -51,8 +51,8 @@ func _process(delta : float ) -> void:
 	elif _game_lose:
 		animated_sprite_2d.play("game_over")
 
-func _play_audio(name : String) -> void:
-	audio_player.stream = audio_dict[name]
+func _play_audio(audio_name : String) -> void:
+	audio_player.stream = audio_dict[audio_name]
 	audio_player.play()
 
 func _on_game_retry() -> void:

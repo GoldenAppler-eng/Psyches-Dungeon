@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdonk4ullotmk"]
 
 [ext_resource type="PackedScene" uid="uid://dsjdgntcmuavr" path="res://prefabs/rooms/templates/RoomTemplate.tscn" id="1_7vhx3"]
-[ext_resource type="PackedScene" uid="uid://blel4b2ar46uf" path="res://prefabs/placeable/Chest.tscn" id="2_1n3rn"]
+[ext_resource type="PackedScene" uid="uid://cquuxff5k576x" path="res://prefabs/placeable/Chest.tscn" id="2_1n3rn"]
 
 [node name="four_chest_room" instance=ExtResource("1_7vhx3")]
 

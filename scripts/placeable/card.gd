@@ -16,8 +16,8 @@ extends Node2D
 
 var _is_flipping := false
 
-func set_info(card_info : CardResource) -> void:
-	self.card_info = card_info
+func set_info(pcard_info : CardResource) -> void:
+	card_info = pcard_info
 
 func _process(delta : float) -> void:
 	if _is_flipping:

@@ -196,9 +196,7 @@ func _set_door_in_direction(room : Node2D, direction : int, closed : bool) -> vo
 
 	if not tilemap:
 		return	
-		
-	var direction_str : String
-	
+			
 	tilemap.set_layer_enabled(direction, closed)
 
 func _on_room_changed(direction : int, room_area : Node2D) -> void:

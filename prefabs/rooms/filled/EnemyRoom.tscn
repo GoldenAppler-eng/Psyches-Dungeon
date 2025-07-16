@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d01o75whppt1e"]
 
 [ext_resource type="PackedScene" uid="uid://dsjdgntcmuavr" path="res://prefabs/rooms/templates/RoomTemplate.tscn" id="1_p6yxl"]
-[ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/Enemy.tscn" id="2_7yx0c"]
+[ext_resource type="PackedScene" uid="uid://cdf2lbwqoxlpy" path="res://prefabs/placeable/Enemy.tscn" id="2_7yx0c"]
 
 [node name="enemy_room" instance=ExtResource("1_p6yxl")]
 

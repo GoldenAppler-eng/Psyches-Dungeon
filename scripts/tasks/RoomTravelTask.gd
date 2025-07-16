@@ -18,7 +18,7 @@ func _init() -> void:
 func generate_new_requirement() -> void:
 	super()
 	
-	_requirement_direction = randi_range(Global.DIRECTION.NORTH, Global.DIRECTION.WEST)
+	_requirement_direction = randi_range(int(Global.DIRECTION.NORTH), int(Global.DIRECTION.WEST))
 
 func get_task_description_formatted(counter_included : bool) -> String:
 	var replacement_str_amount : String = str(_requirement_amount)

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://l4apldpprwv6"]
 
 [ext_resource type="PackedScene" uid="uid://dsjdgntcmuavr" path="res://prefabs/rooms/templates/RoomTemplate.tscn" id="1_ioxf3"]
-[ext_resource type="PackedScene" uid="uid://ln8wdsnv7xo2" path="res://prefabs/placeable/Trap.tscn" id="2_eher7"]
-[ext_resource type="PackedScene" uid="uid://du3tmqtt127gu" path="res://prefabs/placeable/Enemy.tscn" id="3_r0pjh"]
-[ext_resource type="PackedScene" uid="uid://blel4b2ar46uf" path="res://prefabs/placeable/Chest.tscn" id="4_1whta"]
+[ext_resource type="PackedScene" uid="uid://fpwclbkyilln" path="res://prefabs/placeable/Trap.tscn" id="2_eher7"]
+[ext_resource type="PackedScene" uid="uid://cdf2lbwqoxlpy" path="res://prefabs/placeable/Enemy.tscn" id="3_r0pjh"]
+[ext_resource type="PackedScene" uid="uid://cquuxff5k576x" path="res://prefabs/placeable/Chest.tscn" id="4_1whta"]
 
 [node name="river_room" instance=ExtResource("1_ioxf3")]
 

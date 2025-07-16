@@ -46,8 +46,8 @@ func set_active(active : bool) -> void:
 func get_is_finished() -> bool:
 	return status == TASK_STATUS.FINISHED
 
-func _add_progress_counter_str(str : String) -> String:
-	return "(" + str(_progress_counter) + "/" + str + ")"
+func _add_progress_counter_str(string : String) -> String:
+	return "(" + str(_progress_counter) + "/" + string + ")"
 
 func _on_task_progress_made() -> void:
 	if not status == TASK_STATUS.ACTIVE:

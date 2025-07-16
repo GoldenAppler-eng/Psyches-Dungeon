@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cq7f57q4er01o"]
 
-[ext_resource type="PackedScene" uid="uid://bueg4t1j0j3b6" path="res://prefabs/HUD/heart_icon.tscn" id="1_gqpab"]
+[ext_resource type="PackedScene" uid="uid://bueg4t1j0j3b6" path="res://prefabs/HUD/HeartIcon.tscn" id="1_gqpab"]
 [ext_resource type="Script" uid="uid://bvu2obhc5k6xy" path="res://scripts/HUD/PlayerHealthHUD.gd" id="1_xv5fm"]
 
 [node name="PlayerHealthHUD" type="Node2D"]
