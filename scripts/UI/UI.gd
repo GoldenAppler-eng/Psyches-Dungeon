@@ -35,6 +35,9 @@ func _physics_process(delta: float) -> void:
 		change_menu(next_menu)
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("quit_game"):
+		get_tree().quit()
+	
 	var next_menu : Menu = current_menu.process_input(event)
 	
 	if next_menu:
