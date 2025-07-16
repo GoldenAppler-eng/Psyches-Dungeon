@@ -210,7 +210,6 @@ task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_yd118"), SubRes
 task_handler = NodePath("../task_handler")
 
 [node name="GUI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="HUD" type="Control" parent="GUI"]
 z_index = 20
