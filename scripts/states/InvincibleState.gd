@@ -17,6 +17,7 @@ func enter() -> void:
 	invincibility_timer.start()
 	
 	anim_player.play_animation_overlay("invincible")
+	anim_player.play_animation("idle")
 	
 func exit() -> void:
 	super()
