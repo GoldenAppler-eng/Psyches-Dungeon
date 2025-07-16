@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cquuxff5k576x"]
 
-[ext_resource type="Script" uid="uid://6ua0gd6pdnqn" path="res://scripts/placeable/chest.gd" id="1_e66pm"]
+[ext_resource type="Script" uid="uid://6ua0gd6pdnqn" path="res://scripts/placeable/Chest.gd" id="1_e66pm"]
 [ext_resource type="PackedScene" uid="uid://cdf2lbwqoxlpy" path="res://prefabs/placeable/Enemy.tscn" id="2_fbo2m"]
 [ext_resource type="PackedScene" uid="uid://beb170nn2q6h5" path="res://prefabs/placeable/Coin.tscn" id="3_dg2ca"]
 [ext_resource type="Texture2D" uid="uid://dwfy571fxosqu" path="res://sprites/chest-Sheet.png" id="5_awcew"]
