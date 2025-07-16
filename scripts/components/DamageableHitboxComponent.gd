@@ -13,6 +13,9 @@ signal took_knockback(knockback_speed : float, incoming_direction : Vector2)
 
 var _enabled : bool = true
 
+func reset_hitbox() -> void:
+	set_enabled(true)
+
 func take_damage(amt : int) -> void:
 	if not _enabled:
 		return

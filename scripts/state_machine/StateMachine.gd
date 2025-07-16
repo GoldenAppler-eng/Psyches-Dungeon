@@ -4,7 +4,7 @@ extends Node
 @export var initial_state : State
 var current_state : State
 
-func init(controller : InputController, anim_player : AnimationController, sfx_player : SfxPlayer, movement_controller : MovementController) -> void:
+func init(controller : InputController, anim_player : AnimationController, sfx_player : SfxPlayer, movement_controller : MovementController) -> void:	
 	for state : State in get_children():
 		state.init(controller, anim_player, sfx_player, movement_controller) 
 		
@@ -29,4 +29,8 @@ func change_state(next_state : State) -> void:
 	current_state.enter()
 	
 func reset_state_machine() -> void:
+	change_state(initial_state)
+
+func complete_reset_state_machine() -> void:
+	current_state = null
 	change_state(initial_state)

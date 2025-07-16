@@ -8,7 +8,7 @@ signal health_lost
 var current_health : int
 
 func _ready() -> void:
-	current_health = max_health
+	reset_health()
 	
 func change_health(amt : int) -> void:
 	if amt > 0 and not current_health == max_health:
@@ -21,3 +21,6 @@ func change_health(amt : int) -> void:
 
 func is_health_full() -> bool:	
 	return current_health == max_health
+
+func reset_health() -> void:
+	current_health = max_health

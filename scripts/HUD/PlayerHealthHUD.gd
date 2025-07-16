@@ -21,6 +21,8 @@ func _physics_process(delta: float) -> void:
 		heart_icons[_rightmost_heart_index + 1].set_regen(true)
 
 func connect_signals() -> void:
+	GlobalSignalBus.retry.connect(_on_game_retry)
+	
 	timer_controller.low_time.connect(_on_timer_low_time)
 	GlobalCardTimer.timeout.connect(_on_global_card_timer_timeout)
 	
@@ -66,3 +68,11 @@ func _on_player_health_lost() -> void:
 func _on_player_health_regened() -> void:
 	_rightmost_heart_index += 1
 	heart_icons[_rightmost_heart_index].set_beating(true)
+
+func _on_game_retry() -> void:
+	for heart_icon in heart_icons:
+		heart_icon.set_beating(true)
+	
+	sync_heart_beats()
+	
+	_rightmost_heart_index = heart_icons.size() - 1

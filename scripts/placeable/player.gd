@@ -12,6 +12,11 @@ extends CharacterBody2D
 @export var movement_controller : MovementController
 @export var input_controller : InputController
 
+@export var health_component : HealthComponent
+@export var regeneration_component : RegenerationComponent
+
+@export var damageable_hitbox_component : DamageableHitboxComponent
+
 var init_position : Vector2 
 
 func _ready() -> void:
@@ -36,6 +41,16 @@ func _physics_process(delta : float) -> void:
 
 func _on_game_retry() -> void:
 	global_position = init_position
+	
+	main_state_machine.complete_reset_state_machine()
+	movement_state_machine.complete_reset_state_machine()
+	attack_state_machine.complete_reset_state_machine()
+
+	health_component.reset_health()
+	damageable_hitbox_component.reset_hitbox()
+	
+	regeneration_component.stop_override_regneration()
+	regeneration_component.stop_continuous_regeneration()
 
 func _on_received_player_respawn_signal() -> void:
 	respawn_timer.start()

@@ -429,7 +429,7 @@ _data = {
 &"invincible": SubResource("Animation_tv4iu")
 }
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("main_state_machine", "movement_state_machine", "attack_state_machine", "animation_controller", "sfx_player", "movement_controller", "input_controller")]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("main_state_machine", "movement_state_machine", "attack_state_machine", "animation_controller", "sfx_player", "movement_controller", "input_controller", "health_component", "regeneration_component", "damageable_hitbox_component")]
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 258
@@ -441,6 +441,9 @@ animation_controller = NodePath("PlayerAnimationController")
 sfx_player = NodePath("SfxPlayer")
 movement_controller = NodePath("MovementController")
 input_controller = NodePath("UserInputController")
+health_component = NodePath("HealthComponent")
+regeneration_component = NodePath("RegenerationComponent")
+damageable_hitbox_component = NodePath("DamageableHitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)

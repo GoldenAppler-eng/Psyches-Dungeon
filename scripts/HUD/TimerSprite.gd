@@ -34,6 +34,7 @@ func _process(delta : float) -> void:
 		GlobalBackgroundMusic.change_playback_speed(1)
 
 func _on_game_start() -> void:
+	visible = true
 	GlobalCardTimer.start(Global.MAX_TIME_LIMIT)
 	_low_time_flag = false
 

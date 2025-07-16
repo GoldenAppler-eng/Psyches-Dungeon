@@ -3,7 +3,7 @@ extends StateMachine
 
 var override_states : Array[OverrideState] = []
 
-func init(controller : InputController, anim_player : AnimationController, sfx_player : SfxPlayer, movement_controller : MovementController) -> void:
+func init(controller : InputController, anim_player : AnimationController, sfx_player : SfxPlayer, movement_controller : MovementController) -> void:	
 	for state : State in get_children():
 		state.init(controller, anim_player, sfx_player, movement_controller) 
 		

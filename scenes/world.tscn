@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://d0bx6c0glfwiw"]
+[gd_scene load_steps=55 format=3 uid="uid://d0bx6c0glfwiw"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/ProcGenHandler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/Player.tscn" id="1_kx658"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://ddv2p0x28l04f" path="res://scripts/tasks/TrapActivationTask.gd" id="9_4kbfs"]
 [ext_resource type="PackedScene" uid="uid://tsgd00awej7" path="res://prefabs/HUD/Psyche.tscn" id="10_7p5jc"]
 [ext_resource type="Script" uid="uid://dhaij0jq75c1n" path="res://scripts/tasks/CoinCollectionTask.gd" id="10_f17e3"]
-[ext_resource type="PackedScene" uid="uid://b328jm4xb4p6i" path="res://prefabs/HUD/ControlsDisplay.tscn" id="11_d1e4f"]
 [ext_resource type="Script" uid="uid://ckmgawqorome5" path="res://scripts/tasks/EnemyDefeatTask.gd" id="11_x2olw"]
 [ext_resource type="Texture2D" uid="uid://dydfm85ycy3yh" path="res://sprites/bg-color.png" id="12_105fm"]
 [ext_resource type="Script" uid="uid://ohix4wy5pm66" path="res://scripts/tasks/PlayerDeathTask.gd" id="12_817gm"]
@@ -20,7 +19,6 @@
 [ext_resource type="Script" uid="uid://cp8anq50qc5x5" path="res://scripts/tasks/ChestOpeningTask.gd" id="13_ggc52"]
 [ext_resource type="Script" uid="uid://cmktuyanlwaem" path="res://scripts/tasks/RoomTravelTask.gd" id="14_l8ah6"]
 [ext_resource type="Texture2D" uid="uid://prrfttbbor8w" path="res://sprites/bar.png" id="14_xe0ec"]
-[ext_resource type="Texture2D" uid="uid://dffvpe62qj6q0" path="res://sprites/bg-color-2.png" id="15_3xvu6"]
 [ext_resource type="PackedScene" uid="uid://biuqobf0g3mnk" path="res://prefabs/handlers/ScoreHandler.tscn" id="15_lffjk"]
 [ext_resource type="Script" uid="uid://lwbv7cx2mdvj" path="res://scripts/menu/PauseMenu.gd" id="16_2lf6f"]
 [ext_resource type="Script" uid="uid://c3cxhfbw6aayg" path="res://scripts/UI/SettingsUI.gd" id="16_d8deg"]
@@ -44,7 +42,7 @@
 [ext_resource type="Script" uid="uid://b7cxqp1ujn0bv" path="res://scripts/DebugMode.gd" id="37_x70b3"]
 [ext_resource type="Script" uid="uid://bk85kfe6o41ve" path="res://scripts/singletons/DistortionEffect.gd" id="38_1bdwf"]
 
-[sub_resource type="Resource" id="Resource_cgwb4"]
+[sub_resource type="Resource" id="Resource_yd118"]
 resource_local_to_scene = true
 script = ExtResource("10_f17e3")
 task_description = "Collect {requirement_amount} coins"
@@ -52,7 +50,7 @@ min_requirement = 3
 max_requirement = 6
 metadata/_custom_type_script = "uid://dhaij0jq75c1n"
 
-[sub_resource type="Resource" id="Resource_tx6do"]
+[sub_resource type="Resource" id="Resource_lffjk"]
 resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = false
@@ -61,7 +59,7 @@ min_requirement = 4
 max_requirement = 6
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_jot8m"]
+[sub_resource type="Resource" id="Resource_cgwb4"]
 resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = true
@@ -70,7 +68,7 @@ min_requirement = 1
 max_requirement = 2
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
-[sub_resource type="Resource" id="Resource_302v5"]
+[sub_resource type="Resource" id="Resource_tx6do"]
 resource_local_to_scene = true
 script = ExtResource("12_817gm")
 task_description = "Die {requirement_amount} times"
@@ -78,7 +76,7 @@ min_requirement = 1
 max_requirement = 1
 metadata/_custom_type_script = "uid://ohix4wy5pm66"
 
-[sub_resource type="Resource" id="Resource_im3ha"]
+[sub_resource type="Resource" id="Resource_jot8m"]
 resource_local_to_scene = true
 script = ExtResource("13_ggc52")
 task_description = "Open {requirement_amount} chests"
@@ -86,7 +84,7 @@ min_requirement = 2
 max_requirement = 5
 metadata/_custom_type_script = "uid://cp8anq50qc5x5"
 
-[sub_resource type="Resource" id="Resource_6fpx2"]
+[sub_resource type="Resource" id="Resource_302v5"]
 resource_local_to_scene = true
 script = ExtResource("14_l8ah6")
 need_consecutive = true
@@ -95,7 +93,7 @@ min_requirement = 2
 max_requirement = 4
 metadata/_custom_type_script = "uid://cmktuyanlwaem"
 
-[sub_resource type="Resource" id="Resource_pd53d"]
+[sub_resource type="Resource" id="Resource_im3ha"]
 resource_local_to_scene = true
 script = ExtResource("9_4kbfs")
 task_description = "Activate {requirement_amount} traps"
@@ -206,7 +204,7 @@ goal_handler = NodePath("../goal_handler")
 [node name="effect_resolution_handler" parent="Handlers" instance=ExtResource("6_yxh6h")]
 
 [node name="task_handler" parent="Handlers" instance=ExtResource("7_ke0n8")]
-task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_cgwb4"), SubResource("Resource_tx6do"), SubResource("Resource_jot8m"), SubResource("Resource_302v5"), SubResource("Resource_im3ha"), SubResource("Resource_6fpx2"), SubResource("Resource_pd53d")])
+task_pool = Array[ExtResource("8_rup4s")]([SubResource("Resource_yd118"), SubResource("Resource_lffjk"), SubResource("Resource_cgwb4"), SubResource("Resource_tx6do"), SubResource("Resource_jot8m"), SubResource("Resource_302v5"), SubResource("Resource_im3ha")])
 
 [node name="ScoreHandler" parent="Handlers" node_paths=PackedStringArray("task_handler") instance=ExtResource("15_lffjk")]
 task_handler = NodePath("../task_handler")
@@ -224,24 +222,13 @@ grow_vertical = 2
 
 [node name="ResizedHUD" type="Node2D" parent="GUI/HUD"]
 
-[node name="psyche" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("task_handler") instance=ExtResource("10_7p5jc")]
+[node name="Psyche" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("task_handler") instance=ExtResource("10_7p5jc")]
 process_mode = 3
 position = Vector2(383, 345)
 task_handler = NodePath("../../../../Handlers/task_handler")
 
-[node name="controls_display" parent="GUI/HUD/ResizedHUD" instance=ExtResource("11_d1e4f")]
-visible = false
-z_index = 1
-position = Vector2(346, 348)
-
-[node name="timer_sprite" parent="GUI/HUD/ResizedHUD" instance=ExtResource("8_nmwfv")]
+[node name="TimeSprite" parent="GUI/HUD/ResizedHUD" instance=ExtResource("8_nmwfv")]
 position = Vector2(585, 15)
-
-[node name="arrow_display_bg" type="Sprite2D" parent="GUI/HUD/ResizedHUD"]
-visible = false
-position = Vector2(346.5, 362)
-scale = Vector2(3.46875, 2.5625)
-texture = ExtResource("15_3xvu6")
 
 [node name="CardHUDDisplay" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("card_handler") instance=ExtResource("19_x2olw")]
 position = Vector2(101, 344)
@@ -253,7 +240,7 @@ goal_handler = NodePath("../../../../Handlers/goal_handler")
 
 [node name="PlayerHealthHUD" parent="GUI/HUD/ResizedHUD" node_paths=PackedStringArray("timer_controller") instance=ExtResource("21_1w2qq")]
 position = Vector2(495, 289)
-timer_controller = NodePath("../timer_sprite")
+timer_controller = NodePath("../TimeSprite")
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/HUD"]
 layout_mode = 1
