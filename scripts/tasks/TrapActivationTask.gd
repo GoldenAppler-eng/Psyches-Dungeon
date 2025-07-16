@@ -5,4 +5,5 @@ func _init() -> void:
 	GlobalSignalBus.trap_activated.connect(_on_trap_activated)
 
 func _on_trap_activated(activating_body : Node2D) -> void:
-	_on_task_progress_made()
+	if activating_body is Player:
+		_on_task_progress_made()
