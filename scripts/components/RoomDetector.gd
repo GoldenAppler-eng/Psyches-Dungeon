@@ -5,6 +5,12 @@ var prev_room_area : Area2D
 func _on_room_exited(area : Area2D) -> void:
 	GlobalSignalBus.room_exited.emit(area)
 	
+	get_tree().create_timer(5, false, false, false).timeout.connect(_disable_room.bind(area), CONNECT_ONE_SHOT)
+	
+func _disable_room(area : Area2D) -> void:	
+	if area == prev_room_area:
+		return
+	
 	area.owner.process_mode = PROCESS_MODE_DISABLED
 
 func _on_new_room_entered(area : Area2D) -> void:
