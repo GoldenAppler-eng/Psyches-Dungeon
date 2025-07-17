@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://d0bx6c0glfwiw"]
+[gd_scene load_steps=54 format=3 uid="uid://d0bx6c0glfwiw"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/ProcGenHandler.tscn" id="1_4gt5v"]
 [ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/Player.tscn" id="1_kx658"]
@@ -28,7 +28,6 @@
 [ext_resource type="Script" uid="uid://rwgfl7qpmu0k" path="res://scripts/menu/GameOverMenu.gd" id="18_kpybi"]
 [ext_resource type="PackedScene" uid="uid://c68vnobfiodfc" path="res://prefabs/UI/ResolutionController.tscn" id="18_xgqkh"]
 [ext_resource type="PackedScene" uid="uid://cgac5b20dglax" path="res://prefabs/UI/VolumeController.tscn" id="19_ctatt"]
-[ext_resource type="PackedScene" uid="uid://uf6ennr7sfqx" path="res://prefabs/UI/WindowModeController.tscn" id="19_munwf"]
 [ext_resource type="Script" uid="uid://6hk3s82gadwb" path="res://scripts/menu/StartMenu.gd" id="19_wdwqs"]
 [ext_resource type="PackedScene" uid="uid://dfu6vdkfj2okp" path="res://prefabs/HUD/CardHUDDisplay.tscn" id="19_x2olw"]
 [ext_resource type="PackedScene" uid="uid://b3lpxmm30ga21" path="res://prefabs/HUD/GoalHUDDisplay.tscn" id="20_817gm"]
@@ -38,8 +37,8 @@
 [ext_resource type="PackedScene" uid="uid://bmky0n8q8chq4" path="res://prefabs/HUD/TaskHandlerHUDDisplay.tscn" id="21_ggc52"]
 [ext_resource type="PackedScene" uid="uid://c5580pjxngcgg" path="res://prefabs/HUD/WildEfffectHUD.tscn" id="22_yd118"]
 [ext_resource type="PackedScene" uid="uid://bw7e667d45og3" path="res://prefabs/HUD/ScoreHandlerHUD.tscn" id="25_cgwb4"]
+[ext_resource type="PackedScene" uid="uid://dvu8r0qemxdi4" path="res://prefabs/UI/ScreenDistortionController.tscn" id="31_yd118"]
 [ext_resource type="Shader" uid="uid://bf7xlj18qupmj" path="res://resources/shaders/screen_shader.gdshader" id="37_5w2bu"]
-[ext_resource type="Script" uid="uid://b7cxqp1ujn0bv" path="res://scripts/DebugMode.gd" id="37_x70b3"]
 [ext_resource type="Script" uid="uid://bk85kfe6o41ve" path="res://scripts/singletons/DistortionEffect.gd" id="38_1bdwf"]
 
 [sub_resource type="Resource" id="Resource_yd118"]
@@ -118,7 +117,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/offset")
+tracks/0/path = NodePath("ScreenDistortion:material:shader_parameter/offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -146,7 +145,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/offset")
+tracks/0/path = NodePath("ScreenDistortion:material:shader_parameter/offset")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -350,16 +349,16 @@ label_settings = SubResource("LabelSettings_op4s2")
 [node name="resolution_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("18_xgqkh")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../sfx_volume_controller")
-focus_neighbor_bottom = NodePath("../window_mode_controller")
+focus_neighbor_bottom = NodePath("../screen_distortion_controller")
 
-[node name="window_mode_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("19_munwf")]
+[node name="screen_distortion_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("31_yd118")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../resolution_controller")
 focus_neighbor_bottom = NodePath("../master_volume_controller")
 
 [node name="master_volume_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("19_ctatt")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../window_mode_controller")
+focus_neighbor_top = NodePath("../screen_distortion_controller")
 focus_neighbor_bottom = NodePath("../music_volume_controller")
 
 [node name="music_volume_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("19_ctatt")]
@@ -563,7 +562,8 @@ game_win_menu = NodePath("../game_win_menu")
 [node name="ScreenShader" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="ColorRect" type="ColorRect" parent="ScreenShader"]
+[node name="ScreenDistortion" type="ColorRect" parent="ScreenShader"]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_302v5")
 anchors_preset = 15
 anchor_right = 1.0
@@ -580,11 +580,5 @@ autoplay = "RESET"
 
 [node name="DistortionEffect" type="Node" parent="ScreenShader"]
 script = ExtResource("38_1bdwf")
-
-[node name="DebugMode" type="Node" parent="." node_paths=PackedStringArray("task_handler")]
-process_mode = 4
-script = ExtResource("37_x70b3")
-task_handler = NodePath("../Handlers/task_handler")
-mute_audio = true
 
 [connection signal="timeout" from="GUI/UI/start_menu/MarginContainer/StartBlinkTimer" to="GUI/UI/start_menu" method="_on_start_blink_timer_timeout"]

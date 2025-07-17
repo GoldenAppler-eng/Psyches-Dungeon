@@ -7,6 +7,8 @@ var global_player : Player
 
 const MAX_TIME_LIMIT : int = 15
 
+var screen_distortion_enabled : bool = true
+
 var lucky_flag : bool = false
 var unlucky_flag : bool = false
 
