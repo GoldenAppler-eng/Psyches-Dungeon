@@ -54,8 +54,8 @@ resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = false
 task_description = "Defeat {requirement_amount} enemies"
-min_requirement = 4
-max_requirement = 6
+min_requirement = 6
+max_requirement = 8
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
 [sub_resource type="Resource" id="Resource_lffjk"]
@@ -63,8 +63,8 @@ resource_local_to_scene = true
 script = ExtResource("11_x2olw")
 need_golden_enemy = true
 task_description = "Defeat {requirement_amount} golden enemies"
-min_requirement = 1
-max_requirement = 2
+min_requirement = 2
+max_requirement = 4
 metadata/_custom_type_script = "uid://ckmgawqorome5"
 
 [sub_resource type="Resource" id="Resource_cgwb4"]
