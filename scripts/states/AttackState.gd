@@ -3,6 +3,7 @@ extends State
 @export var passive_state : State
 
 @export var damager_hitbox : DamagerHitboxComponent
+@export var damageable_hitbox : DamageableHitboxComponent
 
 var attack_finished := false
 
@@ -11,7 +12,7 @@ func extra_init() -> void:
 
 func enter() -> void:
 	super()
-	
+		
 	attack_finished = false
 	damager_hitbox.deal_damage_to_area()
 	
@@ -20,7 +21,7 @@ func enter() -> void:
 	
 func exit() -> void:
 	super()
-	
+		
 func process_frame(delta : float) -> State:
 	return null
 	

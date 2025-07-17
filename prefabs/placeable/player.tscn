@@ -554,10 +554,11 @@ script = ExtResource("13_u8pvg")
 attack_state = NodePath("../attack state")
 attack_cooldown_timer = NodePath("../../../Timers/AttackCooldownTimer")
 
-[node name="attack state" type="Node" parent="StateMachines/attack state machine" node_paths=PackedStringArray("passive_state", "damager_hitbox")]
+[node name="attack state" type="Node" parent="StateMachines/attack state machine" node_paths=PackedStringArray("passive_state", "damager_hitbox", "damageable_hitbox")]
 script = ExtResource("12_6gbnb")
 passive_state = NodePath("../passive state")
 damager_hitbox = NodePath("../../../DamagerHitbox")
+damageable_hitbox = NodePath("../../../DamageableHitbox")
 
 [node name="PlayerAnimationController" type="Node2D" parent="." node_paths=PackedStringArray("top_half_sprite", "bottom_half_sprite", "animation_player")]
 script = ExtResource("27_5dq54")

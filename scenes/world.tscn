@@ -582,6 +582,7 @@ autoplay = "RESET"
 script = ExtResource("38_1bdwf")
 
 [node name="DebugMode" type="Node" parent="." node_paths=PackedStringArray("task_handler")]
+process_mode = 4
 script = ExtResource("37_x70b3")
 task_handler = NodePath("../Handlers/task_handler")
 mute_audio = true
