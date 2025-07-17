@@ -19,7 +19,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if player_regeneration_component.is_regenerating() and not _rightmost_heart_index == heart_icons.size() - 1 :
 		heart_icons[_rightmost_heart_index + 1].set_regen(true)
-
+	elif not player_regeneration_component.is_regenerating():
+		for heart_icon in heart_icons:
+			if heart_icon.is_regenerating():
+				heart_icon.set_regen(false)
+	
 func connect_signals() -> void:
 	GlobalSignalBus.retry.connect(_on_game_retry)
 	

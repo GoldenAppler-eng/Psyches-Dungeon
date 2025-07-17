@@ -16,6 +16,9 @@ func _ready() -> void:
 	animated_sprite_2d.frame = 0
 
 func _process(delta: float) -> void:
+	if _opened:
+		animated_sprite_2d.frame = 2
+	
 	if not _player_nearby or _opened:
 		return
 
