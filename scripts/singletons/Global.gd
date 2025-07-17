@@ -5,7 +5,7 @@ enum DIRECTION { NORTH = 3, SOUTH = 4, EAST = 5, WEST = 6 }
 
 var global_player : Player
 
-const MAX_TIME_LIMIT : int = 15
+const MAX_TIME_LIMIT : int = 18
 
 var screen_distortion_enabled : bool = true
 
