@@ -45,7 +45,7 @@
 resource_local_to_scene = true
 script = ExtResource("10_f17e3")
 task_description = "Collect {requirement_amount} coins"
-min_requirement = 3
+min_requirement = 5
 max_requirement = 6
 metadata/_custom_type_script = "uid://dhaij0jq75c1n"
 
@@ -79,8 +79,8 @@ metadata/_custom_type_script = "uid://ohix4wy5pm66"
 resource_local_to_scene = true
 script = ExtResource("13_ggc52")
 task_description = "Open {requirement_amount} chests"
-min_requirement = 2
-max_requirement = 5
+min_requirement = 5
+max_requirement = 8
 metadata/_custom_type_script = "uid://cp8anq50qc5x5"
 
 [sub_resource type="Resource" id="Resource_jot8m"]
@@ -88,7 +88,7 @@ resource_local_to_scene = true
 script = ExtResource("14_l8ah6")
 need_consecutive = true
 task_description = "Go {requirement_direction} into another room {requirement_amount} times consecutively"
-min_requirement = 2
+min_requirement = 3
 max_requirement = 4
 metadata/_custom_type_script = "uid://cmktuyanlwaem"
 
@@ -96,8 +96,8 @@ metadata/_custom_type_script = "uid://cmktuyanlwaem"
 resource_local_to_scene = true
 script = ExtResource("9_4kbfs")
 task_description = "Activate {requirement_amount} traps"
-min_requirement = 15
-max_requirement = 30
+min_requirement = 20
+max_requirement = 36
 metadata/_custom_type_script = "uid://ddv2p0x28l04f"
 
 [sub_resource type="LabelSettings" id="LabelSettings_op4s2"]
