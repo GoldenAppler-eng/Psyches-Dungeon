@@ -128,6 +128,7 @@ quit_game={
 2d_physics/layer_12="room"
 2d_physics/layer_13="room_anti_connectors"
 2d_physics/layer_14="secret_walls"
+2d_physics/layer_15="player_feet_hitbox"
 
 [rendering]
 

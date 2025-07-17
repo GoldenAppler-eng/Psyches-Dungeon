@@ -18,7 +18,7 @@ func _process(delta : float) -> void:
 	if not _activated:
 		return
 	
-	damager_hitbox_component.deal_damage_to_area()
+	damager_hitbox_component.deal_damage_to_area_owner()
 
 func _set_activated(activated : bool) -> void:
 	_activated = activated
