@@ -1,9 +1,9 @@
 extends Control
 
-@onready var resolution_controller: MarginContainer = $MarginContainer/container/resolution_controller
+@onready var screen_distortion_controller: MarginContainer = $MarginContainer/container/screen_distortion_controller
 
 func _ready() -> void:
 	focus_entered.connect(_on_focus_entered)
 
 func _on_focus_entered() -> void:
-	resolution_controller.grab_focus()
+	screen_distortion_controller.grab_focus()

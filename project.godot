@@ -13,7 +13,7 @@ config_version=5
 config/name="Psyche's Dungeon"
 run/main_scene="uid://d0bx6c0glfwiw"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://cypthf4jn282q"
 
 [autoload]
 

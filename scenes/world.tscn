@@ -1,7 +1,7 @@
-[gd_scene load_steps=54 format=3 uid="uid://d0bx6c0glfwiw"]
+[gd_scene load_steps=53 format=3 uid="uid://d0bx6c0glfwiw"]
 
 [ext_resource type="PackedScene" uid="uid://cga2kalyw3nfc" path="res://prefabs/handlers/ProcGenHandler.tscn" id="1_4gt5v"]
-[ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/Player.tscn" id="1_kx658"]
+[ext_resource type="PackedScene" uid="uid://5f7subrgsxq" path="res://prefabs/placeable/player.tscn" id="1_kx658"]
 [ext_resource type="Script" uid="uid://ddxjrhicpne46" path="res://scripts/handlers/CameraHandler.gd" id="3_mdjvo"]
 [ext_resource type="PackedScene" uid="uid://bnj71gqcb0bcx" path="res://prefabs/handlers/CardHandler.tscn" id="5_g57ya"]
 [ext_resource type="PackedScene" uid="uid://dwqki74onshog" path="res://prefabs/handlers/GoalHandler.tscn" id="6_we2tv"]
@@ -26,7 +26,6 @@
 [ext_resource type="Script" uid="uid://mj5oakp8hbqa" path="res://scripts/UI/UI.gd" id="16_qx2d6"]
 [ext_resource type="Theme" uid="uid://cu6yoqe0up8hr" path="res://resources/themes/ButtonTheme.tres" id="17_whvfw"]
 [ext_resource type="Script" uid="uid://rwgfl7qpmu0k" path="res://scripts/menu/GameOverMenu.gd" id="18_kpybi"]
-[ext_resource type="PackedScene" uid="uid://c68vnobfiodfc" path="res://prefabs/UI/ResolutionController.tscn" id="18_xgqkh"]
 [ext_resource type="PackedScene" uid="uid://cgac5b20dglax" path="res://prefabs/UI/VolumeController.tscn" id="19_ctatt"]
 [ext_resource type="Script" uid="uid://6hk3s82gadwb" path="res://scripts/menu/StartMenu.gd" id="19_wdwqs"]
 [ext_resource type="PackedScene" uid="uid://dfu6vdkfj2okp" path="res://prefabs/HUD/CardHUDDisplay.tscn" id="19_x2olw"]
@@ -346,14 +345,9 @@ layout_mode = 2
 text = "Settings"
 label_settings = SubResource("LabelSettings_op4s2")
 
-[node name="resolution_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("18_xgqkh")]
-layout_mode = 2
-focus_neighbor_top = NodePath("../sfx_volume_controller")
-focus_neighbor_bottom = NodePath("../screen_distortion_controller")
-
 [node name="screen_distortion_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("31_yd118")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../resolution_controller")
+focus_neighbor_top = NodePath("../sfx_volume_controller")
 focus_neighbor_bottom = NodePath("../master_volume_controller")
 
 [node name="master_volume_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("19_ctatt")]
@@ -370,7 +364,7 @@ bus_name = "Music"
 [node name="sfx_volume_controller" parent="GUI/UI/settings_ui/MarginContainer/container" instance=ExtResource("19_ctatt")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../music_volume_controller")
-focus_neighbor_bottom = NodePath("../resolution_controller")
+focus_neighbor_bottom = NodePath("../screen_distortion_controller")
 bus_name = "Sfx"
 
 [node name="pause_menu" type="Control" parent="GUI/UI" node_paths=PackedStringArray("idle_menu", "settings_ui")]
